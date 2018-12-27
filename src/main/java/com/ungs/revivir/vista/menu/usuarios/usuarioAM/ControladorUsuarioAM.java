@@ -3,7 +3,7 @@ package com.ungs.revivir.vista.menu.usuarios.usuarioAM;
 import com.ungs.revivir.negocios.manager.UsuarioManager;
 import com.ungs.revivir.persistencia.definidos.Rol;
 import com.ungs.revivir.persistencia.entidades.Usuario;
-import com.ungs.revivir.vista.ControladorExterno;
+import com.ungs.revivir.vista.principal.ControladorExterno;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 

@@ -4,8 +4,8 @@ import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.Vinculador;
 import com.ungs.revivir.persistencia.entidades.Cliente;
-import com.ungs.revivir.vista.ControladorInterno;
-import com.ungs.revivir.vista.ControladorPrincipal;
+import com.ungs.revivir.vista.principal.ControladorInterno;
+import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.seleccion.clientes.ClienteSeleccionable;
 import com.ungs.revivir.vista.seleccion.clientes.ControladorSeleccionCliente;
 

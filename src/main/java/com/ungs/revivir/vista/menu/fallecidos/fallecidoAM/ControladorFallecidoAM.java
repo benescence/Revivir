@@ -8,7 +8,7 @@ import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
-import com.ungs.revivir.vista.ControladorExterno;
+import com.ungs.revivir.vista.principal.ControladorExterno;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 

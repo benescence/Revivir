@@ -5,7 +5,7 @@ import java.awt.event.WindowEvent;
 
 import com.ungs.revivir.negocios.Sesion;
 import com.ungs.revivir.negocios.Validador;
-import com.ungs.revivir.vista.ControladorPrincipal;
+import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.PresionarEnterListener;
 import com.ungs.revivir.vista.util.entradas.EntradaMouse;

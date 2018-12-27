@@ -1,6 +1,6 @@
 package com.ungs.revivir;
 
-import com.ungs.revivir.vista.ControladorPrincipal;
+import com.ungs.revivir.vista.principal.ControladorPrincipal;
 
 public class Main {
 	// prueba 2

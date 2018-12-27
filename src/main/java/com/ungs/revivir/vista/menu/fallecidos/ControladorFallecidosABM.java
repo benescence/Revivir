@@ -6,10 +6,10 @@ import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.vista.ControladorInterno;
-import com.ungs.revivir.vista.ControladorPrincipal;
 import com.ungs.revivir.vista.menu.fallecidos.fallecidoAM.ControladorFallecidoAM;
 import com.ungs.revivir.vista.menu.fallecidos.fallecidoAM.FallecidoInvocable;
+import com.ungs.revivir.vista.principal.ControladorInterno;
+import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorFallecidosABM implements ControladorInterno, FallecidoInvocable {

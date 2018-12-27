@@ -2,7 +2,7 @@ package com.ungs.revivir.vista.menu.servicios.servicioAM;
 
 import com.ungs.revivir.negocios.manager.ServicioManager;
 import com.ungs.revivir.persistencia.entidades.Servicio;
-import com.ungs.revivir.vista.ControladorExterno;
+import com.ungs.revivir.vista.principal.ControladorExterno;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 

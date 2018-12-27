@@ -6,10 +6,10 @@ import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.manager.PagoManager;
 import com.ungs.revivir.persistencia.entidades.Pago;
-import com.ungs.revivir.vista.ControladorInterno;
-import com.ungs.revivir.vista.ControladorPrincipal;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.ControladorPagoAM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.PagoInvocable;
+import com.ungs.revivir.vista.principal.ControladorInterno;
+import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorPagoABM implements ControladorInterno, PagoInvocable {

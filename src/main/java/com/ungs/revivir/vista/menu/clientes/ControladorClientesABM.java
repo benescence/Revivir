@@ -6,10 +6,10 @@ import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.persistencia.entidades.Cliente;
-import com.ungs.revivir.vista.ControladorInterno;
-import com.ungs.revivir.vista.ControladorPrincipal;
 import com.ungs.revivir.vista.menu.clientes.clienteAM.ClienteInvocable;
 import com.ungs.revivir.vista.menu.clientes.clienteAM.ControladorClientesAM;
+import com.ungs.revivir.vista.principal.ControladorInterno;
+import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorClientesABM implements ControladorInterno, ClienteInvocable {

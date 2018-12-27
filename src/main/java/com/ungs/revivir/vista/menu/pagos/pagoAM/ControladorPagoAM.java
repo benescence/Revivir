@@ -16,7 +16,7 @@ import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Servicio;
-import com.ungs.revivir.vista.ControladorExterno;
+import com.ungs.revivir.vista.principal.ControladorExterno;
 import com.ungs.revivir.vista.reportes.FacturaPago;
 import com.ungs.revivir.vista.seleccion.cargos.CargoSeleccionable;
 import com.ungs.revivir.vista.seleccion.cargos.ControladorSeleccionCargo;

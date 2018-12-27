@@ -6,10 +6,10 @@ import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.manager.ServicioManager;
 import com.ungs.revivir.persistencia.entidades.Servicio;
-import com.ungs.revivir.vista.ControladorInterno;
-import com.ungs.revivir.vista.ControladorPrincipal;
 import com.ungs.revivir.vista.menu.servicios.servicioAM.ControladorServicioAM;
 import com.ungs.revivir.vista.menu.servicios.servicioAM.ServicioInvocable;
+import com.ungs.revivir.vista.principal.ControladorInterno;
+import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorServiciosABM implements ControladorInterno, ServicioInvocable {

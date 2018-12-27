@@ -7,7 +7,7 @@ import com.ungs.revivir.negocios.manager.ServicioManager;
 import com.ungs.revivir.persistencia.entidades.Cargo;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Servicio;
-import com.ungs.revivir.vista.ControladorExterno;
+import com.ungs.revivir.vista.principal.ControladorExterno;
 import com.ungs.revivir.vista.seleccion.fallecidos.ControladorSeleccionarFallecido;
 import com.ungs.revivir.vista.seleccion.fallecidos.FallecidoSeleccionable;
 import com.ungs.revivir.vista.seleccion.servicio.ControladorSeleccionarServicio;

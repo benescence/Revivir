@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 import com.ungs.revivir.negocios.Vinculador;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.vista.ControladorPrincipal;
+import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.seleccion.clientes.ClienteSeleccionable;
 import com.ungs.revivir.vista.seleccion.clientes.ControladorSeleccionCliente;
 import com.ungs.revivir.vista.seleccion.fallecidos.ControladorSeleccionarFallecido;

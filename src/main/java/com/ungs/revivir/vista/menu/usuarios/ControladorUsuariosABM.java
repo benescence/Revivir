@@ -7,10 +7,10 @@ import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.manager.UsuarioManager;
 import com.ungs.revivir.persistencia.entidades.Usuario;
-import com.ungs.revivir.vista.ControladorInterno;
-import com.ungs.revivir.vista.ControladorPrincipal;
 import com.ungs.revivir.vista.menu.usuarios.usuarioAM.ControladorUsuarioAM;
 import com.ungs.revivir.vista.menu.usuarios.usuarioAM.UsuarioInvocable;
+import com.ungs.revivir.vista.principal.ControladorInterno;
+import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorUsuariosABM implements ControladorInterno, UsuarioInvocable {
