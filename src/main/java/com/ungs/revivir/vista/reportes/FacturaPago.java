@@ -7,6 +7,15 @@ import java.util.Map;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.vista.util.Formato;
 
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 
 
 
@@ -26,8 +35,8 @@ public class FacturaPago {
     
     	try	{
      		JasperCompileManager.compileReportToFile(
-                    "\\Cementerio_v1\\reportes\\FacturaPago.jrxml",//the path to the jrxml file to compile
-                    "\\Cementerio_v1\\reportes");//the path and name we want to save the compiled file to
+                    "\\revivir/src/main/java/com/ungs/revivir/vista/reportes\\FacturaPago.jrxml",//the path to the jrxml file to compile
+                    "\\revivir\\reportes");//the path and name we want to save the compiled file to
                     
 			reporte = (JasperReport) JRLoader.loadObjectFromLocation("reportes\\FacturaPago.jasper");
 			reporteLleno = JasperFillManager.fillReport(this.reporte, totalPersonas, 
