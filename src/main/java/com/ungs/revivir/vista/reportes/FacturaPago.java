@@ -32,10 +32,10 @@ public class FacturaPago {
     
     	try	{
      		JasperCompileManager.compileReportToFile(
-                    "\\revivir/src/main/java/com/ungs/revivir/vista/reportes\\FacturaPago.jrxml",//the path to the jrxml file to compile
+                    "\\revivir\\src\\main\\java\\com\\ungs\\revivir\\vista\\reportes\\FacturaPago.jrxml",//the path to the jrxml file to compile
                     "\\revivir\\reportes");//the path and name we want to save the compiled file to
                     
-			reporte = (JasperReport) JRLoader.loadObjectFromLocation("reportes\\FacturaPago.jasper");
+			reporte = (JasperReport) JRLoader.loadObjectFromLocation("revivir\\src\\main\\\\java\\com\\ungs\\revivir\\vista\\reportes\\FacturaPago.jasper");
 			reporteLleno = JasperFillManager.fillReport(this.reporte, totalPersonas, 
 					new JRBeanCollectionDataSource(pagos));
 		}
