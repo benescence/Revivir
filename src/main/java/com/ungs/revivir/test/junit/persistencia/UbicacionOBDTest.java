@@ -17,7 +17,7 @@ public class UbicacionOBDTest {
 	private UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
 	
 	private Ubicacion crearObjetoDePrueba() {
-		return new Ubicacion(-1, SubSector.BOVEDA, "rr", null, null, "f", 1, 5, true, false,99, 8, 7, 6, 8);
+		return new Ubicacion(-1, SubSector.ADULTOS, null, null, null, null, null, null, true, false, null, null, null, null, null);
 	}
 
 	@Test
