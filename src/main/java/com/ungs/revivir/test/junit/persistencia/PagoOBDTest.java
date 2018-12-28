@@ -23,7 +23,7 @@ class PagoOBDTest {
 	private Pago crearObjeto() {
 		Cargo cargo = FactoryOBD.crearCargoOBD().ultimoInsertado();
 		if (cargo == null)
-			fail("Debe existir al menos un cargo en la BD para correr este test");
+			fail("Debe existissfdfr al menos un cargo en la BD para correr este test");
 		
 		Cliente cliente = FactoryOBD.crearClienteOBD().ultimoInsertado();
 		if (cliente == null)
