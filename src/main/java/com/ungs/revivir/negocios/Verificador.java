@@ -4,6 +4,7 @@ import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.ServicioManager;
 import com.ungs.revivir.negocios.manager.UsuarioManager;
+import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Cargo;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
@@ -74,21 +75,19 @@ public class Verificador {
 		String mensaje = "";
 
 		if (nombre == null)
-			mensaje += "\n    -El NOMBRE no puede estar vac�o.";
+			mensaje += "\n    -El NOMBRE no puede estar vacío.";
 		else if (!Validador.nombrePersona(nombre))
 			mensaje += "\n    -El NOMBRE solo puede estar compuesto de letras y espacios.";
 
 		if (apellido == null)
-			mensaje += "\n    -El APELLIDO no puede estar vacio.";
+			mensaje += "\n    -El APELLIDO no puede estar vacío.";
 		else if (!Validador.apellido(apellido))
 			mensaje += "\n    -El APELLIDO solo puede estar compuesto de letras y espacios.";
 		
-		if (DNI == null)
-			mensaje += "\n    -El DNI no puede estar vacio.";
-		else if (!Validador.DNI(DNI))
-			mensaje += "\n    -El DNI solo puede estar compuesto de n�meros.";
+		if (DNI != null && !Validador.DNI(DNI))
+			mensaje += "\n    -El DNI solo puede estar compuesto de números.";
 		else {
-			// Verifico que no exista ya un objeto con ese DNi, y si existe debe tener el mismo iD
+			// Verifico que no exista ya un objeto con ese DNI, y si existe debe tener el mismo iD
 			Fallecido objetoDNI = FallecidoManager.traerPorDNI(DNI);
 			if (objetoDNI != null && verificar.getID() != objetoDNI.getID())
 				mensaje += "\n    -Ya se encuentra registrado un fallecido con el DNI: "+DNI+".";
@@ -108,46 +107,35 @@ public class Verificador {
 	
 	
 	public static Pago pago(Pago pago) throws Exception {
-		/*
-		String nombre = anular(verificar.getNombre());
-		String apellido = anular(verificar.getApellido());
-		String DNI = anular(verificar.getDNI());
-		String cocheria = anular(verificar.getCocheria());
-		String mensaje = "";
-
-		if (nombre == null)
-			mensaje += "\n    -El NOMBRE no puede estar vac�o.";
-		else if (!Validador.nombrePersona(nombre))
-			mensaje += "\n    -El NOMBRE solo puede estar compuesto de letras y espacios.";
-
-		if (apellido == null)
-			mensaje += "\n    -El APELLIDO no puede estar vacio.";
-		else if (!Validador.apellido(apellido))
-			mensaje += "\n    -El APELLIDO solo puede estar compuesto de letras y espacios.";
-		
-		if (DNI == null)
-			mensaje += "\n    -El DNI no puede estar vacio.";
-		else if (!Validador.DNI(DNI))
-			mensaje += "\n    -El DNI solo puede estar compuesto de n�meros.";
-		else {
-			// Verifico que no exista ya un objeto con ese DNi, y si existe debe tener el mismo iD
-			Fallecido objetoDNI = FallecidoManager.traerPorDNI(DNI);
-			if (objetoDNI != null && verificar.getID() != objetoDNI.getID())
-				mensaje += "\n    -Ya se encuentra registrado un fallecido con el DNI: "+DNI+".";
-		}
-		
-		if (!mensaje.equals(""))
-			throw new Exception("Se encontraron los siguientes errores en el formulario:"+mensaje);
-		
-		// Seteo los que pudieron ser anulados
-		verificar.setCocheria(cocheria);
-		return verificar;
-		*/return pago;
+		return pago;
 	}
 	
-	public static Ubicacion ubicacion(Ubicacion verificar) {
+	public static Ubicacion ubicacion(Ubicacion verificar) throws Exception {
 		String seccion = anular(verificar.getSeccion());
 		String otroCementerio = anular(verificar.getOtroCementerio());
+		String mensaje = "";
+		
+		if (verificar.getSubsector().equals(SubSector.COMPRADA)) {
+			
+			if (seccion == null)
+				mensaje += "\n    -La SECCION no puede estar vacia.";
+			
+			if (verificar.getMacizo() == null)
+				mensaje += "\n    -El MACIZO no puede estar vacio.";
+			
+			if (verificar.getUnidad() == null)
+				mensaje += "\n    -La UNIDAD no puede estar vacio.";
+			
+			if (verificar.getSepultura() == null)
+				mensaje += "\n    -La SEPULTURA no puede estar vacio.";
+			
+			if (verificar.getParcela() == null)
+				mensaje += "\n    -La PARCELA no puede estar vacio.";
+
+		}
+				
+		if (!mensaje.equals(""))
+			throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
 		
 		verificar.setSeccion(seccion);
 		verificar.setOtroCementerio(otroCementerio);

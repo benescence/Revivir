@@ -37,9 +37,8 @@ public class VentanaFallecidoAM extends Ventana {
 	private EntradaLista<TipoFallecimiento> inTipo;
 	
 	// DATOS DE UBICACION
-	private EntradaNumero inUnidad, inFila, inNicho;
-	private EntradaTexto inSeccion, inMacizo, inSepultura, inInhumacion,
-	inCirc, inParcela, inMueble;
+	private EntradaNumero inUnidad, inFila, inMacizo, inNicho, inSepultura, inParcela, inInhumacion, inCirc, inMueble;
+	private EntradaTexto inSeccion;
 	private JCheckBox inCheckMacizo, inCheckBis;
 	private EntradaLista<Sector> inSector;
 	private EntradaLista<SubSector> inSubSector;
@@ -73,23 +72,22 @@ public class VentanaFallecidoAM extends Ventana {
 		PanelVertical panelPrincipal = crearPanelPrincipal();
 		panelPrincipal.add(crearPanelFallecido());
 		panelPrincipal.add(new JSeparator());
-		panelPrincipal.add(new TextoCentrado("Datos de la ubicacion"));
 		panelPrincipal.add(crearPanelUbicacion());
 		panelPrincipal.add(panelBotones);
 		compactar();
 	}
 	
 	private PanelVertical crearPanelFallecido() {
-		Dimension dimLabel = new Dimension(150, 25);
-		Dimension dimTextfield = new Dimension(380, 25);
+		Dimension dimTexto = new Dimension(150, 25);
+		Dimension dimEntrada = new Dimension(380, 25);
 		
-		inNombre = new EntradaTexto("Nombres", dimLabel, dimTextfield);
-		inApellido = new EntradaTexto("Apellidos", dimLabel, dimTextfield);
-		inDNI = new EntradaTexto("DNI", dimLabel, dimTextfield);
-		inCocheria = new EntradaTexto("Cocheria", dimLabel, dimTextfield);
-		inFechaFallecimiento = new EntradaFecha(Almanaque.hoy(), "Fecha de fallecimiento", dimLabel, dimTextfield);
-		inFechaIngreso = new EntradaFecha(Almanaque.hoy(), "Fecha de Ingreso", dimLabel, dimTextfield);
-		inTipo = new EntradaLista<>("Tipode fallecimiento", dimLabel, dimTextfield);
+		inNombre = new EntradaTexto("Nombres", dimTexto, dimEntrada);
+		inApellido = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
+		inDNI = new EntradaTexto("DNI", dimTexto, dimEntrada);
+		inCocheria = new EntradaTexto("Cocheria", dimTexto, dimEntrada);
+		inFechaFallecimiento = new EntradaFecha(Almanaque.hoy(), "Fecha de fallecimiento", dimTexto, dimEntrada);
+		inFechaIngreso = new EntradaFecha(Almanaque.hoy(), "Fecha de Ingreso", dimTexto, dimEntrada);
+		inTipo = new EntradaLista<>("Tipode fallecimiento", dimTexto, dimEntrada);
 		for (TipoFallecimiento tipo : TipoFallecimiento.values())
 			inTipo.getComboBox().addItem(tipo);
 		inTipo.getComboBox().setSelectedItem(TipoFallecimiento.NO_TRAUMATICO);
@@ -108,21 +106,21 @@ public class VentanaFallecidoAM extends Ventana {
 		return panelFallecido;
 	}
 	
-	private PanelHorizontal crearPanelUbicacion() {
-		Dimension largoLabel1 = new Dimension(100, 25);
-		Dimension largoLabel2 = new Dimension(100, 25);
-		Dimension largoTextfield = new Dimension(150, 25);
+	private PanelVertical crearPanelUbicacion() {
+		Dimension dimTexto1 = new Dimension(100, 25);
+		Dimension dimTexto2 = new Dimension(100, 25);
+		Dimension dimEntrada = new Dimension(150, 25);
 
-		inSeccion = new EntradaTexto("Seccion", largoLabel1, largoTextfield);
-		inMacizo = new EntradaTexto("Macizo", largoLabel1, largoTextfield);
-		inUnidad = new EntradaNumero("Unidad", largoLabel1, largoTextfield);
-		inSepultura = new EntradaTexto("Sepultura", largoLabel1, largoTextfield);
-		inInhumacion = new EntradaTexto("Inhumacion", largoLabel1, largoTextfield);
-		inNicho = new EntradaNumero("Nicho", largoLabel2, largoTextfield);
-		inFila = new EntradaNumero("Fila", largoLabel2, largoTextfield);
-		inCirc = new EntradaTexto("Circ", largoLabel2, largoTextfield);
-		inParcela = new EntradaTexto("Parcela", largoLabel2, largoTextfield);
-		inMueble = new EntradaTexto("Mueble", largoLabel2, largoTextfield);
+		inSeccion = new EntradaTexto("Seccion", dimTexto1, dimEntrada);
+		inMacizo = new EntradaNumero("Macizo", dimTexto1, dimEntrada);
+		inUnidad = new EntradaNumero("Unidad", dimTexto1, dimEntrada);
+		inSepultura = new EntradaNumero("Sepultura", dimTexto1, dimEntrada);
+		inInhumacion = new EntradaNumero("Inhumacion", dimTexto1, dimEntrada);
+		inNicho = new EntradaNumero("Nicho", dimTexto2, dimEntrada);
+		inFila = new EntradaNumero("Fila", dimTexto2, dimEntrada);
+		inCirc = new EntradaNumero("Circ", dimTexto2, dimEntrada);
+		inParcela = new EntradaNumero("Parcela", dimTexto2, dimEntrada);
+		inMueble = new EntradaNumero("Mueble", dimTexto2, dimEntrada);
 
 		inCheckBis = new JCheckBox("Bis");
 		inCheckMacizo = new JCheckBox("Macizo1");
@@ -130,8 +128,8 @@ public class VentanaFallecidoAM extends Ventana {
 		panelCheck.add(inCheckBis);
 		panelCheck.add(inCheckMacizo);
 		
-		inSector = new EntradaLista<>("Sector", largoLabel1, largoTextfield);
-		inSubSector = new EntradaLista<>("Sub Sector", largoLabel2, largoTextfield);
+		inSector = new EntradaLista<>("Sector", dimTexto1, dimEntrada);
+		inSubSector = new EntradaLista<>("Sub Sector", dimTexto2, dimEntrada);
 
 		for (Sector sector : Localizador.traerSectores())
 			inSector.getComboBox().addItem(sector);
@@ -173,10 +171,15 @@ public class VentanaFallecidoAM extends Ventana {
 		ret2.add(inMueble);
 		ret2.add(panelCheck);
 		
-		PanelHorizontal ret = new PanelHorizontal();
-		ret.add(ret1);
-		ret.add(ret2);
-		return ret;
+		PanelHorizontal ret3 = new PanelHorizontal();
+		ret3.add(ret1);
+		ret3.add(ret2);
+		
+		PanelVertical ret4 = new PanelVertical();
+		ret4.setBorder(new EmptyBorder(10, 0, 0, 0));
+		ret4.add(new TextoCentrado("Datos de la ubicacion"));
+		ret4.add(ret3);
+		return ret4;
 	}
 	
 	private void seleccionarSubSector() {
@@ -269,19 +272,19 @@ public class VentanaFallecidoAM extends Ventana {
 			inSubSector.getComboBox().addItem(elemento);
 	}
 
-	public JTextField getInDNIFallecido() {
+	public JTextField getDNIFallecido() {
 		return inDNI.getTextField();
 	}
 
-	public JTextField getInApellidoFallecido() {
+	public JTextField getApellidoFallecido() {
 		return inApellido.getTextField();
 	}
 
-	public JTextField getInNombreFallecido() {
+	public JTextField getNombreFallecido() {
 		return inNombre.getTextField();
 	}
 
-	public JTextField getInCocheria() {
+	public JTextField getCocheria() {
 		return inCocheria.getTextField();
 	}
 
@@ -298,24 +301,24 @@ public class VentanaFallecidoAM extends Ventana {
 		return inTipo.getComboBox();
 	}
 
-	public JTextField getInSeccion() {
-		return inSeccion.getTextField();
+	public EntradaTexto getSeccion() {
+		return inSeccion;
 	}
 
-	public JTextField getInMacizo() {
-		return inMacizo.getTextField();
+	public EntradaNumero getMacizo() {
+		return inMacizo;
 	}
 
 	public EntradaNumero getUnidad() {
 		return inUnidad;
 	}
 
-	public JTextField getInSepultura() {
-		return inSepultura.getTextField();
+	public EntradaNumero getSepultura() {
+		return inSepultura;
 	}
 
-	public JTextField getInInhumacion() {
-		return inInhumacion.getTextField();
+	public EntradaNumero getInhumacion() {
+		return inInhumacion;
 	}
 
 	public EntradaNumero getNicho() {
@@ -326,16 +329,16 @@ public class VentanaFallecidoAM extends Ventana {
 		return inFila;
 	}
 
-	public JTextField getInCirc() {
-		return inCirc.getTextField();
+	public EntradaNumero getCirc() {
+		return inCirc;
 	}
 
-	public JTextField getInParcela() {
-		return inParcela.getTextField();
+	public EntradaNumero getParcela() {
+		return inParcela;
 	}
 
-	public JTextField getInMueble() {
-		return inMueble.getTextField();
+	public EntradaNumero getMueble() {
+		return inMueble;
 	}
 
 	public JCheckBox getInCheckMacizo() {
@@ -346,11 +349,11 @@ public class VentanaFallecidoAM extends Ventana {
 		return inCheckBis;
 	}
 
-	public JComboBox<Sector> getInSector() {
+	public JComboBox<Sector> getSector() {
 		return inSector.getComboBox();
 	}
 
-	public JComboBox<SubSector> getInSubSector() {
+	public JComboBox<SubSector> getSubSector() {
 		return inSubSector.getComboBox();
 	}
 
