@@ -159,13 +159,14 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			Pago pagoNuevo = new Pago(-1, cargo.getID(), cliente.getID(), importe, observaciones, fecha);
 			
 			// Estoy dando el alta
-			if (pago == null)
+			if (pago == null) {
 				PagoManager.guardar(pagoNuevo);
-
+				verFactura();}
 			// Estoy modificando
 			else {
 				pagoNuevo.setID(pago.getID());
 				PagoManager.modificar(pagoNuevo);
+				verFactura();
 			}
 			
 			ventana.dispose();
