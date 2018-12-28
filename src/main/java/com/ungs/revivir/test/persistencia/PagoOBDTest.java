@@ -1,4 +1,4 @@
-package com.ungs.revivir.test.junit.persistencia;
+package com.ungs.revivir.test.persistencia;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,7 +23,7 @@ class PagoOBDTest {
 	private Pago crearObjeto() {
 		Cargo cargo = FactoryOBD.crearCargoOBD().ultimoInsertado();
 		if (cargo == null)
-			fail("Debe existissfdfr al menos un cargo en la BD para correr este test");
+			fail("Debe existir al menos un cargo en la BD para correr este test");
 		
 		Cliente cliente = FactoryOBD.crearClienteOBD().ultimoInsertado();
 		if (cliente == null)

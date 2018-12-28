@@ -1,4 +1,4 @@
-package com.ungs.revivir.test.junit.persistencia;
+package com.ungs.revivir.test.persistencia;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
