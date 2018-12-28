@@ -77,11 +77,11 @@ public class ControladorFallecidoAM implements ControladorExterno{
 	private void guardarUbicacion() {
 		SubSector subsector = (SubSector) ventana.getInSubSector().getSelectedItem();
 		String otroCementerio = null;
-		Integer nicho = new Integer((ventana.getInNicho().isEnabled() ? ventana.getInNicho().getText() : null));
-		Integer fila = new Integer((ventana.getInFila().isEnabled() ? ventana.getInFila().getText() : null));
-		String seccion = (ventana.getInSeccion().isEnabled() ? ventana.getInFila().getText() : null);
+		Integer nicho = (ventana.getNicho().isEnabled() ? ventana.getNicho().getValor() : null);
+		Integer fila = (ventana.getFila().isEnabled() ? ventana.getFila().getValor() : null);
+		String seccion = (ventana.getInSeccion().isEnabled() ? ventana.getInSeccion().getText() : null);
 		Integer macizo = new Integer((ventana.getInMacizo().isEnabled() ? ventana.getInMacizo().getText() : null));
-		Integer unidad = new Integer((ventana.getInUnidad().isEnabled() ? ventana.getInUnidad().getText() : null));
+		Integer unidad = new Integer((ventana.getUnidad().isEnabled() ? ventana.getUnidad().getValor() : null));
 		
 		Boolean bis = null;
 		if (ventana.getInCheckBis().isEnabled()) 

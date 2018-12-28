@@ -1,0 +1,213 @@
+-- NUEVA BASE DE DATOS
+DROP DATABASE IF EXISTS revivir;
+CREATE DATABASE revivir;
+USE revivir;
+
+-- ESQUEMA ROLES
+CREATE TABLE rev_roles (
+	ID INT(1),
+	descripcion VARCHAR(20) NULL,
+	PRIMARY KEY (ID)
+);
+
+-- ESQUEMAS USUARIOS
+CREATE TABLE rev_usuarios (
+	ID INT(10) AUTO_INCREMENT,
+	rol INT(1) NOT NULL,
+	usuario VARCHAR(50) NOT NULL,
+	password VARCHAR(50) NOT NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (rol) REFERENCES rev_roles(ID)
+);
+
+-- ESQUEMAS SECTOR
+CREATE TABLE rev_sector (
+	ID INT(10) NOT NULL,
+	descripcion VARCHAR(20) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+-- ESQUEMAS SUBSECTOR
+CREATE TABLE rev_subsector (
+	ID INT(10) NOT NULL,
+	sector INT(10) NOT NULL,
+    descripcion VARCHAR(20) NOT NULL,
+    PRIMARY KEY (ID),
+	FOREIGN KEY (sector) REFERENCES rev_sector(ID)
+);
+
+-- ESQUEMAS UBICACIONES
+CREATE TABLE rev_ubicaciones (
+	ID INT(10) AUTO_INCREMENT,
+	subsector INT(10) NOT NULL,
+	circ int(10) NULL,
+	seccion VARCHAR(10) NULL,
+	macizo int(10) NULL,
+	parcela int(10) NULL,
+	fila int(10) NULL,
+	unidad int(10) NULL,
+	nicho int(10) NULL,
+	mueble int(10) NULL,
+	sepultura int(10) NULL,
+	inhumacion int(10) NULL,
+	otro_cementerio VARCHAR(11) NULL,
+	bis_macizo boolean NULL,
+	bis boolean NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (subsector) REFERENCES rev_subsector(ID)
+);
+
+-- ESQUEMA TIPO DE FALLECIMIENTO
+CREATE TABLE rev_tipo_fallecimiento (
+	ID INT(1),
+	descripcion VARCHAR(20) NOT NULL,
+	PRIMARY KEY (ID)
+);
+
+-- ESQUEMAS FALLECIDOS
+CREATE TABLE rev_fallecidos (
+	ID INT(10) AUTO_INCREMENT,
+	tipo_fallecimiento INT(1) NOT NULL,
+	ubicacion INT(10) NOT NULL,
+	nombre VARCHAR(100) NOT NULL,
+	apellido VARCHAR(50) NOT NULL,
+	DNI VARCHAR(11) NULL,
+	cocheria VARCHAR(20) NULL,
+	fecha_fallecimiento DATE NULL,
+	fecha_ingreso DATE NOT NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (tipo_fallecimiento) REFERENCES rev_tipo_fallecimiento(ID),
+	FOREIGN KEY (ubicacion) REFERENCES rev_ubicaciones(ID)
+);
+
+-- ESQUEMAS MOVIMIENTOS
+CREATE TABLE rev_movimientos (
+	ID INT(10) AUTO_INCREMENT,
+	fallecido int(10) not null,
+	antigua_ubicacion VARCHAR(150) not NULL,
+	causa_traslado VARCHAR(150) not NULL,
+	observaciones VARCHAR(50) NULL,
+	fecha_movimiento date not null,
+	FOREIGN KEY (fallecido) REFERENCES rev_fallecidos(ID),
+	PRIMARY KEY (ID)
+);
+
+	-- ESQUEMA CLIENTES
+CREATE TABLE rev_clientes (
+	ID INT(10) AUTO_INCREMENT,
+	nombre VARCHAR(100) NOT NULL,
+	apellido VARCHAR(50) NOT NULL,
+	DNI VARCHAR(10) NULL,
+	telefono VARCHAR(20) NULL,
+	email VARCHAR(200) NULL,
+	domicilio VARCHAR(200) NULL,
+	PRIMARY KEY (ID)
+);
+
+-- ESQUEMAS RESPONSABLES
+CREATE TABLE rev_responsables (
+	ID INT(10) AUTO_INCREMENT,
+	cliente INT(10) NOT NULL,
+	fallecido INT(10) NOT NULL,
+	observaciones VARCHAR(100) NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (cliente) REFERENCES rev_clientes(ID),
+	FOREIGN KEY (fallecido) REFERENCES rev_fallecidos(ID)
+);
+
+-- ESQUEMAS SERVICIOS
+CREATE TABLE rev_servicios (
+	ID INT(10) AUTO_INCREMENT,
+	codigo VARCHAR(50) not NULL,
+	nombre VARCHAR(30) not NULL,
+	descripcion VARCHAR(100) NULL,
+	importe float(10) NOT NULL,
+	historico boolean not null,
+	PRIMARY KEY (ID)
+);
+
+-- ESQUEMAS CARGOS
+CREATE TABLE rev_cargos (
+	ID INT(10) AUTO_INCREMENT,
+	fallecido INT(10) NOT NULL,
+	servicio INT(10) NOT NULL,
+	observaciones VARCHAR(100) NULL,
+	pagado boolean not null,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (servicio) REFERENCES rev_servicios(ID),
+	FOREIGN KEY (fallecido) REFERENCES rev_fallecidos(ID)
+);
+
+-- ESQUEMAS PAGOS
+CREATE TABLE rev_pagos (
+	ID INT(10) AUTO_INCREMENT,
+	cargo INT(10) NOT NULL,
+	cliente INT(10) NOT NULL,
+	importe double(10, 2) NOT NULL,
+	observaciones VARCHAR(100) NULL,
+	fecha DATE NOT NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (cliente) REFERENCES rev_clientes(ID),
+	FOREIGN KEY (cargo) REFERENCES rev_cargos(ID)
+);
+
+-- ESQUEMA PERIODO
+CREATE TABLE rev_periodos (
+	ID INT(1),
+	descripcion VARCHAR(20) NOT NULL,
+	PRIMARY KEY (ID)
+);
+
+-- ESQUEMAS EXPENSAS
+CREATE TABLE rev_expensas (
+	ID INT(10) AUTO_INCREMENT,
+	responsable INT(10) NOT NULL,
+	periodo INT(10) NOT NULL,
+	ubicacion INT(10) NOT NULL,
+	fecha_vencimiento DATE NOT NULL,
+	importe double(10, 2) NOT NULL,
+	observaciones VARCHAR(100) NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (responsable) REFERENCES rev_clientes(ID),
+	FOREIGN KEY (periodo) REFERENCES rev_cargos(ID),
+    FOREIGN KEY (ubicacion) REFERENCES rev_ubicaciones(ID)
+);
+
+
+
+
+-- INSERT TIPOS DE FALLECIMIENTO
+INSERT INTO rev_tipo_fallecimiento (ID, descripcion) VALUES
+(1, "TRAUMATICO"),
+(2, "NO TRAUMATICO");
+
+-- INSERT  ROLES
+INSERT INTO rev_roles (ID, descripcion) VALUES
+(1, "SUPERVISOR"),
+(2, "ADMINISTRATIVO");
+
+-- INSERT SECTORES
+INSERT INTO rev_sector (ID, descripcion) VALUES
+(1, 'SEPULTURAS'),
+(2, 'PALMERAS'),
+(3, 'NICHERA'),
+(4, 'CENIZARIO'),
+(5, 'BOVEDA'),
+(6, 'DEPOSITO');
+
+-- INSERT SUB SECTORES
+INSERT INTO rev_subsector (ID, sector, descripcion) VALUES
+(1, 1, 'ADULTOS'),
+(2, 1, 'ANGELITOS'),
+(3, 1, 'COMPRADA'),
+(4, 1, 'INDIGENTES'),
+(5, 2, 'PALMERAS ATAUD'),
+(6, 2, 'PALMERAS CENIZAS'),
+(7, 2, 'PALMERAS RESTOS'),
+(8, 2, 'PALMERAS SEPULTURA'),
+(9, 3, 'NICHERA'),
+(10, 4, 'CENIZARIO'),
+(11, 5, 'BOVEDA'),
+(12, 6, 'DEPOSITO 1'),
+(13, 6, 'DEPOSITO 2'),
+(14, 6, 'DEPOSITO 3');

@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -19,11 +18,13 @@ import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.vista.util.Boton;
+import com.ungs.revivir.vista.util.TextoCentrado;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 import com.ungs.revivir.vista.util.contenedores.Ventana;
 import com.ungs.revivir.vista.util.entradas.EntradaFecha;
 import com.ungs.revivir.vista.util.entradas.EntradaLista;
+import com.ungs.revivir.vista.util.entradas.EntradaNumero;
 import com.ungs.revivir.vista.util.entradas.EntradaTexto;
 
 public class VentanaFallecidoAM extends Ventana {
@@ -36,8 +37,9 @@ public class VentanaFallecidoAM extends Ventana {
 	private EntradaLista<TipoFallecimiento> inTipo;
 	
 	// DATOS DE UBICACION
-	private EntradaTexto inSeccion, inMacizo, inUnidad, inNumeroSepultura, inSepultura, inInhumacion,
-	inNicho, inFila, inCirc, inParcela, inMueble;
+	private EntradaNumero inUnidad, inFila, inNicho;
+	private EntradaTexto inSeccion, inMacizo, inSepultura, inInhumacion,
+	inCirc, inParcela, inMueble;
 	private JCheckBox inCheckMacizo, inCheckBis;
 	private EntradaLista<Sector> inSector;
 	private EntradaLista<SubSector> inSubSector;
@@ -71,6 +73,7 @@ public class VentanaFallecidoAM extends Ventana {
 		PanelVertical panelPrincipal = crearPanelPrincipal();
 		panelPrincipal.add(crearPanelFallecido());
 		panelPrincipal.add(new JSeparator());
+		panelPrincipal.add(new TextoCentrado("Datos de la ubicacion"));
 		panelPrincipal.add(crearPanelUbicacion());
 		panelPrincipal.add(panelBotones);
 		compactar();
@@ -93,9 +96,10 @@ public class VentanaFallecidoAM extends Ventana {
 		
 		// ORGANIZACION DE PANELES
 		PanelVertical panelFallecido = new PanelVertical();
-		panelFallecido.add(new JLabel("Datos del difunto"));
-		panelFallecido.add(inApellido);
+		panelFallecido.setBorder(new EmptyBorder(0, 0, 10, 0));
+		panelFallecido.add(new TextoCentrado("Datos del difunto"));
 		panelFallecido.add(inNombre);
+		panelFallecido.add(inApellido);
 		panelFallecido.add(inDNI);
 		panelFallecido.add(inCocheria);
 		panelFallecido.add(inTipo);
@@ -111,12 +115,11 @@ public class VentanaFallecidoAM extends Ventana {
 
 		inSeccion = new EntradaTexto("Seccion", largoLabel1, largoTextfield);
 		inMacizo = new EntradaTexto("Macizo", largoLabel1, largoTextfield);
-		inUnidad = new EntradaTexto("Unidad", largoLabel1, largoTextfield);
-		inNumeroSepultura = new EntradaTexto("N� Sepultura", largoLabel1, largoTextfield);
+		inUnidad = new EntradaNumero("Unidad", largoLabel1, largoTextfield);
 		inSepultura = new EntradaTexto("Sepultura", largoLabel1, largoTextfield);
 		inInhumacion = new EntradaTexto("Inhumacion", largoLabel1, largoTextfield);
-		inNicho = new EntradaTexto("Nicho", largoLabel2, largoTextfield);
-		inFila = new EntradaTexto("Fila", largoLabel2, largoTextfield);
+		inNicho = new EntradaNumero("Nicho", largoLabel2, largoTextfield);
+		inFila = new EntradaNumero("Fila", largoLabel2, largoTextfield);
 		inCirc = new EntradaTexto("Circ", largoLabel2, largoTextfield);
 		inParcela = new EntradaTexto("Parcela", largoLabel2, largoTextfield);
 		inMueble = new EntradaTexto("Mueble", largoLabel2, largoTextfield);
@@ -157,7 +160,6 @@ public class VentanaFallecidoAM extends Ventana {
 		ret1.add(inSeccion);
 		ret1.add(inMacizo);
 		ret1.add(inUnidad);
-		ret1.add(inNumeroSepultura);
 		ret1.add(inSepultura);
 		ret1.add(inInhumacion);
 		
@@ -249,7 +251,6 @@ public class VentanaFallecidoAM extends Ventana {
 		inSeccion.habilitado(habilitado);
 		inMacizo.habilitado(habilitado);
 		inUnidad.habilitado(habilitado);
-		inNumeroSepultura.habilitado(habilitado);
 		inSepultura.habilitado(habilitado);
 		inInhumacion.habilitado(habilitado);
 		inNicho.habilitado(habilitado);
@@ -305,12 +306,8 @@ public class VentanaFallecidoAM extends Ventana {
 		return inMacizo.getTextField();
 	}
 
-	public JTextField getInUnidad() {
-		return inUnidad.getTextField();
-	}
-
-	public JTextField getInNumeroSepultura() {
-		return inNumeroSepultura.getTextField();
+	public EntradaNumero getUnidad() {
+		return inUnidad;
 	}
 
 	public JTextField getInSepultura() {
@@ -321,12 +318,12 @@ public class VentanaFallecidoAM extends Ventana {
 		return inInhumacion.getTextField();
 	}
 
-	public JTextField getInNicho() {
-		return inNicho.getTextField();
+	public EntradaNumero getNicho() {
+		return inNicho;
 	}
 
-	public JTextField getInFila() {
-		return inFila.getTextField();
+	public EntradaNumero getFila() {
+		return inFila;
 	}
 
 	public JTextField getInCirc() {
