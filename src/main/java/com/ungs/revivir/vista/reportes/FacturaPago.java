@@ -8,13 +8,14 @@ import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.vista.util.Formato;
 
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+
+
 
 public class FacturaPago {
 	private JasperReport reporte;
@@ -30,19 +31,19 @@ public class FacturaPago {
     	totalPersonas.put("monto", pago.getImporte());
     	totalPersonas.put("observaciones", pago.getObservaciones());
     
-    	try	{
-     		JasperCompileManager.compileReportToFile(
-                    "\\revivir\\src\\main\\java\\com\\ungs\\revivir\\vista\\reportes\\FacturaPago.jrxml",//the path to the jrxml file to compile
-                    "\\revivir\\reportes");//the path and name we want to save the compiled file to
-                    
-			reporte = (JasperReport) JRLoader.loadObjectFromLocation("revivir\\src\\main\\\\java\\com\\ungs\\revivir\\vista\\reportes\\FacturaPago.jasper");
-			reporteLleno = JasperFillManager.fillReport(this.reporte, totalPersonas, 
+    	try		{
+        	
+    		this.reporte = (JasperReport) JRLoader.loadObjectFromLocation("/revivir/reportes/FacturaPago.jasper");
+			this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalPersonas, 
 					new JRBeanCollectionDataSource(pagos));
+    		System.out.println("Se cargo correctamente la factura de pago.");
 		}
-		catch( JRException ex ) {
+		catch( JRException ex ) 
+		{
 			System.out.println("Ocurrio un error mientras se cargaba el archivo FacturaPago.Jasper \n "+ex);
 		}
     }       
+	   
     	
     public void mostrar() {
 		this.reporteViewer = new JasperViewer(this.reporteLleno,false);
