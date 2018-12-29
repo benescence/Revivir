@@ -2,9 +2,9 @@ package com.ungs.revivir.vista.menu.fallecidos.fallecidoAM;
 
 import java.sql.Date;
 
-import com.ungs.revivir.negocios.Verificador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.UbicacionManager;
+import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
@@ -16,11 +16,11 @@ import com.ungs.revivir.vista.util.Popup;
 public class ControladorFallecidoAM implements ControladorExterno{
 	private VentanaFallecidoAM ventana;
 	private FallecidoInvocable invocador;
-	private Fallecido fallecido;
+	private Fallecido modificar;
 	
 	public ControladorFallecidoAM(FallecidoInvocable invocador, Fallecido fallecido) {
 		this.invocador = invocador;
-		this.fallecido = fallecido;
+		this.modificar = fallecido;
 		ventana = new VentanaFallecidoAM(fallecido);
 		inicializar();
 	}
@@ -41,32 +41,21 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		ventana.requestFocusInWindow();
 		
 		try {
-			String nombre= ventana.getNombreFallecido().getText();;
-			String apellido= ventana.getApellidoFallecido().getText();
-			String DNI = ventana.getDNIFallecido().getText();
-			String cocheria = ventana.getCocheria().getText();
-			TipoFallecimiento tipo = (TipoFallecimiento) ventana.getInTipoFallecimiento().getSelectedItem();
-			Date fechaFallecimiento = new Date(ventana.getInFechaFallecimiento().getDate().getTime());
-			Date fechaIngreso = new Date(ventana.getInFechaIngreso().getDate().getTime());
-			
-			Fallecido nuevo = new Fallecido(-1, -1, tipo, DNI, apellido, nombre,
-					cocheria, fechaFallecimiento, fechaIngreso);
-			
-			// Saltan los errores en un Popup
-			nuevo = Verificador.fallecido(nuevo);
+			Fallecido fallecido = traerFallecidoVerificado();
+			Ubicacion ubicacion = traerUbicacionVerificada();
 			
 			// Es un alta
-			if (fallecido == null) {
-				guardarUbicacion();
-				Ubicacion ubicacion = UbicacionManager.traerMasReciente();
-				nuevo.setUbicacion(ubicacion.getID());
-				FallecidoManager.guardar(nuevo);			
+			if (modificar == null) {
+				UbicacionManager.guardar(ubicacion);
+				ubicacion = UbicacionManager.traerMasReciente();
+				fallecido.setUbicacion(ubicacion.getID());
+				FallecidoManager.guardar(fallecido);			
 			}
 			
 			// Es una modificacion
 			else {
-				nuevo.setID(fallecido.getID());
-				FallecidoManager.modificar(nuevo);
+				fallecido.setID(modificar.getID());
+				FallecidoManager.modificar(fallecido);
 			}
 			
 			ventana.dispose();
@@ -79,7 +68,7 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		
 	}
 	
-	private void guardarUbicacion() throws Exception {
+	private Ubicacion traerUbicacionVerificada() throws Exception {
 		SubSector subsector = (SubSector) ventana.getSubSector().getSelectedItem();
 		String otroCementerio = null;
 		Integer nicho = (ventana.getNicho().isEnabled() ? ventana.getNicho().getValor() : null);
@@ -105,8 +94,21 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
 				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ);
 		
-		UbicacionManager.guardar(ubicacion);		
+		return Verificador.ubicacion(ubicacion);		
 	}	
+	
+	private Fallecido traerFallecidoVerificado() throws Exception {
+		String nombre = ventana.getNombreFallecido().getText();;
+		String apellido = ventana.getApellidoFallecido().getText();
+		String DNI = ventana.getDNIFallecido().getText();
+		String cocheria = ventana.getCocheria().getText();
+		TipoFallecimiento tipo = (TipoFallecimiento) ventana.getInTipoFallecimiento().getSelectedItem();
+		Date fFallecimiento = new Date(ventana.getInFechaFallecimiento().getDate().getTime());
+		Date fIngreso = new Date(ventana.getInFechaIngreso().getDate().getTime());
+		
+		Fallecido fallecido = new Fallecido(-1, -1, tipo, DNI, apellido, nombre, cocheria, fFallecimiento, fIngreso);
+		return Verificador.fallecido(fallecido);
+	}
 	
 	private void cancelar() {
 		if (Popup.confirmar("Se perderan los datos ingresados.\n¿Está seguro de que desea cancelar la operación?")) {

@@ -2,7 +2,7 @@ package com.ungs.revivir.negocios.manager;
 
 import java.util.List;
 
-import com.ungs.revivir.negocios.Verificador;
+import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;

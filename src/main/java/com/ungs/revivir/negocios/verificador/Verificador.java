@@ -1,10 +1,10 @@
-package com.ungs.revivir.negocios;
+package com.ungs.revivir.negocios.verificador;
 
+import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.ServicioManager;
 import com.ungs.revivir.negocios.manager.UsuarioManager;
-import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Cargo;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
@@ -111,38 +111,8 @@ public class Verificador {
 	}
 	
 	public static Ubicacion ubicacion(Ubicacion verificar) throws Exception {
-		String seccion = anular(verificar.getSeccion());
-		String otroCementerio = anular(verificar.getOtroCementerio());
-		String mensaje = "";
-		
-		if (verificar.getSubsector().equals(SubSector.COMPRADA)) {
-			
-			if (seccion == null)
-				mensaje += "\n    -La SECCION no puede estar vacia.";
-			
-			if (verificar.getMacizo() == null)
-				mensaje += "\n    -El MACIZO no puede estar vacio.";
-			
-			if (verificar.getUnidad() == null)
-				mensaje += "\n    -La UNIDAD no puede estar vacio.";
-			
-			if (verificar.getSepultura() == null)
-				mensaje += "\n    -La SEPULTURA no puede estar vacio.";
-			
-			if (verificar.getParcela() == null)
-				mensaje += "\n    -La PARCELA no puede estar vacio.";
-
-		}
-				
-		if (!mensaje.equals(""))
-			throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
-		
-		verificar.setSeccion(seccion);
-		verificar.setOtroCementerio(otroCementerio);
-
-		return verificar;
-	}
-	
+		return VerificadorUbicacion.verificar(verificar);
+	}	
 	
 	public static Cargo cargo(Cargo nuevo, Cargo anterior) throws Exception {
 		String observaciones = anular(nuevo.getObservaciones());
