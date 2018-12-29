@@ -8,7 +8,6 @@ import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.vista.util.Formato;
 
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -42,9 +41,6 @@ public class FacturaPago {
 			this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalPersonas, 
 					new JRBeanCollectionDataSource(pagos));
     		System.out.println("Se cargo correctamente la factura de pago.");
-    		/*JasperReport report = JasperCompileManager.compileReport("reportes\\FacturaPago.jasper");
-    		JasperPrint print = JasperFillManager.fillReport(report, totalPersonas);
-    		JasperViewer.viewReport(print);*/
 		}
 		catch( JRException ex ) 
 		{

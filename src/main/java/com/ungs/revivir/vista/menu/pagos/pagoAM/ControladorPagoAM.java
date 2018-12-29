@@ -108,7 +108,6 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		Integer cliente = new Integer(ventana.getDNICli().getTextField().getText());
 		Integer codigo = new Integer(ventana.getCodigo().getTextField().getText());
 		String observaciones = ventana.getObservaciones().getTextField().getText();
-		System.out.println( "cargo :" +codigo+ "cliente: "+ cliente +"monto : "+ importe+"observaciones: "+ observaciones +"fecha  :"+ Almanaque.hoy());
 		Pago pago = new Pago (1,codigo, cliente, importe, observaciones, Almanaque.hoy());
 		pagos.add(pago);
 		FacturaPago reporte = new FacturaPago(pagos);
