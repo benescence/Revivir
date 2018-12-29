@@ -27,8 +27,10 @@ public class FacturaPago {
 	public FacturaPago(List<Pago> pagos) {
     	Map <String, Object> totalPersonas = new HashMap<String, Object>();
     	Pago pago = pagos.get(0);
+    	System.out.println();
     	totalPersonas.put("fecha", pago.getFecha());
-    	totalPersonas.put("cliente", Formato.IDcliente(pago.getCliente()));
+    	//totalPersonas.put("cliente", Formato.IDcliente(pago.getCliente()));
+    	totalPersonas.put("cliente", "prueba");
     	totalPersonas.put("cargo",Formato.servicioDesdeCargo(pago));
     	totalPersonas.put("monto", pago.getImporte());
     	totalPersonas.put("observaciones", pago.getObservaciones());
