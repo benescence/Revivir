@@ -12,12 +12,12 @@ import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 import com.ungs.revivir.vista.util.contenedores.Ventana;
 import com.ungs.revivir.vista.util.entradas.EntradaTexto;
-import com.ungs.revivir.vista.util.entradas.EntradaTextoPassword;
+import com.ungs.revivir.vista.util.entradas.EntradaPassword;
 
 public class VentanaIniciarSesion extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private EntradaTexto inUsuario;
-	private EntradaTextoPassword inPassword;
+	private EntradaPassword inPassword;
 	private Boton btnAceptar, btnCancelar;
 
 	public VentanaIniciarSesion() {
@@ -28,7 +28,7 @@ public class VentanaIniciarSesion extends Ventana {
 		Dimension dimBoton = new Dimension(100, 25);
 		
 		inUsuario = new EntradaTexto("Usuario", dimLabel, dimTextfield);
-		inPassword = new EntradaTextoPassword("Contrase�a", dimLabel, dimTextfield);
+		inPassword = new EntradaPassword("Contrase�a", dimLabel, dimTextfield);
 		
 		// comentar antes de entregar
 		inUsuario.getTextField().setText("admin");

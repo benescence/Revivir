@@ -121,9 +121,27 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 				
 				Integer nicho = resultados.getInt("nicho");
 				nicho = (resultados.wasNull())? null: nicho;
+
+				Integer macizo = resultados.getInt("macizo");
+				macizo = (resultados.wasNull())? null: macizo;
 				
+				Integer unidad = resultados.getInt("unidad");
+				unidad = (resultados.wasNull())? null: unidad;
 				
+				Integer sepultura = resultados.getInt("sepultura");
+				sepultura = (resultados.wasNull())? null: sepultura;
 				
+				Integer parcela = resultados.getInt("parcela");
+				parcela = (resultados.wasNull())? null: parcela;
+				
+				Integer mueble = resultados.getInt("mueble");
+				mueble = (resultados.wasNull())? null: mueble;
+				
+				Integer inhumacion = resultados.getInt("inhumacion");
+				inhumacion = (resultados.wasNull())? null: inhumacion;
+				
+				Integer circ = resultados.getInt("circ");
+				circ = (resultados.wasNull())? null: circ;
 				
 				ret.add(new Ubicacion(
 						resultados.getInt("ID"),
@@ -132,15 +150,15 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 						nicho,
 						fila,
 						resultados.getString("seccion"),
-						resultados.getInt("macizo"),
-						resultados.getInt("unidad"),
+						macizo,
+						unidad,
 						resultados.getBoolean("bis"),
 						resultados.getBoolean("bis_macizo"),
-						resultados.getInt("sepultura"),
-						resultados.getInt("parcela"),
-						resultados.getInt("mueble"),
-						resultados.getInt("inhumacion"),
-						resultados.getInt("circ")
+						sepultura,
+						parcela,
+						mueble,
+						inhumacion,
+						circ
 					));
 			}
 

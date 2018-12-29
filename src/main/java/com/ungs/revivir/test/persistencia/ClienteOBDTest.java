@@ -1,57 +1,84 @@
-package com.ungs.revivir.test.negocios;
+package com.ungs.revivir.test.persistencia;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
-import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.interfaces.ClienteOBD;
 
-class ClienteManagerTest {
-	private String nombre = "Nombre1", apellido = "Apellido1", DNI = "DNI1", domicilio = "Domicilio1", telefono = "Telefono1", email = "Email1";
+class ClienteOBDTest {
+	private Cliente objeto = crearObjeto();
 	private ClienteOBD obd = FactoryOBD.crearClienteOBD();
 	
+	private Cliente crearObjeto() {
+		return new Cliente(-1, "Nombre", "Apellido", "DNI", "Domiclio", "Telefono", "Email");
+	}
+
 	@Test
-	void testGuardar() {
-		Cliente local = new Cliente(-1, nombre, apellido, DNI, domicilio, telefono, email);
-		//ClienteManager.guardar(nombre, apellido, DNI, telefono, email);
+	void testInsert() {
+		obd.insert(objeto);
 		Cliente objetoBD = obd.ultimoInsertado();
-		iguales(objetoBD, local);
+		iguales(objeto, objetoBD);
 		obd.delete(objetoBD);
 	}
 	
 	@Test
-	void testModificar() {
-		//ClienteManager.guardar(nombre, apellido, DNI, telefono, email);
+	void testUpdate() {
+		obd.insert(objeto);
 		Cliente objetoBD1 = obd.ultimoInsertado();
-		
 		objetoBD1.setNombre("Nombre2");
 		objetoBD1.setApellido("Apellido2");
 		objetoBD1.setDNI("DNI2");
 		objetoBD1.setDomicilio("Domicilio2");
 		objetoBD1.setTelefono("Telefono2");
 		objetoBD1.setEmail("Email2");
-		
-		//ClienteManager.modificar(objetoBD1);
+		obd.update(objetoBD1);
 		Cliente objetoBD2 = obd.ultimoInsertado();
-		
 		iguales(objetoBD1, objetoBD2);
 		obd.delete(objetoBD1);
 	}
 	
 	@Test
-	void testEliminar() {
-		//ClienteManager.guardar(nombre, apellido, DNI, telefono, email);
-		Cliente objetoBD1 = obd.ultimoInsertado();		
-		ClienteManager.eliminar(objetoBD1);
-		Cliente objetoBD2 = obd.ultimoInsertado();
-		if (objetoBD2 != null)
-			distintos(objetoBD1, objetoBD2);
+	void testDelete() {
+		obd.insert(objeto);
+		Cliente objetoBD = obd.ultimoInsertado();
+		obd.delete(objetoBD);
+		objetoBD = obd.ultimoInsertado();
+		if (objetoBD != null)
+			distintos(objeto, objetoBD);
 	}
 
+	@Test
+	void testUltimoInsertado() {
+		obd.insert(objeto);
+		Cliente objetoBD = obd.ultimoInsertado();
+		iguales(objeto, objetoBD);
+		obd.delete(objetoBD);
+	}	
+
+	@Test
+	void testSelectByID() {
+		obd.insert(objeto);
+		Cliente objetoBD1 = obd.ultimoInsertado();
+		Cliente objetoBD2 = obd.selectByID(objetoBD1.getID());
+		iguales(objetoBD1, objetoBD2);
+		obd.delete(objetoBD1);
+	}	
+
+	@Test
+	void testSelect() {
+		obd.insert(objeto);
+		Cliente objetoBD1 = obd.ultimoInsertado();
+		List<Cliente> lista = obd.select();
+		assertTrue(lista.size() > 0);
+		obd.delete(objetoBD1);
+	}
+	
 	private void iguales(Cliente obj1, Cliente obj2) {
 		assertTrue(obj1.getNombre().equals(obj2.getNombre()));
 		assertTrue(obj1.getApellido().equals(obj2.getApellido()));
