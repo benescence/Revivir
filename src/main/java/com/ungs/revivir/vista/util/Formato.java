@@ -40,7 +40,7 @@ public class Formato {
 
 	public static String codigoServicio(Pago pago) {
 		Cargo cargo = CargoManager.traerPorID(pago.getCargo());
-		Servicio servicio = ServicioManager.traerPorID(cargo.getID());
+		Servicio servicio = ServicioManager.traerPorID(cargo.getServicio());
 		return servicio.getCodigo();
 	}
 

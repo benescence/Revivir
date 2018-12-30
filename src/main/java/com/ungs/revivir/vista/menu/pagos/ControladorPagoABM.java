@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.manager.PagoManager;
+import com.ungs.revivir.negocios.verificador.VerificadorBorrado;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.ControladorPagoAM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.PagoInvocable;
@@ -42,18 +43,22 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 	}
 	
 	private void eliminar() {
-		List<Pago> lista = ventana.getTabla().obtenerSeleccion();
+		try {
+			List<Pago> lista = ventana.getTabla().obtenerSeleccion();
+			if (lista.size() != 1) {
+				Popup.mostrar("Debe seleccionar exactamente 1 pago para borrarlo.");
+				return;
+			}
+			
+			if (VerificadorBorrado.puedeBorrar(lista.get(0)) &&
+					Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
+				PagoManager.eliminar(lista.get(0));
+			
+			actualizarPagos();
 		
-		if (lista.isEmpty()) {
-			Popup.mostrar("Debe seleccionar al menos un pago para eliminarlo");
-			return;
+		} catch (Exception e) {
+			Popup.mostrar(e.getMessage());
 		}
-		
-		if (Popup.confirmar("�Esta seguro de que desea eliminar los registros seleccionados?"))
-			for (Pago elemento : lista)
-				PagoManager.eliminar(elemento);
-		
-		actualizarPagos();
 	}
 
 	@Override

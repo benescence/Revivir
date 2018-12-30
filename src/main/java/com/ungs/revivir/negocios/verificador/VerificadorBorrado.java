@@ -12,6 +12,12 @@ import com.ungs.revivir.persistencia.entidades.Responsable;
 
 public class VerificadorBorrado {
 
+	public static boolean puedeBorrar(Pago pago) throws Exception {
+		// Por ahora el pago se puede borrar siempre
+		// Mas adelante puede que se incluyan restricciones.
+		return true;
+	}
+
 	public static boolean puedeBorrar(Cargo cargo) throws Exception {
 		String mensaje = "";
 		
