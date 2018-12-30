@@ -89,6 +89,9 @@ public class Verificador {
 		else {
 			// Verifico que no exista ya un objeto con ese DNI, y si existe debe tener el mismo iD
 			Fallecido objetoDNI = FallecidoManager.traerPorDNI(DNI);
+			System.out.println(objetoDNI.getID());
+			System.out.println(verificar.getID());
+			
 			if (objetoDNI != null && verificar.getID() != objetoDNI.getID())
 				mensaje += "\n    -Ya se encuentra registrado un fallecido con el DNI: "+DNI+".";
 		}

@@ -45,12 +45,12 @@ public class VentanaFallecidoAM extends Ventana {
 	
 	public VentanaFallecidoAM() {
 		super("Alta de fallecido", 450, 300);
-		inicializar();
+		inicializar(null);
 	}
 	
 	public VentanaFallecidoAM(Fallecido fallecido) {
 		super("Alta de fallecido", 450, 300);
-		inicializar();
+		inicializar(fallecido);
 		inNombre.getTextField().setText(fallecido.getNombre());
 		inApellido.getTextField().setText(fallecido.getApellido());
 		inDNI.getTextField().setText(fallecido.getDNI());
@@ -58,7 +58,7 @@ public class VentanaFallecidoAM extends Ventana {
 		inTipo.getComboBox().setSelectedItem(fallecido.getTipoFallecimiento());
 	}
 	
-	public void inicializar() {
+	public void inicializar(Fallecido fallecido) {
 		Dimension dimBoton = new Dimension(100, 25);
 
 		btnAceptar = new Boton("Aceptar", dimBoton);
@@ -71,8 +71,12 @@ public class VentanaFallecidoAM extends Ventana {
 		// PANELES
 		PanelVertical panelPrincipal = crearPanelPrincipal();
 		panelPrincipal.add(crearPanelFallecido());
-		panelPrincipal.add(new JSeparator());
-		panelPrincipal.add(crearPanelUbicacion());
+		
+		if (fallecido == null) {
+			panelPrincipal.add(new JSeparator());
+			panelPrincipal.add(crearPanelUbicacion());			
+		}
+		
 		panelPrincipal.add(panelBotones);
 		compactar();
 	}

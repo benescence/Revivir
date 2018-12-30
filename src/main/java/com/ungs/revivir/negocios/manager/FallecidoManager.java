@@ -18,19 +18,8 @@ public class FallecidoManager {
 
 	public static void modificar(Fallecido fallecido) {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-
 		obd.update(fallecido);
 	}
-	
-	
-	/*public static void modificarUbicacion(Fallecido fallecido,Ubicacion ubicacion) {
-		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		obd.selectByID(fallecido.getID());
-		
-		Fallecido fallecido2 = new Fallecido(null, null, null, null, null, null, null, null, null);
-		obd.update(fallecido2);
-	
-	}*/
 	
 	public static void eliminar(Fallecido fallecido) {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();

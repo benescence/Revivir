@@ -42,10 +42,10 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		
 		try {
 			Fallecido fallecido = traerFallecidoVerificado();
-			Ubicacion ubicacion = traerUbicacionVerificada();
 			
 			// Es un alta
 			if (modificar == null) {
+				Ubicacion ubicacion = traerUbicacionVerificada();
 				UbicacionManager.guardar(ubicacion);
 				ubicacion = UbicacionManager.traerMasReciente();
 				fallecido.setUbicacion(ubicacion.getID());
@@ -53,16 +53,15 @@ public class ControladorFallecidoAM implements ControladorExterno{
 			}
 			
 			// Es una modificacion
-			else {
-				fallecido.setID(modificar.getID());
+			else
 				FallecidoManager.modificar(fallecido);
-			}
 			
 			ventana.dispose();
 			invocador.actualizarFallecidos();
 			invocador.mostrar();
 		
 		} catch (Exception e) {
+			e.printStackTrace();
 			Popup.mostrar(e.getMessage());
 		}
 		
@@ -107,6 +106,9 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		Date fIngreso = new Date(ventana.getInFechaIngreso().getDate().getTime());
 		
 		Fallecido fallecido = new Fallecido(-1, -1, tipo, DNI, apellido, nombre, cocheria, fFallecimiento, fIngreso);
+		if (modificar != null)
+			fallecido.setID(modificar.getID());
+		
 		return Verificador.fallecido(fallecido);
 	}
 	
