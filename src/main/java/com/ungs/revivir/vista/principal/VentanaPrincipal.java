@@ -19,7 +19,7 @@ public class VentanaPrincipal extends Ventana {
 	private JMenuItem fallecidoAlta, fallecidoConsulta;
 	private JMenuItem cargoAlta, cargoConsultar; 
 	private JMenuItem pagoAlta, pagoConsultar; 
-	private JMenuItem movimientoTrasladar, movimientoConsultar; 
+	private JMenuItem movimientoAlta, movimientoConsultar; 
 	private JMenuItem responsableVincular, responsableConsultarPorCliente, responsableConsultarPorFallecido;		
 	private JMenuItem servicioAlta, servicioConsulta;
 	private JMenuItem usuarioAlta, usuarioConsulta;
@@ -86,11 +86,12 @@ public class VentanaPrincipal extends Ventana {
 		pagoAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, Event.CTRL_MASK | Event.ALT_MASK));
 		barra.add(menuPagos);
 		
-		
-		
+		//********************** MENU SERVICIOS ***************************
 		JMenu menuMovimientos = new JMenu("Movimientos");
-		menuMovimientos.add(movimientoTrasladar = new JMenuItem("Trasladar"));
-		menuMovimientos.add(movimientoConsultar = new JMenuItem("Consultar movimientos"));
+		menuMovimientos.setMnemonic('m');
+		menuMovimientos.add(movimientoAlta = new JMenuItem("Alta de movimiento", 'a'));
+		menuMovimientos.add(movimientoConsultar = new JMenuItem("Consultar movimientos", 'c'));
+		movimientoAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, Event.CTRL_MASK | Event.ALT_MASK));
 		barra.add(menuMovimientos);
 
 		//********************** MENU SERVICIOS ***************************
@@ -177,7 +178,7 @@ public class VentanaPrincipal extends Ventana {
 	}
 	
 	public JMenuItem getMovimientoTrasladar() {
-		return movimientoTrasladar;
+		return movimientoAlta;
 	}
 
 	public JMenuItem getMovimientoConsultar() {
