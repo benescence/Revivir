@@ -48,6 +48,11 @@ public class Relacionador {
 		return obd.selectByCliente(cliente);
 	}
 	
+	public static List<Pago> traerPagos(Cargo cargo) {
+		PagoOBD obd = FactoryOBD.crearPagoOBD();
+		return obd.selectByCargo(cargo);
+	}
+	
 	public static List<Cliente> traerClientes(Fallecido fallecido) {
 		return RelacionadorCompuesto.traerClientes(fallecido);
 	}

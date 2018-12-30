@@ -8,6 +8,7 @@ import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.manager.CargoManager;
 import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
+import com.ungs.revivir.negocios.verificador.VerificadorBorrado;
 import com.ungs.revivir.persistencia.entidades.Cargo;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
@@ -108,19 +109,24 @@ public class ControladorCargoABM implements ControladorInterno, FallecidoSelecci
 		//new ControladorCargoAM(this, lista.get(0));
 	}
 	
-	private void eliminar() {/*
-		List<Cargo> lista = ventana.getTabla().obtenerSeleccion();
+	private void eliminar() {
+		try {
+			List<Cargo> lista = ventana.getTabla().obtenerSeleccion();
+			if (lista.size() != 1) {
+				Popup.mostrar("Debe seleccionar exactamente 1 cargo para borrarlo.");
+				return;
+			}
+			
+			if (VerificadorBorrado.puedeBorrar(lista.get(0)) &&
+					Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
+				CargoManager.eliminar(lista.get(0));
+			
+			actualizarCargos();
 		
-		if (lista.isEmpty()) {
-			Popup.mostrar("Debe seleccionar al menos un cargo para eliminarlo");
-			return;
+		} catch (Exception e) {
+			Popup.mostrar(e.getMessage());
 		}
-		
-		if (Popup.confirmar("�Esta seguro de que desea eliminar los registros seleccionados?"))
-			for (Cargo elemento : lista)
-				CargoManager.eliminar(elemento);
-		
-		actualizar();*/
+
 	}
 
 	@Override

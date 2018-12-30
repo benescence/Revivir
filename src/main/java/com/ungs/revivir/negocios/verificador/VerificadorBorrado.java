@@ -12,6 +12,19 @@ import com.ungs.revivir.persistencia.entidades.Responsable;
 
 public class VerificadorBorrado {
 
+	public static boolean puedeBorrar(Cargo cargo) throws Exception {
+		String mensaje = "";
+		
+		List<Pago> pagos = Relacionador.traerPagos(cargo);
+		if (!pagos.isEmpty())
+			mensaje += "\n    -Tiene pagos asociados";
+		
+		if (!mensaje.equals(""))
+			throw new Exception("El cargo no puede borrarse porque:"+mensaje);
+		
+		return true;
+	}
+
 	public static boolean puedeBorrar(Cliente cliente) throws Exception {
 		String mensaje = "";
 		

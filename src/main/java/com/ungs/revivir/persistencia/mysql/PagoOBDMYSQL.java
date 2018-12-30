@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.ungs.revivir.persistencia.OBD;
+import com.ungs.revivir.persistencia.entidades.Cargo;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
@@ -121,6 +122,12 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 		if (lista.size() > 0)
 			return lista.get(0);
 		return null;
+	}
+
+	@Override
+	public List<Pago> selectByCargo(Cargo cargo) {
+		String condicion = "cargo = "+cargo.getID();
+		return selectByCondicion(condicion);
 	}
 	
 }
