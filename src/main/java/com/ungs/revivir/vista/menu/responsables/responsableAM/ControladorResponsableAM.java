@@ -36,6 +36,18 @@ public class ControladorResponsableAM implements ControladorExterno, ClienteSele
 		seleccionarCliente(cliente);
 	}
 	
+	public ControladorResponsableAM(ResponsableInvocable invocador, Responsable modificar) {
+		this.invocador = invocador;
+		this.modificar = modificar;
+		ventana = new VentanaResponsableAM();
+		inicializar();
+		Cliente cliente = ClienteManager.traerPorID(modificar.getCliente());
+		Fallecido fallecido = FallecidoManager.traerPorID(modificar.getFallecido());
+		seleccionarCliente(cliente);
+		seleccionarFallecido(fallecido);
+		ventana.getObservaciones().setValor(modificar.getObservaciones());
+	}
+	
 	private void inicializar() {
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cancelar()));
 
@@ -151,6 +163,9 @@ public class ControladorResponsableAM implements ControladorExterno, ClienteSele
 		Integer clienteID = (cliente != null) ? cliente.getID() : null;
 		Integer fallecidoID = (fallecido != null) ? fallecido.getID() : null;
 		Responsable responsable = new Responsable(-1, clienteID, fallecidoID, observaciones);
+		if (modificar != null)
+			responsable.setID(modificar.getID());
+		
 		return Verificador.responsable(responsable);
 	}
 	

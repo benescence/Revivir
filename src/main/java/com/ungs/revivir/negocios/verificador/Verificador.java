@@ -39,7 +39,7 @@ public class Verificador {
 		
 		if (cliente != null && fallecido != null) {
 			Responsable objetoBD =	ResponsableManager.traerPorClienteFallecido(cliente, fallecido);
-			if (objetoBD != null)
+			if (objetoBD != null && objetoBD.getID() != responsable.getID())
 				mensaje += "\n    -Cliente y fallecido ya estaban relacionados en el sistema.";
 		}
 		

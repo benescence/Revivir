@@ -33,6 +33,7 @@ public class ControladorResponsableABMCliente implements ResponsableInvocable, C
 		ventana.botonCargarCliente().setAccion(e -> cargarCliente());
 		ventana.botonAgregar().setAccion(e -> agregar());
 		ventana.botonEliminar().setAccion(e -> eliminar());
+		ventana.botonModificar().setAccion(e -> modificar());
 		
 	}
 	
@@ -57,7 +58,22 @@ public class ControladorResponsableABMCliente implements ResponsableInvocable, C
 
 	}
 	
+	private void modificar() {
+		ventana.requestFocusInWindow();
+		List<Fallecido> lista = ventana.getTabla().obtenerSeleccion();
+		
+		if (lista.size() != 1) {
+			Popup.mostrar("Debe seleccionar exactamente 1 fallecido para modificar la relacion");
+			return;
+		}
+		
+		Responsable modificar = ResponsableManager.traerPorClienteFallecido(cliente, lista.get(0));
+		invocador.getVentana().setEnabled(false);
+		new ControladorResponsableAM(this, modificar);
+	}
+	
 	private void agregar() {
+		ventana.requestFocusInWindow();
 		invocador.getVentana().setEnabled(false);
 		if (cliente == null)
 			new ControladorResponsableAM(this);
