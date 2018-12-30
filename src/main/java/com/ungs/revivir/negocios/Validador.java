@@ -81,5 +81,9 @@ public class Validador {
 		formatoNumeroLetraEspacio("");
 		formatoLetra("");
 	}
+
+	public static boolean validarEmail(String texto) {
+		return texto.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" + "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$");
+	}
 			
 }
