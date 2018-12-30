@@ -110,5 +110,11 @@ public class CargoOBDMYSQL extends OBD implements CargoOBD{
 		String condicion = "fallecido = "+fallecido.getID()+" and servicio = "+servicio.getID();
 		return  selectByCondicion(condicion);
 	}
+
+	@Override
+	public List<Cargo> selectByServicio(Servicio servicio) {
+		String condicion = "servicio = "+servicio.getID();
+		return  selectByCondicion(condicion);
+	}
 	
 }

@@ -8,6 +8,8 @@ import com.ungs.revivir.persistencia.entidades.Servicio;
 
 public interface CargoOBD {
 	
+	// METODOS COMUNES
+	
 	public void insert(Cargo cargo);
 	
 	public void update(Cargo cargo);
@@ -18,10 +20,14 @@ public interface CargoOBD {
 
 	public Cargo selectByID(Integer ID);
 
+	public Cargo ultimoInsertado();
+
+	// METODOS ESPECIFICOS
+	
+	public List<Cargo> selectByServicio(Servicio servicio);
+
 	public List<Cargo> selectByFallecido(Fallecido fallecido);
 
 	public List<Cargo> selectByFallecidoServicio(Fallecido fallecido, Servicio servicio);
-
-	public Cargo ultimoInsertado();
 
 }

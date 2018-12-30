@@ -9,9 +9,23 @@ import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Responsable;
+import com.ungs.revivir.persistencia.entidades.Servicio;
 
 public class VerificadorBorrado {
 
+	public static boolean puedeBorrar(Servicio servicio) throws Exception {
+		String mensaje = "";
+		
+		List<Cargo> cargos = Relacionador.traerCargos(servicio);
+		if (!cargos.isEmpty())
+			mensaje += "\n    -Tiene cargos asociados";
+				
+		if (!mensaje.equals(""))
+			throw new Exception("El cargo no puede borrarse porque:"+mensaje);
+		
+		return true;
+	}
+	
 	public static boolean puedeBorrar(Pago pago) throws Exception {
 		// Por ahora el pago se puede borrar siempre
 		// Mas adelante puede que se incluyan restricciones.

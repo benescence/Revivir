@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.manager.ServicioManager;
+import com.ungs.revivir.negocios.verificador.VerificadorBorrado;
 import com.ungs.revivir.persistencia.entidades.Servicio;
 import com.ungs.revivir.vista.menu.servicios.servicioAM.ControladorServicioAM;
 import com.ungs.revivir.vista.menu.servicios.servicioAM.ServicioInvocable;
@@ -41,17 +42,21 @@ public class ControladorServiciosABM implements ControladorInterno, ServicioInvo
 	}
 	
 	private void eliminar() {
-		List<Servicio> seleccion = ventana.getTabla().obtenerSeleccion();
-		if (seleccion.isEmpty()) {
-			Popup.mostrar("Debe seleccionar algun servicio para poder eliminarlo.");
-			return;
-		}
-		
-		if (Popup.confirmar("�Esta seguro de que desea eliminar los servicio seleccionados?")) {
-			for (Servicio elemento : seleccion)
-				ServicioManager.eliminar(elemento);
+		try {
+			List<Servicio> lista = ventana.getTabla().obtenerSeleccion();
+			if (lista.size() != 1) {
+				Popup.mostrar("Debe seleccionar exactamente 1 servicio para borrarlo.");
+				return;
+			}
+			
+			if (VerificadorBorrado.puedeBorrar(lista.get(0)) &&
+					Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
+				ServicioManager.eliminar(lista.get(0));
 			
 			actualizarServicios();
+		
+		} catch (Exception e) {
+			Popup.mostrar(e.getMessage());
 		}
 	}
 	
