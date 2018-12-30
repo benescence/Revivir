@@ -29,6 +29,13 @@ public class ControladorResponsableAM implements ControladorExterno, ClienteSele
 		inicializar();
 	}
 	
+	public ControladorResponsableAM(ResponsableInvocable invocador, Cliente cliente) {
+		this.invocador = invocador;
+		ventana = new VentanaResponsableAM();
+		inicializar();
+		seleccionarCliente(cliente);
+	}
+	
 	private void inicializar() {
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cancelar()));
 

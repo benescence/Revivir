@@ -82,5 +82,10 @@ public class VerificadorBorrado {
 		
 		return true;
 	}
+	
+	public static boolean puedeBorrar(Responsable responsable) throws Exception {
+		// Por ahora se puede borrar siempre
+		return true;
+	}
 
 }
