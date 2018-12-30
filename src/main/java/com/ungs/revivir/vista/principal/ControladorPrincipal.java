@@ -16,8 +16,9 @@ import com.ungs.revivir.vista.menu.pagos.ControladorPagoABM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.ControladorPagoAM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.PagoInvocable;
 import com.ungs.revivir.vista.menu.principal.ControladorAltaCompleta;
-import com.ungs.revivir.vista.menu.responsables.ControladorVincular;
 import com.ungs.revivir.vista.menu.responsables.clienteABM.ControladorResponsableABMCliente;
+import com.ungs.revivir.vista.menu.responsables.responsableAM.ControladorResponsableAM;
+import com.ungs.revivir.vista.menu.responsables.responsableAM.ResponsableInvocable;
 import com.ungs.revivir.vista.menu.servicios.ControladorServiciosABM;
 import com.ungs.revivir.vista.menu.servicios.servicioAM.ControladorServicioAM;
 import com.ungs.revivir.vista.menu.servicios.servicioAM.ServicioInvocable;
@@ -29,7 +30,7 @@ import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 
 public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable, UsuarioInvocable,
-		CargoInvocable, MovimientoInvocable, FallecidoInvocable, PagoInvocable {
+		CargoInvocable, MovimientoInvocable, FallecidoInvocable, PagoInvocable, ResponsableInvocable {
 	private VentanaPrincipal ventana;
 	private ControladorInterno controladorInterno;
 	
@@ -45,8 +46,8 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana.getCargoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorCargoAM(this)));
 		ventana.getPagoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorPagoAM(this)));
 		
-		ventana.getResponsableVincular().addActionListener(e -> vincular());
-		ventana.getMovimientoTrasladar().addActionListener(e -> transladar());
+		ventana.getResponsableAlta().addActionListener(e -> colocarVentanaExterna(new ControladorResponsableAM(this)));
+		ventana.getMovimientoAlta().addActionListener(e -> transladar());
 	
 		
 		
@@ -78,17 +79,13 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		}
 	}
 
-	private void vincular() {
-		ventana.deshabilitar();
-		new ControladorVincular(this);
-	}
 	private void transladar() {
 		ventana.deshabilitar();
 		new ControladorMovimientoAM(this);
 	}
 
 	private void cerrarAplicacion() {
-		if (Popup.confirmar("�Est� seguro de que desea cerrar la aplicaci�n?")) {
+		if (Popup.confirmar("¿Está seguro de que desea cerrar la aplicación?")) {
 			ventana.dispose();
 			ventana = null;
 		}
@@ -147,6 +144,12 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 	public void actualizarPagos() {
 		if (controladorInterno instanceof PagoInvocable)
 			((PagoInvocable)controladorInterno).actualizarPagos();
+	}	
+
+	@Override
+	public void actualizarResponsables() {
+		if (controladorInterno instanceof ResponsableInvocable)
+			((ResponsableInvocable)controladorInterno).actualizarResponsables();
 	}	
 
 }

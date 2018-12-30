@@ -20,7 +20,7 @@ public class VentanaPrincipal extends Ventana {
 	private JMenuItem cargoAlta, cargoConsultar; 
 	private JMenuItem pagoAlta, pagoConsultar; 
 	private JMenuItem movimientoAlta, movimientoConsultar; 
-	private JMenuItem responsableVincular, responsableConsultarPorCliente, responsableConsultarPorFallecido;		
+	private JMenuItem responsableAlta, responsableConsultarPorCliente, responsableConsultarPorFallecido;		
 	private JMenuItem servicioAlta, servicioConsulta;
 	private JMenuItem usuarioAlta, usuarioConsulta;
 	
@@ -62,11 +62,14 @@ public class VentanaPrincipal extends Ventana {
 		menuFallecido.add(fallecidoConsulta = new JMenuItem("Consultar fallecidos", 'c'));
 		fallecidoAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, Event.CTRL_MASK | Event.ALT_MASK));
 		barra.add(menuFallecido);
-		
+
+		//********************** MENU RESPONSABLES ***************************
 		JMenu menuResponsables = new JMenu("Responsables");
-		menuResponsables.add(responsableVincular = new JMenuItem("Vincular"));
-		menuResponsables.add(responsableConsultarPorCliente = new JMenuItem("Consultar por cliente"));
-		menuResponsables.add(responsableConsultarPorFallecido = new JMenuItem("Consultar por fallecido"));
+		menuResponsables.setMnemonic('r');
+		menuResponsables.add(responsableAlta = new JMenuItem("Alta responsable", 'a'));
+		menuResponsables.add(responsableConsultarPorCliente = new JMenuItem("Consultar por cliente", 'c'));
+		menuResponsables.add(responsableConsultarPorFallecido = new JMenuItem("Consultar por fallecido", 'f'));
+		responsableAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, Event.CTRL_MASK | Event.ALT_MASK));
 		barra.add(menuResponsables);
 
 
@@ -145,8 +148,8 @@ public class VentanaPrincipal extends Ventana {
 		return usuarioConsulta;
 	}
 
-	public JMenuItem getResponsableVincular() {
-		return responsableVincular;
+	public JMenuItem getResponsableAlta() {
+		return responsableAlta;
 	}
 
 	public JMenuItem getResponsableConsultarPorCliente() {
@@ -177,7 +180,7 @@ public class VentanaPrincipal extends Ventana {
 		return principalCerrarSesion;
 	}
 	
-	public JMenuItem getMovimientoTrasladar() {
+	public JMenuItem getMovimientoAlta() {
 		return movimientoAlta;
 	}
 
