@@ -28,12 +28,19 @@ public class ControladorResponsableAM implements ControladorExterno, ClienteSele
 		ventana = new VentanaResponsableAM();
 		inicializar();
 	}
-	
+
 	public ControladorResponsableAM(ResponsableInvocable invocador, Cliente cliente) {
 		this.invocador = invocador;
 		ventana = new VentanaResponsableAM();
 		inicializar();
 		seleccionarCliente(cliente);
+	}
+
+	public ControladorResponsableAM(ResponsableInvocable invocador, Fallecido fallecido) {
+		this.invocador = invocador;
+		ventana = new VentanaResponsableAM();
+		inicializar();
+		seleccionarFallecido(fallecido);
 	}
 	
 	public ControladorResponsableAM(ResponsableInvocable invocador, Responsable modificar) {
@@ -87,7 +94,6 @@ public class ControladorResponsableAM implements ControladorExterno, ClienteSele
 
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
-			e.printStackTrace();
 		}
 		
 	}

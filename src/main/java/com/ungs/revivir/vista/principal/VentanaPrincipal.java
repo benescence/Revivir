@@ -20,7 +20,7 @@ public class VentanaPrincipal extends Ventana {
 	private JMenuItem cargoAlta, cargoConsultar; 
 	private JMenuItem pagoAlta, pagoConsultar; 
 	private JMenuItem movimientoAlta, movimientoConsultar; 
-	private JMenuItem responsableAlta, responsableConsultarPorCliente, responsableConsultarPorFallecido;		
+	private JMenuItem responsableAlta, responsablePorCliente, responsablePorFallecido;		
 	private JMenuItem servicioAlta, servicioConsulta;
 	private JMenuItem usuarioAlta, usuarioConsulta;
 	
@@ -67,11 +67,10 @@ public class VentanaPrincipal extends Ventana {
 		JMenu menuResponsables = new JMenu("Responsables");
 		menuResponsables.setMnemonic('r');
 		menuResponsables.add(responsableAlta = new JMenuItem("Alta responsable", 'a'));
-		menuResponsables.add(responsableConsultarPorCliente = new JMenuItem("Consultar por cliente", 'c'));
-		menuResponsables.add(responsableConsultarPorFallecido = new JMenuItem("Consultar por fallecido", 'f'));
+		menuResponsables.add(responsablePorCliente = new JMenuItem("Por Cliente", 'c'));
+		menuResponsables.add(responsablePorFallecido = new JMenuItem("Por Fallecido", 'f'));
 		responsableAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, Event.CTRL_MASK | Event.ALT_MASK));
 		barra.add(menuResponsables);
-
 
 		//********************** MENU CARGOS ***************************
 		JMenu menuCargos = new JMenu("Cargos");
@@ -89,7 +88,7 @@ public class VentanaPrincipal extends Ventana {
 		pagoAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, Event.CTRL_MASK | Event.ALT_MASK));
 		barra.add(menuPagos);
 		
-		//********************** MENU SERVICIOS ***************************
+		//********************** MENU MOVIMIENTOS  ***************************
 		JMenu menuMovimientos = new JMenu("Movimientos");
 		menuMovimientos.setMnemonic('m');
 		menuMovimientos.add(movimientoAlta = new JMenuItem("Alta de movimiento", 'a'));
@@ -152,12 +151,12 @@ public class VentanaPrincipal extends Ventana {
 		return responsableAlta;
 	}
 
-	public JMenuItem getResponsableConsultarPorCliente() {
-		return responsableConsultarPorCliente;
+	public JMenuItem getResponsablePorCliente() {
+		return responsablePorCliente;
 	}
 
-	public JMenuItem getResponsableConsultarPorFallecido() {
-		return responsableConsultarPorFallecido;
+	public JMenuItem getResponsablePorFallecido() {
+		return responsablePorFallecido;
 	}
 
 	public JMenuItem getCargoAlta() {
