@@ -28,7 +28,7 @@ public class VentanaUsuarioAM extends Ventana {
 	}
 	
 	public VentanaUsuarioAM(Usuario usuario) {
-		super("Modificaci�n de usuario");
+		super("Modificación de usuario");
 		cargarcomponentes();
 		inUsuario.getTextField().setText(usuario.getUsuario());
 		inPassword.getTextField().setText(usuario.getPassword());

@@ -98,15 +98,15 @@ public class ControladorCargoABM implements ControladorInterno, FallecidoSelecci
 	}
 
 	private void modificar() {
-		/*List<Cargo> lista = ventana.getTabla().obtenerSeleccion();
+		List<Cargo> lista = ventana.getTabla().obtenerSeleccion();
 		
 		if (lista.size() != 1) {
 			Popup.mostrar("Debe seleccionar exactamente 1 cargo para modificarlo");
 			return;
 		}
 		
-		invocador.getVentana().setEnabled(false);*/
-		//new ControladorCargoAM(this, lista.get(0));
+		invocador.getVentana().setEnabled(false);
+		new ControladorCargoAM(this, lista.get(0));
 	}
 	
 	private void eliminar() {

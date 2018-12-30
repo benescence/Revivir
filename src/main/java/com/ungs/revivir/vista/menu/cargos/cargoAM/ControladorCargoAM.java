@@ -38,11 +38,9 @@ public class ControladorCargoAM implements ControladorExterno, ServicioSeleccion
 	public ControladorCargoAM(CargoInvocable invocador, Cargo cargo) {
 		this.invocador = invocador;
 		this.cargo = cargo;
-		this.servicio = ServicioManager.traerPorID(cargo.getServicio());
-		this.fallecido = FallecidoManager.traerPorID(cargo.getFallecido());
 		ventana = new VentanaCargoAM();
-		seleccionarFallecido(fallecido);
-		seleccionarServicio(servicio);
+		seleccionarFallecido(FallecidoManager.traerPorID(cargo.getFallecido()));
+		seleccionarServicio(ServicioManager.traerPorID(cargo.getServicio()));
 		ventana.getObservaciones().getTextField().setText(cargo.getObservaciones());
 		inicializar();
 	}
@@ -137,7 +135,7 @@ public class ControladorCargoAM implements ControladorExterno, ServicioSeleccion
 	}
 	
 	private void cancelar() {
-		if (Popup.confirmar("Se perderan los datos ingresados.\n�Esta seguro de que desea cancelar la operacion?")) {
+		if (Popup.confirmar("Se perderan los datos ingresados.\n¿Esta seguro de que desea cancelar la operacion?")) {
 			ventana.dispose();
 			invocador.mostrar();
 		}

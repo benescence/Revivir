@@ -160,7 +160,8 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			// Estoy dando el alta
 			if (pago == null) {
 				PagoManager.guardar(pagoNuevo);
-				verFactura();}
+				verFactura();
+				}
 			// Estoy modificando
 			else {
 				pagoNuevo.setID(pago.getID());

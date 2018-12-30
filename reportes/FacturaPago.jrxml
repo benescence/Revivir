@@ -19,9 +19,6 @@
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
-	<field name="fecha" class="java.sql.Date">
-		<fieldDescription><![CDATA[fecha]]></fieldDescription>
-	</field>
 	<group name="Group1"/>
 	<background>
 		<band splitType="Stretch"/>
