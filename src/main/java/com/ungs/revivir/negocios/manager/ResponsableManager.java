@@ -38,7 +38,7 @@ public class ResponsableManager {
 
 	public static List<Responsable> traerPorCliente(Cliente cliente) {
 		ResponsableOBD obd = FactoryOBD.crearResponsableOBD();
-		return obd.selectByCliente(cliente.getID());
+		return obd.selectByCliente(cliente);
 	}
 
 	public static Responsable traerPorClienteFallecido(Cliente cliente, Fallecido fallecido) {

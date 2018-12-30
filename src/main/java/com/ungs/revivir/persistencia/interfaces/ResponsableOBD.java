@@ -23,7 +23,7 @@ public interface ResponsableOBD {
 	public Responsable ultimoInsertado();
 
 	// METODOS ESPECIFICOS
-	public List<Responsable> selectByCliente(Integer cliente);
+	public List<Responsable> selectByCliente(Cliente cliente);
 
 	public List<Responsable> selectByFallecido(Fallecido fallecido);
 	

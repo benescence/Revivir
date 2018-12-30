@@ -53,7 +53,6 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 		
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
-			e.printStackTrace();
 		}
 		
 	}

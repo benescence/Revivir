@@ -2,14 +2,33 @@ package com.ungs.revivir.negocios.verificador;
 
 import java.util.List;
 
-import com.ungs.revivir.negocios.Relacionador;
+import com.ungs.revivir.negocios.busqueda.Relacionador;
 import com.ungs.revivir.persistencia.entidades.Cargo;
+import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
+import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Responsable;
 
 public class VerificadorBorrado {
-	
+
+	public static boolean puedeBorrar(Cliente cliente) throws Exception {
+		String mensaje = "";
+		
+		List<Responsable> responsables = Relacionador.traerResponsables(cliente);
+		if (!responsables.isEmpty())
+			mensaje += "\n    -Tiene fallecidos asociados.";
+		
+		List<Pago> pagos = Relacionador.traerPagos(cliente);
+		if (!pagos.isEmpty())
+			mensaje += "\n    -Tiene pagos asociados";
+		
+		if (!mensaje.equals(""))
+			throw new Exception("El cliente con DNI "+cliente.getDNI()+" no puede borrarse porque:"+mensaje);
+		
+		return true;
+	}
+
 	public static boolean puedeBorrar(Fallecido fallecido) throws Exception {
 		String mensaje = "";
 		

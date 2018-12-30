@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.swing.JInternalFrame;
 
-import com.ungs.revivir.negocios.Relacionador;
 import com.ungs.revivir.negocios.Validador;
+import com.ungs.revivir.negocios.busqueda.Relacionador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;

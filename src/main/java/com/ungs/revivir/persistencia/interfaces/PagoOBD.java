@@ -3,6 +3,7 @@ package com.ungs.revivir.persistencia.interfaces;
 import java.util.Date;
 import java.util.List;
 
+import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Pago;
 
 public interface PagoOBD {
@@ -19,7 +20,7 @@ public interface PagoOBD {
 
 	public Pago ultimoInsertado();
 		
-	public List<Pago> selectByCliente(Integer cliente);
+	public List<Pago> selectByCliente(Cliente cliente);
 	
 	public Pago selectByFecha(Date fecha);
 

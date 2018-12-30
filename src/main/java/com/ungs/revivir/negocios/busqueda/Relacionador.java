@@ -1,18 +1,18 @@
-package com.ungs.revivir.negocios;
+package com.ungs.revivir.negocios.busqueda;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Cargo;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
+import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Responsable;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.CargoOBD;
 import com.ungs.revivir.persistencia.interfaces.MovimientoOBD;
+import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 import com.ungs.revivir.persistencia.interfaces.ResponsableOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
@@ -32,18 +32,24 @@ public class Relacionador {
 		CargoOBD obd = FactoryOBD.crearCargoOBD();
 		return obd.selectByFallecido(fallecido);
 	}
-	
+
 	public static List<Responsable> traerResponsables(Fallecido fallecido) {
 		ResponsableOBD obd = FactoryOBD.crearResponsableOBD();
 		return obd.selectByFallecido(fallecido);
 	}
+
+	public static List<Responsable> traerResponsables(Cliente cliente) {
+		ResponsableOBD obd = FactoryOBD.crearResponsableOBD();
+		return obd.selectByCliente(cliente);
+	}
+
+	public static List<Pago> traerPagos(Cliente cliente) {
+		PagoOBD obd = FactoryOBD.crearPagoOBD();
+		return obd.selectByCliente(cliente);
+	}
 	
 	public static List<Cliente> traerClientes(Fallecido fallecido) {
-		List<Responsable> lista = traerResponsables(fallecido);
-		List<Cliente> clientes = new ArrayList<>();
-		for (Responsable elemento : lista)
-			clientes.add(ClienteManager.traerPorID(elemento.getCliente()));
-		return clientes;
+		return RelacionadorCompuesto.traerClientes(fallecido);
 	}
 		
 }

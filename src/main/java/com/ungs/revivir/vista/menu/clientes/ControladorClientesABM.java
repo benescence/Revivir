@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.manager.ClienteManager;
+import com.ungs.revivir.negocios.verificador.VerificadorBorrado;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.vista.menu.clientes.clienteAM.ClienteInvocable;
 import com.ungs.revivir.vista.menu.clientes.clienteAM.ControladorClientesAM;
@@ -42,18 +43,23 @@ public class ControladorClientesABM implements ControladorInterno, ClienteInvoca
 	}
 	
 	private void eliminar() {
-		List<Cliente> lista = ventana.getTabla().obtenerSeleccion();
+		try {
+			List<Cliente> lista = ventana.getTabla().obtenerSeleccion();
+			if (lista.size() != 1) {
+				Popup.mostrar("Debe seleccionar exactamente 1 cliente para borrarlo.");
+				return;
+			}
+			
+			if (VerificadorBorrado.puedeBorrar(lista.get(0)) &&
+					Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
+				ClienteManager.eliminar(lista.get(0));
+			
+			actualizarClientes();
 		
-		if (lista.isEmpty()) {
-			Popup.mostrar("Debe seleccionar al menos un cliente para eliminarlo");
-			return;
+		} catch (Exception e) {
+			Popup.mostrar(e.getMessage());
 		}
 		
-		if (Popup.confirmar("�Esta seguro de que desea eliminar los registros seleccionados?"))
-			for (Cliente elemento : lista)
-				ClienteManager.eliminar(elemento);
-		
-		actualizar();
 	}
 
 	@Override
