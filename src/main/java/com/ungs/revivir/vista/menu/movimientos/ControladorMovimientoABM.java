@@ -1,19 +1,18 @@
 package com.ungs.revivir.vista.menu.movimientos;
 
 import java.util.List;
+
 import javax.swing.JInternalFrame;
 
-import com.ungs.revivir.negocios.Busqueda;
+import com.ungs.revivir.negocios.Relacionador;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
-import com.ungs.revivir.negocios.manager.MovimientoManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.seleccion.fallecidos.ControladorSeleccionarFallecido;
 import com.ungs.revivir.vista.seleccion.fallecidos.FallecidoSeleccionable;
-import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorMovimientoABM implements ControladorInterno, FallecidoSeleccionable{
@@ -32,7 +31,7 @@ public class ControladorMovimientoABM implements ControladorInterno, FallecidoSe
 	}
 
 	private void actualizarMovimientos() {
-		List<Movimiento> lista = MovimientoManager.traerPorFallecido(fallecido);
+		List<Movimiento> lista = Relacionador.traerMovimiento(fallecido);
 		ventana.getTabla().recargar(lista);
 		if (lista.size() == 0)
 			Popup.mostrar("No se ha encontrado ningun resultado con los criterios ingresados.");

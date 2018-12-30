@@ -23,11 +23,6 @@ public class ClienteManager {
 	}
 		
 	public static void eliminar(Cliente cliente) {
-		//List<Fallecido> fallecidos = Vinculador.traerFallecidosDeCliente(cliente);
-		//if (fallecidos.size() > 0)
-		
-		
-		
 		ClienteOBD obd = FactoryOBD.crearClienteOBD();
 		obd.delete(cliente);
 	}

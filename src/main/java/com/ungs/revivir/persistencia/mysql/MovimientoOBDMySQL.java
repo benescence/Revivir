@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ungs.revivir.persistencia.OBD;
+import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.persistencia.interfaces.MovimientoOBD;
 
@@ -116,6 +117,7 @@ public class MovimientoOBDMySQL extends OBD implements MovimientoOBD{
 			
 		return ret;
 	}
+	
 	private List<Movimiento> selectByCondicionInner(String condicion) {
 		List<Movimiento> ret = new ArrayList<Movimiento>();
 		String comandoSQL = "select rev_movimientos.ID, "+campos+" from "+Inner+" where ("+condicion+");";  
@@ -156,12 +158,9 @@ public class MovimientoOBDMySQL extends OBD implements MovimientoOBD{
 	}
 
 	@Override
-	public List<Movimiento> selectByFallecido(Integer fallecido) {
-		String condicion = "fallecido = " + "'"+fallecido+"'";
-		List<Movimiento> lista = selectByCondicion(condicion);
-		if (lista.size() > 0)
-			return lista;
-		return null;
+	public List<Movimiento> selectByFallecido(Fallecido fallecido) {
+		String condicion = "fallecido = "+fallecido.getID();
+		return selectByCondicion(condicion);
 	}
 
 	

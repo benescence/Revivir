@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
-import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.persistencia.interfaces.MovimientoOBD;
 
@@ -41,9 +40,4 @@ public class MovimientoManager {
 		return obd.ultimoInsertado();
 	}
 
-	public static List<Movimiento> traerPorFallecido(Fallecido fallecido) {
-		MovimientoOBD obd = FactoryOBD.crearMovimientoOBD();
-		return obd.selectByFallecido(fallecido.getID());
-	}
-	
 }

@@ -56,9 +56,8 @@ public class ResponsableOBDMYSQL extends OBD implements ResponsableOBD{
 	}
 
 	@Override
-	public List<Responsable> selectByFallecido(Integer fallecido) {
-		String condicion = "";
-		condicion += "fallecido = " +"'"+fallecido+"'";
+	public List<Responsable> selectByFallecido(Fallecido fallecido) {
+		String condicion = "fallecido = "+fallecido.getID();
 		return selectByCondicion(condicion);
 	}
 

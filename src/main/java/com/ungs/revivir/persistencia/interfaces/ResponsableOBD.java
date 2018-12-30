@@ -25,7 +25,7 @@ public interface ResponsableOBD {
 	// METODOS ESPECIFICOS
 	public List<Responsable> selectByCliente(Integer cliente);
 
-	public List<Responsable> selectByFallecido(Integer fallecido);
+	public List<Responsable> selectByFallecido(Fallecido fallecido);
 	
 	public Responsable selectByClienteFallecido(Cliente cliente, Fallecido fallecido);
 	

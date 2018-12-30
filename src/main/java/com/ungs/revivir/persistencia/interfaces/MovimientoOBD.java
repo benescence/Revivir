@@ -2,6 +2,7 @@ package com.ungs.revivir.persistencia.interfaces;
 
 import java.util.List;
 
+import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
 
 
@@ -23,7 +24,7 @@ public void insert(Movimiento movimiento);
 
 	public Movimiento  selectByID(Integer ID);
 	
-	public List<Movimiento> selectByFallecido(Integer fallecido);
+	public List<Movimiento> selectByFallecido(Fallecido fallecido);
 
 	public List<Movimiento> selectByFallecidoNombre(String nombre, String apellido);
 
