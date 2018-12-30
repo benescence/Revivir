@@ -3,6 +3,7 @@ package com.ungs.revivir.negocios.verificador;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
+import com.ungs.revivir.negocios.manager.ResponsableManager;
 import com.ungs.revivir.negocios.manager.ServicioManager;
 import com.ungs.revivir.negocios.manager.UsuarioManager;
 import com.ungs.revivir.persistencia.entidades.Cargo;
@@ -10,12 +11,46 @@ import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.persistencia.entidades.Pago;
+import com.ungs.revivir.persistencia.entidades.Responsable;
 import com.ungs.revivir.persistencia.entidades.Servicio;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.entidades.Usuario;
 
 public class Verificador {
 
+	public static Responsable responsable(Responsable responsable) throws Exception {
+		String observaciones = anular(responsable.getObservaciones());
+		String mensaje = "";
+
+		if (responsable.getCliente() == null)
+			mensaje += "\n    -Debe seleccionar o cargar un cliente.";
+
+		if (responsable.getFallecido() == null)
+			mensaje += "\n    -Debe seleccionar o cargar un fallecido.";
+
+		Cliente cliente = null;
+		Fallecido fallecido = null;
+		
+		if (responsable.getCliente() != null)
+			cliente = ClienteManager.traerPorID(responsable.getCliente());
+		
+		if (responsable.getFallecido() != null)
+			fallecido = FallecidoManager.traerPorID(responsable.getFallecido());
+		
+		if (cliente != null && fallecido != null) {
+			Responsable objetoBD =	ResponsableManager.traerPorClienteFallecido(cliente, fallecido);
+			if (objetoBD != null)
+				mensaje += "\n    -Cliente y fallecido ya estaban relacionados en el sistema.";
+		}
+		
+		if (!mensaje.equals(""))
+			throw new Exception("Se encontraron los siguientes errores en el formulario:"+mensaje);
+		
+		// Debo setearlos porque pudieron ser anulados
+		responsable.setObservaciones(observaciones);
+		return responsable;
+	}
+	
 	public static Cliente cliente(Cliente nuevo, Cliente anterior) throws Exception {
 		String nombre = anular(nuevo.getNombre());
 		String apellido = anular(nuevo.getApellido());
@@ -107,7 +142,6 @@ public class Verificador {
 	public static Movimiento movimiento(Movimiento movimiento) throws Exception {
 		return movimiento;
 	}
-	
 	
 	public static Pago pago(Pago pago) throws Exception {
 		return pago;

@@ -1,16 +1,14 @@
 package com.ungs.revivir.vista.menu.responsables.responsableAM;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 import com.ungs.revivir.negocios.Validador;
-import com.ungs.revivir.negocios.Vinculador;
 import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
+import com.ungs.revivir.negocios.manager.ResponsableManager;
+import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.Responsable;
 import com.ungs.revivir.vista.principal.ControladorExterno;
-import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.seleccion.clientes.ClienteSeleccionable;
 import com.ungs.revivir.vista.seleccion.clientes.ControladorSeleccionCliente;
 import com.ungs.revivir.vista.seleccion.fallecidos.ControladorSeleccionarFallecido;
@@ -23,6 +21,7 @@ public class ControladorResponsableAM implements ControladorExterno, ClienteSele
 	private ResponsableInvocable invocador;
 	private Cliente cliente;
 	private Fallecido fallecido;
+	private Responsable modificar;
 	
 	public ControladorResponsableAM(ResponsableInvocable invocador) {
 		this.invocador = invocador;
@@ -37,8 +36,8 @@ public class ControladorResponsableAM implements ControladorExterno, ClienteSele
 		ventana.botonCargarCliente().setAccion(e -> cargarCliente());
 		ventana.botonSelFallecido().setAccion(e -> seleccionarFallecido());
 		ventana.botonCargarFallecido().setAccion(e -> cargarFallecido());
-		
-		
+		ventana.botonCancelar().setAccion(e -> cancelar());
+		ventana.botonAceptar().setAccion(e -> aceptar());		
 	} 
 	
 	private void seleccionarCliente() {
@@ -51,27 +50,34 @@ public class ControladorResponsableAM implements ControladorExterno, ClienteSele
 		new ControladorSeleccionarFallecido(this);
 	}
 	
-	private void aceptar() {/*
-		Cliente cliente = ventana.getCliente();
-		Fallecido fallecido = ventana.getFallecido();
+	private void aceptar() {
+		ventana.requestFocusInWindow();
 		
-		if (cliente == null || fallecido == null) {
-			Popup.mostrar("Debe seleccionar un cliente y un fallecido para poder vincularlos.");
-			return;
+		try {
+			Responsable verificado = obtenerVerificado();
+			
+			// Es un alta
+			if (modificar == null)
+				ResponsableManager.guardar(verificado);
+			else
+				ResponsableManager.modificar(verificado);
+			
+			invocador.actualizarResponsables();
+			ventana.dispose();
+			invocador.mostrar();
+
+		} catch (Exception e) {
+			Popup.mostrar(e.getMessage());
+			e.printStackTrace();
 		}
 		
-		Vinculador.vincular(cliente, fallecido);
-		volver();*/
 	}
 	
 	private void cancelar() {
-		if (Popup.confirmar("Se perderan los datos ingresados.\n¿Esta seguro de que desea cancelar la operacion?"))
-			volver();
-	}
-
-	private void volver() {
-		ventana.dispose();
-		invocador.mostrar();
+		if (Popup.confirmar("Se perderan los datos ingresados.\n¿Esta seguro de que desea cancelar la operacion?")) {
+			ventana.dispose();
+			invocador.mostrar();
+		}
 	}
 
 	private void cargarCliente() {
@@ -109,9 +115,8 @@ public class ControladorResponsableAM implements ControladorExterno, ClienteSele
 		}
 		
 		seleccionarFallecido(directo);
-		//ventana.getDNICli().getTextField().requestFocusInWindow();
+		ventana.getObservaciones().getTextField().requestFocusInWindow();
 	}
-
 	
 	@Override
 	public void seleccionarCliente(Cliente cliente) {
@@ -132,6 +137,14 @@ public class ControladorResponsableAM implements ControladorExterno, ClienteSele
 		ventana.getNombreFal().setValor(fallecido.getNombre());
 		ventana.getApellidoFal().setValor(fallecido.getApellido());
 		ventana.getDNIFal().setValor(fallecido.getDNI());
+	}
+	
+	private Responsable obtenerVerificado() throws Exception {
+		String observaciones = ventana.getObservaciones().getValor();
+		Integer clienteID = (cliente != null) ? cliente.getID() : null;
+		Integer fallecidoID = (fallecido != null) ? fallecido.getID() : null;
+		Responsable responsable = new Responsable(-1, clienteID, fallecidoID, observaciones);
+		return Verificador.responsable(responsable);
 	}
 	
 }

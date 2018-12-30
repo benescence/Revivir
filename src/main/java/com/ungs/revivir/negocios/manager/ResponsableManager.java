@@ -10,8 +10,7 @@ import com.ungs.revivir.persistencia.interfaces.ResponsableOBD;
 
 public class ResponsableManager {
 	
-	public static void guardar(Cliente cliente, Fallecido fallecido, String observaciones) {
-		Responsable nuevo = new Responsable(-1, cliente.getID(), fallecido.getID(), observaciones);
+	public static void guardar(Responsable nuevo) {
 		ResponsableOBD obd = FactoryOBD.crearResponsableOBD();
 		obd.insert(nuevo);
 	}

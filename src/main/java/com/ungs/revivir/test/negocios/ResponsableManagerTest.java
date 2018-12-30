@@ -21,7 +21,7 @@ class ResponsableManagerTest {
 	@Test
 	void testGuardar() {
 		Responsable local = new Responsable(-1, cliente.getID(), fallecido.getID(), observaciones);
-		ResponsableManager.guardar(cliente, fallecido, observaciones);
+		//ResponsableManager.guardar(cliente, fallecido, observaciones);
 		Responsable objetoBD = obd.ultimoInsertado();
 		iguales(objetoBD, local);
 		obd.delete(objetoBD);
@@ -29,7 +29,7 @@ class ResponsableManagerTest {
 	
 	@Test
 	void testModificar() {
-		ResponsableManager.guardar(cliente, fallecido, observaciones);
+		//ResponsableManager.guardar(cliente, fallecido, observaciones);
 		Responsable objetoBD1 = obd.ultimoInsertado();
 		
 		objetoBD1.setObservaciones("Nueva observacion");
@@ -42,7 +42,7 @@ class ResponsableManagerTest {
 	
 	@Test
 	void testEliminar() {
-		ResponsableManager.guardar(cliente, fallecido, observaciones);
+		//ResponsableManager.guardar(cliente, fallecido, observaciones);
 		Responsable objetoBD1 = obd.ultimoInsertado();		
 		ResponsableManager.eliminar(objetoBD1);
 		Responsable objetoBD2 = obd.ultimoInsertado();

@@ -2,6 +2,7 @@ package com.ungs.revivir.vista.menu.responsables.responsableAM;
 
 import java.awt.Dimension;
 
+import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.vista.util.Boton;
@@ -18,6 +19,7 @@ public class VentanaResponsableAM extends Ventana {
 	private Boton btnCargarFallecido, btnSelFallecido;
 	private EntradaTexto inNombreFal, inApellidoFal, inDNIFal;
 	private Boton btnAceptar, btnCancelar;
+	private EntradaTexto inObservaciones;
 	
 	public VentanaResponsableAM() {
 		super("Alta de responsables", 500, 500);
@@ -25,11 +27,10 @@ public class VentanaResponsableAM extends Ventana {
 	}
 	
 	private void inicializar() {
-		PanelHorizontal panelSeleccion = new PanelHorizontal();
-		panelSeleccion.add(panelCliente());
-		panelSeleccion.add(panelFallecido());
-		
+		Dimension dimTexto = new Dimension(100, 25);
+		Dimension dimEntrada = new Dimension(300, 25);
 		Dimension dimBoton = new Dimension(100, 25);
+		
 		btnAceptar = new Boton("Aceptar", dimBoton);
 		btnCancelar = new Boton("Cancelar", dimBoton);
 		PanelHorizontal panelBotones = new PanelHorizontal();
@@ -37,11 +38,18 @@ public class VentanaResponsableAM extends Ventana {
 		panelBotones.add(btnAceptar);
 		panelBotones.add(btnCancelar);
 
+		inObservaciones = new EntradaTexto("Observaciones", dimTexto, dimEntrada);
+		inObservaciones.setBorder(new EmptyBorder(10, 0, 0, 10));
+		
 		PanelVertical panelPrincipal = new PanelVertical();
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
 		setContentPane(panelPrincipal);
 
-		panelPrincipal.add(panelSeleccion);
+		panelPrincipal.add(panelCliente());
+		panelPrincipal.add(new JSeparator());
+		panelPrincipal.add(panelFallecido());
+		panelPrincipal.add(new JSeparator());
+		panelPrincipal.add(inObservaciones);
 		panelPrincipal.add(panelBotones);
 		compactar();
 	}
@@ -95,7 +103,7 @@ public class VentanaResponsableAM extends Ventana {
 		panelBotones.add(btnSelFallecido);
 		
 		PanelVertical ret = new PanelVertical();
-		ret.setBorder(new EmptyBorder(0, 0, 10, 10));
+		ret.setBorder(new EmptyBorder(10, 0, 10, 10));
 		ret.add(new TextoCentrado("Datos del fallecido"));
 		ret.add(inNombreFal);
 		ret.add(inApellidoFal);
@@ -151,5 +159,9 @@ public class VentanaResponsableAM extends Ventana {
 	public EntradaTexto getDNIFal() {
 		return inDNIFal;
 	}
-		
+
+	public EntradaTexto getObservaciones() {
+		return inObservaciones;
+	}
+			
 }

@@ -108,7 +108,7 @@ public class ControladorAltaCompleta implements ActionListener, ClienteSeleccion
 		
 		// LOS VINCULO
 		Fallecido fallecido = FallecidoManager.traerMasReciente();
-		Vinculador.vincular(cliente, fallecido);
+		//Vinculador.vincular(cliente, fallecido);
 		
 		// FINALIZO EL GUARDADO
 		Popup.mostrar("El servicio se ha guardado exitosamente");
