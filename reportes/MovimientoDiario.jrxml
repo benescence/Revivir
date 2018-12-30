@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="400" pageHeight="340" columnWidth="360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="Fecha" class="java.lang.String"/>
+	<parameter name="descripcion class="java.util.List"/>
+	<parameter name="cliente" class="java.util.List"/>
+	<parameter name="monto" class="java.util.List"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[fecha]]></fieldDescription>
+	</field>
+	<group name="Group1"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="116" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="360" height="116" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
+				<staticText>
+					<reportElement x="2" y="80" width="290" height="30" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[Movimientos del Dia ]]></text>
+				</staticText>
+				<image>
+					<reportElement x="60" y="0" width="300" height="50" uuid="749ca9cc-7b40-4aa1-8710-adeeae3d14a1"/>
+					<imageExpression><![CDATA["imagenes/Logo.png"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="184" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="57" width="360" height="63" printWhenGroupChanges="Group1" backcolor="rgba(0, 255, 242, 0.1764706)" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+				</reportElement>
+				<staticText>
+					<reportElement x="2" y="-35" width="128" height="23" uuid="d8f320db-dcc7-459d-8040-aea3690a2bf0"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[FECHA :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="140" y="-35" width="210" height="18" uuid="78c2ee9a-adf6-4344-9ac5-e5bcf92bb29d"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{fecha});]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="10" width="78" height="23" uuid="b41ee76e-f1c7-4a32-8b75-855bfbe0ff92"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descripcion]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="100" y="10" width="110" height="23" uuid="6f5462fa-eb72-479f-bb27-fb5ef7144791"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Monto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="220" y="10" width="98" height="23" uuid="e2252ea3-811b-43d8-ae6b-e9b261b705f9"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cliente]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="2" y="9" width="316" height="24" backcolor="rgba(255, 115, 112, 0.2509804)" uuid="531fa82f-57c3-4a89-a125-e32212c769ed"/>
+				</rectangle>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<rectangle>
+				<reportElement x="1" y="3" width="339" height="57" backcolor="rgba(109, 242, 209, 0.3019608)" uuid="16497a7d-eb1c-4d94-8a8e-f2e53ea3aff4"/>
+			</rectangle>
+			<textField>
+				<reportElement x="6" y="7" width="86" height="40" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
+				<textFieldExpression><![CDATA[$P{descripcion}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="7" width="108" height="40" uuid="7b3cb927-55f7-4f20-b1ce-87b63705ae2b"/>
+				<textFieldExpression><![CDATA[$P{cliente}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="10" width="110" height="40" uuid="4a345b01-b751-4529-b6d6-2ccf3c13ff66"/>
+				<textFieldExpression><![CDATA[$P{monto}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>
