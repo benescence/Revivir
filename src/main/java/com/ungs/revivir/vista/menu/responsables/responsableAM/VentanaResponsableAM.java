@@ -20,7 +20,7 @@ public class VentanaResponsableAM extends Ventana {
 	private Boton btnAceptar, btnCancelar;
 	
 	public VentanaResponsableAM() {
-		super("Alta de responsbles", 500, 500);
+		super("Alta de responsables", 500, 500);
 		inicializar();
 	}
 	
