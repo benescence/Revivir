@@ -44,11 +44,11 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 			return;
 		}
 		
-		if (Popup.confirmar("�Esta seguro de que desea eliminar los registros seleccionados?"))
+		if (Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
 			for (Fallecido elemento : lista)
 				FallecidoManager.eliminar(elemento);
 		
-		actualizar();
+		actualizarFallecidos();
 	}
 
 	private void agregar() {
@@ -61,9 +61,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 		invocador.getVentana().toFront();
 	}
 	
-	public void actualizar() {
-		ventana.getTabla().recargar(FallecidoManager.traerTodo());
-	}
+
 	
 	@Override
 	public boolean finalizar() {
@@ -77,8 +75,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 
 	@Override
 	public void actualizarFallecidos() {
-		// TODO Auto-generated method stub
-		
+		ventana.getTabla().recargar(FallecidoManager.traerTodo());
 	}
 
 }
