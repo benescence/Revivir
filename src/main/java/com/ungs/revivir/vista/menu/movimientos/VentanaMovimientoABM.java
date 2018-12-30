@@ -50,7 +50,7 @@ public class VentanaMovimientoABM extends VentanaInterna{
 
 	private PanelVertical panelFallecido() {
 		Dimension dimTexto = new Dimension(100, 25);
-		Dimension dimEntrada = new Dimension(300, 25);
+		Dimension dimEntrada = new Dimension(600, 25);
 		Dimension dimBoton = new Dimension(150, 25);
 		
 		inNombreFal = new EntradaTexto("Nombres", dimTexto, dimEntrada);

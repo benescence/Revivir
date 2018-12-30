@@ -17,6 +17,7 @@ import com.ungs.revivir.vista.menu.pagos.pagoAM.ControladorPagoAM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.PagoInvocable;
 import com.ungs.revivir.vista.menu.principal.ControladorAltaCompleta;
 import com.ungs.revivir.vista.menu.responsables.ControladorVincular;
+import com.ungs.revivir.vista.menu.responsables.clienteABM.ControladorResponsableABMCliente;
 import com.ungs.revivir.vista.menu.servicios.ControladorServiciosABM;
 import com.ungs.revivir.vista.menu.servicios.servicioAM.ControladorServicioAM;
 import com.ungs.revivir.vista.menu.servicios.servicioAM.ServicioInvocable;
@@ -56,6 +57,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana.getUsuarioConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorUsuariosABM(this)));
 		ventana.getCargoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorCargoABM(this)));
 		ventana.getPagoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorPagoABM(this)));
+		ventana.getResponsableConsultarPorCliente().addActionListener(e -> colocarVentanaInterna(new ControladorResponsableABMCliente(this)));
 		
 		
 		ventana.getMovimientoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorMovimientoABM(this)));

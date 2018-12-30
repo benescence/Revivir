@@ -9,28 +9,36 @@ import com.ungs.revivir.negocios.busqueda.Relacionador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
+import com.ungs.revivir.vista.menu.movimientos.movimientoAM.ControladorMovimientoAM;
+import com.ungs.revivir.vista.menu.movimientos.movimientoAM.MovimientoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.seleccion.fallecidos.ControladorSeleccionarFallecido;
 import com.ungs.revivir.vista.seleccion.fallecidos.FallecidoSeleccionable;
 import com.ungs.revivir.vista.util.Popup;
 
-public class ControladorMovimientoABM implements ControladorInterno, FallecidoSeleccionable{
+public class ControladorMovimientoABM implements ControladorInterno, FallecidoSeleccionable, MovimientoInvocable {
 	private VentanaMovimientoABM ventana;
 	private Fallecido fallecido;
 	
 	public ControladorMovimientoABM(ControladorPrincipal invocador) {
 		ventana = new VentanaMovimientoABM();
+		ventana.botonAgregar().setAccion(e -> agregar());
 		ventana.botonSelFallecido().setAccion(e -> seleccionarFallecido());
 		ventana.botonCargarFallecido().setAccion(e -> cargarFallecido());
 	}
 	
+	private void agregar() {
+		ventana.deshabilitar();
+		new ControladorMovimientoAM(this);
+	}
+
 	private void seleccionarFallecido() {
 		ventana.deshabilitar();
 		new ControladorSeleccionarFallecido(this);
 	}
 
-	private void actualizarMovimientos() {
+	public void actualizarMovimientos() {
 		List<Movimiento> lista = Relacionador.traerMovimiento(fallecido);
 		ventana.getTabla().recargar(lista);
 		if (lista.size() == 0)

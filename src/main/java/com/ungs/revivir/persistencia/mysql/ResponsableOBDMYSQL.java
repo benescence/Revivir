@@ -50,8 +50,7 @@ public class ResponsableOBDMYSQL extends OBD implements ResponsableOBD{
 
 	@Override
 	public List<Responsable> selectByCliente(Cliente cliente) {
-		String condicion = "";
-		condicion += "cliente = " +"'"+cliente+"'";
+		String condicion = "cliente = "+cliente.getID();
 		return selectByCondicion(condicion);
 	}
 

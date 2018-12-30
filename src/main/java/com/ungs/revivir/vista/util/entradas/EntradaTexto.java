@@ -33,5 +33,13 @@ public class EntradaTexto extends PanelHorizontal {
 	public JTextField getTextField() {
 		return textField;
 	}
+	
+	public String getValor() {
+		return textField.getText();
+	}
+	
+	public void setValor(String valor) {
+		textField.setText(valor);
+	}
 
 }

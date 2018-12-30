@@ -7,6 +7,8 @@ import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.MovimientoManager;
 import com.ungs.revivir.negocios.manager.UbicacionManager;
+import com.ungs.revivir.negocios.verificador.Verificador;
+import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
@@ -103,7 +105,7 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 	}
 	
 	private void cancelar() {
-		if (Popup.confirmar("Se perderan los datos ingresados.\n�Esta seguro de que desea cancelar la operacion?")) {
+		if (Popup.confirmar("Se perderan los datos ingresados.\n¿Esta seguro de que desea cancelar la operacion?")) {
 			ventana.dispose();
 			invocador.mostrar();
 		}
@@ -148,6 +150,39 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 		UbicacionManager.guardar(ubicacion);*/
 	}	
 
+	
+	private Ubicacion traerUbicacionVerificada() throws Exception {
+		/*SubSector subsector = (SubSector) ventana.getSubSector().getComboBox().getSelectedItem();
+		String otroCementerio = null;
+		Integer nicho = (ventana.getNicho().isEnabled() ? ventana.getNicho().getValor() : null);
+		Integer fila = (ventana.getFila().isEnabled() ? ventana.getFila().getValor() : null);
+		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
+		Integer macizo = (ventana.getMacizo().isEnabled() ? ventana.getMacizo().getValor():null);
+		Integer unidad = (ventana.getUnidad().isEnabled() ? ventana.getUnidad().getValor() : null);
+		
+		Boolean bis = null;
+		if (ventana.getInCheckBis().isEnabled()) 
+			bis = ventana.getInCheckBis().isSelected();
+		
+		Boolean bis_macizo = null;
+		if (ventana.getInCheckMacizo().isEnabled())
+			bis_macizo = ventana.getInCheckMacizo().isSelected();
+
+		Integer sepultura = (ventana.getSepultura().isEnabled() ? ventana.getSepultura().getValor() : null);
+		Integer parcela = (ventana.getParcela().isEnabled() ? ventana.getParcela().getValor() : null);
+		Integer mueble = (ventana.getMueble().isEnabled() ? ventana.getMueble().getValor() : null);
+		Integer inhumacion = (ventana.getInhumacion().isEnabled() ? ventana.getInhumacion().getValor() : null);
+		Integer circ = (ventana.getCirc().isEnabled() ? ventana.getCirc().getValor(): null);
+
+		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
+				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ);
+		
+		return Verificador.ubicacion(ubicacion);*/
+		return null;
+	}	
+
+	
+	
 	
 	@Override
 	public void mostrar() {
