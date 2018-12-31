@@ -31,8 +31,9 @@ public class ControladorIniciarSesion {
 		ventana.botonAceptar().addKeyListener(new PresionarEnterListener(e -> aceptar()));
 		ventana.botonCancelar().addMouseListener(new EntradaMouse(e -> cancelar()));
 		ventana.botonCancelar().addKeyListener(new PresionarEnterListener(e -> cancelar()));
-		//ventana.BotonRec().addMouseListener(new EntradaMouse(e -> recuperarContraseï¿½a()));
-		//ventana.BotonRec().addKeyListener(new PresionarEnterListener(e -> recuperarContraseï¿½a()));
+		ventana.BotonRec().addMouseListener(new EntradaMouse(e -> recuperarPassword()));
+		ventana.BotonRec().addKeyListener(new PresionarEnterListener(e -> recuperarPassword())); //prueba
+
 	}
 
 
@@ -44,6 +45,7 @@ public class ControladorIniciarSesion {
 			String password = ventana.getPassword().getText();
 			
 			try {
+				
 				Sesion.iniciarSesion(nombre, password);
 				ventana.dispose();
 				ventana = null;
@@ -79,12 +81,12 @@ public class ControladorIniciarSesion {
 	}
 
 	private void cancelar() {
-		if (Popup.confirmar("ï¿½ï¿½Estas seguro que quieres salir del Sistema Revivir !?"))
+		if (Popup.confirmar("¿Estas seguro que quieres salir del Sistema Revivir !?"))
 			System.exit(0);
 	}
 	
 
-	private void recuperarContrasea() {
+	private void recuperarPassword() {
 		ventanaRecPass = new VentanaRecuperarPass();
 		ventanaRecPass.getVentana().setVisible(true);
 		ventanaRecPass.botonRecuperar().addMouseListener(new EntradaMouse(e -> recuperarPass()));
