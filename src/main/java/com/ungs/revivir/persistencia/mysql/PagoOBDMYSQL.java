@@ -1,11 +1,11 @@
 package com.ungs.revivir.persistencia.mysql;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.ungs.revivir.persistencia.OBD;
@@ -93,12 +93,12 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 	}
 
 	@Override
-	public Pago selectByFecha(Date fecha) {
+	public List<Pago> selectByFecha(Date fecha) {
 		String condicion = "fecha = '"+fecha+"'";
 		List<Pago> lista = selectByCondicion(condicion);
 		if (lista.isEmpty())
 			return null;
-		return lista.get(0);
+		return lista;
 	}
 
 	@Override

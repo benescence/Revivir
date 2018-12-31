@@ -113,7 +113,7 @@ public class ControladorFallecidoAM implements ControladorExterno{
 	}
 	
 	private void cancelar() {
-		if (Popup.confirmar("Se perderan los datos ingresados.\n¿Está seguro de que desea cancelar la operación?")) {
+		if (Popup.confirmar("Se perderan los datos ingresados.\n�Esta seguro de que desea cancelar la operacion?")) {
 			ventana.dispose();
 			invocador.mostrar();
 		}

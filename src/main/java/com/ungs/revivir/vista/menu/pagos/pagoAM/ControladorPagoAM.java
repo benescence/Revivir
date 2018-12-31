@@ -180,7 +180,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	}
 	
 	private void cancelar() {
-		if (Popup.confirmar("Se perderan los datos ingresados.\nï¿½Esta seguro de que desea cancelar la operacion?")) {
+		if (Popup.confirmar("Se perderan los datos ingresados.\n ¿Esta seguro de que desea cancelar la operacion?")) {
 			ventana.dispose();
 			invocador.mostrar();
 		}

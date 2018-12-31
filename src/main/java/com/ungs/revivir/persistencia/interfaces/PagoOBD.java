@@ -1,6 +1,7 @@
 package com.ungs.revivir.persistencia.interfaces;
 
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.List;
 
 import com.ungs.revivir.persistencia.entidades.Cargo;
@@ -29,7 +30,7 @@ public interface PagoOBD {
 	
 	public List<Pago> selectByCargo(Cargo cargo);
 	
-	public Pago selectByFecha(Date fecha);
+	public List<Pago> selectByFecha(Date fecha);
 
 	public List<Pago> selectByClienteServivcio(Integer cliente, Integer servicio);
 	

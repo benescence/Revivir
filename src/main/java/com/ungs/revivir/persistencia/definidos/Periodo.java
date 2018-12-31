@@ -5,8 +5,8 @@ public enum Periodo {
 	UNMES,
 	TRESMESES,
 	SEISMESES,
-	UNAﾃ前,
-	DOSAﾃ前S,
-	CUATROAﾃ前S,
-	CINCOAﾃ前S
+	UNﾑAO,
+	DOSAﾑOS,
+	CUATROAﾑOS,
+	CINCOAﾑOS
 }

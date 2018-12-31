@@ -110,22 +110,21 @@ public class Verificador {
 		String mensaje = "";
 
 		if (nombre == null)
-			mensaje += "\n    -El NOMBRE no puede estar vacío.";
+			mensaje += "\n    -El NOMBRE no puede estar vacio.";
 		else if (!Validador.nombrePersona(nombre))
 			mensaje += "\n    -El NOMBRE solo puede estar compuesto de letras y espacios.";
 
 		if (apellido == null)
-			mensaje += "\n    -El APELLIDO no puede estar vacío.";
+			mensaje += "\n    -El APELLIDO no puede estar vacio.";
 		else if (!Validador.apellido(apellido))
 			mensaje += "\n    -El APELLIDO solo puede estar compuesto de letras y espacios.";
 		
 		if (DNI != null && !Validador.DNI(DNI))
-			mensaje += "\n    -El DNI solo puede estar compuesto de números.";
+			mensaje += "\n    -El DNI solo puede estar compuesto de numeros.";
 		else {
 			// Verifico que no exista ya un objeto con ese DNI, y si existe debe tener el mismo iD
 			Fallecido objetoDNI = FallecidoManager.traerPorDNI(DNI);
-			System.out.println(objetoDNI.getID());
-			System.out.println(verificar.getID());
+		
 			
 			if (objetoDNI != null && verificar.getID() != objetoDNI.getID())
 				mensaje += "\n    -Ya se encuentra registrado un fallecido con el DNI: "+DNI+".";
@@ -178,7 +177,7 @@ public class Verificador {
 		}
 		
 		if (nombre == null)
-			mensaje += "\n    -El NOMBRE no puede estar vac�o.";
+			mensaje += "\n    -El NOMBRE no puede estar vacio.";
 		else if (!Validador.nombreServicio(nombre))
 			mensaje += "\n    -El NOMBRE solo puede estar compuesto de letras, numeros y espacios.";
 		
@@ -211,7 +210,7 @@ public class Verificador {
 		}
 		
 		if (password == null)
-			mensaje += "\n    -El PASSWORD no puede estar vac�o.";
+			mensaje += "\n    -El PASSWORD no puede estar vac�o.";
 		else if (!Validador.password(password))
 			mensaje += "\n    -El PASSWORD solo puede estar compuesto de letras, numeros y espacios.";
 		

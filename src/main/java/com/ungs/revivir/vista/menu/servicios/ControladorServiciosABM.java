@@ -50,7 +50,7 @@ public class ControladorServiciosABM implements ControladorInterno, ServicioInvo
 			}
 			
 			if (VerificadorBorrado.puedeBorrar(lista.get(0)) &&
-					Popup.confirmar("Â¿Esta seguro de que desea eliminar los registros seleccionados?"))
+					Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
 				ServicioManager.eliminar(lista.get(0));
 			
 			actualizarServicios();

@@ -120,7 +120,7 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 	}
 	
 	private void cancelar() {
-		if (Popup.confirmar("Se perderan los datos ingresados.\nÂ¿Esta seguro de que desea cancelar la operacion?")) {
+		if (Popup.confirmar("Se perderan los datos ingresados.\n ¿Esta seguro de que desea cancelar la operacion?")) {
 			ventana.dispose();
 			invocador.mostrar();
 		}

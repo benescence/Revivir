@@ -201,7 +201,7 @@ public class ControladorAltaCompleta implements ActionListener, ClienteSeleccion
 			mensaje += "\n    -La UNIDAD de la ubicacion no puede estar vacio.";
 		
 		if (ventana.getInNumeroSepultura().isEnabled() && numero.equals("") )
-			mensaje += "\n    -El N� DE SEPULTURA de la ubicacion no puede estar vacio.";
+			mensaje += "\n    -El Num DE SEPULTURA de la ubicacion no puede estar vacio.";
 		
 		if (ventana.getInSepultura().isEnabled() && sepultura.equals("") )
 			mensaje += "\n    -La SEPULTURA de la ubicacion no puede estar vacio.";

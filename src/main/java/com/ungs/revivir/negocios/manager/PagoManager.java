@@ -1,5 +1,6 @@
 package com.ungs.revivir.negocios.manager;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.ungs.revivir.negocios.verificador.Verificador;
@@ -28,6 +29,11 @@ public class PagoManager {
 	
 	public static List<Pago> traerTodo() {
 		PagoOBD obd = FactoryOBD.crearPagoOBD();
+		return obd.select();
+	}
+
+	public static List<Pago> traerPagoporFecha(Date fecha) {
+		PagoOBD obd = FactoryOBD.selectByFecha(fecha);
 		return obd.select();
 	}
 	

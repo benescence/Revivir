@@ -12,7 +12,7 @@
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="Fecha" class="java.lang.String"/>
-	<parameter name="descripcion class="java.util.List"/>
+	<parameter name="descripcion" class="java.util.List"/>
 	<parameter name="cliente" class="java.util.List"/>
 	<parameter name="monto" class="java.util.List"/>
 	<queryString language="SQL">

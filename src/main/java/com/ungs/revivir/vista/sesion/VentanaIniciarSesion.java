@@ -32,7 +32,7 @@ public class VentanaIniciarSesion extends Ventana {
 		Dimension dimBoton = new Dimension(100, 25);
 		
 		inUsuario = new EntradaTexto("Usuario", dimLabel, dimTextfield);
-		inPassword = new EntradaPassword("Contraseña", dimLabel, dimTextfield);
+		inPassword = new EntradaPassword("password", dimLabel, dimTextfield);
 		
 		// comentar antes de entregar
 		inUsuario.getTextField().setText("admin");

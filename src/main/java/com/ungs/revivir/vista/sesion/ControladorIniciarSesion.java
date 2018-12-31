@@ -31,8 +31,8 @@ public class ControladorIniciarSesion {
 		ventana.botonAceptar().addKeyListener(new PresionarEnterListener(e -> aceptar()));
 		ventana.botonCancelar().addMouseListener(new EntradaMouse(e -> cancelar()));
 		ventana.botonCancelar().addKeyListener(new PresionarEnterListener(e -> cancelar()));
-		ventana.BotonRec().addMouseListener(new EntradaMouse(e -> recuperarContrase√±a()));
-		ventana.BotonRec().addKeyListener(new PresionarEnterListener(e -> recuperarContrase√±a()));
+		ventana.BotonRec().addMouseListener(new EntradaMouse(e -> recuperarContraseÒa()));
+		ventana.BotonRec().addKeyListener(new PresionarEnterListener(e -> recuperarContraseÒa()));
 	}
 
 
@@ -79,23 +79,18 @@ public class ControladorIniciarSesion {
 	}
 
 	private void cancelar() {
-		if (Popup.confirmar("¬ø¬°Estas seguro que quieres salir de FormAR!?"))
+		if (Popup.confirmar("ø°Estas seguro que quieres salir del Sistema Revivir !?"))
 			System.exit(0);
 	}
 	
 
-	private void recuperarContrase√±a() {
+	private void recuperarContraseÒa() {
 		ventanaRecPass = new VentanaRecuperarPass();
 		ventanaRecPass.getVentana().setVisible(true);
-		//ventanaRecPass.botonRecuperar().addActionListener(this);
-		//ventanaRecPass.botonVolver().addActionListener(this);
 		ventanaRecPass.botonRecuperar().addMouseListener(new EntradaMouse(e -> recuperarPass()));
 		ventanaRecPass.botonRecuperar().addKeyListener(new PresionarEnterListener(e -> recuperarPass()));
 		ventanaRecPass.botonVolver().addMouseListener(new EntradaMouse(e -> cerrarVentanaRecuperarPass()));
 		ventanaRecPass.botonVolver().addKeyListener(new PresionarEnterListener(e -> cerrarVentanaRecuperarPass()));
-		
-		
-
 		ventanaRecPass.getVentana().setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		ventanaRecPass.getVentana().addWindowListener(new WindowAdapter() {
 			@Override
@@ -145,14 +140,14 @@ public class ControladorIniciarSesion {
 
 	private void enviarPassword(String email) {
 		String nuevaPass = generarPassword();
-		String msjEmail = "Se ha generado una nueva contrase√±a para su usuario de Revivir Construtora.\n"
+		String msjEmail = "Se ha generado una nuevo password para su usuario de Revivir Construtora.\n"
 				+ "Su nueva contrase√±a es "+nuevaPass+"\n"
 						+ "Por favor, no se olvide de cambiarla.";
 		if (EmailSender.sendEmail("benescence@gmail.com", msjEmail))
-			Popup.mostrar("Se envio su nueva contrase√±a a " + email);
+			Popup.mostrar("Se envio su nuevo password a " + email);
 		else {
 			Popup.mostrar(
-					"Hubo un error al envair la nueva contrase√±a.\n" + "Por favor, intente nuevamente mas tarde.");
+					"Hubo un error al envair el nuevo password.\n" + "Por favor, intente nuevamente mas tarde.");
 		}
 	}
 
