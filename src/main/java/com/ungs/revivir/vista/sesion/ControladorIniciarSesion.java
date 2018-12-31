@@ -32,7 +32,7 @@ public class ControladorIniciarSesion {
 		ventana.botonCancelar().addMouseListener(new EntradaMouse(e -> cancelar()));
 		ventana.botonCancelar().addKeyListener(new PresionarEnterListener(e -> cancelar()));
 		ventana.BotonRec().addMouseListener(new EntradaMouse(e -> recuperarPassword()));
-		ventana.BotonRec().addKeyListener(new PresionarEnterListener(e -> recuperarPassword())); //prueba
+		ventana.BotonRec().addKeyListener(new PresionarEnterListener(e -> recuperarPassword())); //prueba2
 
 	}
 
