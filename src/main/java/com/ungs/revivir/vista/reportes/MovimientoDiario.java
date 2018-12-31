@@ -29,6 +29,7 @@ public class MovimientoDiario {
 		List<String> servicios = new ArrayList<String>();
 		List<String> clientes = new ArrayList<String>();
 		List<Pago> pagos = PagoManager.traerPagoporFecha(fecha);
+		System.out.println(pagos.size());
 		List<Double> montos = new ArrayList<Double>();
 	
 
@@ -50,12 +51,12 @@ public class MovimientoDiario {
 		totalPagos.put("monto", montos);
 		
 		try {
-				this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\MovmimientosDiarios.jasper");
+				this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\MovimientoDiario.jasper");
 				this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalPagos,
 						new JRBeanCollectionDataSource(pagos));
 				System.out.println("Se cargo correctamente el analitico.");
 		} catch (JRException ex) {
-			System.out.println("Ocurrio un error mientras se cargaba el archivo movimientos diarios.Jasper \n " + ex);
+			System.out.println("Ocurrio un error mientras se cargaba el archivo movimientos diario.Jasper \n " + ex);
 		}
 	}
 

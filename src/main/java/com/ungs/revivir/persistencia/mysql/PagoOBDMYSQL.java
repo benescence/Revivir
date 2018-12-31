@@ -62,7 +62,7 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 	private List<Pago> selectByCondicion(String condicion) {
 		List<Pago> ret = new ArrayList<Pago>();
 		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+");";  
-		
+		System.out.println(condicion + "  "+comandoSQL);
 		try { 
 			Class.forName(driver); 
 			Connection conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD); 
@@ -94,11 +94,12 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 
 	@Override
 	public List<Pago> selectByFecha(Date fecha) {
-		String condicion = "fecha = '"+fecha+"'";
-		List<Pago> lista = selectByCondicion(condicion);
+		String condicion = "fecha ="+"'" +fecha+"'";
+		/*List<Pago> lista = selectByCondicion(condicion);
 		if (lista.isEmpty())
-			return null;
-		return lista;
+			return null;*/
+		System.out.println(condicion );
+		return selectByCondicion(condicion);
 	}
 
 	@Override
