@@ -20,7 +20,7 @@ public class VentanaMovimientoABM extends VentanaInterna{
 	private TablaMovimientos tabla;
 	private Boton btnCargarFallecido, btnSelFallecido;
 	private EntradaTexto inNombreFal, inApellidoFal, inDNIFal;
-	private Boton btnAgregar, btnModificar, btnEliminar;
+	private Boton btnAgregar, btnEliminar;
 	
 	public VentanaMovimientoABM() {
 		super("Consulta de movimientos", 500, 500);
@@ -30,13 +30,11 @@ public class VentanaMovimientoABM extends VentanaInterna{
 
 		Dimension dimBoton = new Dimension(100, 25);
 		btnAgregar = new Boton("Agregar", dimBoton);
-		btnModificar = new Boton("Modificar", dimBoton);
 		btnEliminar = new Boton("Eliminar", dimBoton);
 
 		PanelHorizontal panelBotones = new PanelHorizontal();
 		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
 		panelBotones.add(btnAgregar);
-		panelBotones.add(btnModificar);
 		panelBotones.add(btnEliminar);
 		
 		PanelVertical panelPrincipal = new PanelVertical();
@@ -103,10 +101,6 @@ public class VentanaMovimientoABM extends VentanaInterna{
 
 	public Boton botonAgregar() {
 		return btnAgregar;
-	}
-
-	public Boton botonModificar() {
-		return btnModificar;
 	}
 
 	public Boton botonEliminar() {

@@ -12,6 +12,7 @@ import com.ungs.revivir.persistencia.entidades.Responsable;
 import com.ungs.revivir.persistencia.entidades.Servicio;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.CargoOBD;
+import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 import com.ungs.revivir.persistencia.interfaces.MovimientoOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 import com.ungs.revivir.persistencia.interfaces.ResponsableOBD;
@@ -22,6 +23,11 @@ public class Relacionador {
 	public static Ubicacion traerUbicacion(Fallecido fallecido) {
 		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
 		return obd.selectByFallecido(fallecido);
+	}
+
+	public static List<Fallecido> traerFallecidos(Ubicacion ubicacion) {
+		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
+		return obd.selectByUbicacion(ubicacion);
 	}
 
 	public static List<Movimiento> traerMovimiento(Fallecido fallecido) {

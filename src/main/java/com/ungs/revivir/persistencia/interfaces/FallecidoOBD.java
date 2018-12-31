@@ -3,8 +3,11 @@ package com.ungs.revivir.persistencia.interfaces;
 import java.util.List;
 
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 
 public interface FallecidoOBD {
+	
+	// METODOS COMUNES
 	
 	public void insert(Fallecido fallecido);
 	
@@ -16,14 +19,16 @@ public interface FallecidoOBD {
 
 	public Fallecido ultimoInsertado();
 	
+	public Fallecido selectByID(Integer ID);
+	
+	// METODOS ESPECIFICOS
+	
 	public Fallecido selectByDNI(String DNI);
 
-	public Fallecido selectByID(Integer ID);
+	public List<Fallecido> selectByUbicacion(Ubicacion ubicacion);
 	
 	public List<Fallecido> selectByNombreApellidoDNI(String nombre, String apellido, String DNI);
 
-	List<Fallecido> selectByNombreApellido(String nombre, String apellido);
-
-
+	public List<Fallecido> selectByNombreApellido(String nombre, String apellido);
 
 }

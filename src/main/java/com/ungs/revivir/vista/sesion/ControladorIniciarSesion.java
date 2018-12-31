@@ -9,8 +9,6 @@ import javax.swing.JFrame;
 import com.ungs.revivir.negocios.EmailSender;
 import com.ungs.revivir.negocios.Sesion;
 import com.ungs.revivir.negocios.Validador;
-import com.ungs.revivir.negocios.manager.UsuarioManager;
-import com.ungs.revivir.persistencia.entidades.Usuario;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.PresionarEnterListener;

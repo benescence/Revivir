@@ -10,6 +10,7 @@ import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Responsable;
 import com.ungs.revivir.persistencia.entidades.Servicio;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 
 public class VerificadorBorrado {
 
@@ -27,6 +28,12 @@ public class VerificadorBorrado {
 	}
 	
 	public static boolean puedeBorrar(Pago pago) throws Exception {
+		// Por ahora el pago se puede borrar siempre
+		// Mas adelante puede que se incluyan restricciones.
+		return true;
+	}
+	
+	public static boolean puedeBorrar(Ubicacion ubicacion) throws Exception {
 		// Por ahora el pago se puede borrar siempre
 		// Mas adelante puede que se incluyan restricciones.
 		return true;

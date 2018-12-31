@@ -7,6 +7,7 @@ import javax.swing.JInternalFrame;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.busqueda.Relacionador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
+import com.ungs.revivir.negocios.manager.MovimientoManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.vista.menu.movimientos.movimientoAM.ControladorMovimientoAM;
@@ -26,11 +27,34 @@ public class ControladorMovimientoABM implements ControladorInterno, FallecidoSe
 		ventana.botonAgregar().setAccion(e -> agregar());
 		ventana.botonSelFallecido().setAccion(e -> seleccionarFallecido());
 		ventana.botonCargarFallecido().setAccion(e -> cargarFallecido());
+		ventana.botonEliminar().setAccion(e -> eliminar());
+	}
+	
+	private void eliminar() {
+		try {
+			List<Movimiento> lista = ventana.getTabla().obtenerSeleccion();
+			if (lista.size() != 1) {
+				Popup.mostrar("Debe seleccionar exactamente 1 movimiento para borrarlo.");
+				return;
+			}
+			
+			if (Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
+				MovimientoManager.eliminar(lista.get(0));
+			
+			actualizarMovimientos();
+		
+		} catch (Exception e) {
+			Popup.mostrar(e.getMessage());
+		}
+
 	}
 	
 	private void agregar() {
 		ventana.deshabilitar();
-		new ControladorMovimientoAM(this);
+		if (fallecido == null)
+			new ControladorMovimientoAM(this);
+		else
+			new ControladorMovimientoAM(this, fallecido);
 	}
 
 	private void seleccionarFallecido() {

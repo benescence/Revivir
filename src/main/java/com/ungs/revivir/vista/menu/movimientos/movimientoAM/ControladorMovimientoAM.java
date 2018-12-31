@@ -1,9 +1,11 @@
 package com.ungs.revivir.vista.menu.movimientos.movimientoAM;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.Validador;
+import com.ungs.revivir.negocios.busqueda.Relacionador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.MovimientoManager;
 import com.ungs.revivir.negocios.manager.UbicacionManager;
@@ -28,6 +30,13 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 		this.invocador = invocador;
 		ventana = new VentanaMovimientoAM();
 		inicializar();
+	}
+	
+	public ControladorMovimientoAM(MovimientoInvocable invocador, Fallecido fallecido) {
+		this.invocador = invocador;
+		ventana = new VentanaMovimientoAM();
+		inicializar();
+		seleccionarFallecido(fallecido);
 	}
 	
 	public ControladorMovimientoAM(MovimientoInvocable invocador, Movimiento modificar) {
@@ -69,26 +78,32 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 		ventana.requestFocusInWindow();
 		
 		try {
-			guardarUbicacion();
-			Ubicacion nuevaUbicacion = UbicacionManager.traerMasReciente();
-			String anteriorUbicacion = Formato.ubicacion(fallecido);
-			String causa = ventana.getCausa().getTextField().getText();;
-			String observacion = ventana.getObservaciones().getTextField().getText();
+			// Verifico que los datos de entrada son validos
+			Ubicacion verificada = traerUbicacionVerificada();
+			
+			// Guardo un movimiento con la ubicacion actual
+			Ubicacion ubicacionActual = Relacionador.traerUbicacion(fallecido);
+			String ubicacionActualTexto = Formato.ubicacion(ubicacionActual);
+			String causa = ventana.getCausa().getValor();
+			String observacion = ventana.getObservaciones().getValor();
 			Date fecha = Almanaque.hoy();
-			Movimiento nuevo = new Movimiento(-1, fallecido.getID(), anteriorUbicacion, causa, observacion, fecha);
+			Movimiento movimiento = new Movimiento(-1, fallecido.getID(), ubicacionActualTexto, causa, observacion, fecha);
+			MovimientoManager.guardar(movimiento);
 			
-			if (modificar == null)
-				MovimientoManager.guardar(nuevo);
+			// Creo una nueva ubicacion con los datos ingresados
+			UbicacionManager.guardar(verificada);
+			Ubicacion nuevaUbicacion = UbicacionManager.traerMasReciente();
 			
-			// Modificar uno existente
-			else {
-				nuevo.setID(modificar.getID());
-				MovimientoManager.modificar(modificar);
-			}
-
+			// Le coloco su nueva ubicacion al fallecido
 			fallecido.setUbicacion(nuevaUbicacion.getID());
 			FallecidoManager.modificar(fallecido);
 			
+			// Si nadie esta usando la otra ubicacion la borro
+			List<Fallecido> fallecidosAsociados = Relacionador.traerFallecidos(ubicacionActual);
+			if (fallecidosAsociados.isEmpty())
+				UbicacionManager.eliminar(ubicacionActual);
+			
+			// actualizo y termino
 			invocador.actualizarMovimientos();
 			ventana.dispose();
 			invocador.mostrar();
@@ -118,16 +133,15 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 		ventana.getApellidoFal().getTextField().setText(fallecido.getApellido());
 		ventana.getDNIFal().getTextField().setText(fallecido.getDNI());
 	}
-
 	
-	private void guardarUbicacion() {/*
+	private Ubicacion traerUbicacionVerificada() throws Exception {
 		SubSector subsector = (SubSector) ventana.getSubSector().getComboBox().getSelectedItem();
 		String otroCementerio = null;
-		Integer nicho = new Integer((ventana.getNicho().isEnabled() ? ventana.getInNicho().getText() : null));
-		Integer fila = new Integer((ventana.getFila().isEnabled() ? ventana.getInFila().getText() : null));
-		String seccion = (ventana.getInSeccion().isEnabled() ? ventana.getInFila().getText() : null);
-		Integer macizo = new Integer((ventana.getMacizo().isEnabled() ? ventana.getInMacizo().getText() : null));
-		Integer unidad = new Integer((ventana.getUnidad().isEnabled() ? ventana.getInUnidad().getText() : null));
+		Integer nicho = ventana.getNicho().getValor();
+		Integer fila = ventana.getFila().getValor();
+		String seccion = ventana.getSeccion().getValor();
+		Integer macizo = ventana.getMacizo().getValor();
+		Integer unidad = ventana.getUnidad().getValor();
 		
 		Boolean bis = null;
 		if (ventana.getCheckBis().isEnabled()) 
@@ -137,52 +151,17 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 		if (ventana.getCheckMacizo().isEnabled())
 			bis_macizo = ventana.getCheckMacizo().isSelected();
 
-		Integer sepultura = new Integer((ventana.getSepultura().isEnabled() ? ventana.getSepultura().getText() : null));
-		Integer parcela = new Integer((ventana.getParcela().isEnabled() ? ventana.getParcela().getText() : null));
-		Integer mueble = new Integer((ventana.getMueble().isEnabled() ? ventana.getMueble().getText() : null));
-		Integer inhumacion = new Integer((ventana.getInhumacion().isEnabled() ? ventana.getInhumacion().getText() : null));
-		Integer circ = new Integer((ventana.getCirc().isEnabled() ? ventana.getCirc().getText() : null));
-
-
-		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
-				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ);
-		
-		UbicacionManager.guardar(ubicacion);*/
-	}	
-
-	
-	private Ubicacion traerUbicacionVerificada() throws Exception {
-		/*SubSector subsector = (SubSector) ventana.getSubSector().getComboBox().getSelectedItem();
-		String otroCementerio = null;
-		Integer nicho = (ventana.getNicho().isEnabled() ? ventana.getNicho().getValor() : null);
-		Integer fila = (ventana.getFila().isEnabled() ? ventana.getFila().getValor() : null);
-		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
-		Integer macizo = (ventana.getMacizo().isEnabled() ? ventana.getMacizo().getValor():null);
-		Integer unidad = (ventana.getUnidad().isEnabled() ? ventana.getUnidad().getValor() : null);
-		
-		Boolean bis = null;
-		if (ventana.getInCheckBis().isEnabled()) 
-			bis = ventana.getInCheckBis().isSelected();
-		
-		Boolean bis_macizo = null;
-		if (ventana.getInCheckMacizo().isEnabled())
-			bis_macizo = ventana.getInCheckMacizo().isSelected();
-
-		Integer sepultura = (ventana.getSepultura().isEnabled() ? ventana.getSepultura().getValor() : null);
-		Integer parcela = (ventana.getParcela().isEnabled() ? ventana.getParcela().getValor() : null);
-		Integer mueble = (ventana.getMueble().isEnabled() ? ventana.getMueble().getValor() : null);
-		Integer inhumacion = (ventana.getInhumacion().isEnabled() ? ventana.getInhumacion().getValor() : null);
-		Integer circ = (ventana.getCirc().isEnabled() ? ventana.getCirc().getValor(): null);
+		Integer sepultura = ventana.getSepultura().getValor();
+		Integer parcela = ventana.getParcela().getValor();
+		Integer mueble = ventana.getMueble().getValor();
+		Integer inhumacion = ventana.getInhumacion().getValor();
+		Integer circ = ventana.getCirc().getValor();
 
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
 				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ);
 		
-		return Verificador.ubicacion(ubicacion);*/
-		return null;
+		return Verificador.ubicacion(ubicacion);
 	}	
-
-	
-	
 	
 	@Override
 	public void mostrar() {

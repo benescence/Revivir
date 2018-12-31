@@ -19,6 +19,7 @@ import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 import com.ungs.revivir.vista.util.contenedores.Ventana;
 import com.ungs.revivir.vista.util.entradas.EntradaFecha;
 import com.ungs.revivir.vista.util.entradas.EntradaLista;
+import com.ungs.revivir.vista.util.entradas.EntradaNumero;
 import com.ungs.revivir.vista.util.entradas.EntradaTexto;
 
 public class VentanaMovimientoAM extends Ventana {
@@ -30,7 +31,8 @@ public class VentanaMovimientoAM extends Ventana {
 	private Boton btnCargarFallecido, btnSelFallecido;
 	
 	// DATOS DE UBICACION
-	private EntradaTexto inSeccion, inMacizo, inUnidad, inNumeroSepultura, inSepultura, inInhumacion,
+	private EntradaTexto inSeccion;
+	private EntradaNumero inMacizo, inUnidad, inSepultura, inInhumacion,
 	inNicho, inFila, inCirc, inParcela, inMueble;
 	private JCheckBox inCheckMacizo, inCheckBis;
 	private EntradaLista<Sector> inSector;
@@ -120,19 +122,18 @@ public class VentanaMovimientoAM extends Ventana {
 		Dimension dimEntrada = new Dimension(150, 25);
 
 		inSeccion = new EntradaTexto("Seccion", dimTexto1, dimEntrada);
-		inMacizo = new EntradaTexto("Macizo", dimTexto1, dimEntrada);
-		inUnidad = new EntradaTexto("Unidad", dimTexto1, dimEntrada);
-		inNumeroSepultura = new EntradaTexto("N� Sepultura", dimTexto1, dimEntrada);
-		inSepultura = new EntradaTexto("Sepultura", dimTexto1, dimEntrada);
-		inInhumacion = new EntradaTexto("Inhumacion", dimTexto1, dimEntrada);
-		inNicho = new EntradaTexto("Nicho", dimTexto2, dimEntrada);
-		inFila = new EntradaTexto("Fila", dimTexto2, dimEntrada);
-		inCirc = new EntradaTexto("Circ", dimTexto2, dimEntrada);
-		inParcela = new EntradaTexto("Parcela", dimTexto2, dimEntrada);
-		inMueble = new EntradaTexto("Mueble", dimTexto2, dimEntrada);
+		inMacizo = new EntradaNumero("Macizo", dimTexto1, dimEntrada);
+		inUnidad = new EntradaNumero("Unidad", dimTexto1, dimEntrada);
+		inSepultura = new EntradaNumero("Sepultura", dimTexto1, dimEntrada);
+		inInhumacion = new EntradaNumero("Inhumacion", dimTexto1, dimEntrada);
+		inNicho = new EntradaNumero("Nicho", dimTexto2, dimEntrada);
+		inFila = new EntradaNumero("Fila", dimTexto2, dimEntrada);
+		inCirc = new EntradaNumero("Circ", dimTexto2, dimEntrada);
+		inParcela = new EntradaNumero("Parcela", dimTexto2, dimEntrada);
+		inMueble = new EntradaNumero("Mueble", dimTexto2, dimEntrada);
 
 		inCheckBis = new JCheckBox("Bis");
-		inCheckMacizo = new JCheckBox("Macizo1");
+		inCheckMacizo = new JCheckBox("Macizo");
 		PanelHorizontal panelCheck = new PanelHorizontal();
 		panelCheck.add(inCheckBis);
 		panelCheck.add(inCheckMacizo);
@@ -167,7 +168,6 @@ public class VentanaMovimientoAM extends Ventana {
 		ret1.add(inSeccion);
 		ret1.add(inMacizo);
 		ret1.add(inUnidad);
-		ret1.add(inNumeroSepultura);
 		ret1.add(inSepultura);
 		ret1.add(inInhumacion);
 		
@@ -259,7 +259,6 @@ public class VentanaMovimientoAM extends Ventana {
 		inSeccion.habilitado(habilitado);
 		inMacizo.habilitado(habilitado);
 		inUnidad.habilitado(habilitado);
-		inNumeroSepultura.habilitado(habilitado);
 		inSepultura.habilitado(habilitado);
 		inInhumacion.habilitado(habilitado);
 		inNicho.habilitado(habilitado);
@@ -277,127 +276,98 @@ public class VentanaMovimientoAM extends Ventana {
 		for (SubSector elemento : Localizador.traerSubSectores(sector))
 			inSubSector.getComboBox().addItem(elemento);
 	}
-
 	
 	public Boton botonAceptar() {
 		return btnAceptar;
 	}
-
 	
 	public Boton botonCancelar() {
 		return btnCancelar;
 	}
-
 	
 	public EntradaTexto getObservaciones() {
 		return inObservaciones;
 	}
-
 	
 	public EntradaTexto getCausa() {
 		return inCausa;
 	}
-
 	
 	public EntradaFecha getFecha() {
 		return inFecha;
 	}
-
 	
 	public EntradaTexto getNombreFal() {
 		return inNombreFal;
 	}
-
 	
 	public EntradaTexto getApellidoFal() {
 		return inApellidoFal;
 	}
-
 	
 	public EntradaTexto getDNIFal() {
 		return inDNIFal;
 	}
-
 	
 	public Boton botonCargarFallecido() {
 		return btnCargarFallecido;
 	}
-
 	
 	public Boton botonSelFallecido() {
 		return btnSelFallecido;
 	}
-
 	
 	public EntradaTexto getSeccion() {
 		return inSeccion;
 	}
-
 	
-	public EntradaTexto getMacizo() {
+	public EntradaNumero getMacizo() {
 		return inMacizo;
 	}
-
 	
-	public EntradaTexto getUnidad() {
+	public EntradaNumero getUnidad() {
 		return inUnidad;
 	}
-
 	
-	public EntradaTexto getNumeroSepultura() {
-		return inNumeroSepultura;
-	}
-
-	
-	public EntradaTexto getSepultura() {
+	public EntradaNumero getSepultura() {
 		return inSepultura;
 	}
-
 	
-	public EntradaTexto getInhumacion() {
+	public EntradaNumero getInhumacion() {
 		return inInhumacion;
 	}
-
 	
-	public EntradaTexto getNicho() {
+	public EntradaNumero getNicho() {
 		return inNicho;
 	}
-
 	
-	public EntradaTexto getFila() {
+	public EntradaNumero getFila() {
 		return inFila;
 	}
-
 	
-	public EntradaTexto getCirc() {
+	public EntradaNumero getCirc() {
 		return inCirc;
 	}
-
 	
-	public EntradaTexto getParcela() {
+	public EntradaNumero getParcela() {
 		return inParcela;
 	}
-
 	
-	public EntradaTexto getMueble() {
+	public EntradaNumero getMueble() {
 		return inMueble;
 	}
-
 	
 	public JCheckBox getCheckMacizo() {
 		return inCheckMacizo;
 	}
-
 	
 	public JCheckBox getCheckBis() {
 		return inCheckBis;
 	}
-
 	
 	public EntradaLista<Sector> getSector() {
 		return inSector;
 	}
-
 
 	public EntradaLista<SubSector> getSubSector() {
 		return inSubSector;

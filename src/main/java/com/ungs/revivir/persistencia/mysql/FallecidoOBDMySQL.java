@@ -10,6 +10,7 @@ import java.util.List;
 import com.ungs.revivir.persistencia.Definido;
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 
 public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
@@ -28,15 +29,16 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 	}
 
 	@Override
-	public void update(Fallecido obciso) {
-		String condicion = "ID = "+obciso.getID();
-		String valores = " DNI = '"+obciso.getDNI()+"'"
-				+", apellido = '"+obciso.getApellido()+"'"
-				+", nombre = '"+obciso.getNombre()+"'"
-				+", fecha_fallecimiento = '"+obciso.getFechaFallecimiento()+"'"
-				+", tipo_fallecimiento = "+Definido.tipoFallecimiento(obciso.getTipoFallecimiento())
-				+", cocheria = '"+obciso.getCocheria()+"'"
-				+", fecha_ingreso = '"+obciso.getFechaIngreso()+"'";
+	public void update(Fallecido fallecido) {
+		String condicion = "ID = "+fallecido.getID();
+		String valores = " DNI = '"+fallecido.getDNI()+"'"
+				+", apellido = '"+fallecido.getApellido()+"'"
+				+", ubicacion = "+fallecido.getUbicacion()
+				+", nombre = '"+fallecido.getNombre()+"'"
+				+", fecha_fallecimiento = '"+fallecido.getFechaFallecimiento()+"'"
+				+", tipo_fallecimiento = "+Definido.tipoFallecimiento(fallecido.getTipoFallecimiento())
+				+", cocheria = '"+fallecido.getCocheria()+"'"
+				+", fecha_ingreso = '"+fallecido.getFechaIngreso()+"'";
 		String consulta = "update "+tabla+" set "+valores+"  where ("+condicion+");";
 		ejecutarSQL(consulta);
 	}
@@ -136,6 +138,12 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 		if (lista.isEmpty())
 			return null;
 		return lista.get(0);
+	}
+
+	@Override
+	public List<Fallecido> selectByUbicacion(Ubicacion ubicacion) {
+		String condicion = "ubicacion = "+ubicacion.getID();
+		return selectByCondicion(condicion);
 	}
 
 	@Override

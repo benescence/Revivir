@@ -11,7 +11,6 @@ import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 public class UbicacionManager {
 
 	public static void guardar(Ubicacion nuevo) throws Exception {
-		nuevo = Verificador.ubicacion(nuevo);
 		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
 		obd.insert(nuevo);
 	}
