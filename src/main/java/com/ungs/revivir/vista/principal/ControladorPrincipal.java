@@ -87,11 +87,9 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 	}
 
 	private void cerrarAplicacion() {
-<<<<<<< Upstream, based on branch 'master' of https://github.com/benescence/Revivir.git
-		if (Popup.confirmar("¿Está seguro de que desea cerrar la aplicación?")) {
-=======
+
 		if (Popup.confirmar("� Esta seguro de que desea cerrar el sistema?")) {
->>>>>>> 14ab464 fix popUps , reporte movimiento Diario de caja
+
 			ventana.dispose();
 			ventana = null;
 		}

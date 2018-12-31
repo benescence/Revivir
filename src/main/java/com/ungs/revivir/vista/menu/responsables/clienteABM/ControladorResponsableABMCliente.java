@@ -47,7 +47,7 @@ public class ControladorResponsableABMCliente implements ResponsableInvocable, C
 			
 			Responsable eliminar = ResponsableManager.traerPorClienteFallecido(cliente, lista.get(0));
 			if (VerificadorBorrado.puedeBorrar(eliminar) &&
-					Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
+					Popup.confirmar("�Esta seguro de que desea eliminar los registros seleccionados?"))
 				ResponsableManager.eliminar(eliminar);
 			
 			actualizarResponsables();
@@ -137,7 +137,7 @@ public class ControladorResponsableABMCliente implements ResponsableInvocable, C
 			fallecidos = Relacionador.traerFallecidos(cliente);
 		
 		if (fallecidos.size() == 0)
-			Popup.mostrar("No se han encopntrados registros con los parámetros ingresados.");
+			Popup.mostrar("No se han encopntrados registros con los parametros ingresados.");
 		
 		ventana.getTabla().recargar(fallecidos);
 	}

@@ -93,7 +93,8 @@ public class Formato {
 	}
 
 	public static String servicioDesdeCargo(Pago pago) {
-		Servicio servicio = ServicioManager.traerActivoPorCodigo(String.valueOf(pago.getCargo()));
+		Cargo cargo = CargoManager.traerPorID(pago.getCargo());
+		Servicio servicio = ServicioManager.traerPorID(cargo.getServicio());
 		return servicio.getNombre();
 	}
 	
