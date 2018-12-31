@@ -15,6 +15,7 @@ import com.ungs.revivir.vista.menu.movimientos.movimientoAM.MovimientoInvocable;
 import com.ungs.revivir.vista.menu.pagos.ControladorPagoABM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.ControladorPagoAM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.PagoInvocable;
+import com.ungs.revivir.vista.menu.principal.CompletaInvocable;
 import com.ungs.revivir.vista.menu.principal.ControladorAltaCompleta;
 import com.ungs.revivir.vista.menu.responsables.clienteABM.ControladorResponsableABMCliente;
 import com.ungs.revivir.vista.menu.responsables.fallecidoABM.ControladorResponsableABMFallecido;
@@ -31,7 +32,9 @@ import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 
 public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable, UsuarioInvocable,
-		CargoInvocable, MovimientoInvocable, FallecidoInvocable, PagoInvocable, ResponsableInvocable {
+		CargoInvocable, MovimientoInvocable, FallecidoInvocable, PagoInvocable, ResponsableInvocable,
+		CompletaInvocable {
+	
 	private VentanaPrincipal ventana;
 	private ControladorInterno controladorInterno;
 	
@@ -46,7 +49,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana.getUsuarioAlta().addActionListener(e -> colocarVentanaExterna(new ControladorUsuarioAM(this)));
 		ventana.getCargoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorCargoAM(this)));
 		ventana.getPagoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorPagoAM(this)));
-		
+		ventana.getPrincipalAlta().addActionListener(e -> colocarVentanaExterna(new ControladorAltaCompleta(this)));
 		ventana.getResponsableAlta().addActionListener(e -> colocarVentanaExterna(new ControladorResponsableAM(this)));
 		ventana.getMovimientoAlta().addActionListener(e -> transladar());
 	
@@ -64,8 +67,8 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		
 		
 		ventana.getMovimientoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorMovimientoABM(this)));
-		ventana.getPrincipalAlta().addActionListener(e -> colocarVentanaInterna(new ControladorAltaCompleta(this)));
-		ventana.getPrincipalAlta().addActionListener(e -> colocarVentanaInterna(new ControladorAltaCompleta(this)));
+		
+		
 	}
 
 	private void colocarVentanaExterna(ControladorExterno controlador) {
@@ -88,7 +91,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 
 	private void cerrarAplicacion() {
 
-		if (Popup.confirmar("¿ Esta seguro de que desea cerrar el sistema?")) {
+		if (Popup.confirmar("ï¿½ Esta seguro de que desea cerrar el sistema?")) {
 
 			ventana.dispose();
 			ventana = null;
