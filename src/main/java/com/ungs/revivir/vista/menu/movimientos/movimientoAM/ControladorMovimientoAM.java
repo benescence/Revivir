@@ -23,7 +23,6 @@ import com.ungs.revivir.vista.util.Popup;
 public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 	private VentanaMovimientoAM ventana;
 	private MovimientoInvocable invocador;
-	private Movimiento modificar;
 	private Fallecido fallecido;
 
 	public ControladorMovimientoAM(MovimientoInvocable invocador) {
@@ -37,15 +36,6 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 		ventana = new VentanaMovimientoAM();
 		inicializar();
 		seleccionarFallecido(fallecido);
-	}
-	
-	public ControladorMovimientoAM(MovimientoInvocable invocador, Movimiento modificar) {
-		this.invocador = invocador;
-		ventana = new VentanaMovimientoAM(modificar);
-		inicializar();
-		
-		this.modificar = modificar;
-		seleccionarFallecido(FallecidoManager.traerPorID(modificar.getFallecido()));
 	}
 	
 	private void inicializar() {
@@ -120,7 +110,7 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 	}
 	
 	private void cancelar() {
-		if (Popup.confirmar("Se perderan los datos ingresados.\n ¿Esta seguro de que desea cancelar la operacion?")) {
+		if (Popup.confirmar("Â¿Esta seguro de que desea cancelar la operacion?")) {
 			ventana.dispose();
 			invocador.mostrar();
 		}
