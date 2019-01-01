@@ -126,7 +126,7 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 	
 	private Ubicacion traerUbicacionVerificada() throws Exception {
 		SubSector subsector = (SubSector) ventana.getSubSector().getComboBox().getSelectedItem();
-		String otroCementerio = null;
+		String cementerio = null;
 		Integer nicho = ventana.getNicho().getValor();
 		Integer fila = ventana.getFila().getValor();
 		String seccion = ventana.getSeccion().getValor();
@@ -146,9 +146,10 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 		Integer mueble = ventana.getMueble().getValor();
 		Integer inhumacion = ventana.getInhumacion().getValor();
 		Integer circ = ventana.getCirc().getValor();
+		Date vencimiento = ventana.getVencimiento().getValor();
 
-		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
-				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, null);
+		Ubicacion ubicacion = new Ubicacion(-1, subsector, cementerio, nicho, fila, seccion,
+				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, vencimiento);
 		
 		return Verificador.ubicacion(ubicacion);
 	}	

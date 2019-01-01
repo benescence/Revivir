@@ -89,9 +89,10 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		Integer mueble = (ventana.getMueble().isEnabled() ? ventana.getMueble().getValor() : null);
 		Integer inhumacion = (ventana.getInhumacion().isEnabled() ? ventana.getInhumacion().getValor() : null);
 		Integer circ = (ventana.getCirc().isEnabled() ? ventana.getCirc().getValor(): null);
+		Date vencimiento = ventana.getVencimiento().getValor();
 
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
-				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, null);
+				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, vencimiento);
 		
 		return Verificador.ubicacion(ubicacion);		
 	}	

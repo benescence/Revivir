@@ -35,6 +35,7 @@ public class VentanaMovimientoAM extends Ventana {
 	private EntradaNumero inMacizo, inUnidad, inSepultura, inInhumacion,
 	inNicho, inFila, inCirc, inParcela, inMueble;
 	private JCheckBox inCheckMacizo, inCheckBis;
+	private EntradaFecha inVencimiento;
 	private EntradaLista<Sector> inSector;
 	private EntradaLista<SubSector> inSubSector;
 	
@@ -131,6 +132,7 @@ public class VentanaMovimientoAM extends Ventana {
 		inCirc = new EntradaNumero("Circ", dimTexto2, dimEntrada);
 		inParcela = new EntradaNumero("Parcela", dimTexto2, dimEntrada);
 		inMueble = new EntradaNumero("Mueble", dimTexto2, dimEntrada);
+		inVencimiento = new EntradaFecha(Almanaque.hoy(), "Vencimiento", dimTexto1, dimEntrada);
 
 		inCheckBis = new JCheckBox("Bis");
 		inCheckMacizo = new JCheckBox("Macizo");
@@ -170,6 +172,7 @@ public class VentanaMovimientoAM extends Ventana {
 		ret1.add(inUnidad);
 		ret1.add(inSepultura);
 		ret1.add(inInhumacion);
+		ret1.add(inVencimiento);
 		
 		PanelVertical ret2 = new PanelVertical();
 		ret2.setBorder(new EmptyBorder(10, 30, 0, 0));
@@ -371,6 +374,10 @@ public class VentanaMovimientoAM extends Ventana {
 
 	public EntradaLista<SubSector> getSubSector() {
 		return inSubSector;
+	}
+
+	public EntradaFecha getVencimiento() {
+		return inVencimiento;
 	}
 	
 }

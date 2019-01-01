@@ -39,6 +39,7 @@ public class VentanaFallecidoAM extends Ventana {
 	// DATOS DE UBICACION
 	private EntradaNumero inUnidad, inFila, inMacizo, inNicho, inSepultura, inParcela, inInhumacion, inCirc, inMueble;
 	private EntradaTexto inSeccion;
+	private EntradaFecha inVencimiento;
 	private JCheckBox inCheckMacizo, inCheckBis;
 	private EntradaLista<Sector> inSector;
 	private EntradaLista<SubSector> inSubSector;
@@ -125,6 +126,7 @@ public class VentanaFallecidoAM extends Ventana {
 		inCirc = new EntradaNumero("Circ", dimTexto2, dimEntrada);
 		inParcela = new EntradaNumero("Parcela", dimTexto2, dimEntrada);
 		inMueble = new EntradaNumero("Mueble", dimTexto2, dimEntrada);
+		inVencimiento = new EntradaFecha(Almanaque.hoy(), "Vencimiento", dimTexto1, dimEntrada);
 
 		inCheckBis = new JCheckBox("Bis");
 		inCheckMacizo = new JCheckBox("Macizo1");
@@ -164,6 +166,7 @@ public class VentanaFallecidoAM extends Ventana {
 		ret1.add(inUnidad);
 		ret1.add(inSepultura);
 		ret1.add(inInhumacion);
+		ret1.add(inVencimiento);
 		
 		PanelVertical ret2 = new PanelVertical();
 		ret2.setBorder(new EmptyBorder(10, 30, 0, 0));
@@ -367,6 +370,10 @@ public class VentanaFallecidoAM extends Ventana {
 
 	public Boton botonCancelar() {
 		return btnCancelar;
+	}
+
+	public EntradaFecha getVencimiento() {
+		return inVencimiento;
 	}
 		
 }
