@@ -14,17 +14,18 @@ import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
-	private final String campos = "subsector, otro_cementerio, nicho, fila,"
-			+ "seccion, macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ";
+	private final String campos = "subsector, cementerio, nicho, fila,"
+			+ "seccion, macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, vencimiento";
 	private final String tabla = "rev_ubicaciones";
 	
 	@Override
 	public void insert(Ubicacion ubicacion) {
-		String otroCementerio = (ubicacion.getOtroCementerio() != null) ? "'"+ubicacion.getOtroCementerio()+"'" : null;
+		String cementerio = (ubicacion.getCementerio() != null) ? "'"+ubicacion.getCementerio()+"'" : null;
 		String seccion = (ubicacion.getSeccion() != null) ? "'"+ubicacion.getSeccion()+"'" : null;
+		String vencimiento = (ubicacion.getVencimiento() != null) ? "'"+ubicacion.getVencimiento()+"'" : null;
 		
 		String valores = Definido.subsector(ubicacion.getSubsector())
-				+", "+otroCementerio
+				+", "+cementerio
 				+", "+ubicacion.getNicho()
 				+", "+ubicacion.getFila()
 				+", "+seccion
@@ -36,31 +37,34 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 				+", "+ubicacion.getParcela()
 				+", "+ubicacion.getMueble()
 				+", "+ubicacion.getInhumacion()
-				+", "+ubicacion.getCirc();
+				+", "+ubicacion.getCirc()
+				+", "+vencimiento;
 		String sql = "insert into "+tabla+"("+campos+") values("+valores+");";
 		ejecutarSQL(sql);		
 	}
 
 	@Override
 	public void update(Ubicacion ubicacion) {
-		String otroCementerio = (ubicacion.getOtroCementerio() != null) ? "'"+ubicacion.getOtroCementerio()+"'" : null;
+		String cementerio = (ubicacion.getCementerio() != null) ? "'"+ubicacion.getCementerio()+"'" : null;
 		String seccion = (ubicacion.getSeccion() != null) ? "'"+ubicacion.getSeccion()+"'" : null;
+		String vencimiento = (ubicacion.getVencimiento() != null) ? "'"+ubicacion.getVencimiento()+"'" : null;
 		
 		String condicion = "ID = "+ubicacion.getID();
 		String valores = " subsector = "+Definido.subsector(ubicacion.getSubsector())
-				+", otro_cementerio = "+otroCementerio
-				+", Nicho = "+ubicacion.getNicho()
-				+", Fila = "+ubicacion.getFila()
-				+", Seccion = "+seccion
-				+", Macizo = "+ubicacion.getMacizo()
-				+", Unidad = "+ubicacion.getUnidad()
+				+", cementerio = "+cementerio
+				+", nicho = "+ubicacion.getNicho()
+				+", fila = "+ubicacion.getFila()
+				+", seccion = "+seccion
+				+", macizo = "+ubicacion.getMacizo()
+				+", unidad = "+ubicacion.getUnidad()
 				+", bis = "+ubicacion.getBis()
 				+", bis_macizo = "+ubicacion.getBis_macizo()
-				+", Sepultura = "+ubicacion.getSepultura()
-				+", Parcela = "+ubicacion.getParcela()
-				+", Mueble = "+ubicacion.getMueble()
-				+", Inhumacion = "+ubicacion.getInhumacion()
-				+", Circ = "+ubicacion.getCirc();
+				+", sepultura = "+ubicacion.getSepultura()
+				+", parcela = "+ubicacion.getParcela()
+				+", mueble = "+ubicacion.getMueble()
+				+", inhumacion = "+ubicacion.getInhumacion()
+				+", circ = "+ubicacion.getCirc()
+				+", vencimiento = "+vencimiento;
 		String consulta = "update "+tabla+" set "+valores+"  where ("+condicion+");";
 		ejecutarSQL(consulta);
 	}
@@ -146,7 +150,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 				ret.add(new Ubicacion(
 						resultados.getInt("ID"),
 						Definido.subsector(resultados.getInt("subsector")),
-						resultados.getString("otro_cementerio"),
+						resultados.getString("cementerio"),
 						nicho,
 						fila,
 						resultados.getString("seccion"),
@@ -158,7 +162,8 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 						parcela,
 						mueble,
 						inhumacion,
-						circ
+						circ,
+						resultados.getDate("vencimiento")
 					));
 			}
 

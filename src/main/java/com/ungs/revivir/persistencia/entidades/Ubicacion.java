@@ -1,20 +1,23 @@
 package com.ungs.revivir.persistencia.entidades;
 
+import java.sql.Date;
+
 import com.ungs.revivir.persistencia.definidos.SubSector;
 
 public class Ubicacion {
-	private Integer ID, nicho, fila, macizo,
-	unidad, sepultura, parcela, mueble, inhumacion, circ;
+	private Integer ID, nicho, fila, macizo, unidad, sepultura, parcela, mueble, inhumacion, circ;
 	private Boolean bis, bis_macizo; 
-	private String  otroCementerio, seccion;
+	private String  cementerio, seccion;
 	private SubSector subsector;
+	private Date vencimiento;
 	
-	public Ubicacion(Integer ID, SubSector subsector, String otroCementerio, Integer nicho, Integer fila,
+	
+	public Ubicacion(Integer ID, SubSector subsector, String cementerio, Integer nicho, Integer fila,
 			String seccion, Integer macizo, Integer unidad, Boolean bis, Boolean bis_macizo, Integer sepultura,
-			Integer parcela, Integer mueble, Integer inhumacion, Integer circ) {
+			Integer parcela, Integer mueble, Integer inhumacion, Integer circ, Date vencimiento) {
 		this.ID = ID;
 		this.subsector = subsector;
-		this.otroCementerio = otroCementerio;
+		this.cementerio = cementerio;
 		this.nicho = nicho;
 		this.fila = fila;
 		this.seccion = seccion;
@@ -27,6 +30,7 @@ public class Ubicacion {
 		this.mueble = mueble;
 		this.inhumacion = inhumacion;
 		this.circ = circ;
+		this.vencimiento = vencimiento;
 	}
 
 	public Integer getID() {
@@ -45,12 +49,12 @@ public class Ubicacion {
 		this.subsector = subsector;
 	}
 
-	public String getOtroCementerio() {
-		return otroCementerio;
+	public String getCementerio() {
+		return cementerio;
 	}
 
-	public void setOtroCementerio(String otroCementerio) {
-		this.otroCementerio = otroCementerio;
+	public void setCementerio(String cementerio) {
+		this.cementerio = cementerio;
 	}
 
 	public Integer getNicho() {
@@ -149,4 +153,12 @@ public class Ubicacion {
 		this.seccion = seccion;
 	}
 
+	public Date getVencimiento() {
+		return vencimiento;
+	}
+
+	public void setVencimiento(Date vencimiento) {
+		this.vencimiento = vencimiento;
+	}
+	
 }

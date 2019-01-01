@@ -23,7 +23,7 @@ public class VerificadorUbicacion {
 		Integer circ = verificar.getCirc();		
 		
 		// Anulo sus valores
-		verificar.setOtroCementerio(null);
+		verificar.setCementerio(null);
 		verificar.setNicho(null);
 		verificar.setFila(null);
 		verificar.setSeccion(null);

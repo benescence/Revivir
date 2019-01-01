@@ -91,7 +91,7 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		Integer circ = (ventana.getCirc().isEnabled() ? ventana.getCirc().getValor(): null);
 
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
-				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ);
+				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, null);
 		
 		return Verificador.ubicacion(ubicacion);		
 	}	
@@ -113,7 +113,7 @@ public class ControladorFallecidoAM implements ControladorExterno{
 	}
 	
 	private void cancelar() {
-		if (Popup.confirmar("Se perderan los datos ingresados.\n¿Esta seguro de que desea cancelar la operacion?")) {
+		if (Popup.confirmar("Se perderan los datos ingresados.\nï¿½Esta seguro de que desea cancelar la operacion?")) {
 			ventana.dispose();
 			invocador.mostrar();
 		}

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
@@ -17,7 +18,8 @@ public class UbicacionOBDTest {
 	private UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
 	
 	private Ubicacion crearObjetoDePrueba() {
-		return new Ubicacion(-1, SubSector.ADULTOS, null, null, null, null, null, null, true, false, null, null, null, null, null);
+		return new Ubicacion(-1, SubSector.ADULTOS, null, null, null, null, null, null,
+				true, false, null, null, null, null, null, Almanaque.hoy());
 	}
 
 	@Test
@@ -82,9 +84,9 @@ public class UbicacionOBDTest {
 			seccion = obj1.getSeccion().equals(obj2.getSeccion()); 
 		assertTrue(seccion);
 		
-		boolean otroCementerio = (obj1.getOtroCementerio() == null) && (obj2.getOtroCementerio() == null);
-		if(obj1.getOtroCementerio() != null && obj2.getOtroCementerio() != null)
-			otroCementerio = obj1.getOtroCementerio().equals(obj2.getOtroCementerio());
+		boolean otroCementerio = (obj1.getCementerio() == null) && (obj2.getCementerio() == null);
+		if(obj1.getCementerio() != null && obj2.getCementerio() != null)
+			otroCementerio = obj1.getCementerio().equals(obj2.getCementerio());
 		assertTrue(otroCementerio);
 			
 		boolean Subsector = (obj1.getSubsector() == null) && (obj2.getSubsector() == null);
@@ -154,9 +156,9 @@ public class UbicacionOBDTest {
 		if (obj1.getSeccion() != null && obj2.getSeccion() != null)
 			seccion = obj1.getSeccion().equals(obj2.getSeccion()); 
 		
-		boolean otroCementerio = (obj1.getOtroCementerio() == null) && (obj2.getOtroCementerio() == null);
-		if(obj1.getOtroCementerio() != null && obj2.getOtroCementerio() != null)
-			otroCementerio = obj1.getOtroCementerio().equals(obj2.getOtroCementerio());
+		boolean otroCementerio = (obj1.getCementerio() == null) && (obj2.getCementerio() == null);
+		if(obj1.getCementerio() != null && obj2.getCementerio() != null)
+			otroCementerio = obj1.getCementerio().equals(obj2.getCementerio());
 			
 		boolean Subsector = (obj1.getSubsector() == null) && (obj2.getSubsector() == null);
 		if(obj1.getSubsector() != null && obj2.getSubsector() != null)

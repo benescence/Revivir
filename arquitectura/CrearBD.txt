@@ -6,7 +6,7 @@ USE revivir;
 -- ESQUEMA ROLES
 CREATE TABLE rev_roles (
 	ID INT(1),
-	descripcion VARCHAR(20) NULL,
+	descripcion VARCHAR(20) NOT NULL,
 	PRIMARY KEY (ID)
 );
 
@@ -40,19 +40,20 @@ CREATE TABLE rev_subsector (
 CREATE TABLE rev_ubicaciones (
 	ID INT(10) AUTO_INCREMENT,
 	subsector INT(10) NOT NULL,
-	circ int(10) NULL,
+	circ INT(10) NULL,
 	seccion VARCHAR(10) NULL,
-	macizo int(10) NULL,
-	parcela int(10) NULL,
-	fila int(10) NULL,
-	unidad int(10) NULL,
-	nicho int(10) NULL,
-	mueble int(10) NULL,
-	sepultura int(10) NULL,
-	inhumacion int(10) NULL,
-	otro_cementerio VARCHAR(11) NULL,
-	bis_macizo boolean NULL,
-	bis boolean NULL,
+	macizo INT(10) NULL,
+	parcela INT(10) NULL,
+	fila INT(10) NULL,
+	unidad INT(10) NULL,
+	nicho INT(10) NULL,
+	mueble INT(10) NULL,
+	sepultura INT(10) NULL,
+	inhumacion INT(10) NULL,
+	cementerio VARCHAR(11) NULL,
+	vencimiento DATE NULL,
+	bis_macizo BOOLEAN NULL,
+	bis BOOLEAN NULL,
 	PRIMARY KEY (ID),
 	FOREIGN KEY (subsector) REFERENCES rev_subsector(ID)
 );
@@ -83,24 +84,24 @@ CREATE TABLE rev_fallecidos (
 -- ESQUEMAS MOVIMIENTOS
 CREATE TABLE rev_movimientos (
 	ID INT(10) AUTO_INCREMENT,
-	fallecido int(10) not null,
-	antigua_ubicacion VARCHAR(150) not NULL,
-	causa_traslado VARCHAR(150) not NULL,
+	fallecido INT(10) NOT NULL,
+	antigua_ubicacion VARCHAR(150) NOT NULL,
+	causa_traslado VARCHAR(150) NOT NULL,
 	observaciones VARCHAR(50) NULL,
-	fecha_movimiento date not null,
+	fecha_movimiento DATE NOT NULL,
 	FOREIGN KEY (fallecido) REFERENCES rev_fallecidos(ID),
 	PRIMARY KEY (ID)
 );
 
-	-- ESQUEMA CLIENTES
+-- ESQUEMA CLIENTES
 CREATE TABLE rev_clientes (
 	ID INT(10) AUTO_INCREMENT,
 	nombre VARCHAR(100) NOT NULL,
 	apellido VARCHAR(50) NOT NULL,
 	DNI VARCHAR(10) NULL,
 	telefono VARCHAR(20) NULL,
-	email VARCHAR(200) NULL,
-	domicilio VARCHAR(200) NULL,
+	email VARCHAR(50) NULL,
+	domicilio VARCHAR(100) NULL,
 	PRIMARY KEY (ID)
 );
 
@@ -118,11 +119,11 @@ CREATE TABLE rev_responsables (
 -- ESQUEMAS SERVICIOS
 CREATE TABLE rev_servicios (
 	ID INT(10) AUTO_INCREMENT,
-	codigo VARCHAR(50) not NULL,
-	nombre VARCHAR(30) not NULL,
+	codigo VARCHAR(50) NOT NULL,
+	nombre VARCHAR(30) NOT NULL,
 	descripcion VARCHAR(100) NULL,
-	importe float(10) NOT NULL,
-	historico boolean not null,
+	importe FLOAT(10) NOT NULL,
+	historico BOOLEAN NOT NULL,
 	PRIMARY KEY (ID)
 );
 
@@ -132,7 +133,7 @@ CREATE TABLE rev_cargos (
 	fallecido INT(10) NOT NULL,
 	servicio INT(10) NOT NULL,
 	observaciones VARCHAR(100) NULL,
-	pagado boolean not null,
+	pagado BOOLEAN NOT NULL,
 	PRIMARY KEY (ID),
 	FOREIGN KEY (servicio) REFERENCES rev_servicios(ID),
 	FOREIGN KEY (fallecido) REFERENCES rev_fallecidos(ID)
@@ -143,7 +144,7 @@ CREATE TABLE rev_pagos (
 	ID INT(10) AUTO_INCREMENT,
 	cargo INT(10) NOT NULL,
 	cliente INT(10) NOT NULL,
-	importe double(10, 2) NOT NULL,
+	importe DOUBLE(10, 2) NOT NULL,
 	observaciones VARCHAR(100) NULL,
 	fecha DATE NOT NULL,
 	PRIMARY KEY (ID),
@@ -165,7 +166,7 @@ CREATE TABLE rev_expensas (
 	periodo INT(10) NOT NULL,
 	ubicacion INT(10) NOT NULL,
 	fecha_vencimiento DATE NOT NULL,
-	importe double(10, 2) NOT NULL,
+	importe DOUBLE(10, 2) NOT NULL,
 	observaciones VARCHAR(100) NULL,
 	PRIMARY KEY (ID),
 	FOREIGN KEY (responsable) REFERENCES rev_clientes(ID),
@@ -193,7 +194,8 @@ INSERT INTO rev_sector (ID, descripcion) VALUES
 (3, 'NICHERA'),
 (4, 'CENIZARIO'),
 (5, 'BOVEDA'),
-(6, 'DEPOSITO');
+(6, 'DEPOSITO'),
+(7, 'OTRO CMENTERIO');
 
 -- INSERT SUB SECTORES
 INSERT INTO rev_subsector (ID, sector, descripcion) VALUES
@@ -210,4 +212,5 @@ INSERT INTO rev_subsector (ID, sector, descripcion) VALUES
 (11, 5, 'BOVEDA'),
 (12, 6, 'DEPOSITO 1'),
 (13, 6, 'DEPOSITO 2'),
-(14, 6, 'DEPOSITO 3');
+(14, 6, 'DEPOSITO 3'),
+(15, 7, 'OTRO CMENTERIO');

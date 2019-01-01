@@ -217,7 +217,7 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 		Integer circ = (ventana.getCirc().isEnabled() ? ventana.getCirc().getValor(): null);
 
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
-				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ);
+				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, null);
 		
 		return Verificador.ubicacion(ubicacion);		
 	}	

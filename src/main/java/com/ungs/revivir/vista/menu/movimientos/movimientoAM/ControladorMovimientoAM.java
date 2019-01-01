@@ -148,7 +148,7 @@ public class ControladorMovimientoAM implements  FallecidoSeleccionable {
 		Integer circ = ventana.getCirc().getValor();
 
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
-				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ);
+				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, null);
 		
 		return Verificador.ubicacion(ubicacion);
 	}	
