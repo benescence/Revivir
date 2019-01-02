@@ -2,7 +2,6 @@ package com.ungs.revivir.negocios.manager;
 
 import java.util.List;
 
-import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
@@ -16,7 +15,7 @@ public class UbicacionManager {
 	}
 
 	public static void modificar(Ubicacion modificar) throws Exception {
-		modificar = Verificador.ubicacion(modificar);
+		//modificar = Verificador.ubicacion(modificar);
 		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
 		obd.update(modificar);
 	}

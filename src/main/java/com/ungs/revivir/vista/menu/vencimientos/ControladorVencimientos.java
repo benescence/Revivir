@@ -11,13 +11,15 @@ import com.ungs.revivir.negocios.manager.VencimientoManager;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
+import com.ungs.revivir.vista.menu.vencimientos.modificar.ControladorVencimientoAM;
+import com.ungs.revivir.vista.menu.vencimientos.modificar.VencimientoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.visualizador.Visualizable;
 import com.ungs.revivir.vista.visualizador.clientes.ControladorVerClientes;
 
-public class ControladorVencimientos implements ControladorInterno, Visualizable {
+public class ControladorVencimientos implements ControladorInterno, Visualizable, VencimientoInvocable {
 	private ControladorPrincipal invocador;
 	private VentanaVencimientos ventana;
 	
@@ -27,8 +29,21 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		ventana.botonBuscar().setAccion(e -> buscar());
 		ventana.botonLimpiar().setAccion(e -> limpiar());
 		ventana.botonVerClientes().setAccion(e -> verClientes());
+		ventana.botonModificar().setAccion(e -> modificar());
 	}
 
+	private void modificar() {
+		ventana.requestFocusInWindow();
+		List<Ubicacion> seleccion = ventana.getTabla().obtenerSeleccion();
+		if (seleccion.size() != 1) {
+			Popup.mostrar("Debe seleccionar exactamente 1 vencimiento para poder modificarlo.");
+			return;
+		}
+		
+		invocador.getVentana().deshabilitar();
+		new ControladorVencimientoAM(this, seleccion.get(0));
+	}
+	
 	private void verClientes() {
 		List<Ubicacion> seleccion = ventana.getTabla().obtenerSeleccion();
 		if (seleccion.size() != 1) {
@@ -66,6 +81,11 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 	@Override
 	public void mostrar() {
 		invocador.getVentana().mostrar();
+	}
+
+	@Override
+	public void actualizarVencimientos() {
+		buscar();
 	}
 
 }

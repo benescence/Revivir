@@ -37,6 +37,8 @@ public class TablaVencimientos extends JTable {
 		
 		getColumn("Fecha").setPreferredWidth(30);
 		getColumn("Fecha").setWidth(30);
+		getColumn("Ubicacion").setWidth(400);
+		getColumn("Ubicacion").setPreferredWidth(400);
 	}
 	
 	public List<Ubicacion> obtenerSeleccion() {

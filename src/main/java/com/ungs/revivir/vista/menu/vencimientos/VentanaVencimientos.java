@@ -26,7 +26,7 @@ public class VentanaVencimientos extends VentanaInterna {
 	private EntradaLista<Sector> inSector;
 	private EntradaLista<SubSector> inSubsector;
 	private EntradaFecha inDesde, inHasta;
-	private Boton btnBuscar, btnLimpiar, btnVerClientes;
+	private Boton btnBuscar, btnLimpiar, btnVerClientes, btnModificar;
 	
 	public VentanaVencimientos() {
 		super("Gestion de vencimientos", 500, 500);
@@ -38,11 +38,13 @@ public class VentanaVencimientos extends VentanaInterna {
 		btnBuscar = new Boton("Buscar", dimBoton);
 		btnLimpiar = new Boton("Limpiar", dimBoton);
 		btnVerClientes = new Boton("Ver clientes", dimBoton);
+		btnModificar = new Boton("Modificar", dimBoton);
 		PanelHorizontal panelBotones = new PanelHorizontal();
 		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
 		panelBotones.add(btnBuscar);
 		panelBotones.add(btnLimpiar);
 		panelBotones.add(btnVerClientes);
+		panelBotones.add(btnModificar);
 		
 		PanelVertical panelPrincipal = new PanelVertical();
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -114,6 +116,10 @@ public class VentanaVencimientos extends VentanaInterna {
 
 	public Boton botonVerClientes() {
 		return btnVerClientes;
+	}
+	
+	public Boton botonModificar() {
+		return btnModificar;
 	}
 	
 	public EntradaLista<Sector> getSector() {
