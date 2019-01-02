@@ -23,6 +23,7 @@ public class VentanaPrincipal extends Ventana {
 	private JMenuItem responsableAlta, responsablePorCliente, responsablePorFallecido;		
 	private JMenuItem servicioAlta, servicioConsulta;
 	private JMenuItem usuarioAlta, usuarioConsulta;
+	private JMenuItem vencimientoConsulta;
 	
 	public VentanaPrincipal() {
 		super("Ventana principal", 1000, 700);
@@ -103,6 +104,13 @@ public class VentanaPrincipal extends Ventana {
 		menuSevicio.add(servicioConsulta = new JMenuItem("Consultar servicios", 'c'));
 		servicioAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK | Event.ALT_MASK));
 		barra.add(menuSevicio);
+
+		//********************** MENU VENCIMIENTOS ***************************
+		JMenu menuVencimientos = new JMenu("Vencimientos");
+		menuVencimientos.setMnemonic('v');
+		menuVencimientos.add(vencimientoConsulta = new JMenuItem("Consulta vencimientos", 'c'));
+		vencimientoConsulta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK | Event.ALT_MASK));
+		barra.add(menuVencimientos);
 
 		//********************** MENU USUARIOS ***************************
 		JMenu menuUsuario = new JMenu("Usuarios");
