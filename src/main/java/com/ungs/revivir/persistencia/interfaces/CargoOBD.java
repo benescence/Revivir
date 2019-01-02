@@ -16,11 +16,11 @@ public interface CargoOBD {
 	
 	public void delete(Cargo cargo);
 
-	public List<Cargo> select();
-
 	public Cargo selectByID(Integer ID);
 
 	public Cargo ultimoInsertado();
+	
+	public List<Cargo> select();
 
 	// METODOS ESPECIFICOS
 	

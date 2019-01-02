@@ -6,7 +6,7 @@ import com.ungs.revivir.persistencia.entidades.Cliente;
 
 public interface ClienteOBD {
 	
-	// METODOS COMUNES DE PERSISTENCIA
+	// METODOS COMUNES
 	
 	public void insert(Cliente cliente);
 	
@@ -14,20 +14,16 @@ public interface ClienteOBD {
 	
 	public void delete(Cliente cliente);
 
-	public List<Cliente> select();
-	
-	public Cliente selectByID(Integer iD);
-	
+	public Cliente selectByID(Integer ID);
+
 	public Cliente ultimoInsertado();
 	
-	// CONSULTAS ESPECIFICAS
+	public List<Cliente> select();
 	
+	// METODOS ESPECIFICOS
 	
-
 	public Cliente selectByDNI(String DNI);
 
-	public Cliente selectByDNI(Integer DNI);
-	
 	public List<Cliente> selectByNombreApellidoDNI(String nombre, String apellido, String DNI);
 
 }

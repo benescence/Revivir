@@ -42,11 +42,6 @@ public class ClienteManager {
 		return obd.selectByDNI(DNI);
 	}
 	
-	public static Cliente traerPorDNI2(Integer DNI) {
-		ClienteOBD obd = FactoryOBD.crearClienteOBD();		
-		return obd.selectByDNI(DNI);
-	}
-	
 
 	public static Cliente traerMasReciente() {
 		ClienteOBD obd = FactoryOBD.crearClienteOBD();		
