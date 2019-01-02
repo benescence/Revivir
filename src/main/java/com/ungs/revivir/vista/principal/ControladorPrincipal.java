@@ -91,7 +91,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 
 	private void cerrarAplicacion() {
 
-		if (Popup.confirmar("¿Esta seguro de que desea cerrar el sistema?")) {
+		if (Popup.confirmar("Â¿Esta seguro de que desea cerrar el sistema?")) {
 
 			ventana.dispose();
 			ventana = null;

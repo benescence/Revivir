@@ -41,11 +41,15 @@ public class VentanaPrincipal extends Ventana {
 			public void mouseClicked(MouseEvent arg0) {}
 		});
 		
-				
+		//********************** MENU PRINCIPAL ***************************		
 		JMenu menuPrincipal = new JMenu("Principal");
-		menuPrincipal.add(principalAlta = new JMenuItem("Alta completa"));
-		menuPrincipal.add(principalCambiarPassword = new JMenuItem("Cambiar password"));
-		menuPrincipal.add(principalCerrarSesion = new JMenuItem("Cerrar sesion"));
+		menuPrincipal.setMnemonic('l');
+		menuPrincipal.add(principalAlta = new JMenuItem("Alta completa", 'a'));
+		menuPrincipal.add(principalCambiarPassword = new JMenuItem("Cambiar password", 'p'));
+		menuPrincipal.add(principalCerrarSesion = new JMenuItem("Cerrar sesion", 's'));
+		principalAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, Event.CTRL_MASK | Event.ALT_MASK));
+		principalCambiarPassword.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, Event.CTRL_MASK | Event.ALT_MASK));
+		principalCerrarSesion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, Event.CTRL_MASK | Event.ALT_MASK));
 		barra.add(menuPrincipal);
 
 		//********************** MENU CLIENTES ***************************
