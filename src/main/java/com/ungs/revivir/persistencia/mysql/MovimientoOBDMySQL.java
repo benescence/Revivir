@@ -150,13 +150,13 @@ public class MovimientoOBDMySQL extends OBD implements MovimientoOBD{
 			
 		return ret;
 	}
-
+/*
 	@Override
 	public Movimiento selectByDNI(String DNI) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+*/
 	@Override
 	public List<Movimiento> selectByFallecido(Fallecido fallecido) {
 		String condicion = "fallecido = "+fallecido.getID();

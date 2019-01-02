@@ -1,6 +1,5 @@
 package com.ungs.revivir.persistencia.interfaces;
 
-
 import java.sql.Date;
 import java.util.List;
 
@@ -18,11 +17,11 @@ public interface PagoOBD {
 	
 	public void delete(Pago pago);
 
-	public List<Pago > select();
-	
 	public Pago selectByID(Integer ID);
 
 	public Pago ultimoInsertado();
+	
+	public List<Pago > select();
 	
 	// METODOS ESPECIFICOS
 	

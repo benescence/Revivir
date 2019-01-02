@@ -30,7 +30,6 @@ import com.ungs.revivir.vista.menu.usuarios.usuarioAM.ControladorUsuarioAM;
 import com.ungs.revivir.vista.menu.usuarios.usuarioAM.UsuarioInvocable;
 import com.ungs.revivir.vista.menu.vencimientos.ControladorVencimientos;
 import com.ungs.revivir.vista.sesion.ControladorIniciarSesion;
-import com.ungs.revivir.vista.sesion.VentanaIniciarSesion;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
@@ -75,7 +74,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 	}
 
 	private void cerrarSesion(){
-		if(Popup.confirmar("¿Esta seguro que desea cerrar sesión?")){
+		if(Popup.confirmar("ï¿½Esta seguro que desea cerrar sesiï¿½n?")){
 			ventana.dispose();
 			ventana = null;
 			Sesion.cerrarSesion();

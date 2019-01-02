@@ -8,7 +8,7 @@ import com.ungs.revivir.persistencia.entidades.Responsable;
 
 public interface ResponsableOBD {
 	
-	// METODOS GENERALES
+	// METODOS COMUNES
 
 	public void insert(Responsable responsable);
 	
@@ -16,13 +16,14 @@ public interface ResponsableOBD {
 	
 	public void delete(Responsable responsable);
 
-	public List<Responsable> select();
-	
 	public Responsable selectByID(Integer ID);
 
 	public Responsable ultimoInsertado();
-
+	
+	public List<Responsable> select();
+	
 	// METODOS ESPECIFICOS
+	
 	public List<Responsable> selectByCliente(Cliente cliente);
 
 	public List<Responsable> selectByFallecido(Fallecido fallecido);
