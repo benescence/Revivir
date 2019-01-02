@@ -31,8 +31,8 @@ public class MovimientoDiario {
 		List<Pago> pagos = PagoManager.traerPagoporFecha(fecha);
 		System.out.println(pagos.size());
 		List<Double> montos = new ArrayList<Double>();
-	
-
+		Double suma = 0.0;
+		List<Double> total = new ArrayList<Double>();
 		for (Pago pago : pagos) {
 			
 				String nombreCliente = ClienteManager.traerPorID(pago.getCliente()).getNombre();
@@ -41,20 +41,22 @@ public class MovimientoDiario {
 				clientes.add(apellidoCliente);
 				servicios.add(Formato.servicioDesdeCargo(pago));
 				montos.add(pago.getImporte());
-			
+				suma= suma + pago.getImporte();
+				
 		}
 		if (pagos.size() != 0)
-			
-	
+		
+		total.add(suma);
 		totalPagos.put("descripcion", servicios);
 		totalPagos.put("cliente", clientes);
 		totalPagos.put("monto", montos);
+		totalPagos.put("total", total);
 		
 		try {
 				this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\MovimientoDiario.jasper");
 				this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalPagos,
 						new JRBeanCollectionDataSource(pagos));
-				System.out.println("Se cargo correctamente el analitico.");
+				System.out.println("Se cargo correctamente reporte");
 		} catch (JRException ex) {
 			System.out.println("Ocurrio un error mientras se cargaba el archivo movimientos diario.Jasper \n " + ex);
 		}
