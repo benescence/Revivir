@@ -46,7 +46,7 @@ public class VentanaAltaCompleta extends Ventana {
 	
 	public VentanaAltaCompleta() {
 		super("Alta completa de servicio");
-		Dimension dimBoton = new Dimension(100, 25);
+		Dimension dimBoton = new Dimension(150, 25);
 		
 		btnAceptar = new Boton("Aceptar", dimBoton);
 		btnCancelar = new Boton("Cancelar", dimBoton);
@@ -56,6 +56,7 @@ public class VentanaAltaCompleta extends Ventana {
 		panelBotones.add(btnAceptar);
 		panelBotones.add(btnLimpiarTodo);
 		panelBotones.add(btnCancelar);
+		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
 		
 		PanelVertical panelPrincipal = new PanelVertical();
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -64,6 +65,8 @@ public class VentanaAltaCompleta extends Ventana {
 		PanelHorizontal panelPersonas = new PanelHorizontal();
 		panelPersonas.add(panelCliente());
 		panelPersonas.add(panelFallecido());
+		panelPersonas.setBorder(new EmptyBorder(0, 0, 10, 0));
+		
 		panelPrincipal.add(panelPersonas);
 		panelPrincipal.add(new JSeparator());
 		panelPrincipal.add(panelUbicacion());
@@ -72,9 +75,9 @@ public class VentanaAltaCompleta extends Ventana {
 	}
 
 	private PanelVertical panelCliente() {
-		Dimension dimTexto = new Dimension(100, 25);
-		Dimension dimEntrada = new Dimension(300, 25);
-		Dimension dimBoton = new Dimension(100, 25);
+		Dimension dimTexto = new Dimension(140, 25);
+		Dimension dimEntrada = new Dimension(200, 25);
+		Dimension dimBoton = new Dimension(110, 25);
 
 		inNombreCli = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellidoCli = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
@@ -93,8 +96,8 @@ public class VentanaAltaCompleta extends Ventana {
 		panelBotones.add(btnLimpiarCliente);
 
 		PanelVertical ret = new PanelVertical();
-		//ret.setBorder(new EmptyBorder(10, 10, 10, 10));
-		
+		ret.setBorder(new EmptyBorder(0, 0, 0, 10));
+		ret.add(new TextoCentrado("Datos del cliente"));
 		ret.add(inNombreCli);
 		ret.add(inApellidoCli);
 		ret.add(inDNICli);
@@ -106,8 +109,8 @@ public class VentanaAltaCompleta extends Ventana {
 	}
 	
 	private PanelVertical panelFallecido() {
-		Dimension dimTexto = new Dimension(150, 25);
-		Dimension dimEntrada = new Dimension(380, 25);
+		Dimension dimTexto = new Dimension(140, 25);
+		Dimension dimEntrada = new Dimension(200, 25);
 		
 		inNombreFal = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellidoFal = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
@@ -121,7 +124,7 @@ public class VentanaAltaCompleta extends Ventana {
 		inTipo.getComboBox().setSelectedItem(TipoFallecimiento.NO_TRAUMATICO);
 		
 		PanelVertical ret = new PanelVertical();
-		//ret.setBorder(new EmptyBorder(0, 0, 10, 0));
+		ret.setBorder(new EmptyBorder(0, 10, 0, 0));
 		ret.add(new TextoCentrado("Datos del fallecido"));
 		ret.add(inNombreFal);
 		ret.add(inApellidoFal);
@@ -134,9 +137,9 @@ public class VentanaAltaCompleta extends Ventana {
 	}
 	
 	private PanelVertical panelUbicacion() {
-		Dimension dimTexto1 = new Dimension(100, 25);
-		Dimension dimTexto2 = new Dimension(100, 25);
-		Dimension dimEntrada = new Dimension(150, 25);
+		Dimension dimTexto1 = new Dimension(140, 25);
+		Dimension dimTexto2 = new Dimension(140, 25);
+		Dimension dimEntrada = new Dimension(200, 25);
 
 		inSeccion = new EntradaTexto("Seccion", dimTexto1, dimEntrada);
 		inMacizo = new EntradaNumero("Macizo", dimTexto1, dimEntrada);
@@ -151,7 +154,7 @@ public class VentanaAltaCompleta extends Ventana {
 		inVencimiento = new EntradaFecha(Almanaque.hoy(), "Vencimiento", dimTexto1, dimEntrada);
 		
 		inCheckBis = new JCheckBox("Bis");
-		inCheckMacizo = new JCheckBox("Macizo1");
+		inCheckMacizo = new JCheckBox("Macizo");
 		PanelHorizontal panelCheck = new PanelHorizontal();
 		panelCheck.add(inCheckBis);
 		panelCheck.add(inCheckMacizo);
@@ -181,7 +184,7 @@ public class VentanaAltaCompleta extends Ventana {
 		
 		// ORGANIZACION DE PANELES
 		PanelVertical ret1 = new PanelVertical();
-		ret1.setBorder(new EmptyBorder(10, 0, 0, 0));
+		ret1.setBorder(new EmptyBorder(10, 0, 0, 10));
 		ret1.add(inSector);
 		ret1.add(inSeccion);
 		ret1.add(inMacizo);
@@ -191,7 +194,7 @@ public class VentanaAltaCompleta extends Ventana {
 		ret1.add(inVencimiento);
 		
 		PanelVertical ret2 = new PanelVertical();
-		ret2.setBorder(new EmptyBorder(10, 30, 0, 0));
+		ret2.setBorder(new EmptyBorder(10, 10, 0, 0));
 		ret2.add(inSubSector);
 		ret2.add(inNicho);
 		ret2.add(inFila);
