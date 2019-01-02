@@ -42,6 +42,7 @@ public class VentanaAltaCompleta extends Ventana {
 	private JCheckBox inCheckMacizo, inCheckBis;
 	private EntradaLista<Sector> inSector;
 	private EntradaLista<SubSector> inSubSector;
+	private EntradaFecha inVencimiento;
 	
 	public VentanaAltaCompleta() {
 		super("Alta completa de servicio");
@@ -147,7 +148,8 @@ public class VentanaAltaCompleta extends Ventana {
 		inCirc = new EntradaNumero("Circ", dimTexto2, dimEntrada);
 		inParcela = new EntradaNumero("Parcela", dimTexto2, dimEntrada);
 		inMueble = new EntradaNumero("Mueble", dimTexto2, dimEntrada);
-
+		inVencimiento = new EntradaFecha(Almanaque.hoy(), "Vencimiento", dimTexto1, dimEntrada);
+		
 		inCheckBis = new JCheckBox("Bis");
 		inCheckMacizo = new JCheckBox("Macizo1");
 		PanelHorizontal panelCheck = new PanelHorizontal();
@@ -186,6 +188,7 @@ public class VentanaAltaCompleta extends Ventana {
 		ret1.add(inUnidad);
 		ret1.add(inSepultura);
 		ret1.add(inInhumacion);
+		ret1.add(inVencimiento);
 		
 		PanelVertical ret2 = new PanelVertical();
 		ret2.setBorder(new EmptyBorder(10, 30, 0, 0));
@@ -433,6 +436,9 @@ public class VentanaAltaCompleta extends Ventana {
 
 	public EntradaLista<SubSector> getSubSector() {
 		return inSubSector;
+	}
+	public EntradaFecha getVencimiento() {
+		return inVencimiento;
 	}
 	
 }

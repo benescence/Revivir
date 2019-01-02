@@ -201,7 +201,7 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
 		Integer macizo = (ventana.getMacizo().isEnabled() ? ventana.getMacizo().getValor():null);
 		Integer unidad = (ventana.getUnidad().isEnabled() ? ventana.getUnidad().getValor() : null);
-		
+		Date vencimiento = ventana.getVencimiento().getValor();
 		Boolean bis = null;
 		if (ventana.getCheckBis().isEnabled()) 
 			bis = ventana.getCheckBis().isSelected();
@@ -217,7 +217,7 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 		Integer circ = (ventana.getCirc().isEnabled() ? ventana.getCirc().getValor(): null);
 
 		Ubicacion ubicacion = new Ubicacion(-1, subsector, otroCementerio, nicho, fila, seccion,
-				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, null);
+				macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, vencimiento);
 		
 		return Verificador.ubicacion(ubicacion);		
 	}	
