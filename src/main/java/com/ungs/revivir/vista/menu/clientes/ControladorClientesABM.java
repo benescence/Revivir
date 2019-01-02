@@ -51,7 +51,7 @@ public class ControladorClientesABM implements ControladorInterno, ClienteInvoca
 			}
 			
 			if (VerificadorBorrado.puedeBorrar(lista.get(0)) &&
-					Popup.confirmar("Â¿Esta seguro de que desea eliminar los registros seleccionados?"))
+					Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
 				ClienteManager.eliminar(lista.get(0));
 			
 			actualizarClientes();
