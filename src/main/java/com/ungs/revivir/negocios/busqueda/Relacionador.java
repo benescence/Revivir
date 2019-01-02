@@ -72,5 +72,9 @@ public class Relacionador {
 	public static List<Fallecido> traerFallecidos(Cliente cliente) {
 		return RelacionadorCompuesto.traerFallecidos(cliente);
 	}
+
+	public static List<Cliente> traerClientes(Ubicacion ubicacion) {
+		return RelacionadorCompuesto.traerClientes(ubicacion);
+	}
 	
 }

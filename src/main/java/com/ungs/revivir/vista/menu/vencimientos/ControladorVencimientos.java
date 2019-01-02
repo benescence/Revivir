@@ -1,17 +1,23 @@
 package com.ungs.revivir.vista.menu.vencimientos;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JInternalFrame;
 
+import com.ungs.revivir.negocios.busqueda.Relacionador;
 import com.ungs.revivir.negocios.manager.VencimientoManager;
 import com.ungs.revivir.persistencia.definidos.SubSector;
+import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
+import com.ungs.revivir.vista.util.Popup;
+import com.ungs.revivir.vista.visualizador.Visualizable;
+import com.ungs.revivir.vista.visualizador.clientes.ControladorVerClientes;
 
-public class ControladorVencimientos implements ControladorInterno {
+public class ControladorVencimientos implements ControladorInterno, Visualizable {
 	private ControladorPrincipal invocador;
 	private VentanaVencimientos ventana;
 	
@@ -19,8 +25,22 @@ public class ControladorVencimientos implements ControladorInterno {
 		this.invocador = invocador;
 		ventana = new VentanaVencimientos();
 		ventana.botonBuscar().setAccion(e -> buscar());
+		ventana.botonLimpiar().setAccion(e -> limpiar());
+		ventana.botonVerClientes().setAccion(e -> verClientes());
 	}
 
+	private void verClientes() {
+		List<Ubicacion> seleccion = ventana.getTabla().obtenerSeleccion();
+		if (seleccion.size() != 1) {
+			Popup.mostrar("Debe seleccionar exactamente 1 ubicacion para ver sus clientes");
+			return;
+		}
+		
+		invocador.getVentana().deshabilitar();
+		List<Cliente> clientes = Relacionador.traerClientes(seleccion.get(0));
+		new ControladorVerClientes(this, clientes);
+	}
+	
 	private void buscar() {
 		SubSector subSector = (SubSector) ventana.getSubsector().getComboBox().getSelectedItem();
 		Date desde = ventana.getDesde().getValor();
@@ -28,6 +48,10 @@ public class ControladorVencimientos implements ControladorInterno {
 		List<Ubicacion> vencimientos = VencimientoManager.buscarVencimientos(subSector, desde, hasta);
 		ventana.getTabla().recargar(vencimientos);
 	}	
+	
+	private void limpiar() {
+		ventana.getTabla().recargar(new ArrayList<>());
+	}
 	
 	@Override
 	public boolean finalizar() {
@@ -37,6 +61,11 @@ public class ControladorVencimientos implements ControladorInterno {
 	@Override
 	public JInternalFrame getVentana() {
 		return ventana;
+	}
+
+	@Override
+	public void mostrar() {
+		invocador.getVentana().mostrar();
 	}
 
 }
