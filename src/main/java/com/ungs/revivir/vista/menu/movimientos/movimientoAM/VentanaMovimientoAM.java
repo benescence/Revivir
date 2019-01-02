@@ -67,7 +67,7 @@ public class VentanaMovimientoAM extends Ventana {
 		setContentPane(panelPrincipal);
 
 		panelPrincipal.add(panelFallecido());
-		panelPrincipal.add(new TextoCentrado("Datos de la ubicacion"));
+		panelPrincipal.add(new TextoCentrado("Datos de la nueva ubicacion"));
 		panelPrincipal.add(panelUbicacion());
 		panelPrincipal.add(new TextoCentrado("Datos del traslado"));
 		panelPrincipal.add(panelMovimiento());
