@@ -1,6 +1,7 @@
 package com.ungs.revivir.persistencia.mysql;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import com.ungs.revivir.persistencia.Definido;
 import com.ungs.revivir.persistencia.OBD;
+import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
@@ -178,5 +180,16 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 			
 		return ret;
 	}
-
+	
+	@Override
+	public List<Ubicacion> selectBySubsectorEntreFechas(SubSector subSector, Date desde, Date hasta) {
+		String desdeStr = "'"+desde+"'";
+		String hastaStr = "'"+hasta+"'";
+		
+		String condicion = "subsector = "+Definido.subsector(subSector)
+			+ " and vencimiento between "+desdeStr+" and "+hastaStr;
+		
+		return selectByCondicion(condicion);
+	}
+	
 }

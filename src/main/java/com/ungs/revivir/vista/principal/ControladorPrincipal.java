@@ -27,6 +27,7 @@ import com.ungs.revivir.vista.menu.servicios.servicioAM.ServicioInvocable;
 import com.ungs.revivir.vista.menu.usuarios.ControladorUsuariosABM;
 import com.ungs.revivir.vista.menu.usuarios.usuarioAM.ControladorUsuarioAM;
 import com.ungs.revivir.vista.menu.usuarios.usuarioAM.UsuarioInvocable;
+import com.ungs.revivir.vista.menu.vencimientos.ControladorVencimientos;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
@@ -42,7 +43,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana = new VentanaPrincipal();
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cerrarAplicacion()));
 		
-		// ALTA DIRECTA
+		// VENTANAS EXTERNAS
 		ventana.getClienteAlta().addActionListener(e -> colocarVentanaExterna(new ControladorClientesAM(this)));
 		ventana.getFallecidoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorFallecidoAM(this)));
 		ventana.getServicioAlta().addActionListener(e -> colocarVentanaExterna(new ControladorServicioAM(this)));
@@ -53,9 +54,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana.getResponsableAlta().addActionListener(e -> colocarVentanaExterna(new ControladorResponsableAM(this)));
 		ventana.getMovimientoAlta().addActionListener(e -> transladar());
 	
-		
-		
-		// CONSULTAS
+		// VENTNAS INTERNAS
 		ventana.getClienteConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorClientesABM(this)));
 		ventana.getFallecidoConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorFallecidosABM(this)));
 		ventana.getServicioConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorServiciosABM(this)));
@@ -64,6 +63,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana.getPagoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorPagoABM(this)));
 		ventana.getResponsablePorCliente().addActionListener(e -> colocarVentanaInterna(new ControladorResponsableABMCliente(this)));
 		ventana.getResponsablePorFallecido().addActionListener(e -> colocarVentanaInterna(new ControladorResponsableABMFallecido(this)));
+		ventana.getVencimientoConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorVencimientos(this)));
 		
 		
 		ventana.getMovimientoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorMovimientoABM(this)));

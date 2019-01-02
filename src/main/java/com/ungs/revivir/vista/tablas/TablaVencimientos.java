@@ -34,6 +34,9 @@ public class TablaVencimientos extends JTable {
 					};
 			modelo.addRow(fila);
 		}
+		
+		getColumn("Fecha").setPreferredWidth(30);
+		getColumn("Fecha").setWidth(30);
 	}
 	
 	public List<Ubicacion> obtenerSeleccion() {

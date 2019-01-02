@@ -202,5 +202,9 @@ public class VentanaPrincipal extends Ventana {
 	public JMenuItem getPagoConsultar() {
 		return pagoConsultar;
 	}
+
+	public JMenuItem getVencimientoConsulta() {
+		return vencimientoConsulta;
+	}
 		
 }
