@@ -197,6 +197,16 @@ INSERT INTO rev_sector (ID, descripcion) VALUES
 (6, 'DEPOSITO'),
 (7, 'OTRO CMENTERIO');
 
+-- INSERT PERIODOS
+INSERT INTO rev_periodos(ID, descripcion) VALUES
+(1, 'UNMES'),
+(2,'TRESMESES'),
+(3,'SEISMESES'),
+(4,'DOCEMESES'),
+(5,'VEINTICUATROMESES'),
+(6,'TTREINTAYSEISMESES'),
+(7,'CUARENTAYOCHOMESES');
+
 -- INSERT SUB SECTORES
 INSERT INTO rev_subsector (ID, sector, descripcion) VALUES
 (1, 1, 'ADULTOS'),
