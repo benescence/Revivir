@@ -1,5 +1,6 @@
 package com.ungs.revivir.vista.principal;
 
+import com.ungs.revivir.negocios.Sesion;
 import com.ungs.revivir.vista.menu.cargos.ControladorCargoABM;
 import com.ungs.revivir.vista.menu.cargos.cargoAM.CargoInvocable;
 import com.ungs.revivir.vista.menu.cargos.cargoAM.ControladorCargoAM;
@@ -28,6 +29,8 @@ import com.ungs.revivir.vista.menu.usuarios.ControladorUsuariosABM;
 import com.ungs.revivir.vista.menu.usuarios.usuarioAM.ControladorUsuarioAM;
 import com.ungs.revivir.vista.menu.usuarios.usuarioAM.UsuarioInvocable;
 import com.ungs.revivir.vista.menu.vencimientos.ControladorVencimientos;
+import com.ungs.revivir.vista.sesion.ControladorIniciarSesion;
+import com.ungs.revivir.vista.sesion.VentanaIniciarSesion;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
@@ -53,7 +56,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana.getPrincipalAlta().addActionListener(e -> colocarVentanaExterna(new ControladorAltaCompleta(this)));
 		ventana.getResponsableAlta().addActionListener(e -> colocarVentanaExterna(new ControladorResponsableAM(this)));
 		ventana.getMovimientoAlta().addActionListener(e -> transladar());
-	
+		ventana.getPrincipalCerrarSesion().addActionListener(s -> cerrarSesion());
 		// VENTNAS INTERNAS
 		ventana.getClienteConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorClientesABM(this)));
 		ventana.getFallecidoConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorFallecidosABM(this)));
@@ -69,6 +72,16 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana.getMovimientoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorMovimientoABM(this)));
 		
 		
+	}
+
+	private void cerrarSesion(){
+		if(Popup.confirmar("¿Esta seguro que desea cerrar sesión?")){
+			ventana.dispose();
+			ventana = null;
+			Sesion.cerrarSesion();
+			ControladorIniciarSesion c = new ControladorIniciarSesion();
+			c.inicializar();
+		}
 	}
 
 	private void colocarVentanaExterna(ControladorExterno controlador) {
