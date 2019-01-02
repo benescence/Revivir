@@ -143,7 +143,7 @@ public class ControladorIniciarSesion {
 	private void enviarPassword(String email) {
 		String nuevaPass = generarPassword();
 		String msjEmail = "Se ha generado una nuevo password para su usuario de Revivir Construtora.\n"
-				+ "Su nueva contraseña es "+nuevaPass+"\n"
+				+ "Su nuevo password es "+nuevaPass+"\n"
 						+ "Por favor, no se olvide de cambiarla.";
 		if (EmailSender.sendEmail("benescence@gmail.com", msjEmail))
 			Popup.mostrar("Se envio su nuevo password a " + email);

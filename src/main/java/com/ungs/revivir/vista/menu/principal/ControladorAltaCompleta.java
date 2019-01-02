@@ -41,7 +41,7 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 	}
 
 	private void cancelar() {
-		if (Popup.confirmar("Â¿EstÃ¡ seguro de que desea cancelar la operacion?")) {
+		if (Popup.confirmar("¿Esta¡ seguro de que desea cancelar la operacion?")) {
 			ventana.dispose();
 			invocador.mostrar();			
 		}

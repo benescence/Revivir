@@ -44,7 +44,7 @@ public class VentanaPrincipal extends Ventana {
 				
 		JMenu menuPrincipal = new JMenu("Principal");
 		menuPrincipal.add(principalAlta = new JMenuItem("Alta completa"));
-		menuPrincipal.add(principalCambiarPassword = new JMenuItem("Cambiar contrase�a"));
+		menuPrincipal.add(principalCambiarPassword = new JMenuItem("Cambiar password"));
 		menuPrincipal.add(principalCerrarSesion = new JMenuItem("Cerrar sesion"));
 		barra.add(menuPrincipal);
 
