@@ -28,4 +28,6 @@ public class Sesion {
 		return usuario;
 	}
 
+	
+
 }

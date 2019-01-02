@@ -1,5 +1,6 @@
 package com.ungs.revivir.vista.sesion;
 
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.UUID;
@@ -17,7 +18,7 @@ import com.ungs.revivir.vista.util.entradas.EntradaMouse;
 public class ControladorIniciarSesion {
 	private VentanaIniciarSesion ventana;
 	private VentanaRecuperarPass ventanaRecPass;
-	
+
 	public ControladorIniciarSesion() {
 		ventana = new VentanaIniciarSesion();
 		ventana.addWindowListener(new WindowAdapter() {
