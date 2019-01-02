@@ -6,7 +6,7 @@ import com.ungs.revivir.persistencia.entidades.Servicio;
 
 public interface ServicioOBD {
 	
-	// METODOS GENERALES
+	// METODOS COMUNES
 	
 	public void insert(Servicio servicio);
 	
@@ -14,12 +14,12 @@ public interface ServicioOBD {
 	
 	public void delete(Servicio servicio);
 
-	public List<Servicio> select();
-	
 	public Servicio selectByID(Integer iD);
 
 	public Servicio ultimoInsertado();
 	
+	public List<Servicio> select();
+		
 	// METODOS ESPECIFICOS DE CONSULTA
 
 	public List<Servicio> selectActivos();

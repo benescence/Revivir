@@ -97,12 +97,6 @@ public class Formato {
 		Servicio servicio = ServicioManager.traerPorID(cargo.getServicio());
 		return servicio.getNombre();
 	}
-	
-	public static String IDcliente(Integer dni) {
-		Cliente cliente = ClienteManager.traerPorDNI2(dni);
-		return cliente.getApellido()+", "+cliente.getNombre();
-	}
-	
 
 	public static String servicio(Cargo cargo) {
 		Servicio servicio = ServicioManager.traerPorID(cargo.getServicio());

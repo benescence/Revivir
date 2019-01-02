@@ -152,15 +152,4 @@ public class ClienteOBDMySQL extends OBD implements ClienteOBD{
 		return ret;
 	}
 
-	@Override
-	public Cliente selectByDNI(Integer DNI) {
-		String condicion = "DNI = " +(DNI != null ? "'"+DNI+"'" : "DNI");
-		List<Cliente> lista = selectByCondicion(condicion);
-		if (lista.size() > 0)
-			return lista.get(0);
-		return null;
-	}
-
-
-
 }

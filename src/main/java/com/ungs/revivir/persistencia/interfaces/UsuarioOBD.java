@@ -7,7 +7,7 @@ import com.ungs.revivir.persistencia.entidades.Usuario;
 
 public interface UsuarioOBD {
 
-	// METODOS COMUNES DE PERSISTENCIA
+	// METODOS COMUNES
 	
 	public void insert(Usuario usuario);
 	
@@ -15,13 +15,13 @@ public interface UsuarioOBD {
 	
 	public void delete(Usuario usuario);
 	
+	public Usuario selectByID(Integer iD);
+
+	public Usuario ultimoInsertado();
+	
 	public List<Usuario> select();
 	
-	public Usuario selectByID(Integer iD);
-	
-	public Usuario ultimoInsertado();
-
-	// CONSULTAS ESPECIFICAS	
+	// METODOS ESPECIFICOS	
 	
 	public Usuario selectByUsuario(String usuario);
 

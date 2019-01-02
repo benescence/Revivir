@@ -15,11 +15,11 @@ public interface FallecidoOBD {
 	
 	public void delete(Fallecido fallecido);
 
-	public List<Fallecido> select();
+	public Fallecido selectByID(Integer ID);
 
 	public Fallecido ultimoInsertado();
 	
-	public Fallecido selectByID(Integer ID);
+	public List<Fallecido> select();
 	
 	// METODOS ESPECIFICOS
 	
@@ -27,8 +27,8 @@ public interface FallecidoOBD {
 
 	public List<Fallecido> selectByUbicacion(Ubicacion ubicacion);
 	
-	public List<Fallecido> selectByNombreApellidoDNI(String nombre, String apellido, String DNI);
-
 	public List<Fallecido> selectByNombreApellido(String nombre, String apellido);
+
+	public List<Fallecido> selectByNombreApellidoDNI(String nombre, String apellido, String DNI);
 
 }
