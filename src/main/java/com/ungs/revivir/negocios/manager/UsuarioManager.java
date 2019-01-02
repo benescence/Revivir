@@ -21,6 +21,9 @@ public class UsuarioManager {
 		obd.update(nuevo);
 	}
 
+	
+	
+	
 	public static List<Usuario> traerTodo() {
 		UsuarioOBD obd = FactoryOBD.crearUsuarioOBD();
 		return obd.select();
