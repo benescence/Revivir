@@ -78,7 +78,7 @@ public class UbicacionOBDTest {
 	}	
 	
 	@Test
-	void testOcupado() {
+	void testSelectbyUbicacion() {
 		obd.insert(objeto);
 		Ubicacion objetoBD1 = obd.ultimoInsertado();
 		Ubicacion objetoBD2 = obd.selectByUbicacion(objetoBD1);
