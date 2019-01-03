@@ -15,12 +15,12 @@ import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 
 import javax.swing.JSeparator;
 
-public class VentanaRecuperarPass {
+public class VentanaRecuperarPassword {
 	private JFrame ventana;
 	private JTextField txtEmail;
 	private JButton btnRecuperar, btnVolver;
 
-	public VentanaRecuperarPass() {
+	public VentanaRecuperarPassword() {
 		ventana = new JFrame();
 		ventana.setBounds(100, 100, 540, 200);
 		ventana.setLocationRelativeTo(null);

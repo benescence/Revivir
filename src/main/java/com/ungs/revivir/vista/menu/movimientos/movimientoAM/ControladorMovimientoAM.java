@@ -14,13 +14,14 @@ import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
+import com.ungs.revivir.vista.principal.ControladorExterno;
 import com.ungs.revivir.vista.seleccion.fallecidos.ControladorSeleccionarFallecido;
 import com.ungs.revivir.vista.seleccion.fallecidos.FallecidoSeleccionable;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
 
-public class ControladorMovimientoAM implements  FallecidoSeleccionable {
+public class ControladorMovimientoAM implements FallecidoSeleccionable, ControladorExterno {
 	private VentanaMovimientoAM ventana;
 	private MovimientoInvocable invocador;
 	private Fallecido fallecido;

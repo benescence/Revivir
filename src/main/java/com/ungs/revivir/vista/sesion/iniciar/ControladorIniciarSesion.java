@@ -1,4 +1,4 @@
-package com.ungs.revivir.vista.sesion;
+package com.ungs.revivir.vista.sesion.iniciar;
 
 
 import java.awt.event.WindowAdapter;
@@ -11,13 +11,14 @@ import com.ungs.revivir.negocios.EmailSender;
 import com.ungs.revivir.negocios.Sesion;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
+import com.ungs.revivir.vista.sesion.VentanaRecuperarPassword;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.PresionarEnterListener;
 import com.ungs.revivir.vista.util.entradas.EntradaMouse;
 
 public class ControladorIniciarSesion {
 	private VentanaIniciarSesion ventana;
-	private VentanaRecuperarPass ventanaRecPass;
+	private VentanaRecuperarPassword ventanaRecPass;
 
 	public ControladorIniciarSesion() {
 		ventana = new VentanaIniciarSesion();
@@ -88,7 +89,7 @@ public class ControladorIniciarSesion {
 	
 
 	private void recuperarPassword() {
-		ventanaRecPass = new VentanaRecuperarPass();
+		ventanaRecPass = new VentanaRecuperarPassword();
 		ventanaRecPass.getVentana().setVisible(true);
 		ventanaRecPass.botonRecuperar().addMouseListener(new EntradaMouse(e -> recuperarPass()));
 		ventanaRecPass.botonRecuperar().addKeyListener(new PresionarEnterListener(e -> recuperarPass()));

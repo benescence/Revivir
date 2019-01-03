@@ -9,7 +9,7 @@ import java.awt.TrayIcon.MessageType;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
-import com.ungs.revivir.vista.sesion.ControladorIniciarSesion;
+import com.ungs.revivir.vista.sesion.iniciar.ControladorIniciarSesion;
 import com.ungs.revivir.vista.util.Popup;
 
 public class MainLogin {

@@ -1,23 +1,19 @@
 package com.ungs.revivir.vista.sesion;
 
-import java.awt.EventQueue;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
-public class CambiarPass extends JFrame {
-
+public class VentanaModificarPassword extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField inPassword;
 	private JPasswordField inPasswordRep;
@@ -26,26 +22,7 @@ public class CambiarPass extends JFrame {
 	private JButton btnReglaPassword;
 	private JPasswordField inPasswordActual;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CambiarPass frame = new CambiarPass();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public CambiarPass() {
+	public VentanaModificarPassword() {
 		setBounds(100, 100, 458, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

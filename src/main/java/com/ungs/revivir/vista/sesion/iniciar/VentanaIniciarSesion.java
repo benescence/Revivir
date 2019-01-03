@@ -1,4 +1,4 @@
-package com.ungs.revivir.vista.sesion;
+package com.ungs.revivir.vista.sesion.iniciar;
 
 import java.awt.Dimension;
 

@@ -34,8 +34,8 @@ import com.ungs.revivir.vista.menu.usuarios.ControladorUsuariosABM;
 import com.ungs.revivir.vista.menu.usuarios.usuarioAM.ControladorUsuarioAM;
 import com.ungs.revivir.vista.menu.usuarios.usuarioAM.UsuarioInvocable;
 import com.ungs.revivir.vista.menu.vencimientos.ControladorVencimientos;
-import com.ungs.revivir.vista.sesion.CambiarPass;
-import com.ungs.revivir.vista.sesion.ControladorIniciarSesion;
+import com.ungs.revivir.vista.sesion.VentanaModificarPassword;
+import com.ungs.revivir.vista.sesion.iniciar.ControladorIniciarSesion;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
@@ -51,57 +51,57 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana = new VentanaPrincipal();
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cerrarAplicacion()));
 		
-		// VENTANAS EXTERNAS sdasd
+		// VENTANAS EXTERNAS
+		ventana.getCargoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorCargoAM(this)));
 		ventana.getClienteAlta().addActionListener(e -> colocarVentanaExterna(new ControladorClientesAM(this)));
 		ventana.getFallecidoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorFallecidoAM(this)));
+		ventana.getMovimientoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorMovimientoAM(this)));
+		ventana.getPagoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorPagoAM(this)));
+		ventana.getResponsableAlta().addActionListener(e -> colocarVentanaExterna(new ControladorResponsableAM(this)));
 		ventana.getServicioAlta().addActionListener(e -> colocarVentanaExterna(new ControladorServicioAM(this)));
 		ventana.getUsuarioAlta().addActionListener(e -> colocarVentanaExterna(new ControladorUsuarioAM(this)));
-		ventana.getCargoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorCargoAM(this)));
-		ventana.getPagoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorPagoAM(this)));
 		ventana.getPrincipalAlta().addActionListener(e -> colocarVentanaExterna(new ControladorAltaCompleta(this)));
-		ventana.getResponsableAlta().addActionListener(e -> colocarVentanaExterna(new ControladorResponsableAM(this)));
-		ventana.getMovimientoAlta().addActionListener(e -> transladar());
-		ventana.getPrincipalCerrarSesion().addActionListener(s -> cerrarSesion());
-		ventana.getPrincipalCambiarPassword().addActionListener(s -> mostrarCambiarPass());
+
 		// VENTNAS INTERNAS
+		ventana.getCargoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorCargoABM(this)));
 		ventana.getClienteConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorClientesABM(this)));
 		ventana.getFallecidoConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorFallecidosABM(this)));
-		ventana.getServicioConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorServiciosABM(this)));
-		ventana.getUsuarioConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorUsuariosABM(this)));
-		ventana.getCargoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorCargoABM(this)));
+		ventana.getMovimientoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorMovimientoABM(this)));
 		ventana.getPagoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorPagoABM(this)));
 		ventana.getResponsablePorCliente().addActionListener(e -> colocarVentanaInterna(new ControladorResponsableABMCliente(this)));
 		ventana.getResponsablePorFallecido().addActionListener(e -> colocarVentanaInterna(new ControladorResponsableABMFallecido(this)));
+		ventana.getServicioConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorServiciosABM(this)));
+		ventana.getUsuarioConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorUsuariosABM(this)));
 		ventana.getVencimientoConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorVencimientos(this)));
 		
-		
-		ventana.getMovimientoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorMovimientoABM(this)));
-		
-		
+		ventana.getPrincipalCerrarSesion().addActionListener(s -> cerrarSesion());
+		ventana.getPrincipalCambiarPassword().addActionListener(s -> mostrarCambiarPass());
 	}
 
 	private void mostrarCambiarPass() {
 		ventana.setEnabled(false);
-		CambiarPass ventanaCambiarPass = new CambiarPass();
+		VentanaModificarPassword ventanaCambiarPass = new VentanaModificarPassword();
 		ventanaCambiarPass.setVisible(true);
 		ventanaCambiarPass.getBtnAceptar().addActionListener(s -> validarCambioPass(ventanaCambiarPass));
 		ventanaCambiarPass.getBtnCancelar().addActionListener(s -> cerrarCambioPass(ventanaCambiarPass));
 		ventanaCambiarPass.getBtnReglaPassword().addActionListener(
-				s -> Popup.mostrar("La contrase�a debe consistir de 6 a 8 caracteres alfanumericos."));
+				s -> Popup.mostrar("La contraseña debe consistir de 6 a 8 caracteres alfanumericos."));
 	}
-	private void cerrarCambioPass(CambiarPass ventanaCambiarPass){
+	
+	private void cerrarCambioPass(VentanaModificarPassword ventanaCambiarPass){
 		ventana.setEnabled(true);
 		ventanaCambiarPass.dispose();
 	}
-	private void validarCambioPass(CambiarPass ventanaCambiarPass){
+	
+	private void validarCambioPass(VentanaModificarPassword ventanaCambiarPass){
 		String pass1 = new String(ventanaCambiarPass.getPassword().getPassword());
 		String pass2 = new String(ventanaCambiarPass.getPasswordRep().getPassword());
 		if (pass1.isEmpty() || pass2.isEmpty())
 			Popup.mostrar("Por favor ingrese la contraseña nueva y repitala.");
 		else if (!Validador.password(pass1) || pass1.length() > 8 || pass1.length() < 6)
-			Popup.mostrar("La contrase�a debe consistir de 6 a 8 caracteres alfanumericos.");
+			Popup.mostrar("La contraseña debe consistir de 6 a 8 caracteres alfanumericos.");
 		else if (!pass1.equals(pass2))
-			Popup.mostrar("Las contrase�as nuevas ingresadas no coinciden.");
+			Popup.mostrar("Las contraseñas nuevas ingresadas no coinciden.");
 	
 		else {
 			Usuario usuario = Sesion.getUsuario();
@@ -118,14 +118,14 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 			
 				e.printStackTrace();
 			}
-			Popup.mostrar("La contrase�a fue cambiada con exito");
+			Popup.mostrar("La contraseña fue cambiada con exito");
 			ventana.setEnabled(true);
 			ventanaCambiarPass.dispose();
 		}
 	}
 
 	private void cerrarSesion(){
-		if(Popup.confirmar("¿Esta seguro que desea cerrar sesi�n?")){
+		if(Popup.confirmar("¿Esta seguro que desea cerrar sesión?")){
 			ventana.dispose();
 			ventana = null;
 			Sesion.cerrarSesion();
@@ -147,17 +147,10 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		}
 	}
 
-	private void transladar() {
-		ventana.deshabilitar();
-		new ControladorMovimientoAM(this);
-	}
-
 	private void cerrarAplicacion() {
-
-		if (Popup.confirmar("�Esta seguro de que desea cerrar el sistema?")) {
-
+		if (Popup.confirmar("¿Esta seguro de que desea salir del sistema?")) {
 			ventana.dispose();
-			ventana = null;
+			System.exit(0);
 		}
 	}
 	
