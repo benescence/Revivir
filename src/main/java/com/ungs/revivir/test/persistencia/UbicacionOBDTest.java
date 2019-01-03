@@ -69,6 +69,15 @@ public class UbicacionOBDTest {
 	}	
 
 	@Test
+	void testSelectByRangos() {
+		
+		obd.insert(objeto);
+		Ubicacion objetoBD1 = obd.ultimoInsertado();
+		List <Ubicacion> listoBD2 = obd.selectByrangos(null,null, null,null, null, null, null, null, null,null,null,null,null,null,null,null,null,null,"",SubSector.ADULTOS);
+		obd.delete(objetoBD1);
+	}	
+	
+	@Test
 	void testSelect() {
 		obd.insert(objeto);
 		Ubicacion objetoBD1 = obd.ultimoInsertado();

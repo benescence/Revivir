@@ -88,13 +88,8 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	}
 
 	@Override
-	public Ubicacion selectByUbicacion(Ubicacion ubicacion) {
-		
-		
-		
-		
-		
-		
+	public Ubicacion  selectByUbicacion(Ubicacion ubicacion) {
+			
 		String condicion =" subsector = "+Definido.subsector(ubicacion.getSubsector())
 				+" and nicho "+((ubicacion.getNicho() != null) ? (" = " +ubicacion.getNicho()) : " is null")
 				+" and fila "+((ubicacion.getFila() != null) ? (" = " +ubicacion.getFila()) : " is null")
@@ -111,6 +106,58 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 		List<Ubicacion> lista = selectByCondicion(condicion);
 		if (lista.size() > 0)
 			return lista.get(0);
+		return null;
+	}
+	
+	@Override
+	public List<Ubicacion> selectByrangos(Integer nichoMax,
+									Integer nichoMin,
+									Integer circMax,
+									Integer circMin,
+									Integer filaMax,
+									Integer filaMin,
+									Integer parcelaMax,
+									Integer parcelaMin,
+									Integer unidadMax,
+									Integer unidadMin,
+									Integer muebleMax,
+									Integer muebleMin,
+									Integer sepulturaMax,
+									Integer sepulturaMin,
+									Integer inhumacionMax,
+									Integer inhumacionMin,
+									Integer macizoMax,
+									Integer macizoMin,
+									String seccion,
+									SubSector subsector) {
+			
+		String condicionSubsector =" subsector = "+Definido.subsector(subsector);
+		String condicionSeccion = " seccion = " + seccion;
+		String condicionNicho = (nichoMin!= null && nichoMax != null) ? (" and "+nichoMin +"< nicho <" + nichoMax) : "";
+		String condicionFila = (filaMin!= null && filaMax != null) ? (" and "+filaMin +"< fila <" + filaMax) : "";
+		String condicionCirc = (circMin!= null && circMax != null) ? (" and "+circMin +"< circ <" + circMax) : "";
+		String condicionUnidad = (unidadMin!= null && unidadMax != null) ? (" and "+unidadMin +"< unidad <" + unidadMax) : "";
+		String condicionParcela = (parcelaMin!= null && parcelaMax != null) ? (" and "+parcelaMin +"< parcela <" + parcelaMax) : "";
+		String condicionMueble = (muebleMin!= null && muebleMax != null) ? (" and "+muebleMin +"< mueble <" + muebleMax) : "";
+		String condicionMacizo = (macizoMin!= null && macizoMax != null) ? (" and "+macizoMin +"< macizo <" + macizoMax) : "";
+		String condicioninhumacion = (inhumacionMin!= null && inhumacionMax != null) ? (" and "+inhumacionMin +"< inhumacion <" + inhumacionMax) : "";
+		String condicionSepultura = (sepulturaMin!= null && sepulturaMax != null) ? (" and "+sepulturaMin +"< nicho <" + sepulturaMax) : "";
+		
+		String condicion =  condicionSubsector 
+							+ condicionSeccion
+							+ condicionNicho
+							+ condicionFila
+							+ condicionCirc
+							+ condicionUnidad
+							+ condicionParcela
+							+ condicionMueble
+							+ condicionMacizo
+							+ condicioninhumacion
+							+ condicionSepultura ;
+		
+		List<Ubicacion> lista = selectByCondicion(condicion);
+		if (lista.size() > 0)
+			return lista;
 		return null;
 	}
 	
