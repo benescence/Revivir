@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.manager.CargoManager;
 import com.ungs.revivir.negocios.manager.ClienteManager;
@@ -31,7 +30,6 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	private Cargo cargo;
 	private Cliente cliente;
 	private Pago pago;
-	//private List<Pago> pagos;
 	
 	public ControladorPagoAM(PagoInvocable invocador) {
 		this.invocador = invocador;
@@ -52,12 +50,12 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cancelar()));
 
 		ventana.botonAceptar().setAccion(e -> aceptar());
+		ventana.botonAceptarVer().setAccion(e -> aceptarVer());
 		ventana.botonCancelar().setAccion(e -> cancelar());
 		ventana.botonSelCliente().setAccion(e -> seleccionarCliente());
 		ventana.botonCargarCliente().setAccion(e -> cargarCliente());
 		ventana.botonSelCargo().setAccion(e -> seleccionarCargo());
 		ventana.botonCargarCargo().setAccion(e -> cargarCargo());
-		ventana.botonAceptar().addActionListener(s -> verFactura());
 	} 
 	
 	private void cargarCargo() {
@@ -102,18 +100,6 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		ventana.getImporte().getTextField().requestFocusInWindow();
 	}
 	
-	private void verFactura() {
-		List <Pago> pagos = new ArrayList<Pago>();
-		Double importe = new Double(ventana.getImporte().getTextField().getText());
-		Integer cliente = new Integer(ventana.getDNICli().getTextField().getText());
-		Integer codigo = new Integer(ventana.getCodigo().getTextField().getText());
-		String observaciones = ventana.getObservaciones().getTextField().getText();
-		Pago pago = new Pago (1,codigo, cliente, importe, observaciones, Almanaque.hoy());
-		pagos.add(pago);
-		ReportePago reporte = new ReportePago(pagos);
-		reporte.mostrar();
-	}
-	
 	private void cargarCliente() {
 		ventana.requestFocusInWindow();
 		
@@ -143,13 +129,13 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		new ControladorSeleccionCliente(this);
 	}
 	
-	private void aceptar() {
+	private boolean aceptar() {
 		ventana.requestFocusInWindow();
 		
 		try {
 			if (cliente == null || cargo == null) {
 				Popup.mostrar("Debe seleccionar un cargo y un cliente para poder hacer un pago.");
-				return;
+				return false;
 			}
 			
 			String observaciones = ventana.getObservaciones().getTextField().getText();
@@ -158,25 +144,34 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			Pago pagoNuevo = new Pago(-1, cargo.getID(), cliente.getID(), importe, observaciones, fecha);
 			
 			// Estoy dando el alta
-			if (pago == null) {
+			if (pago == null)
 				PagoManager.guardar(pagoNuevo);
-				verFactura();
-				}
+				
 			// Estoy modificando
 			else {
 				pagoNuevo.setID(pago.getID());
 				PagoManager.modificar(pagoNuevo);
-				verFactura();
 			}
 			
 			ventana.dispose();
 			invocador.actualizarPagos();
 			invocador.mostrar();
+			return true;
 			
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
+			return false;
 		}
 		
+	}
+	
+	private void aceptarVer() {
+		aceptar();
+		List <Pago> pagos = new ArrayList<Pago>();
+		Pago pago = PagoManager.traerUltimoGuardado();
+		pagos.add(pago);
+		ReportePago reporte = new ReportePago(pagos);
+		reporte.mostrar();
 	}
 	
 	private void cancelar() {
