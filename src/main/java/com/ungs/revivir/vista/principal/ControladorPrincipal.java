@@ -125,7 +125,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 	}
 
 	private void cerrarSesion(){
-		if(Popup.confirmar("ï¿½Esta seguro que desea cerrar sesiï¿½n?")){
+		if(Popup.confirmar("¿Esta seguro que desea cerrar sesion?")){
 			ventana.dispose();
 			ventana = null;
 			Sesion.cerrarSesion();
@@ -154,7 +154,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 
 	private void cerrarAplicacion() {
 
-		if (Popup.confirmar("Â¿Esta seguro de que desea cerrar el sistema?")) {
+		if (Popup.confirmar("¿Esta seguro de que desea cerrar el sistema?")) {
 
 			ventana.dispose();
 			ventana = null;
