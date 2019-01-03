@@ -27,6 +27,7 @@ public class VentanaPrincipal extends Ventana {
 	private JMenuItem servicioAlta, servicioConsulta;
 	private JMenuItem usuarioAlta, usuarioConsulta;
 	private JMenuItem vencimientoConsulta;
+	private JMenuItem ubicacionLibe;
 	private JLabel lblLogo;
 	
 	public VentanaPrincipal() {
@@ -134,6 +135,12 @@ public class VentanaPrincipal extends Ventana {
 		menuUsuario.add(usuarioConsulta = new JMenuItem("Consultar usuarios", 'c'));
 		usuarioAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, Event.CTRL_MASK | Event.ALT_MASK));
 		barra.add(menuUsuario);
+
+		//********************** MENU UBICACIONES ***************************
+		JMenu menuUbicaciones = new JMenu("Ubicaciones");
+		menuUbicaciones.setMnemonic('b');
+		menuUbicaciones.add(ubicacionLibe = new JMenuItem("Ubicaciones libres", 'c'));
+		barra.add(menuUbicaciones);
 		
 		return barra;
 	}
@@ -220,6 +227,10 @@ public class VentanaPrincipal extends Ventana {
 
 	public JMenuItem getVencimientoConsulta() {
 		return vencimientoConsulta;
+	}
+
+	public JMenuItem getubicacionLibe() {
+		return ubicacionLibe;
 	}
 		
 }

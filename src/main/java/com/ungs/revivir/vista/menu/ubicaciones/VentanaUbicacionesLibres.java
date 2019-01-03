@@ -132,61 +132,60 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		return tabla;
 	}
 
-	public EntradaLista<Sector> getInSector() {
+	public EntradaLista<Sector> getSector() {
 		return inSector;
 	}
 
-	public EntradaLista<SubSector> getInSubsector() {
+	public EntradaLista<SubSector> getSubsector() {
 		return inSubsector;
 	}
 
-	public EntradaNumeroEntre getInCirc() {
+	public EntradaNumeroEntre getCirc() {
 		return inCirc;
 	}
 
-	public EntradaNumeroEntre getInMacizo() {
+	public EntradaNumeroEntre getMacizo() {
 		return inMacizo;
 	}
 
-	public EntradaNumeroEntre getInParcela() {
+	public EntradaNumeroEntre getParcela() {
 		return inParcela;
 	}
 
-	public EntradaNumeroEntre getInFila() {
+	public EntradaNumeroEntre getFila() {
 		return inFila;
 	}
 
-	public EntradaNumeroEntre getInUnidad() {
+	public EntradaNumeroEntre getUnidad() {
 		return inUnidad;
 	}
 
-	public EntradaNumeroEntre getInNicho() {
+	public EntradaNumeroEntre getNicho() {
 		return inNicho;
 	}
 
-	public EntradaNumeroEntre getInMueble() {
+	public EntradaNumeroEntre getMueble() {
 		return inMueble;
 	}
 
-	public EntradaNumeroEntre getInSepultura() {
+	public EntradaNumeroEntre getSepultura() {
 		return inSepultura;
 	}
 
-	public EntradaNumeroEntre getInInhumacion() {
+	public EntradaNumeroEntre getInhumacion() {
 		return inInhumacion;
 	}
 
-	public EntradaTexto getInSeccion() {
+	public EntradaTexto getSeccion() {
 		return inSeccion;
 	}
 
-	public Boton getBtnBuscar() {
+	public Boton botonBuscar() {
 		return btnBuscar;
 	}
 
-	public Boton getBtnLimpiar() {
+	public Boton botonLimpiar() {
 		return btnLimpiar;
 	}
-
 	
 }

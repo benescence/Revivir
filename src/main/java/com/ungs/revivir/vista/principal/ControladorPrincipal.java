@@ -30,6 +30,7 @@ import com.ungs.revivir.vista.menu.responsables.responsableAM.ResponsableInvocab
 import com.ungs.revivir.vista.menu.servicios.ControladorServiciosABM;
 import com.ungs.revivir.vista.menu.servicios.servicioAM.ControladorServicioAM;
 import com.ungs.revivir.vista.menu.servicios.servicioAM.ServicioInvocable;
+import com.ungs.revivir.vista.menu.ubicaciones.ControladorUbicacionesLibres;
 import com.ungs.revivir.vista.menu.usuarios.ControladorUsuariosABM;
 import com.ungs.revivir.vista.menu.usuarios.usuarioAM.ControladorUsuarioAM;
 import com.ungs.revivir.vista.menu.usuarios.usuarioAM.UsuarioInvocable;
@@ -73,6 +74,8 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana.getServicioConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorServiciosABM(this)));
 		ventana.getUsuarioConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorUsuariosABM(this)));
 		ventana.getVencimientoConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorVencimientos(this)));
+		ventana.getubicacionLibe().addActionListener(e -> colocarVentanaInterna(new ControladorUbicacionesLibres(this)));
+		
 		
 		ventana.getPrincipalCerrarSesion().addActionListener(s -> cerrarSesion());
 		ventana.getPrincipalCambiarPassword().addActionListener(s -> mostrarCambiarPass());
