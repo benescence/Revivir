@@ -16,6 +16,7 @@ public class MovimientoOBDMySQL extends OBD implements MovimientoOBD{
 	private final String campos = "fallecido, antigua_ubicacion, causa_traslado, observaciones, fecha_movimiento";
 	private final String tabla = "rev_movimientos";
 	private final String Inner = "rev_movimientos inner join rev_fallecidos";
+	
 	@Override
 	public void insert(Movimiento movimiento) {
 		String fallecido = (movimiento.getFallecido() == null) ? null : ""+movimiento.getFallecido()+""; 

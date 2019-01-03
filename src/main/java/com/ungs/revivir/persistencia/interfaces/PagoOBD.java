@@ -30,7 +30,5 @@ public interface PagoOBD {
 	public List<Pago> selectByCargo(Cargo cargo);
 	
 	public List<Pago> selectByFecha(Date fecha);
-
-	public List<Pago> selectByClienteServivcio(Integer cliente, Integer servicio);
 	
 }

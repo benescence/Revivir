@@ -15,15 +15,17 @@ import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 
 public class PagoOBDMYSQL extends OBD implements PagoOBD{
-	private final String campos = " cargo, cliente, importe, observaciones, fecha";
+	private final String campos = "cargo, cliente, importe, observaciones, fecha";
 	private final String tabla = "rev_pagos";
 	
 	@Override
 	public void insert(Pago pago) {
+		String observaciones = (pago.getObservaciones() != null) ? "'"+pago.getObservaciones()+"'" : null;
+		
 		String valores = pago.getCargo()
 				+", "+pago.getCliente()
 				+", "+pago.getImporte()
-				+", '"+pago.getObservaciones()+"'"
+				+", "+observaciones
 				+", '"+pago.getFecha()+"'";
 		String sql = "insert into "+tabla+"("+campos+") values("+valores+");";
 		ejecutarSQL(sql);		
@@ -31,11 +33,13 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 
 	@Override
 	public void update(Pago pago) {
+		String observaciones = (pago.getObservaciones() != null) ? "'"+pago.getObservaciones()+"'" : null;
+		
 		String condicion = "ID = "+pago.getID();
 		String valores = " cargo = "+pago.getCargo()
 				+", cliente = "+pago.getCliente()
 				+", importe = "+pago.getImporte()
-				+", observaciones = '"+pago.getObservaciones()+"'"
+				+", observaciones = "+observaciones
 				+", fecha= '"+pago.getFecha()+"'";
 		String consulta = "update "+tabla+" set "+valores+"  where ("+condicion+");";
 		ejecutarSQL(consulta);
@@ -49,16 +53,44 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 	}
 
 	@Override
+	public Pago selectByID(Integer ID) {
+		String condicion = "ID = "+ID;
+		return selectUnicoByCondicion(condicion);
+	}	
+	
+	@Override
+	public Pago ultimoInsertado() {
+		Integer ID = selectLastID(tabla);
+		return (ID == null) ? null :selectByID(ID);
+	}
+
+	@Override
 	public List<Pago> select() {
 		return selectByCondicion("true");
 	}
 
+	//*********************** METODOS ESPECIFICOS ************************************
+	
 	@Override
 	public List<Pago> selectByCliente(Cliente cliente) {
 		String condicion = "cliente = "+cliente.getID();
 		return selectByCondicion(condicion);
 	}
 
+	@Override
+	public List<Pago> selectByFecha(Date fecha) {
+		String condicion = "fecha = '" +fecha+"'";
+		return selectByCondicion(condicion);
+	}
+
+	@Override
+	public List<Pago> selectByCargo(Cargo cargo) {
+		String condicion = "cargo = "+cargo.getID();
+		return selectByCondicion(condicion);
+	}
+
+	//*********************** METODOS PRIVADOS ************************************
+	
 	private List<Pago> selectByCondicion(String condicion) {
 		List<Pago> ret = new ArrayList<Pago>();
 		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+");";  
@@ -71,13 +103,13 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 
 			while (resultados.next()) {
 				ret.add(new Pago(
-						resultados.getInt("ID"),
-						resultados.getInt("cargo"),
-						resultados.getInt("cliente"),
-						resultados.getDouble("importe"),
-						resultados.getString("observaciones"),
-						resultados.getDate("fecha")
-						));
+					resultados.getInt("ID"),
+					resultados.getInt("cargo"),
+					resultados.getInt("cliente"),
+					resultados.getDouble("importe"),
+					resultados.getString("observaciones"),
+					resultados.getDate("fecha")
+					));
 			}
 			
 			resultados.close();
@@ -92,43 +124,9 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 		return ret;
 	}
 
-	@Override
-	public List<Pago> selectByFecha(Date fecha) {
-		String condicion = "fecha ="+"'" +fecha+"'";
-		/*List<Pago> lista = selectByCondicion(condicion);
-		if (lista.isEmpty())
-			return null;*/
-		System.out.println(condicion );
-		return selectByCondicion(condicion);
-	}
-
-	@Override
-	public List<Pago> selectByClienteServivcio(Integer cliente, Integer servicio) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public Pago ultimoInsertado() {
-		Integer ID = selectLastID(tabla);
-		if (ID == null)
-			return null;
-		else
-			return selectByID(ID);
-	}
-
-	public Pago selectByID(Integer ID) {
-		String condicion = "ID = "+ID;
+	private Pago selectUnicoByCondicion(String condicion) {
 		List<Pago> lista = selectByCondicion(condicion);
-		if (lista.size() > 0)
-			return lista.get(0);
-		return null;
+		return (lista.size() > 0) ? lista.get(0) : null; 
 	}
 
-	@Override
-	public List<Pago> selectByCargo(Cargo cargo) {
-		String condicion = "cargo = "+cargo.getID();
-		return selectByCondicion(condicion);
-	}
-	
 }
