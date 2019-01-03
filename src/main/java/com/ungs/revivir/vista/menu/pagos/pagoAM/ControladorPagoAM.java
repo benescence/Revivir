@@ -16,7 +16,7 @@ import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Servicio;
 import com.ungs.revivir.vista.principal.ControladorExterno;
-import com.ungs.revivir.vista.reportes.ReportePago;
+import com.ungs.revivir.vista.reportes.ReporteFacturaPago;
 import com.ungs.revivir.vista.seleccion.cargos.CargoSeleccionable;
 import com.ungs.revivir.vista.seleccion.cargos.ControladorSeleccionCargo;
 import com.ungs.revivir.vista.seleccion.clientes.ClienteSeleccionable;
@@ -170,7 +170,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		List <Pago> pagos = new ArrayList<Pago>();
 		Pago pago = PagoManager.traerUltimoGuardado();
 		pagos.add(pago);
-		ReportePago reporte = new ReportePago(pagos);
+		ReporteFacturaPago reporte = new ReporteFacturaPago(pagos);
 		reporte.mostrar();
 	}
 	

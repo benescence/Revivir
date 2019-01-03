@@ -16,12 +16,12 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class ReportePago {
+public class ReporteFacturaPago {
 	private JasperReport reporte;
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 
-	public ReportePago(List<Pago> pagos) {
+	public ReporteFacturaPago(List<Pago> pagos) {
     	Map <String, Object> totalPersonas = new HashMap<String, Object>();
     	Pago pago = pagos.get(0);
     	 System.out.println(pagos.get(0).getCargo());

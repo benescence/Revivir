@@ -12,7 +12,7 @@ import com.ungs.revivir.vista.menu.pagos.pagoAM.ControladorPagoAM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.PagoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
-import com.ungs.revivir.vista.reportes.ReportePago;
+import com.ungs.revivir.vista.reportes.ReporteFacturaPago;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
@@ -38,7 +38,7 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 
 		List <Pago> pagos = new ArrayList<Pago>();
 		pagos.add(lista.get(0));
-		ReportePago reporte = new ReportePago(pagos);
+		ReporteFacturaPago reporte = new ReporteFacturaPago(pagos);
 		reporte.mostrar();
 	}
 	

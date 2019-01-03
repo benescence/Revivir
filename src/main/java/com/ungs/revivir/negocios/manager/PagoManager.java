@@ -37,7 +37,7 @@ public class PagoManager {
 		return obd.ultimoInsertado();
 	}
 
-	public static List<Pago> traerPagoporFecha(Date fecha) {
+	public static List<Pago> traerPorFecha(Date fecha) {
 		PagoOBD obd = FactoryOBD.crearPagoOBD();
 		return obd.selectByFecha(fecha);
 	}
