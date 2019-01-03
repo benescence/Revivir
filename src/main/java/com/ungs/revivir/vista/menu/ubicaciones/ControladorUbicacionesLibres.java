@@ -12,14 +12,19 @@ public class ControladorUbicacionesLibres implements ControladorInterno {
 	public ControladorUbicacionesLibres(ControladorPrincipal invocador) {
 		this.invocador = invocador;
 		ventana = new VentanaUbicacionesLibres();
-		
-		
-		// TODO Auto-generated constructor stub
+		ventana.botonLimpiar().setAccion(e -> limpiar());
+		ventana.botonBuscar().setAccion(e -> buscar());
 	}
 	
+	private void limpiar() {
+		// TODO Auto-generated method stub
+
+	}
 	
-	
-	
+	private void buscar() {
+		// TODO Auto-generated method stub
+
+	}
 	
 	@Override
 	public boolean finalizar() {
