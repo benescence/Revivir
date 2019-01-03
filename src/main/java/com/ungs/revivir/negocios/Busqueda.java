@@ -2,9 +2,12 @@ package com.ungs.revivir.negocios;
 
 import java.util.List;
 
+import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
+import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 
 public class Busqueda {
@@ -16,6 +19,25 @@ public class Busqueda {
 		
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		return obd.selectByNombreApellidoDNI(nombres, apellido, DNI);
+	}
+
+	public static List<Ubicacion> ubicaciones(
+			Integer circMin, Integer circMax,
+			Integer macizoMin, Integer macizoMax,
+			Integer parcelaMin, Integer parcelaMax,
+			Integer filaMin, Integer filaMax,
+			Integer unidadMin, Integer unidadMax,
+			Integer nichoMin, Integer nichoMax,
+			Integer muebleMin, Integer muebleMax,
+			Integer sepulturaMin, Integer sepulturaMax,
+			Integer inhumacionMin, Integer inhumacionMax,
+			SubSector subSector, String seccion) {
+		
+		
+		// validaciones
+		seccion = Verificador.anular(seccion);
+		//UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
+		return UbicacionManager.traerTodo();
 	}
 
 }

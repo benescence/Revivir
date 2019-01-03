@@ -12,21 +12,40 @@ import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
 public class EntradaNumeroEntre extends PanelHorizontal {
 	private static final long serialVersionUID = 1L;
 	private JTextField entradaMin, entradaMax;
-	private JLabel etiqueta;
+	private JLabel etiqueta, etiquetaMin, etiquetaMax;
 	
 	public EntradaNumeroEntre(String texto, Dimension dimTexto, Dimension dimEntrada) {
+		Dimension dimEtiquetas = new Dimension(40, 25);
+		
+		// Texto princupal
 		etiqueta = new JLabel(texto);
 		etiqueta.setMaximumSize(dimTexto);
 		etiqueta.setMinimumSize(dimTexto);
 		etiqueta.setPreferredSize(dimTexto);
 		add(etiqueta);
 		
+		// Texto valor minimo
+		etiquetaMin = new JLabel("  Min.");
+		etiquetaMin.setMaximumSize(dimEtiquetas);
+		etiquetaMin.setMinimumSize(dimEtiquetas);
+		etiquetaMin.setPreferredSize(dimEtiquetas);
+		add(etiquetaMin);
+		
+		// entrada minima
 		entradaMin = new JTextField();
 		entradaMin.setMaximumSize(dimEntrada);
 		entradaMin.setMinimumSize(dimEntrada);
 		entradaMin.setPreferredSize(dimEntrada);
 		add(entradaMin);
+				
+		// Texto valor maximo
+		etiquetaMax = new JLabel("  Max.");
+		etiquetaMax.setMaximumSize(dimEtiquetas);
+		etiquetaMax.setMinimumSize(dimEtiquetas);
+		etiquetaMax.setPreferredSize(dimEtiquetas);
+		add(etiquetaMax);
 		
+		// entrada maxima
 		entradaMax = new JTextField();
 		entradaMax.setMaximumSize(dimEntrada);
 		entradaMax.setMinimumSize(dimEntrada);

@@ -13,6 +13,7 @@ import com.ungs.revivir.persistencia.definidos.Sector;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.vista.tablas.TablaUbicacionesLibres;
 import com.ungs.revivir.vista.util.Boton;
+import com.ungs.revivir.vista.util.TextoCentrado;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 import com.ungs.revivir.vista.util.contenedores.VentanaInterna;
@@ -53,17 +54,18 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		panelPrincipal.add(panelTabla);
 	}
 	
-	private PanelHorizontal panelSectores() {
-		Dimension dimTexto = new Dimension(100, 25);
+	private PanelVertical panelBusqueda() {
+		Dimension dimTexto = new Dimension(50, 25);
+		Dimension dimEntradaDoble = new Dimension(100, 25);
 		Dimension dimEntrada = new Dimension(300, 25);
-
+		
+		// Inicializo las listas de sectores
 		inSector = new EntradaLista<>("Sector", dimTexto, dimEntrada);
 		inSubsector = new EntradaLista<>("Sub Sector", dimTexto, dimEntrada);
 
 		for (Sector sector : Localizador.traerSectores())
 			inSector.getComboBox().addItem(sector);
 		
-		// EL SUB SECTOR DEPENDE DEL SECTOR ESCOGIDO
 		inSector.getComboBox().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				inSubsector.getComboBox().removeAllItems();
@@ -76,34 +78,20 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		inSector.getComboBox().setSelectedIndex(0);
 		inSubsector.getComboBox().setSelectedIndex(0);
 
-		PanelVertical panelSector = new PanelVertical();
-		panelSector.setBorder(new EmptyBorder(0, 0, 0, 10));
-		panelSector.add(inSector);
-		panelSector.add(inSubsector);
-		
-		
-		PanelHorizontal ret = new PanelHorizontal();
-		ret.setBorder(new EmptyBorder(0, 0, 10, 0));
-		ret.add(panelSector);
-		return ret;
-	}
-	
-	private PanelVertical panelBusqueda() {
-		Dimension dimTexto = new Dimension(50, 25);
-		Dimension dimEntrada = new Dimension(50, 25);
-		
-		inCirc = new EntradaNumeroEntre("Circ", dimTexto, dimEntrada);
-		inMacizo = new EntradaNumeroEntre("Macizo", dimTexto, dimEntrada);
-		inParcela = new EntradaNumeroEntre("Parcela", dimTexto, dimEntrada);
-		inFila = new EntradaNumeroEntre("Fila", dimTexto, dimEntrada);
-		inUnidad = new EntradaNumeroEntre("Unidad", dimTexto, dimEntrada);
-		inNicho = new EntradaNumeroEntre("Nicho", dimTexto, dimEntrada);
-		inMueble = new EntradaNumeroEntre("Mueble", dimTexto, dimEntrada);
-		inSepultura = new EntradaNumeroEntre("Sepultura", dimTexto, dimEntrada);
-		inInhumacion= new EntradaNumeroEntre("Inhumacion", dimTexto, dimEntrada);
+		// Inicializo el esto de las entradas
+		inCirc = new EntradaNumeroEntre("Circ", dimTexto, dimEntradaDoble);
+		inMacizo = new EntradaNumeroEntre("Macizo", dimTexto, dimEntradaDoble);
+		inParcela = new EntradaNumeroEntre("Parcela", dimTexto, dimEntradaDoble);
+		inFila = new EntradaNumeroEntre("Fila", dimTexto, dimEntradaDoble);
+		inUnidad = new EntradaNumeroEntre("Unidad", dimTexto, dimEntradaDoble);
+		inNicho = new EntradaNumeroEntre("Nicho", dimTexto, dimEntradaDoble);
+		inMueble = new EntradaNumeroEntre("Mueble", dimTexto, dimEntradaDoble);
+		inSepultura = new EntradaNumeroEntre("Sepultura", dimTexto, dimEntradaDoble);
+		inInhumacion= new EntradaNumeroEntre("Inhumacion", dimTexto, dimEntradaDoble);
 		inSeccion = new EntradaTexto("Seccion", dimTexto, dimEntrada);
 
 		PanelVertical ret1 = new PanelVertical();
+		ret1.add(inSector);
 		ret1.add(inSeccion);
 		ret1.add(inCirc);
 		ret1.add(inMacizo);
@@ -111,6 +99,7 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		ret1.add(inFila);
 		
 		PanelVertical ret2 = new PanelVertical();
+		ret2.add(inSubsector);
 		ret2.add(inUnidad);
 		ret2.add(inNicho);
 		ret2.add(inMueble);
@@ -123,7 +112,7 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		
 		
 		PanelVertical ret = new PanelVertical();
-		ret.add(panelSectores());
+		ret.add(new TextoCentrado("Busquedas"));
 		ret.add(ret3);
 		return ret;
 	}
