@@ -14,14 +14,16 @@ import com.ungs.revivir.persistencia.entidades.Servicio;
 import com.ungs.revivir.persistencia.interfaces.CargoOBD;
 
 public class CargoOBDMYSQL extends OBD implements CargoOBD{
-	private final String campos = " fallecido, servicio, observaciones, pagado ";
+	private final String campos = "fallecido, servicio, observaciones, pagado";
 	private final String tabla = "rev_cargos";
 	
-	//@Override
+	@Override
 	public void insert(Cargo cargo) {
+		String observaciones = (cargo.getObservaciones() != null) ? ("'"+cargo.getObservaciones()+"'"):null;
+		
 		String valores = cargo.getFallecido()
 				+", "+cargo.getServicio()
-				+", '"+cargo.getObservaciones()+"'"
+				+", "+observaciones
 				+", "+cargo.getPagado();
 		String sql = "insert into "+tabla+"("+campos+") values("+valores+");";
 		ejecutarSQL(sql);		
@@ -29,11 +31,14 @@ public class CargoOBDMYSQL extends OBD implements CargoOBD{
 
 	@Override
 	public void update(Cargo cargo) {
+		String observaciones = (cargo.getObservaciones() != null) ? ("'"+cargo.getObservaciones()+"'"):null;
+		
 		String condicion = "ID = "+cargo.getID();
-		String valores = " Fallecido = "+cargo.getFallecido()
-				+", Servicio = "+cargo.getServicio()
-				+", Observaciones = '"+cargo.getObservaciones()+"'"
-				+", Pagado = "+cargo.getPagado();
+		String valores = " fallecido = "+cargo.getFallecido()
+				+", servicio = "+cargo.getServicio()
+				+", observaciones = "+observaciones
+				+", pagado = "+cargo.getPagado();
+		
 		String consulta = "update "+tabla+" set "+valores+"  where ("+condicion+");";
 		ejecutarSQL(consulta);
 	}
@@ -45,9 +50,52 @@ public class CargoOBDMYSQL extends OBD implements CargoOBD{
 		ejecutarSQL(consulta);
 	}
 
+	public Cargo selectByID(Integer ID) {
+		String condicion = "ID = "+ID;
+		return selectUnicoByCondicio(condicion);
+	}
+	
+	@Override
+	public Cargo ultimoInsertado() {
+		Integer ID = selectLastID(tabla);
+		if (ID == null)
+			return null;
+		else
+			return selectByID(ID);
+	}
+	
 	@Override
 	public List<Cargo> select() {
 		return selectByCondicion("true");
+	}
+	
+	//*********************** METODOS ESPECIFICOS ************************************************
+
+	@Override
+	public List<Cargo> selectByFallecido(Fallecido fallecido) {
+		String condicion = "fallecido = "+fallecido.getID();
+		return  selectByCondicion(condicion);
+	}
+
+	@Override
+	public List<Cargo> selectByFallecidoServicio(Fallecido fallecido, Servicio servicio) {
+		String condicion = "fallecido = "+fallecido.getID()+" and servicio = "+servicio.getID();
+		return  selectByCondicion(condicion);
+	}
+
+	@Override
+	public List<Cargo> selectByServicio(Servicio servicio) {
+		String condicion = "servicio = "+servicio.getID();
+		return  selectByCondicion(condicion);
+	}
+
+	// ************************ METODOS PRIVADOS ************************************************** 
+	
+	private Cargo selectUnicoByCondicio(String condicion) {
+		List<Cargo> lista = selectByCondicion(condicion);
+		if (lista.size() > 0)
+			return lista.get(0);
+		return null;
 	}
 
 	private List<Cargo> selectByCondicion(String condicion) {
@@ -80,41 +128,6 @@ public class CargoOBDMYSQL extends OBD implements CargoOBD{
 		}
 			
 		return ret;
-	}
-
-	@Override
-	public Cargo ultimoInsertado() {
-		Integer ID = selectLastID(tabla);
-		if (ID == null)
-			return null;
-		else
-			return selectByID(ID);
-	}
-	
-	public Cargo selectByID(Integer ID) {
-		String condicion = "ID = "+ID;
-		List<Cargo> lista = selectByCondicion(condicion);
-		if (lista.size() > 0)
-			return lista.get(0);
-		return null;
-	}
-
-	@Override
-	public List<Cargo> selectByFallecido(Fallecido fallecido) {
-		String condicion = "fallecido = "+fallecido.getID();
-		return  selectByCondicion(condicion);
-	}
-
-	@Override
-	public List<Cargo> selectByFallecidoServicio(Fallecido fallecido, Servicio servicio) {
-		String condicion = "fallecido = "+fallecido.getID()+" and servicio = "+servicio.getID();
-		return  selectByCondicion(condicion);
-	}
-
-	@Override
-	public List<Cargo> selectByServicio(Servicio servicio) {
-		String condicion = "servicio = "+servicio.getID();
-		return  selectByCondicion(condicion);
 	}
 	
 }
