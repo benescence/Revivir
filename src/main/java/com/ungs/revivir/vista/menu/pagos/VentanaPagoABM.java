@@ -15,12 +15,11 @@ import com.ungs.revivir.vista.util.contenedores.VentanaInterna;
 public class VentanaPagoABM extends VentanaInterna {
 	private static final long serialVersionUID = 1L;
 	private TablaPagos tabla;
-	private Boton btnAgregar, btnModificar, btnEliminar;
+	private Boton btnAgregar, btnModificar, btnEliminar, btnReporte;
 	
 	public VentanaPagoABM() {
 		super("Gestion de pagos", 500, 500);
 		
-		//tabla = new TablaPagos(new ArrayList<>());
 		tabla = new TablaPagos(PagoManager.traerTodo());
 		JScrollPane panelTabla = new JScrollPane(tabla);
 		
@@ -28,11 +27,14 @@ public class VentanaPagoABM extends VentanaInterna {
 		btnAgregar = new Boton("Agregar", dimBoton);
 		btnModificar = new Boton("Modificar", dimBoton);
 		btnEliminar = new Boton("Eliminar", dimBoton);
+		btnReporte = new Boton("Reporte", dimBoton);
+
 		PanelHorizontal panelBotones = new PanelHorizontal();
 		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
 		panelBotones.add(btnAgregar);
 		panelBotones.add(btnModificar);
 		panelBotones.add(btnEliminar);
+		panelBotones.add(btnReporte);
 		
 		PanelVertical panelPrincipal = new PanelVertical();
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -53,9 +55,13 @@ public class VentanaPagoABM extends VentanaInterna {
 	public Boton botonModificar() {
 		return btnModificar;
 	}
-	
+
 	public Boton botonEliminar() {
 		return btnEliminar;
+	}
+
+	public Boton botonReporte() {
+		return btnReporte;
 	}
 	
 }

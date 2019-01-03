@@ -1,5 +1,6 @@
 package com.ungs.revivir.vista.menu.pagos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JInternalFrame;
@@ -11,6 +12,7 @@ import com.ungs.revivir.vista.menu.pagos.pagoAM.ControladorPagoAM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.PagoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
+import com.ungs.revivir.vista.reportes.ReportePago;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
@@ -23,6 +25,21 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 		ventana.botonAgregar().addActionListener(e -> agregar());
 		ventana.botonModificar().addActionListener(e -> modificar());
 		ventana.botonEliminar().addActionListener(e -> eliminar());
+		ventana.botonReporte().addActionListener(e -> reporte());
+	}
+	
+	private void reporte() {
+		List<Pago> lista = ventana.getTabla().obtenerSeleccion();
+		
+		if (lista.size() != 1) {
+			Popup.mostrar("Debe seleccionar exactamente 1 pago para ver su reporte");
+			return;
+		}
+
+		List <Pago> pagos = new ArrayList<Pago>();
+		pagos.add(lista.get(0));
+		ReportePago reporte = new ReportePago(pagos);
+		reporte.mostrar();
 	}
 	
 	private void agregar() {
@@ -51,7 +68,7 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 			}
 			
 			if (VerificadorBorrado.puedeBorrar(lista.get(0)) &&
-					Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
+					Popup.confirmar("Â¿Seguro de que desea eliminar los registros seleccionados?"))
 				PagoManager.eliminar(lista.get(0));
 			
 			actualizarPagos();
