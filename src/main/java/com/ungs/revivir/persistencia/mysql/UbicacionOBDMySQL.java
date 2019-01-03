@@ -89,10 +89,16 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 
 	@Override
 	public Ubicacion selectByUbicacion(Ubicacion ubicacion) {
+		
+		
+		
+		
+		
+		
 		String condicion =" subsector = "+Definido.subsector(ubicacion.getSubsector())+" and "
 				+" nicho = "+ubicacion.getNicho()+" and "
-				+" fila = "+ubicacion.getFila()+" and "
-				+" seccion = "+ubicacion.getSeccion()+" and "
+				+" fila "+((ubicacion.getFila() != null) ? (" = " +ubicacion.getFila()) : " is null")
+				+" and seccion = "+ubicacion.getSeccion()+" and "
 				+" macizo = "+ubicacion.getMacizo()+" and "
 				+" unidad = "+ubicacion.getUnidad()+" and "
 				+" bis = "+ubicacion.getBis()+" and "
