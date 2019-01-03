@@ -20,7 +20,6 @@ public class Vinculador {
 		return ret;
 	}
 
-
 	public static boolean estanVinculados(Cliente cliente, Fallecido fallecido) {
 		return ResponsableManager.traerPorClienteFallecido(cliente, fallecido) != null;
 	}

@@ -82,7 +82,7 @@ public class ControladorIniciarSesion {
 	}
 
 	private void cancelar() {
-		if (Popup.confirmar("¿Estas seguro que quieres salir del Sistema Revivir !?"))
+		if (Popup.confirmar("ï¿½Estas seguro que quieres salir del Sistema Revivir !?"))
 			System.exit(0);
 	}
 	
@@ -128,7 +128,7 @@ public class ControladorIniciarSesion {
 		if (email == null) {
 			mensaje += "    -Por favor ingrese el E-MAIL.\n";
 
-		} else if (!Validador.validarEmail(email)) {
+		} else if (!Validador.email(email)) {
 			mensaje += "    -El E-MAIL ingresado no es valido\n";
 		} else if (email.length() > 50) {
 			mensaje += "    -El E-MAIL debe tener una longitud maxima de 50\n";

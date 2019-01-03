@@ -15,7 +15,7 @@ public class Sesion {
 			throw new Exception("No existe un usuario con el nombre de usuario: "+nombre);
 
 		if (!usuarioBD.getPassword().equals(password))
-			throw new Exception("Contrase�a incorrecta.");
+			throw new Exception("Contraseña incorrecta.");
 		
 		usuario = usuarioBD;
 	}
@@ -27,7 +27,5 @@ public class Sesion {
 	public static Usuario getUsuario() {
 		return usuario;
 	}
-
-	
 
 }

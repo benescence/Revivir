@@ -38,13 +38,6 @@ public class Validador {
 		return (formatoNumeroLetra(texto));
 	}
 	
-	
-	
-	
-	
-	
-	
-
 	// METODOS INTERNOS DEL VALIDADOR
 	private static boolean formatoNumero(String texto) {
 		return texto.matches("[0-9]+");
@@ -66,24 +59,9 @@ public class Validador {
 		return texto.matches("[a-zA-Z�-�0-9\\u00f1\\u00d1]+");
 	}
 	
-	
-	// METODOS QUE USAN LOS DEMAS PARA VALIDAR CAMPOS
-	
-	
-	public static boolean validarNumero(String texto) {
-		return (formatoNumero(texto));
-	}
-	
-	
-
-	
 	public static void main(String[] args) {
 		formatoNumeroLetraEspacio("");
 		formatoLetra("");
-	}
-
-	public static boolean validarEmail(String texto) {
-		return texto.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" + "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$");
 	}
 			
 }
