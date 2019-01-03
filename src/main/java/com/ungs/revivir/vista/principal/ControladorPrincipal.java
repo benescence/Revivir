@@ -51,7 +51,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana = new VentanaPrincipal();
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cerrarAplicacion()));
 		
-		// VENTANAS EXTERNAS
+		// VENTANAS EXTERNAS sdasd
 		ventana.getClienteAlta().addActionListener(e -> colocarVentanaExterna(new ControladorClientesAM(this)));
 		ventana.getFallecidoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorFallecidoAM(this)));
 		ventana.getServicioAlta().addActionListener(e -> colocarVentanaExterna(new ControladorServicioAM(this)));
@@ -86,22 +86,22 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventanaCambiarPass.setVisible(true);
 		ventanaCambiarPass.getBtnAceptar().addActionListener(s -> validarCambioPass(ventanaCambiarPass));
 		ventanaCambiarPass.getBtnCancelar().addActionListener(s -> cerrarCambioPass(ventanaCambiarPass));
-		ventanaCambiarPass.getBtnReglaContraseña().addActionListener(
-				s -> Popup.mostrar("La contraseña debe consistir de 6 a 8 caracteres alfanumericos."));
+		ventanaCambiarPass.getBtnReglaPassword().addActionListener(
+				s -> Popup.mostrar("La contraseï¿½a debe consistir de 6 a 8 caracteres alfanumericos."));
 	}
 	private void cerrarCambioPass(CambiarPass ventanaCambiarPass){
 		ventana.setEnabled(true);
 		ventanaCambiarPass.dispose();
 	}
 	private void validarCambioPass(CambiarPass ventanaCambiarPass){
-		String pass1 = new String(ventanaCambiarPass.getTxtContraseña().getPassword());
-		String pass2 = new String(ventanaCambiarPass.getTxtRepetirContraseña().getPassword());
+		String pass1 = new String(ventanaCambiarPass.getPassword().getPassword());
+		String pass2 = new String(ventanaCambiarPass.getPasswordRep().getPassword());
 		if (pass1.isEmpty() || pass2.isEmpty())
-			Popup.mostrar("Por favor ingrese la contraseña nueva y repitala.");
+			Popup.mostrar("Por favor ingrese la contraseÃ±a nueva y repitala.");
 		else if (!Validador.password(pass1) || pass1.length() > 8 || pass1.length() < 6)
-			Popup.mostrar("La contraseña debe consistir de 6 a 8 caracteres alfanumericos.");
+			Popup.mostrar("La contraseï¿½a debe consistir de 6 a 8 caracteres alfanumericos.");
 		else if (!pass1.equals(pass2))
-			Popup.mostrar("Las contraseñas nuevas ingresadas no coinciden.");
+			Popup.mostrar("Las contraseï¿½as nuevas ingresadas no coinciden.");
 	
 		else {
 			Usuario usuario = Sesion.getUsuario();
@@ -118,14 +118,14 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 			
 				e.printStackTrace();
 			}
-			Popup.mostrar("La contraseña fue cambiada con exito");
+			Popup.mostrar("La contraseï¿½a fue cambiada con exito");
 			ventana.setEnabled(true);
 			ventanaCambiarPass.dispose();
 		}
 	}
 
 	private void cerrarSesion(){
-		if(Popup.confirmar("ï¿½Esta seguro que desea cerrar sesiï¿½n?")){
+		if(Popup.confirmar("Â¿Esta seguro que desea cerrar sesiï¿½n?")){
 			ventana.dispose();
 			ventana = null;
 			Sesion.cerrarSesion();

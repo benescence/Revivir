@@ -19,12 +19,12 @@ import javax.swing.JButton;
 public class CambiarPass extends JFrame {
 
 	private JPanel contentPane;
-	private JPasswordField txtContraseña;
-	private JPasswordField txtRepetirContraseña;
+	private JPasswordField inPassword;
+	private JPasswordField inPasswordRep;
 	private JButton btnCancelar;
 	private JButton btnAceptar;
-	private JButton btnReglaContraseña;
-	private JPasswordField txtContraseñaActual;
+	private JButton btnReglaPassword;
+	private JPasswordField inPasswordActual;
 
 	/**
 	 * Launch the application.
@@ -52,7 +52,7 @@ public class CambiarPass extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
-		setTitle("Cambio de contraseña");
+		setTitle("Cambio de Password");
 		setResizable(false);
 		ImageIcon img = new ImageIcon("imagenes/icono.png");
 		setIconImage(img.getImage());
@@ -73,20 +73,20 @@ public class CambiarPass extends JFrame {
 		lblRepetirContrasea.setBounds(10, 102, 146, 14);
 		contentPane.add(lblRepetirContrasea);
 		
-		txtContraseña = new JPasswordField();
-		txtContraseña.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtContraseña.setBounds(166, 68, 224, 20);
-		contentPane.add(txtContraseña);
+		inPassword = new JPasswordField();
+		inPassword.setFont(new Font("Arial", Font.PLAIN, 12));
+		inPassword.setBounds(166, 68, 224, 20);
+		contentPane.add(inPassword);
 		
-		txtRepetirContraseña = new JPasswordField();
-		txtRepetirContraseña.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtRepetirContraseña.setBounds(166, 99, 224, 20);
-		contentPane.add(txtRepetirContraseña);
+		inPasswordRep = new JPasswordField();
+		inPasswordRep.setFont(new Font("Arial", Font.PLAIN, 12));
+		inPasswordRep.setBounds(166, 99, 224, 20);
+		contentPane.add(inPasswordRep);
 		
-		btnReglaContraseña = new JButton("?");
-		btnReglaContraseña.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnReglaContraseña.setBounds(403, 67, 39, 23);
-		contentPane.add(btnReglaContraseña);
+		btnReglaPassword = new JButton("?");
+		btnReglaPassword.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnReglaPassword.setBounds(403, 67, 39, 23);
+		contentPane.add(btnReglaPassword);
 		
 		btnAceptar = new JButton("ACEPTAR");
 		btnAceptar.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -103,22 +103,22 @@ public class CambiarPass extends JFrame {
 		lblContraseaActual.setBounds(10, 36, 146, 14);
 		contentPane.add(lblContraseaActual);
 		
-		txtContraseñaActual = new JPasswordField();
-		txtContraseñaActual.setFont(new Font("Arial", Font.PLAIN, 12));
-		txtContraseñaActual.setBounds(166, 34, 224, 20);
-		contentPane.add(txtContraseñaActual);
+		inPasswordActual = new JPasswordField();
+		inPasswordActual.setFont(new Font("Arial", Font.PLAIN, 12));
+		inPasswordActual.setBounds(166, 34, 224, 20);
+		contentPane.add(inPasswordActual);
 	}
 
-	public JPasswordField getTxtContraseña() {
-		return txtContraseña;
+	public JPasswordField getPassword() {
+		return inPassword;
 	}
 
-	public JPasswordField getTxtRepetirContraseña() {
-		return txtRepetirContraseña;
+	public JPasswordField getPasswordRep() {
+		return inPasswordRep;
 	}
 	
-	public JPasswordField getPassword(){
-		return txtContraseñaActual;
+	public JPasswordField getPasswordActual(){
+		return inPasswordActual;
 	}
 
 	public JButton getBtnCancelar() {
@@ -129,7 +129,8 @@ public class CambiarPass extends JFrame {
 		return btnAceptar;
 	}
 
-	public JButton getBtnReglaContraseña() {
-		return btnReglaContraseña;
+	public JButton getBtnReglaPassword() {
+		return btnReglaPassword;
 	}
+	
 }
