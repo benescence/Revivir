@@ -129,7 +129,7 @@ public class VentanaFallecidoAM extends Ventana {
 		inVencimiento = new EntradaFecha(Almanaque.hoy(), "Vencimiento", dimTexto1, dimEntrada);
 
 		inCheckBis = new JCheckBox("Bis");
-		inCheckMacizo = new JCheckBox("Macizo1");
+		inCheckMacizo = new JCheckBox("Macizo");
 		PanelHorizontal panelCheck = new PanelHorizontal();
 		panelCheck.add(inCheckBis);
 		panelCheck.add(inCheckMacizo);

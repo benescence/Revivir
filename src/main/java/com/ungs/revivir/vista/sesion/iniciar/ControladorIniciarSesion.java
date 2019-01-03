@@ -12,6 +12,7 @@ import com.ungs.revivir.negocios.Sesion;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.sesion.VentanaRecuperarPassword;
+import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.PresionarEnterListener;
 import com.ungs.revivir.vista.util.entradas.EntradaMouse;
@@ -22,32 +23,20 @@ public class ControladorIniciarSesion {
 
 	public ControladorIniciarSesion() {
 		ventana = new VentanaIniciarSesion();
-		ventana.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				cancelar();
-			}
-		});
+		ventana.addWindowListener(new AccionCerrarVentana(e -> cancelar()));
 		
-		ventana.botonAceptar().addMouseListener(new EntradaMouse(e -> aceptar()));
-		ventana.botonAceptar().addKeyListener(new PresionarEnterListener(e -> aceptar()));
-		ventana.botonCancelar().addMouseListener(new EntradaMouse(e -> cancelar()));
-		ventana.botonCancelar().addKeyListener(new PresionarEnterListener(e -> cancelar()));
-		ventana.BotonRec().addMouseListener(new EntradaMouse(e -> recuperarPassword()));
-		ventana.BotonRec().addKeyListener(new PresionarEnterListener(e -> recuperarPassword())); //prueba2
-
+		ventana.botonAceptar().setAccion(e -> aceptar());
+		ventana.botonCancelar().setAccion(e -> cancelar());
+		ventana.botonRecuperar().setAccion(e -> recuperarPassword());
 	}
-
-
 
 	@SuppressWarnings("deprecation")
 	private void aceptar() {
 		if (validarCampos()) {
-			String nombre = ventana.getUsuario().getText();
-			String password = ventana.getPassword().getText();
+			String nombre = ventana.getUsuario().getValor();
+			String password = ventana.getPassword().getTextField().getText();
 			
 			try {
-				
 				Sesion.iniciarSesion(nombre, password);
 				ventana.dispose();
 				ventana = null;
@@ -61,8 +50,8 @@ public class ControladorIniciarSesion {
 
 	@SuppressWarnings("deprecation")
 	private boolean validarCampos() {
-		String nombre = ventana.getUsuario().getText();
-		String password = ventana.getPassword().getText();
+		String nombre = ventana.getUsuario().getValor();
+		String password = ventana.getPassword().getTextField().getText();
 		String mensaje = "";
 		
 		if (nombre.equals(""))
@@ -83,11 +72,10 @@ public class ControladorIniciarSesion {
 	}
 
 	private void cancelar() {
-		if (Popup.confirmar("�Estas seguro que quieres salir del Sistema Revivir !?"))
+		if (Popup.confirmar("¿Seguro de que desea salir del sistema?"))
 			System.exit(0);
 	}
 	
-
 	private void recuperarPassword() {
 		ventanaRecPass = new VentanaRecuperarPassword();
 		ventanaRecPass.getVentana().setVisible(true);
@@ -103,7 +91,7 @@ public class ControladorIniciarSesion {
 			}
 		});
 
-		ventana.getVentana().setEnabled(false);
+		ventana.deshabilitar();
 	}
 
 	private void cerrarVentanaRecuperarPass() {
@@ -113,15 +101,13 @@ public class ControladorIniciarSesion {
 	}
 
 	public void inicializar() {
-		ventana.getVentana().setEnabled(true);
-		ventana.getVentana().setVisible(true);
+		ventana.mostrar();
 	}
 
-	
 	private void recuperarPass() {
 		String email =ventanaRecPass.getTxtEmail().getText();
 		if (validarEmail(email)) 
-				enviarPassword(email);
+			enviarPassword(email);
 	}
 
 	private boolean validarEmail(String email) {
@@ -158,9 +144,5 @@ public class ControladorIniciarSesion {
 	private String generarPassword() {
 		return UUID.randomUUID().toString().substring(0, 8);
 	}
-
-	
-	
-	
 
 }

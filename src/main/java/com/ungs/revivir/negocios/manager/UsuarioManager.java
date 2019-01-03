@@ -20,9 +20,6 @@ public class UsuarioManager {
 		UsuarioOBD obd = FactoryOBD.crearUsuarioOBD();
 		obd.update(nuevo);
 	}
-
-	
-	
 	
 	public static List<Usuario> traerTodo() {
 		UsuarioOBD obd = FactoryOBD.crearUsuarioOBD();
@@ -38,6 +35,5 @@ public class UsuarioManager {
 		UsuarioOBD obd = FactoryOBD.crearUsuarioOBD();
 		return obd.selectByUsuario(usuario);
 	}
-
 	
 }

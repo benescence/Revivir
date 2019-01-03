@@ -18,7 +18,7 @@ public class VentanaServicioAM extends Ventana {
 	private Boton btnAceptar, btnCancelar;
 	
 	public VentanaServicioAM() {
-		super("Agregar servicio", 500, 500);
+		super("Alta de servicio", 500, 500);
 		iniciarComponentes();
 		setLocationRelativeTo(null);
 	}
