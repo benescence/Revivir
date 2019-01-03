@@ -88,6 +88,28 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	}
 
 	@Override
+	public Ubicacion selectByUbicacion(Ubicacion ubicacion) {
+		String condicion =" subsector = "+Definido.subsector(ubicacion.getSubsector())+" and "
+				+" nicho = "+ubicacion.getNicho()+" and "
+				+" fila = "+ubicacion.getFila()+" and "
+				+" seccion = "+ubicacion.getSeccion()+" and "
+				+" macizo = "+ubicacion.getMacizo()+" and "
+				+" unidad = "+ubicacion.getUnidad()+" and "
+				+" bis = "+ubicacion.getBis()+" and "
+				+" bis_macizo = "+ubicacion.getBis_macizo()+" and " 
+				+" sepultura = "+ubicacion.getSepultura()+" and "
+				+" parcela = "+ubicacion.getParcela()+" and "
+				+" mueble = "+ubicacion.getMueble()+" and "
+				+" inhumacion = "+ubicacion.getInhumacion()+" and "
+				+" circ = "+ubicacion.getCirc();
+				System.out.println(condicion);
+		List<Ubicacion> lista = selectByCondicion(condicion);
+		if (lista.size() > 0)
+			return lista.get(0);
+		return null;
+	}
+	
+	@Override
 	public Ubicacion ultimoInsertado() {
 		Integer ID = selectLastID(tabla);
 		if (ID == null)

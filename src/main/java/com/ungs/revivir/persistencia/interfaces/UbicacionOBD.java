@@ -29,4 +29,5 @@ public interface UbicacionOBD {
 	
 	public List<Ubicacion> selectBySubsectorEntreFechas(SubSector subSector, Date desde, Date hasta);
 	
+	public Ubicacion selectByUbicacion(Ubicacion ubicacion);
 }

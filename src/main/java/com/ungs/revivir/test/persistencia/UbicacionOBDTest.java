@@ -77,6 +77,16 @@ public class UbicacionOBDTest {
 		obd.delete(objetoBD1);
 	}	
 	
+	@Test
+	void testOcupado() {
+		obd.insert(objeto);
+		Ubicacion objetoBD1 = obd.ultimoInsertado();
+		Ubicacion objetoBD2 = obd.selectByUbicacion(objetoBD1);
+		System.out.println(objetoBD2);
+		iguales(objetoBD1, objetoBD2);
+		obd.delete(objetoBD1);
+	}	
+	
 	private void iguales(Ubicacion obj1, Ubicacion obj2) {
 		
 		boolean seccion = (obj1.getSeccion() == null) && (obj2.getSeccion() == null); 

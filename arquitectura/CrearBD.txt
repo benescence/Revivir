@@ -224,3 +224,6 @@ INSERT INTO rev_subsector (ID, sector, descripcion) VALUES
 (13, 6, 'DEPOSITO 2'),
 (14, 6, 'DEPOSITO 3'),
 (15, 7, 'OTRO CMENTERIO');
+
+insert into rev_usuarios (rol, usuario, password) values 
+(1, 'admin', 'admin');
