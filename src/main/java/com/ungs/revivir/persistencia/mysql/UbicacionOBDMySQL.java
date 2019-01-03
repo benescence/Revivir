@@ -171,7 +171,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 
 			resultados.close();
 			sentencia.close();
-			conexion.close();			
+			conexion.close();
 			
 		}catch(Exception e) {
 			System.out.println(comandoSQL);
@@ -183,12 +183,8 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	
 	@Override
 	public List<Ubicacion> selectBySubsectorEntreFechas(SubSector subSector, Date desde, Date hasta) {
-		String desdeStr = "'"+desde+"'";
-		String hastaStr = "'"+hasta+"'";
-		
 		String condicion = "subsector = "+Definido.subsector(subSector)
-			+ " and vencimiento between "+desdeStr+" and "+hastaStr;
-		
+			+ " and vencimiento between '"+desde+"' and '"+hasta+"'";
 		return selectByCondicion(condicion);
 	}
 	
