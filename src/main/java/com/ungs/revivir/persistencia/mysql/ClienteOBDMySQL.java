@@ -62,17 +62,9 @@ public class ClienteOBDMySQL extends OBD implements ClienteOBD{
 	}
 
 	@Override
-	public List<Cliente> select() {
-		return selectByCondicion("true");
-	}
-
-	@Override
 	public Cliente selectByID(Integer ID) {
 		String condicion = "ID = "+ID;
-		List<Cliente> lista = selectByCondicion(condicion);
-		if (lista.size() > 0)
-			return lista.get(0);
-		return null;
+		return selectUnicoByCondicion(condicion);
 	}
 
 	@Override
@@ -83,18 +75,18 @@ public class ClienteOBDMySQL extends OBD implements ClienteOBD{
 		else
 			return selectByID(ID);
 	}
+	
+	@Override
+	public List<Cliente> select() {
+		return selectByCondicion("true");
+	}
 
-	
-	// CONSULTAS ESPECIFICAS
-	
+	// ************************ METODOS ESPECIFICOS ********************************
 
 	@Override
 	public Cliente selectByDNI(String DNI) {
-		String condicion = "DNI = " +(DNI != null ? "'"+DNI+"'" : "DNI");
-		List<Cliente> lista = selectByCondicion(condicion);
-		if (lista.size() > 0)
-			return lista.get(0);
-		return null;
+		String condicion = "DNI = '" + DNI +"'";
+		return selectUnicoByCondicion(condicion);
 	}
 
 	@Override
@@ -116,6 +108,15 @@ public class ClienteOBDMySQL extends OBD implements ClienteOBD{
 		}
 		
 		return selectByCondicion(condicion);
+	}
+
+	// ************************ METODOS PRIVADOS  ********************************
+	
+	private Cliente selectUnicoByCondicion(String condicion) {
+		List<Cliente> lista = selectByCondicion(condicion);
+		if (lista.size() > 0)
+			return lista.get(0);
+		return null;
 	}
 
 	private List<Cliente> selectByCondicion(String condicion) {
