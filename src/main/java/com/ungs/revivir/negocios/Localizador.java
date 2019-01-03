@@ -32,8 +32,14 @@ public class Localizador {
 			ret.add(SubSector.PALMERAS_SEPULTURAS);
 		}
 
-		else if (sector == Sector.NICHERA)
+		else if (sector == Sector.NICHERA) 
 			ret.add(SubSector.NICHERA);
+			
+		else if (sector == Sector.DEPOSITO) {
+			ret.add(SubSector.DEPOSITO1);
+			ret.add(SubSector.DEPOSITO2);
+			ret.add(SubSector.DEPOSITO3);
+		}
 		
 		else if (sector == Sector.CENIZARIO)
 			ret.add(SubSector.CENIZARIO);

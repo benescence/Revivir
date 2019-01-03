@@ -185,7 +185,8 @@ INSERT INTO rev_tipo_fallecimiento (ID, descripcion) VALUES
 -- INSERT  ROLES
 INSERT INTO rev_roles (ID, descripcion) VALUES
 (1, "SUPERVISOR"),
-(2, "ADMINISTRATIVO");
+(2, "ADMINISTRATIVO"),
+(3, "CAJERO");
 
 -- INSERT SECTORES
 INSERT INTO rev_sector (ID, descripcion) VALUES
