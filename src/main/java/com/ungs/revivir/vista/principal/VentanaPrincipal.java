@@ -5,10 +5,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 
 import com.ungs.revivir.vista.util.contenedores.Ventana;
 
@@ -24,6 +27,7 @@ public class VentanaPrincipal extends Ventana {
 	private JMenuItem servicioAlta, servicioConsulta;
 	private JMenuItem usuarioAlta, usuarioConsulta;
 	private JMenuItem vencimientoConsulta;
+	private JLabel lblLogo;
 	
 	public VentanaPrincipal() {
 		super("Ventana principal", 1000, 700);
@@ -31,7 +35,14 @@ public class VentanaPrincipal extends Ventana {
 		repaint();
 		pack();
 		setBounds(0, 0, 1000, 700);
-		setLocationRelativeTo(null);		
+		setLocationRelativeTo(null);	
+		ImageIcon img = new ImageIcon("imagenes/logocsm.png");
+		setIconImage(img.getImage());
+		
+		lblLogo = new JLabel(new ImageIcon("imagenes/cementerioFinal.png"));
+		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		setContentPane(lblLogo);
 	}
 	
 	private JMenuBar crearBarra() {
