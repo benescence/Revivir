@@ -13,7 +13,6 @@ import com.ungs.revivir.persistencia.definidos.Sector;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.vista.tablas.TablaUbicacionesLibres;
 import com.ungs.revivir.vista.util.Boton;
-import com.ungs.revivir.vista.util.TextoCentrado;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 import com.ungs.revivir.vista.util.contenedores.VentanaInterna;
@@ -43,7 +42,7 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		PanelHorizontal panelBotones = new PanelHorizontal();
 		panelBotones.add(btnBuscar);
 		panelBotones.add(btnLimpiar);
-		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
+		panelBotones.setBorder(new EmptyBorder(10, 0, 10, 0));
 		
 		PanelVertical panelPrincipal = new PanelVertical();
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -55,9 +54,9 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 	}
 	
 	private PanelVertical panelBusqueda() {
-		Dimension dimTexto = new Dimension(50, 25);
-		Dimension dimEntradaDoble = new Dimension(100, 25);
-		Dimension dimEntrada = new Dimension(300, 25);
+		Dimension dimTexto = new Dimension(100, 25);
+		Dimension dimEntradaDoble = new Dimension(125, 25);
+		Dimension dimEntrada = new Dimension(330, 25);
 		
 		// Inicializo las listas de sectores
 		inSector = new EntradaLista<>("Sector", dimTexto, dimEntrada);
@@ -91,15 +90,17 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		inSeccion = new EntradaTexto("Seccion", dimTexto, dimEntrada);
 
 		PanelVertical ret1 = new PanelVertical();
+		ret1.setBorder(new EmptyBorder(0, 0, 0, 10));
 		ret1.add(inSector);
-		ret1.add(inSeccion);
+		ret1.add(inSubsector);
 		ret1.add(inCirc);
 		ret1.add(inMacizo);
 		ret1.add(inParcela);
 		ret1.add(inFila);
 		
 		PanelVertical ret2 = new PanelVertical();
-		ret2.add(inSubsector);
+		ret2.setBorder(new EmptyBorder(0, 10, 0, 0));
+		ret2.add(inSeccion);
 		ret2.add(inUnidad);
 		ret2.add(inNicho);
 		ret2.add(inMueble);
@@ -112,7 +113,6 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		
 		
 		PanelVertical ret = new PanelVertical();
-		ret.add(new TextoCentrado("Busquedas"));
 		ret.add(ret3);
 		return ret;
 	}
