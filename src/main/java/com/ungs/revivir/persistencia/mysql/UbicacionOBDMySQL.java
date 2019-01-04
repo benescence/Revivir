@@ -132,7 +132,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 									SubSector subsector) {
 			
 		String condicionSubsector =" subsector = "+Definido.subsector(subsector);
-		String condicionSeccion = " seccion = " + seccion;
+		String condicionSeccion = (seccion != null) ? (" and "+  "seccion = '" + seccion+"'") : "";
 		String condicionNicho = (nichoMin!= null && nichoMax != null) ? (" and "+nichoMin +"< nicho <" + nichoMax) : "";
 		String condicionFila = (filaMin!= null && filaMax != null) ? (" and "+filaMin +"< fila <" + filaMax) : "";
 		String condicionCirc = (circMin!= null && circMax != null) ? (" and "+circMin +"< circ <" + circMax) : "";
@@ -155,10 +155,10 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 							+ condicioninhumacion
 							+ condicionSepultura ;
 		
-		List<Ubicacion> lista = selectByCondicion(condicion);
-		if (lista.size() > 0)
-			return lista;
-		return null;
+	
+			
+			return selectByCondicion(condicion);
+		
 	}
 	
 	@Override

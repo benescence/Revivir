@@ -22,7 +22,7 @@ public class UbicacionOBDTest {
 				true, false, null, null, null, null, null, Almanaque.hoy());
 	}
 
-	@Test
+	@Test 
 	void testInsert() {
 		obd.insert(objeto);
 		Ubicacion objetoBD = obd.ultimoInsertado();
@@ -71,10 +71,11 @@ public class UbicacionOBDTest {
 	@Test
 	void testSelectByRangos() {
 		
-		obd.insert(objeto);
-		Ubicacion objetoBD1 = obd.ultimoInsertado();
-		List <Ubicacion> listoBD2 = obd.selectByrangos(null,null, null,null, null, null, null, null, null,null,null,null,null,null,null,null,null,null,"",SubSector.ADULTOS);
-		obd.delete(objetoBD1);
+		List <Ubicacion> list = obd.selectByrangos(null,null, null,null, null, null, null, null, null,null,8,0,null,null,null,null,null,null,"Azul",SubSector.ADULTOS);
+		System.out.println(list.size());
+		
+		//assertTrue(list.get(0).getSubsector().equals("PALMERAS ATAUD"));
+		
 	}	
 	
 	@Test
@@ -91,7 +92,6 @@ public class UbicacionOBDTest {
 		obd.insert(objeto);
 		Ubicacion objetoBD1 = obd.ultimoInsertado();
 		Ubicacion objetoBD2 = obd.selectByUbicacion(objetoBD1);
-		System.out.println(objetoBD2);
 		iguales(objetoBD1, objetoBD2);
 		obd.delete(objetoBD1);
 	}	
