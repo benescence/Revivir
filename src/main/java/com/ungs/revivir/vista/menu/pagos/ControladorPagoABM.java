@@ -1,5 +1,6 @@
 package com.ungs.revivir.vista.menu.pagos;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import com.ungs.revivir.vista.menu.pagos.pagoAM.PagoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.reportes.ReporteFacturaPago;
+import com.ungs.revivir.vista.reportes.ReporteMovimientosDiarios;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
@@ -25,10 +27,17 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 		ventana.botonAgregar().addActionListener(e -> agregar());
 		ventana.botonModificar().addActionListener(e -> modificar());
 		ventana.botonEliminar().addActionListener(e -> eliminar());
-		ventana.botonReporte().addActionListener(e -> reporte());
+		ventana.botonFactura().addActionListener(e -> factura());
+		ventana.botonMovimientos().addActionListener(e -> movimientos());
 	}
 	
-	private void reporte() {
+	private void movimientos() {
+		Date fecha = ventana.getFecha().getValor();
+		ReporteMovimientosDiarios reporte = new ReporteMovimientosDiarios(fecha);
+		reporte.mostrar();
+	}
+	
+	private void factura() {
 		List<Pago> lista = ventana.getTabla().obtenerSeleccion();
 		
 		if (lista.size() != 1) {
