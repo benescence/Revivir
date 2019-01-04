@@ -5,14 +5,13 @@ import java.util.List;
 
 import com.ungs.revivir.negocios.manager.PagoManager;
 import com.ungs.revivir.persistencia.entidades.Pago;
-import com.ungs.revivir.vista.reportes.FacturaPago;
+import com.ungs.revivir.vista.reportes.ReporteFacturaPago;
 
-public class ReporteTest {
+public class ReporteFacturaPagoTest {
 
 	public static void main(String[] args) {
-		
 		List<Pago> pagos = PagoManager.traerTodo();
-		FacturaPago reporte = new FacturaPago(pagos);
+		ReporteFacturaPago reporte = new ReporteFacturaPago(pagos);
 		reporte.mostrar();
 	}
 

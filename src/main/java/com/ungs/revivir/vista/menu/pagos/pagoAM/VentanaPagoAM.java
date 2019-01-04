@@ -16,7 +16,7 @@ import com.ungs.revivir.vista.util.entradas.EntradaTexto;
 
 public class VentanaPagoAM extends Ventana {
 	private static final long serialVersionUID = 1L;
-	private Boton btnAceptar, btnCancelar, btnSelCliente, btnCargarCliente, btnSelCargo, btnCargarCargo;
+	private Boton btnAceptar, btnAceptarVer, btnCancelar, btnSelCliente, btnCargarCliente, btnSelCargo, btnCargarCargo;
 	private EntradaTexto inNombreCli, inApellidoCli, inDNICli;
 	private EntradaTexto inNombreFal, inApellidoFal, inDNIFal;
 	private EntradaTexto inCodigo, inNombreSer;
@@ -46,10 +46,12 @@ public class VentanaPagoAM extends Ventana {
 		inObservaciones = new EntradaTexto("Observaciones", dimTexto, dimEntrada);
 		
 		btnAceptar = new Boton("Aceptar", dimBoton);
-		btnCancelar = new Boton("Cancelar", dimBoton);		
+		btnAceptarVer = new Boton("Aceptar y ver", dimBoton);
+		btnCancelar = new Boton("Cancelar", dimBoton);
 		PanelHorizontal panelBotones = new PanelHorizontal();
 		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
 		panelBotones.add(btnAceptar);
+		panelBotones.add(btnAceptarVer);
 		panelBotones.add(btnCancelar);
 		
 		PanelVertical panelPrincipal = new PanelVertical();
@@ -134,6 +136,11 @@ public class VentanaPagoAM extends Ventana {
 		return btnCancelar;
 	}
 	
+
+	public Boton botonAceptarVer() {
+		return btnAceptarVer;
+	}
+
 
 	public Boton botonSelCliente() {
 		return btnSelCliente;

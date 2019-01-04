@@ -2,13 +2,13 @@ package com.ungs.revivir.negocios;
 
 import java.util.List;
 
-import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class Busqueda {
 	
@@ -36,8 +36,10 @@ public class Busqueda {
 		
 		// validaciones
 		seccion = Verificador.anular(seccion);
-		//UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
-		return UbicacionManager.traerTodo();
+		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
+		return obd.selectByrangos(nichoMax, nichoMin, circMax, circMin, filaMax, filaMin, parcelaMax,
+				parcelaMin, unidadMax, unidadMin, muebleMax, muebleMin, sepulturaMax, sepulturaMin,
+				inhumacionMax, inhumacionMin, macizoMax, macizoMin, seccion, subSector);
 	}
 
 }
