@@ -13,6 +13,9 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
+import com.ungs.revivir.negocios.Sesion;
+import com.ungs.revivir.persistencia.definidos.Rol;
+import com.ungs.revivir.persistencia.entidades.Usuario;
 import com.ungs.revivir.vista.util.contenedores.Ventana;
 
 public class VentanaPrincipal extends Ventana {
@@ -52,6 +55,10 @@ public class VentanaPrincipal extends Ventana {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {}
 		});
+		
+		Usuario usuario = Sesion.getUsuario();
+		System.out.println(usuario.getUsuario());
+		System.out.println(usuario.getRol());
 		
 		//********************** MENU PRINCIPAL ***************************		
 		JMenu menuPrincipal = new JMenu("Principal");
@@ -119,7 +126,8 @@ public class VentanaPrincipal extends Ventana {
 		menuSevicio.add(servicioAlta = new JMenuItem("Alta de servicio", 'a'));
 		menuSevicio.add(servicioConsulta = new JMenuItem("Consultar servicios", 'c'));
 		servicioAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK | Event.ALT_MASK));
-		barra.add(menuSevicio);
+		if (usuario.getRol() == Rol.SUPERVISOR)
+			barra.add(menuSevicio);
 
 		//********************** MENU VENCIMIENTOS ***************************
 		JMenu menuVencimientos = new JMenu("Vencimientos");
@@ -134,7 +142,8 @@ public class VentanaPrincipal extends Ventana {
 		menuUsuario.add(usuarioAlta = new JMenuItem("Alta de usuario", 'a'));
 		menuUsuario.add(usuarioConsulta = new JMenuItem("Consultar usuarios", 'c'));
 		usuarioAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, Event.CTRL_MASK | Event.ALT_MASK));
-		barra.add(menuUsuario);
+		if (usuario.getRol() == Rol.SUPERVISOR)
+			barra.add(menuUsuario);
 
 		//********************** MENU UBICACIONES ***************************
 		JMenu menuUbicaciones = new JMenu("Ubicaciones");

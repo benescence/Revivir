@@ -95,17 +95,17 @@ public class Definido {
 	public static Integer rol(Rol rol) {
 		Integer ret = null;
 		if (rol == Rol.ADMINISTRATIVO)
-			ret = 1;
-		else if (rol == Rol.SUPERVISOR)
 			ret = 2;
+		else if (rol == Rol.SUPERVISOR)
+			ret = 1;
 		return ret;
 	}
 
 	public static Rol rol(Integer rol) {
 		Rol ret = null;
-		if (rol == 1)
+		if (rol == 2)
 			ret = Rol.ADMINISTRATIVO;
-		else if (rol == 2)
+		else if (rol == 1)
 			ret = Rol.SUPERVISOR;
 		return ret;
 	}
