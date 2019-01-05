@@ -1,25 +1,15 @@
 package com.ungs.revivir.vista.sesion.iniciar;
 
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.UUID;
-
-import javax.swing.JFrame;
-
-import com.ungs.revivir.negocios.EmailSender;
 import com.ungs.revivir.negocios.Sesion;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
-import com.ungs.revivir.vista.sesion.VentanaRecuperarPassword;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
-import com.ungs.revivir.vista.util.PresionarEnterListener;
-import com.ungs.revivir.vista.util.entradas.EntradaMouse;
 
 public class ControladorIniciarSesion {
 	private VentanaIniciarSesion ventana;
-	private VentanaRecuperarPassword ventanaRecPass;
+	//private VentanaRecuperarPassword ventanaRecPass;
 
 	public ControladorIniciarSesion() {
 		ventana = new VentanaIniciarSesion();
@@ -75,7 +65,7 @@ public class ControladorIniciarSesion {
 		if (Popup.confirmar("¿Seguro de que desea salir del sistema?"))
 			System.exit(0);
 	}
-	
+	/*
 	private void recuperarPassword() {
 		ventanaRecPass = new VentanaRecuperarPassword();
 		ventanaRecPass.getVentana().setVisible(true);
@@ -100,15 +90,12 @@ public class ControladorIniciarSesion {
 		inicializar();
 	}
 
-	public void inicializar() {
-		ventana.mostrar();
-	}
-
 	private void recuperarPass() {
 		String email =ventanaRecPass.getTxtEmail().getText();
 		if (validarEmail(email)) 
 			enviarPassword(email);
 	}
+
 
 	private boolean validarEmail(String email) {
 		String mensaje = "";
@@ -141,8 +128,14 @@ public class ControladorIniciarSesion {
 		}
 	}
 
+
 	private String generarPassword() {
 		return UUID.randomUUID().toString().substring(0, 8);
 	}
+*/
+	public void inicializar() {
+		ventana.mostrar();
+	}
 
+	
 }

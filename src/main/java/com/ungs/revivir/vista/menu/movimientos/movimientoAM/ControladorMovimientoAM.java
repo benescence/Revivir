@@ -69,6 +69,9 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 		ventana.requestFocusInWindow();
 		
 		try {
+			if (fallecido == null)
+				throw new Exception("Debe seleccionar un fallecido.");
+			
 			// Verifico que los datos de entrada son validos
 			Ubicacion verificada = traerUbicacionVerificada();
 			
@@ -101,6 +104,7 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 			
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
+			e.printStackTrace();
 		}
 		
 	}

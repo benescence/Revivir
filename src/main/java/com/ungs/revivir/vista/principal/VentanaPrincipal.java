@@ -57,8 +57,6 @@ public class VentanaPrincipal extends Ventana {
 		});
 		
 		Usuario usuario = Sesion.getUsuario();
-		System.out.println(usuario.getUsuario());
-		System.out.println(usuario.getRol());
 		
 		//********************** MENU PRINCIPAL ***************************		
 		JMenu menuPrincipal = new JMenu("Principal");
