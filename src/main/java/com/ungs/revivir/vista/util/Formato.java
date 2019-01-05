@@ -87,7 +87,6 @@ public class Formato {
 		Cargo cargo = CargoManager.traerPorID(pago.getCargo());
 		Fallecido fallecido = FallecidoManager.traerPorID(cargo.getFallecido());
 		Ubicacion ubicacion = UbicacionManager.traerPorFallecido(fallecido);
-		System.out.println(ubicacion(ubicacion));
 		return ubicacion(ubicacion);
 	}
 

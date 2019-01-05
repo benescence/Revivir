@@ -9,6 +9,7 @@ import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.PagoManager;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.vista.util.Formato;
+import com.ungs.revivir.vista.util.Popup;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -28,7 +29,6 @@ public class ReporteMovimientosDiarios {
 		List<String> servicios = new ArrayList<String>();
 		List<String> clientes = new ArrayList<String>();
 		List<Pago> pagos = PagoManager.traerPorFecha(fecha);
-		System.out.println(pagos.size());
 		List<Double> montos = new ArrayList<Double>();
 		Double suma = 0.0;
 		List<Double> total = new ArrayList<Double>();
@@ -43,7 +43,7 @@ public class ReporteMovimientosDiarios {
 			suma= suma + pago.getImporte();		
 		}
 		
-		if (pagos.size() != 0)
+		if (pagos.size() != 0) {
 		
 		total.add(suma);
 		totalPagos.put("descripcion", servicios);
@@ -56,14 +56,18 @@ public class ReporteMovimientosDiarios {
 				this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalPagos,
 						new JRBeanCollectionDataSource(pagos));
 				System.out.println("Se cargo correctamente reporte");
+				mostrar();
 		
 		} catch (JRException ex) {
 			System.out.println("Ocurrio un error mientras se cargaba el archivo movimientos diario.Jasper \n " + ex);
 		}
-		
+		}
+		else {
+			Popup.mostrar("No hay pagos para la fecha seleccionada");
+		}
 	}
 
-	public void mostrar() {
+	private void mostrar() {
 		this.reporteViewer = new JasperViewer(this.reporteLleno, false);
 		this.reporteViewer.setVisible(true);
 	}

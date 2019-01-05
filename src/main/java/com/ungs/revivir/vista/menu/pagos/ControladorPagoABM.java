@@ -34,7 +34,7 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 	private void movimientos() {
 		Date fecha = ventana.getFecha().getValor();
 		ReporteMovimientosDiarios reporte = new ReporteMovimientosDiarios(fecha);
-		reporte.mostrar();
+		//reporte.mostrar();
 	}
 	
 	private void factura() {
