@@ -40,7 +40,7 @@ public class VentanaIniciarSesion extends Ventana {
 		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
 		panelBotones.add(btnAceptar);		
 		panelBotones.add(btnCancelar);
-		panelBotones.add(btnRecuperar);
+		//panelBotones.add(btnRecuperar);
 		
 		PanelVertical panelPrincipal = new PanelVertical();
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
