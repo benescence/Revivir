@@ -7,107 +7,155 @@
 	<parameter name="cargo" class="java.lang.String"/>
 	<parameter name="monto" class="java.lang.Double"/>
 	<parameter name="observaciones" class="java.lang.String"/>
+	<parameter name="fallecido" class="java.lang.String"/>
+	<parameter name="ubicacion" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[fecha]]></fieldDescription>
+	</field>
 	<group name="Group1"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="116" splitType="Stretch">
+		<band height="194" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="0" width="360" height="116" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
+				<reportElement x="0" y="0" width="560" height="140" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
 				<staticText>
-					<reportElement x="2" y="80" width="290" height="30" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
+					<reportElement x="160" y="110" width="290" height="30" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
 					<textElement>
 						<font size="18"/>
 					</textElement>
 					<text><![CDATA[COMPROBANTE DE PAGO]]></text>
 				</staticText>
 				<image hAlign="Center">
-					<reportElement x="10" y="10" width="300" height="50" uuid="749ca9cc-7b40-4aa1-8710-adeeae3d14a1"/>
+					<reportElement x="240" y="10" width="110" height="50" uuid="749ca9cc-7b40-4aa1-8710-adeeae3d14a1"/>
 					<imageExpression><![CDATA["imagenes/Logo.png"]]></imageExpression>
 				</image>
+				<staticText>
+					<reportElement x="10" y="0" width="220" height="30" uuid="076a12af-713a-4405-b590-a8b0ab2908cc"/>
+					<textElement>
+						<font fontName="Calibri" size="14"/>
+					</textElement>
+					<text><![CDATA[CEMENTERIO S.A. DE PADUA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="5" y="43" width="125" height="17" uuid="4645c0df-e3c7-405e-b7c4-d100118e49ff"/>
+					<text><![CDATA[Revivir Constructora S.R.L. ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="5" y="64" width="165" height="30" uuid="48dc2fc6-8e8c-4c90-8c45-be67836cccfb"/>
+					<text><![CDATA[Av. Gaspar Campos 4698 (1663) San Miguel. tel: 4451 5824]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</title>
 	<columnHeader>
-		<band height="183" splitType="Stretch">
+		<band height="487" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="57" width="360" height="126" backcolor="rgba(0, 255, 242, 0.1764706)" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36">
+				<reportElement x="0" y="50" width="540" height="400" backcolor="rgba(0, 255, 242, 0.1764706)" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 				</reportElement>
 				<staticText>
-					<reportElement x="0" y="30" width="80" height="23" uuid="281cee38-914d-492e-b4dc-9b7e4524c65f"/>
+					<reportElement x="50" y="55" width="80" height="23" uuid="281cee38-914d-492e-b4dc-9b7e4524c65f"/>
 					<textElement textAlignment="Center">
 						<font size="14" isBold="true"/>
 					</textElement>
-					<text><![CDATA[CLIENTE:]]></text>
+					<text><![CDATA[CLIENTE :]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="2" y="-35" width="128" height="23" uuid="d8f320db-dcc7-459d-8040-aea3690a2bf0"/>
+					<reportElement x="3" y="-2" width="128" height="23" uuid="d8f320db-dcc7-459d-8040-aea3690a2bf0"/>
 					<textElement textAlignment="Center">
 						<font size="14" isBold="true"/>
 					</textElement>
 					<text><![CDATA[FECHA DE PAGO:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="60" width="78" height="23" uuid="cd8d9e5e-a008-4992-a455-931260090e53"/>
+					<reportElement x="53" y="78" width="78" height="23" uuid="cd8d9e5e-a008-4992-a455-931260090e53"/>
 					<textElement textAlignment="Center">
 						<font size="14" isBold="true"/>
 					</textElement>
-					<text><![CDATA[MONTO:]]></text>
+					<text><![CDATA[MONTO :]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="-1" width="110" height="23" uuid="62a7320b-7f88-4c05-8895-e86978607b40"/>
+					<reportElement x="20" y="30" width="110" height="23" uuid="62a7320b-7f88-4c05-8895-e86978607b40"/>
 					<textElement textAlignment="Center">
 						<font size="14" isBold="true"/>
 					</textElement>
 					<text><![CDATA[DESCRIPCION : ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="90" width="140" height="23" uuid="5d9dfff1-82dc-4301-a734-51dd91936b4a"/>
+					<reportElement x="-3" y="150" width="140" height="23" uuid="5d9dfff1-82dc-4301-a734-51dd91936b4a"/>
 					<textElement textAlignment="Center">
 						<font size="14" isBold="true"/>
 					</textElement>
 					<text><![CDATA[OBSERVACIONES:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="1" width="230" height="18" uuid="a14a96ab-7a01-4b87-af5a-1495276c3a33"/>
+					<reportElement x="150" y="32" width="230" height="18" uuid="a14a96ab-7a01-4b87-af5a-1495276c3a33"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{cargo}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="92" y="32" width="258" height="18" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
+					<reportElement x="150" y="60" width="258" height="18" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{cliente}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="92" y="60" width="258" height="18" uuid="3d2d2cc5-94b9-488f-9cb9-1776b653bcda"/>
+					<reportElement x="100" y="290" width="258" height="18" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
+					<textElement markup="styled">
+						<font fontName="Calibri" size="14" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{fallecido}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="100" y="330" width="430" height="60" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
+					<textElement>
+						<font fontName="Calibri" size="14" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{ubicacion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="148" y="90" width="258" height="18" uuid="3d2d2cc5-94b9-488f-9cb9-1776b653bcda"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["$" + $P{monto}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="160" y="90" width="180" height="18" uuid="60fd7bb1-06fd-417d-983c-30596320f086"/>
+					<reportElement x="148" y="150" width="180" height="23" uuid="60fd7bb1-06fd-417d-983c-30596320f086"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{observaciones}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="140" y="-35" width="210" height="18" uuid="78c2ee9a-adf6-4344-9ac5-e5bcf92bb29d"/>
+					<reportElement x="150" y="0" width="210" height="18" uuid="78c2ee9a-adf6-4344-9ac5-e5bcf92bb29d"/>
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{fecha});]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="20" y="290" width="64" height="18" uuid="1a23ca4d-7859-4e6c-b241-a781191f6467"/>
+					<textElement>
+						<font fontName="Calibri" size="14"/>
+					</textElement>
+					<text><![CDATA[Fallecido :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="15" y="330" width="75" height="30" uuid="8375a57b-5a1b-49a6-a08e-f410aa8cad4e"/>
+					<textElement>
+						<font fontName="Calibri" size="14"/>
+					</textElement>
+					<text><![CDATA[Ubicacion:]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</columnHeader>

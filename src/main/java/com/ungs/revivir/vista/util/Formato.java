@@ -83,7 +83,13 @@ public class Formato {
 		Ubicacion ubicacion = UbicacionManager.traerPorFallecido(fallecido);
 		return ubicacion(ubicacion);
 	}
-
+	public static String ubicaciondesdePago(Pago pago) {
+		Cargo cargo = CargoManager.traerPorID(pago.getCargo());
+		Fallecido fallecido = FallecidoManager.traerPorID(cargo.getFallecido());
+		Ubicacion ubicacion = UbicacionManager.traerPorFallecido(fallecido);
+		System.out.println(ubicacion(ubicacion));
+		return ubicacion(ubicacion);
+	}
 
 
 	
@@ -140,6 +146,8 @@ public class Formato {
 		
 		return renglonesMaximo*20;
 	}
+
+	
 	
 	// REPORTES
 	

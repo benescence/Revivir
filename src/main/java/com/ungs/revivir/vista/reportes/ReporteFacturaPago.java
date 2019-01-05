@@ -26,12 +26,13 @@ public class ReporteFacturaPago {
     	Pago pago = pagos.get(0);
     	 System.out.println(pagos.get(0).getCargo());
     	totalPersonas.put("fecha", pago.getFecha());
-    	//totalPersonas.put("cliente", Formato.IDcliente(pago.getCliente()));
-    	totalPersonas.put("cliente", "prueba");
+    	totalPersonas.put("cliente",Formato.cliente(pagos.get(0)));
     	totalPersonas.put("cargo",Formato.servicioDesdeCargo(pago));
     	totalPersonas.put("monto", pago.getImporte());
     	totalPersonas.put("observaciones", pago.getObservaciones());
-    
+    	totalPersonas.put("fallecido", Formato.fallecido(pagos.get(0)));
+    	totalPersonas.put("ubicacion", Formato.ubicaciondesdePago(pagos.get(0)));
+    	
     	try	{
         	this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\FacturaPago.jasper");
 			this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalPersonas, 
