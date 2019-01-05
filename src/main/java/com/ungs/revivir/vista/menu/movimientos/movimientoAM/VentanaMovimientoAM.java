@@ -237,7 +237,7 @@ public class VentanaMovimientoAM extends Ventana {
 			
 		} else if (subSector == SubSector.NICHERA) {
 			inCirc.habilitado(true);
-			inSeccion.habilitado(false);
+			inSeccion.habilitado(true);
 			inMacizo.habilitado(true);
 			inParcela.habilitado(true);
 			inFila.habilitado(true);
@@ -250,6 +250,7 @@ public class VentanaMovimientoAM extends Ventana {
 		} else if (subSector == SubSector.BOVEDA) {
 			inCirc.habilitado(true);
 			inSeccion.habilitado(true);
+			inFila.habilitado(true);
 			inMacizo.habilitado(true);
 			inParcela.habilitado(true);
 			inUnidad.habilitado(true);

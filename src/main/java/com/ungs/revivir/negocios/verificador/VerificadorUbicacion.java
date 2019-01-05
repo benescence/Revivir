@@ -133,7 +133,8 @@ public class VerificadorUbicacion {
 			if (macizo == null)
 				mensaje += "\n    -El MACIZO no puede estar vacio.";
 			
-			if (unidad == null)
+			// si es adultos la unidad puede ser null
+			if (unidad == null && subSector == SubSector.ANGELITOS)
 				mensaje += "\n    -La UNIDAD no puede estar vacio.";
 			
 			if (parcela == null)

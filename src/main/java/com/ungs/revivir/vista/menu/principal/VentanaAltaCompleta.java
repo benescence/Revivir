@@ -261,7 +261,8 @@ public class VentanaAltaCompleta extends Ventana {
 			
 		} else if (subSector == SubSector.NICHERA) {
 			inCirc.habilitado(true);
-			inSeccion.habilitado(false);
+			inSeccion.habilitado(true);
+			inFila.habilitado(true);
 			inMacizo.habilitado(true);
 			inParcela.habilitado(true);
 			inFila.habilitado(true);
