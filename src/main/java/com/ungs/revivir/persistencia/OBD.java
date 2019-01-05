@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import com.ungs.revivir.persistencia.entidades.Ubicacion;
-
 public class OBD {
 	protected final String driver = "com.mysql.jdbc.Driver";
 	
