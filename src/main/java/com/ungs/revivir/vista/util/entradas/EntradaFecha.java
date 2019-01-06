@@ -37,7 +37,11 @@ public class EntradaFecha extends PanelHorizontal {
 	}
 
 	public Date getValor() {
-		return new Date(dateChooser.getDate().getTime());
+		java.util.Date valor = dateChooser.getDate();
+		if (valor == null)
+			return null;
+		else
+			return new Date(valor.getTime());
 	}
 
 }

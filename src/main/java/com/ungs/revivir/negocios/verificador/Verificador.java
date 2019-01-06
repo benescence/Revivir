@@ -61,19 +61,19 @@ public class Verificador {
 		String mensaje = "";
 
 		if (nombre == null)
-			mensaje += "\n    -El NOMBRE no puede estar vac�o.";
+			mensaje += "\n    -El NOMBRE no puede estar vacío.";
 		else if (!Validador.nombrePersona(nombre))
 			mensaje += "\n    -El NOMBRE solo puede estar compuesto de letras y espacios.";
 
 		if (apellido == null)
-			mensaje += "\n    -El APELLIDO no puede estar vacio.";
+			mensaje += "\n    -El APELLIDO no puede estar vacío.";
 		else if (!Validador.apellido(apellido))
 			mensaje += "\n    -El APELLIDO solo puede estar compuesto de letras y espacios.";
 		
 		if (DNI == null)
-			mensaje += "\n    -El DNI no puede estar vacio.";
+			mensaje += "\n    -El DNI no puede estar vacío.";
 		else if (!Validador.DNI(DNI))
-			mensaje += "\n    -El DNI solo puede estar compuesto de n�meros.";
+			mensaje += "\n    -El DNI solo puede estar compuesto de números.";
 		else {
 			Cliente clienteDNI = ClienteManager.traerPorDNI(DNI);
 			if (clienteDNI != null && (anterior == null || anterior.getID() != clienteDNI.getID()))
@@ -81,7 +81,7 @@ public class Verificador {
 		}
 		
 		if (telefono != null && !Validador.telefono(telefono))
-			mensaje += "\n    -El TELEFONO solo puede estar compuesto de numeros.";
+			mensaje += "\n    -El TELEFONO solo puede estar compuesto de números.";
 		
 		if (email != null && !Validador.email(email))
 			mensaje += "\n    -El EMAIL debe tener un formato de E-Mail apropiado.";
@@ -210,7 +210,7 @@ public class Verificador {
 		}
 		
 		if (password == null)
-			mensaje += "\n    -El PASSWORD no puede estar vac�o.";
+			mensaje += "\n    -El PASSWORD no puede estar vac�o.";
 		else if (!Validador.password(password))
 			mensaje += "\n    -El PASSWORD solo puede estar compuesto de letras, numeros y espacios.";
 		

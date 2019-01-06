@@ -157,10 +157,12 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 			
 			// FINALIZO EL GUARDADO
 			Popup.mostrar("El servicio se ha guardado exitosamente");
-			limpiarTodo();
+			ventana.dispose();
+			invocador.mostrar();			
 		
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
+			e.printStackTrace();
 		}
 		
 	}
