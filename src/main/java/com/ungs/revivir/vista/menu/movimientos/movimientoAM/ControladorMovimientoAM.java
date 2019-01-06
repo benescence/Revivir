@@ -104,7 +104,6 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 			
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
-			e.printStackTrace();
 		}
 		
 	}

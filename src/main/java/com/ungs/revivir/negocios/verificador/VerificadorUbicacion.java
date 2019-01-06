@@ -122,8 +122,7 @@ public class VerificadorUbicacion {
 			return verificar;
 		}
 		
-		if (subSector == SubSector.ADULTOS
-				|| subSector == SubSector.ANGELITOS) {
+		if (subSector == SubSector.ADULTOS) {
 			
 			String mensaje = "";
 				
@@ -133,8 +132,35 @@ public class VerificadorUbicacion {
 			if (macizo == null)
 				mensaje += "\n    -El MACIZO no puede estar vacio.";
 			
-			// si es adultos la unidad puede ser null
-			if (unidad == null && subSector == SubSector.ANGELITOS)
+			// si es adultos la unidad puede ser null aunque este inhabilitada
+			
+			if (sepultura == null)
+				mensaje += "\n    -La SEPULTURA no puede estar vacio.";
+
+			if (!mensaje.equals(""))
+				throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
+			
+			verificar.setSeccion(seccion);
+			verificar.setMacizo(macizo);
+			verificar.setUnidad(unidad);
+			verificar.setSepultura(sepultura);
+			verificar.setParcela(parcela);
+			verificar.setBis(bis);
+			verificar.setBis_macizo(bisMacizo);
+			return verificar;
+		}
+		
+		if (subSector == SubSector.ANGELITOS) {
+			
+			String mensaje = "";
+				
+			if (seccion == null)
+				mensaje += "\n    -La SECCION no puede estar vacia.";
+			
+			if (macizo == null)
+				mensaje += "\n    -El MACIZO no puede estar vacio.";
+			
+			if (unidad == null)
 				mensaje += "\n    -La UNIDAD no puede estar vacio.";
 			
 			if (parcela == null)
