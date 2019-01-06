@@ -23,6 +23,32 @@ public class ControladorClientesABM implements ControladorInterno, ClienteInvoca
 		ventana.botonAgregar().addActionListener(e -> agregar());
 		ventana.botonModificar().addActionListener(e -> modificar());
 		ventana.botonEliminar().addActionListener(e -> eliminar());
+		ventana.botonBuscar().addActionListener(e -> buscar());
+		ventana.botonLimpiar().addActionListener(e -> limpiar());
+	}
+	
+	private void buscar() {
+		ventana.requestFocusInWindow();
+		try {
+			String nombre = ventana.getNombre().getValor();
+			String apellido = ventana.getApellido().getValor();
+			String DNI = ventana.getDNI().getValor();
+			List<Cliente> lista = ClienteManager.traer(nombre, apellido, DNI);
+			
+			if (lista.isEmpty())
+				Popup.mostrar("No se ha encontrado ningun cliente con los parametros ingresados.");
+			ventana.getTabla().recargar(lista);
+			
+		} catch (Exception e) {
+			Popup.mostrar(e.getMessage());
+		}
+		
+	}
+	
+	private void limpiar() {
+		ventana.getNombre().setValor("");
+		ventana.getApellido().setValor("");
+		ventana.getDNI().setValor("");
 	}
 	
 	private void agregar() {
@@ -51,7 +77,7 @@ public class ControladorClientesABM implements ControladorInterno, ClienteInvoca
 			}
 			
 			if (VerificadorBorrado.puedeBorrar(lista.get(0)) &&
-					Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
+					Popup.confirmar("Â¿Seguro de que desea eliminar los registros seleccionados?"))
 				ClienteManager.eliminar(lista.get(0));
 			
 			actualizarClientes();

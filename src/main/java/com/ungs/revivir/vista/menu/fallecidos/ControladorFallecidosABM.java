@@ -23,6 +23,32 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 		ventana.botonAgregar().addActionListener(e -> agregar());
 		ventana.botonModificar().addActionListener(e -> modificar());
 		ventana.botonEliminar().addActionListener(e -> eliminar());
+		ventana.botonBuscar().addActionListener(e -> buscar());
+		ventana.botonLimpiar().addActionListener(e -> limpiar());
+	}
+	
+	private void buscar() {
+		ventana.requestFocusInWindow();
+		try {
+			String nombre = ventana.getNombre().getValor();
+			String apellido = ventana.getApellido().getValor();
+			String DNI = ventana.getDNI().getValor();
+			List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, DNI);
+			
+			if (lista.isEmpty())
+				Popup.mostrar("No se ha encontrado ningun fallecido con los parametros ingresados.");
+			ventana.getTabla().recargar(lista);
+			
+		} catch (Exception e) {
+			Popup.mostrar(e.getMessage());
+		}
+		
+	}
+	
+	private void limpiar() {
+		ventana.getNombre().setValor("");
+		ventana.getApellido().setValor("");
+		ventana.getDNI().setValor("");
 	}
 
 	private void modificar() {
@@ -46,7 +72,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 			}
 			
 			if (VerificadorBorrado.puedeBorrar(lista.get(0)) &&
-					Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
+					Popup.confirmar("Â¿Seguro de que desea eliminar los registros seleccionados?"))
 				FallecidoManager.eliminar(lista.get(0));
 			
 			actualizarFallecidos();
