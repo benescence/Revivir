@@ -18,24 +18,30 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 	private final String tabla = "rev_fallecidos";
 	
 	@Override
-	public void insert(Fallecido obciso) {
-		String valores = obciso.getUbicacion()
-				+", '"+obciso.getDNI()+"'"
-				+", '"+obciso.getApellido()+"'"
-				+", '"+obciso.getNombre()+"'"
-				+", '"+obciso.getFechaFallecimiento()+"'"+", "+Definido.tipoFallecimiento(obciso.getTipoFallecimiento())+", '"+obciso.getCocheria()+"'"+", '"+obciso.getFechaIngreso()+"'";
+	public void insert(Fallecido fallecido) {
+		String fechaFal = (fallecido.getFechaFallecimiento() == null) ? null: "'"+fallecido.getFechaFallecimiento()+"'";
+		
+		String valores = fallecido.getUbicacion()
+				+", '"+fallecido.getDNI()+"'"
+				+", '"+fallecido.getApellido()+"'"
+				+", '"+fallecido.getNombre()+"'"
+				+", "+fechaFal
+				+", "+Definido.tipoFallecimiento(fallecido.getTipoFallecimiento())
+				+", '"+fallecido.getCocheria()+"'"+", '"+fallecido.getFechaIngreso()+"'";
 		String sql = "insert into "+tabla+"("+campos+") values("+valores+");";
 		ejecutarSQL(sql);		
 	}
 
 	@Override
 	public void update(Fallecido fallecido) {
+		String fechaFal = (fallecido.getFechaFallecimiento() == null) ? null: "'"+fallecido.getFechaFallecimiento()+"'";
 		String condicion = "ID = "+fallecido.getID();
+		
 		String valores = " DNI = '"+fallecido.getDNI()+"'"
 				+", apellido = '"+fallecido.getApellido()+"'"
 				+", ubicacion = "+fallecido.getUbicacion()
 				+", nombre = '"+fallecido.getNombre()+"'"
-				+", fecha_fallecimiento = '"+fallecido.getFechaFallecimiento()+"'"
+				+", fecha_fallecimiento = "+fechaFal
 				+", tipo_fallecimiento = "+Definido.tipoFallecimiento(fallecido.getTipoFallecimiento())
 				+", cocheria = '"+fallecido.getCocheria()+"'"
 				+", fecha_ingreso = '"+fallecido.getFechaIngreso()+"'";

@@ -10,7 +10,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.toedter.calendar.JDateChooser;
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.Localizador;
 import com.ungs.revivir.persistencia.definidos.Sector;
@@ -90,7 +89,7 @@ public class VentanaFallecidoAM extends Ventana {
 		inApellido = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
 		inDNI = new EntradaTexto("DNI", dimTexto, dimEntrada);
 		inCocheria = new EntradaTexto("Cocheria", dimTexto, dimEntrada);
-		inFechaFallecimiento = new EntradaFecha(Almanaque.hoy(), "Fecha de fallecimiento", dimTexto, dimEntrada);
+		inFechaFallecimiento = new EntradaFecha(null, "Fecha de fallecimiento", dimTexto, dimEntrada);
 		inFechaIngreso = new EntradaFecha(Almanaque.hoy(), "Fecha de Ingreso", dimTexto, dimEntrada);
 		inTipo = new EntradaLista<>("Tipode fallecimiento", dimTexto, dimEntrada);
 		for (TipoFallecimiento tipo : TipoFallecimiento.values())
@@ -296,12 +295,12 @@ public class VentanaFallecidoAM extends Ventana {
 		return inCocheria.getTextField();
 	}
 
-	public JDateChooser getInFechaFallecimiento() {
-		return inFechaFallecimiento.getDataChooser();
+	public EntradaFecha getInFechaFallecimiento() {
+		return inFechaFallecimiento;
 	}
 	
-	public JDateChooser getInFechaIngreso() {
-		return inFechaIngreso.getDataChooser();
+	public EntradaFecha getInFechaIngreso() {
+		return inFechaIngreso;
 	}
 	
 

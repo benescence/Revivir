@@ -162,7 +162,6 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 		
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
-			e.printStackTrace();
 		}
 		
 	}

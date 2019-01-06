@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,17 @@ class FallecidoOBDTest {
 		iguales(objeto, objetoBD);
 		obd.delete(objetoBD);
 	}
+
+	@Test
+	void testInsertFechaFallecimientoNull() {
+		Date fecha = objeto.getFechaFallecimiento();
+		objeto.setFechaFallecimiento(null);
+		obd.insert(objeto);
+		Fallecido objetoBD = obd.ultimoInsertado();
+		iguales(objeto, objetoBD);
+		obd.delete(objetoBD);
+		objeto.setFechaFallecimiento(fecha);
+	}
 	
 	@Test
 	void testUpdate() {
@@ -44,6 +56,7 @@ class FallecidoOBDTest {
 		objetoBD1.setNombre("Nombre1");
 		objetoBD1.setApellido("Apellido1");
 		objetoBD1.setCocheria("Cocheria1");
+		objetoBD1.setFechaFallecimiento(null);
 		obd.update(objetoBD1);
 		Fallecido objetoBD2 = obd.ultimoInsertado();
 		iguales(objetoBD1, objetoBD2);

@@ -102,8 +102,8 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		String DNI = ventana.getDNIFallecido().getText();
 		String cocheria = ventana.getCocheria().getText();
 		TipoFallecimiento tipo = (TipoFallecimiento) ventana.getInTipoFallecimiento().getSelectedItem();
-		Date fFallecimiento = new Date(ventana.getInFechaFallecimiento().getDate().getTime());
-		Date fIngreso = new Date(ventana.getInFechaIngreso().getDate().getTime());
+		Date fFallecimiento = ventana.getInFechaFallecimiento().getValor();
+		Date fIngreso = ventana.getInFechaIngreso().getValor();
 		
 		Fallecido fallecido = new Fallecido(-1, -1, tipo, DNI, apellido, nombre, cocheria, fFallecimiento, fIngreso);
 		if (modificar != null)

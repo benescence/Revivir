@@ -116,7 +116,7 @@ public class VentanaAltaCompleta extends Ventana {
 		inApellidoFal = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
 		inDNIFal = new EntradaTexto("DNI", dimTexto, dimEntrada);
 		inCocheria = new EntradaTexto("Cocheria", dimTexto, dimEntrada);
-		inFFallecimiento = new EntradaFecha(Almanaque.hoy(), "Fecha de fallecimiento", dimTexto, dimEntrada);
+		inFFallecimiento = new EntradaFecha(null, "Fecha de fallecimiento", dimTexto, dimEntrada);
 		inFIngreso = new EntradaFecha(Almanaque.hoy(), "Fecha de Ingreso", dimTexto, dimEntrada);
 		inTipo = new EntradaLista<>("Tipo de fallecimiento", dimTexto, dimEntrada);
 		for (TipoFallecimiento tipo : TipoFallecimiento.values())
