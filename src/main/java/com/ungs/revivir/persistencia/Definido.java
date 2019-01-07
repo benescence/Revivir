@@ -55,6 +55,8 @@ public class Definido {
 			ret =13;
 		else if (subsector == SubSector.DEPOSITO3)
 			ret = 14;
+		else if (subsector == SubSector.OTRO_CEMENTERIO)
+			ret = 15;
 		return ret;
 	}
 	
@@ -89,6 +91,8 @@ public class Definido {
 			ret = SubSector.DEPOSITO2;
 		else if (subsector == 14)
 			ret = SubSector.DEPOSITO3;
+		else if (subsector == 15)
+			ret = SubSector.OTRO_CEMENTERIO;
 		return ret;
 	}
 	

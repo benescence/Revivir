@@ -12,6 +12,7 @@ public class VerificadorUbicacion {
 		Integer nicho = verificar.getNicho();		
 		Integer fila = verificar.getFila();
 		String seccion = Verificador.anular(verificar.getSeccion());
+		String cementerio = Verificador.anular(verificar.getCementerio());
 		Integer macizo = verificar.getMacizo();		
 		Integer unidad = verificar.getUnidad();		
 		Boolean bis = verificar.getBis();
@@ -267,6 +268,20 @@ public class VerificadorUbicacion {
 			verificar.setMacizo(macizo);
 			verificar.setSepultura(sepultura);
 			verificar.setInhumacion(inhumacion);
+			return verificar;
+		}
+
+		if (subSector == SubSector.OTRO_CEMENTERIO) {
+			
+			String mensaje = "";
+				
+			if (cementerio == null)
+				mensaje += "\n    -El nombre del OTRO CEMENTERIO no puede estar vacio.";
+		
+			if (!mensaje.equals(""))
+				throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
+			
+			verificar.setCementerio(cementerio);
 			return verificar;
 		}
 		

@@ -99,7 +99,7 @@ public class VentanaFallecidoAM extends Ventana {
 		// ORGANIZACION DE PANELES
 		PanelVertical panelFallecido = new PanelVertical();
 		panelFallecido.setBorder(new EmptyBorder(0, 0, 10, 0));
-		panelFallecido.add(new TextoCentrado("Datos del difunto"));
+		panelFallecido.add(new TextoCentrado("Datos del fallecido"));
 		panelFallecido.add(inNombre);
 		panelFallecido.add(inApellido);
 		panelFallecido.add(inDNI);
@@ -256,7 +256,7 @@ public class VentanaFallecidoAM extends Ventana {
 			inUnidad.habilitado(true);
 			inCheckBis.setEnabled(true);
 			
-		} else if (subSector == SubSector.CEMENTERIO) {
+		} else if (subSector == SubSector.OTRO_CEMENTERIO) {
 			inCementerio.habilitado(true);
 		}	
 		
@@ -309,13 +309,16 @@ public class VentanaFallecidoAM extends Ventana {
 		return inFechaIngreso;
 	}
 	
-
 	public JComboBox<TipoFallecimiento> getInTipoFallecimiento() {
 		return inTipo.getComboBox();
 	}
 
 	public EntradaTexto getSeccion() {
 		return inSeccion;
+	}
+
+	public EntradaTexto getCementerio() {
+		return inCementerio;
 	}
 
 	public EntradaNumero getMacizo() {

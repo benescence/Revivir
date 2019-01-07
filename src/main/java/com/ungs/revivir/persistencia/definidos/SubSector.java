@@ -16,6 +16,6 @@ public enum SubSector {
 	DEPOSITO1, 
 	DEPOSITO2, 
 	DEPOSITO3,
-	CEMENTERIO
+	OTRO_CEMENTERIO
 
 }

@@ -62,13 +62,14 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
+			e.printStackTrace();
 		}
 		
 	}
 	
 	private Ubicacion traerUbicacionVerificada() throws Exception {
 		SubSector subsector = (SubSector) ventana.getSubSector().getSelectedItem();
-		String otroCementerio = null;
+		String otroCementerio = ventana.getCementerio().getValor();
 		Integer nicho = (ventana.getNicho().isEnabled() ? ventana.getNicho().getValor() : null);
 		Integer fila = (ventana.getFila().isEnabled() ? ventana.getFila().getValor() : null);
 		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
@@ -83,6 +84,7 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		if (ventana.getInCheckMacizo().isEnabled())
 			bis_macizo = ventana.getInCheckMacizo().isSelected();
 
+		System.out.println(ventana.getInCheckMacizo().isEnabled());
 		Integer sepultura = (ventana.getSepultura().isEnabled() ? ventana.getSepultura().getValor() : null);
 		Integer parcela = (ventana.getParcela().isEnabled() ? ventana.getParcela().getValor() : null);
 		Integer mueble = (ventana.getMueble().isEnabled() ? ventana.getMueble().getValor() : null);

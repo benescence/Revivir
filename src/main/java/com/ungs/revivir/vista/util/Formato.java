@@ -80,6 +80,7 @@ public class Formato {
 		ret += (ubicacion.getMueble() != null) ? ", mueble "+ubicacion.getMueble() : ""; 
 		ret += (ubicacion.getInhumacion() != null) ? ", inhumacion "+ubicacion.getInhumacion() : ""; 
 		ret += (ubicacion.getCirc() != null) ? ", circ "+ubicacion.getCirc() : ""; 
+		ret += (ubicacion.getCementerio() != null) ? ", cementerio "+ubicacion.getCementerio(): ""; 
 		return ret;
 	}
 	

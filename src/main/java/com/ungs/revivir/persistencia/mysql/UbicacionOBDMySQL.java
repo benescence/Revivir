@@ -219,9 +219,15 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 				
 				Integer inhumacion = resultados.getInt("inhumacion");
 				inhumacion = (resultados.wasNull())? null: inhumacion;
-				
+
 				Integer circ = resultados.getInt("circ");
 				circ = (resultados.wasNull())? null: circ;
+
+				Boolean bis = resultados.getBoolean("bis");
+				bis = (resultados.wasNull())? null: bis;
+
+				Boolean bisMacizo = resultados.getBoolean("bis_macizo");
+				bisMacizo = (resultados.wasNull())? null: bisMacizo;
 				
 				ret.add(new Ubicacion(
 						resultados.getInt("ID"),
@@ -232,8 +238,8 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 						resultados.getString("seccion"),
 						macizo,
 						unidad,
-						resultados.getBoolean("bis"),
-						resultados.getBoolean("bis_macizo"),
+						bis,
+						bisMacizo,
 						sepultura,
 						parcela,
 						mueble,

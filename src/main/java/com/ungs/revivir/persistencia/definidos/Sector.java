@@ -8,6 +8,6 @@ public enum Sector {
 	CENIZARIO,
 	DEPOSITO,
 	BOVEDA,
-	CEMENTERIO
+	OTRO_CEMENTERIO
 
 }
