@@ -7,6 +7,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.ungs.revivir.persistencia.entidades.Servicio;
+import com.ungs.revivir.vista.util.Formato;
 
 public class TablaServicios extends JTable{
 	private static final long serialVersionUID = 1L;
@@ -30,7 +31,7 @@ public class TablaServicios extends JTable{
 			Object[] fila = {
 					servicio.getCodigo(),
 					servicio.getNombre(),
-					servicio.getImporte(),
+					Formato.dinero(servicio.getImporte()),
 					((servicio.getDescripcion() == null) ? "": servicio.getDescripcion())
 				};
 			modelo.addRow(fila);			

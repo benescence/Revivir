@@ -55,7 +55,11 @@ public class Formato {
 	}
 	
 	
-	
+	public static String dinero(Double importe) {
+		String ret = String.format( "%.2f", importe);
+		return "$ "+ret;
+	}
+
 	
 	
 	

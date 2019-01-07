@@ -33,7 +33,7 @@ public class TablaPagos extends JTable{
 					Formato.fallecido(elemento),
 					Formato.codigoServicio(elemento),
 					Formato.cargo(elemento),
-					elemento.getImporte().toString(),
+					Formato.dinero(elemento.getImporte()),
 					elemento.getFecha()
 			};
 			modelo.addRow(fila);
