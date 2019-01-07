@@ -36,6 +36,7 @@ public class VerificadorUbicacion {
 		verificar.setMueble(null);
 		verificar.setInhumacion(null);
 		verificar.setCirc(null);
+		verificar.setSepultura(null);
 		
 		// *****************  VERIFICO CASO A CASO ***********************************************************************
 		
