@@ -22,7 +22,8 @@ import com.ungs.revivir.vista.seleccion.fallecidos.ControladorSeleccionarFalleci
 import com.ungs.revivir.vista.seleccion.fallecidos.FallecidoSeleccionable;
 import com.ungs.revivir.vista.util.Popup;
 
-public class ControladorCargoABM implements ControladorInterno, FallecidoSeleccionable, ClienteSeleccionable, CargoInvocable {
+public class ControladorCargoABM implements ControladorInterno, FallecidoSeleccionable, ClienteSeleccionable,
+		CargoInvocable {
 	private VentanaCargoABM ventana;
 	private ControladorPrincipal invocador;
 	private Fallecido fallecido;

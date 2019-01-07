@@ -27,6 +27,8 @@ public interface PagoOBD {
 	
 	public List<Pago> selectByCliente(Cliente cliente);
 	
+	public List<Pago> selectByClienteFecha(Cliente cliente, Date fecha);
+	
 	public List<Pago> selectByCargo(Cargo cargo);
 	
 	public List<Pago> selectByFecha(Date fecha);

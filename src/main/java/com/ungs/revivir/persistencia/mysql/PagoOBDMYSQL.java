@@ -76,7 +76,13 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 		String condicion = "cliente = "+cliente.getID();
 		return selectByCondicion(condicion);
 	}
-
+	
+	@Override
+	public List<Pago> selectByClienteFecha(Cliente cliente, Date fecha) {
+		String condicion = "cliente = "+cliente.getID()+" and fecha = '"+fecha+"'";
+		return selectByCondicion(condicion);
+	}
+	
 	@Override
 	public List<Pago> selectByFecha(Date fecha) {
 		String condicion = "fecha = '" +fecha+"'";

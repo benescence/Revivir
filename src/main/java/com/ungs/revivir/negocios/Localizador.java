@@ -47,6 +47,9 @@ public class Localizador {
 		else if (sector == Sector.BOVEDA)
 			ret.add(SubSector.BOVEDA);
 		
+		else if (sector == Sector.CEMENTERIO)
+			ret.add(SubSector.CEMENTERIO);
+		
 		return ret;
 	}
 	

@@ -77,4 +77,8 @@ public class Relacionador {
 		return RelacionadorCompuesto.traerClientes(ubicacion);
 	}
 	
+	public static List<Pago> traerPagos(Fallecido fallecido) {
+		return RelacionadorCompuesto.traerPagos(fallecido);
+	}
+	
 }

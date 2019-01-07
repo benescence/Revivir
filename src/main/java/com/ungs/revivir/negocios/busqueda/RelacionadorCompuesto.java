@@ -5,13 +5,28 @@ import java.util.List;
 
 import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
+import com.ungs.revivir.persistencia.entidades.Cargo;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Responsable;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 
 public class RelacionadorCompuesto {
 
+	protected static List<Pago> traerPagos(Fallecido fallecido) {
+		List<Pago> ret = new ArrayList<>();
+		List<Cargo> cargos = Relacionador.traerCargos(fallecido);
+		
+		for (Cargo cargo : cargos) {
+			List<Pago> pagos = Relacionador.traerPagos(cargo);
+			ret.addAll(pagos);
+		}
+		
+		return ret;
+	}
+	
+	
 	protected static List<Cliente> traerClientes(Fallecido fallecido) {
 		List<Responsable> lista = Relacionador.traerResponsables(fallecido);
 		List<Cliente> clientes = new ArrayList<>();
