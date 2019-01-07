@@ -130,7 +130,7 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 	
 	private Ubicacion traerUbicacionVerificada() throws Exception {
 		SubSector subsector = (SubSector) ventana.getSubSector().getComboBox().getSelectedItem();
-		String cementerio = null;
+		String cementerio = ventana.getCementerio().getValor();
 		Integer nicho = ventana.getNicho().getValor();
 		Integer fila = ventana.getFila().getValor();
 		String seccion = ventana.getSeccion().getValor();
