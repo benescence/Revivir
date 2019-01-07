@@ -38,7 +38,7 @@ public class VentanaAltaCompleta extends Ventana {
 
 	// DATOS DE UBICACION
 	private EntradaNumero inUnidad, inFila, inMacizo, inNicho, inSepultura, inParcela, inInhumacion, inCirc, inMueble;
-	private EntradaTexto inSeccion;
+	private EntradaTexto inSeccion, inCementerio;
 	private JCheckBox inCheckMacizo, inCheckBis;
 	private EntradaLista<Sector> inSector;
 	private EntradaLista<SubSector> inSubSector;
@@ -142,6 +142,7 @@ public class VentanaAltaCompleta extends Ventana {
 		Dimension dimEntrada = new Dimension(200, 25);
 
 		inSeccion = new EntradaTexto("Seccion", dimTexto1, dimEntrada);
+		inCementerio = new EntradaTexto("Cementerio", dimTexto1, dimEntrada);
 		inMacizo = new EntradaNumero("Macizo", dimTexto1, dimEntrada);
 		inUnidad = new EntradaNumero("Unidad", dimTexto1, dimEntrada);
 		inSepultura = new EntradaNumero("Sepultura", dimTexto1, dimEntrada);
@@ -187,6 +188,7 @@ public class VentanaAltaCompleta extends Ventana {
 		ret1.setBorder(new EmptyBorder(10, 0, 0, 10));
 		ret1.add(inSector);
 		ret1.add(inSeccion);
+		ret1.add(inCementerio);
 		ret1.add(inMacizo);
 		ret1.add(inUnidad);
 		ret1.add(inSepultura);
@@ -271,7 +273,7 @@ public class VentanaAltaCompleta extends Ventana {
 		} else if (subSector == SubSector.CENIZARIO) {
 			inMueble.habilitado(true);
 			inNicho.habilitado(true);
-		
+			
 		} else if (subSector == SubSector.BOVEDA) {
 			inCirc.habilitado(true);
 			inSeccion.habilitado(true);
@@ -279,6 +281,9 @@ public class VentanaAltaCompleta extends Ventana {
 			inParcela.habilitado(true);
 			inUnidad.habilitado(true);
 			inCheckBis.setEnabled(true);
+		
+		} else if (subSector == SubSector.OTRO_CEMENTERIO) {
+			inCementerio.habilitado(true);
 		}
 		
 	}
@@ -424,6 +429,10 @@ public class VentanaAltaCompleta extends Ventana {
 
 	public EntradaTexto getSeccion() {
 		return inSeccion;
+	}
+
+	public EntradaTexto getCementerio() {
+		return inCementerio;
 	}
 
 	public JCheckBox getCheckMacizo() {

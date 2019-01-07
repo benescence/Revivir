@@ -79,6 +79,7 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 		ventana.getUnidad().setValor("");
 		ventana.getNicho().setValor("");
 		ventana.getSeccion().setValor("");
+		ventana.getCementerio().setValor("");
 		ventana.getSepultura().setValor("");
 		ventana.getMueble().setValor("");
 		ventana.getCheckBis().setSelected(false);
@@ -196,7 +197,7 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 	
 	private Ubicacion obtenerUbicacionVerificada() throws Exception {
 		SubSector subsector = (SubSector) ventana.getSubSector().getComboBox().getSelectedItem();
-		String otroCementerio = null;
+		String otroCementerio = ventana.getCementerio().getValor();
 		Integer nicho = (ventana.getNicho().isEnabled() ? ventana.getNicho().getValor() : null);
 		Integer fila = (ventana.getFila().isEnabled() ? ventana.getFila().getValor() : null);
 		String seccion = (ventana.getSeccion().isEnabled() ? ventana.getSeccion().getTextField().getText() : null);
