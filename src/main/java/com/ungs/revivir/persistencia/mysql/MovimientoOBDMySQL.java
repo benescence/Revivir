@@ -88,7 +88,7 @@ public class MovimientoOBDMySQL extends OBD implements MovimientoOBD{
 
 	private List<Movimiento> selectByCondicion(String condicion) {
 		List<Movimiento> ret = new ArrayList<Movimiento>();
-		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+");";  
+		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		
 		try { 
 			Class.forName(driver); 
@@ -121,7 +121,7 @@ public class MovimientoOBDMySQL extends OBD implements MovimientoOBD{
 	
 	private List<Movimiento> selectByCondicionInner(String condicion) {
 		List<Movimiento> ret = new ArrayList<Movimiento>();
-		String comandoSQL = "select rev_movimientos.ID, "+campos+" from "+Inner+" where ("+condicion+");";  
+		String comandoSQL = "select rev_movimientos.ID, "+campos+" from "+Inner+" where ("+condicion+") limit "+limite+";";  
 		
 		try { 
 			Class.forName(driver); 

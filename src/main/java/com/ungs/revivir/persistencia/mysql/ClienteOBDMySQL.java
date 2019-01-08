@@ -121,7 +121,7 @@ public class ClienteOBDMySQL extends OBD implements ClienteOBD{
 
 	private List<Cliente> selectByCondicion(String condicion) {
 		List<Cliente> ret = new ArrayList<Cliente>();
-		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+");";  
+		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		
 		try { 
 			Class.forName(driver); 

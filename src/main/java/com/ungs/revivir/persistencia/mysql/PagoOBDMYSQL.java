@@ -99,7 +99,7 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 	
 	private List<Pago> selectByCondicion(String condicion) {
 		List<Pago> ret = new ArrayList<Pago>();
-		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+");";  
+		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		System.out.println(condicion + "  "+comandoSQL);
 		try { 
 			Class.forName(driver); 

@@ -90,7 +90,7 @@ public class ServicioOBDMySQL extends OBD implements ServicioOBD{
 	
 	private List<Servicio> selectByCondicion(String condicion) {
 		List<Servicio> ret = new ArrayList<Servicio>();
-		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+");";  
+		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";"; 
 		
 		try { 
 			Class.forName(driver); 

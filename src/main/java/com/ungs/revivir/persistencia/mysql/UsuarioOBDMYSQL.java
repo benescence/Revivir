@@ -83,7 +83,7 @@ public class UsuarioOBDMYSQL extends OBD implements UsuarioOBD{
 	
 	private List<Usuario> selectByCondicion(String condicion) {
 		List<Usuario> ret = new ArrayList<Usuario>();
-		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+");";  
+		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		
 		try { 
 			Class.forName(driver); 

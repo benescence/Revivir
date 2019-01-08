@@ -98,7 +98,7 @@ public class ResponsableOBDMYSQL extends OBD implements ResponsableOBD{
 
 	private List<Responsable> selectByCondicion(String condicion) {
 		List<Responsable> ret = new ArrayList<Responsable>();
-		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+");";  
+		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		
 		try { 
 			Class.forName(driver); 

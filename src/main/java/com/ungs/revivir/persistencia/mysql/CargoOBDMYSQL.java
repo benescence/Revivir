@@ -100,7 +100,7 @@ public class CargoOBDMYSQL extends OBD implements CargoOBD{
 
 	private List<Cargo> selectByCondicion(String condicion) {
 		List<Cargo> ret = new ArrayList<Cargo>();
-		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+");";  
+		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";  
 		
 		try {
 			Class.forName(driver); 

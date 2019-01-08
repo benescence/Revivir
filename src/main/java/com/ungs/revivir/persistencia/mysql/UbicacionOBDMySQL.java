@@ -186,7 +186,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	
 	private List<Ubicacion> selectByCondicion(String condicion) {
 		List<Ubicacion> ret = new ArrayList<>();
-		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+");";  
+		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		
 		try { 
 			Class.forName(driver); 

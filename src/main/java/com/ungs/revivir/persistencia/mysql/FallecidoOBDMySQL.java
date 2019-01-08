@@ -103,7 +103,7 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 	
 	private List<Fallecido> selectByCondicion(String condicion) {
 		List<Fallecido> ret = new ArrayList<Fallecido>();
-		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+");";  
+		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		
 		try { 
 			Class.forName(driver); 
