@@ -12,7 +12,7 @@ public class ReporteVariosCargosTest {
 
 	public static void main(String[] args) {
 		List<Pago> pagos = PagoManager.traerTodo();
-		ReporteVariosCargos reporte = new ReporteVariosCargos(pagos);
+		new ReporteVariosCargos(pagos);
 		
 	}
 

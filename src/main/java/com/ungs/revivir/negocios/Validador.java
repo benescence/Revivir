@@ -27,7 +27,7 @@ public class Validador {
 	}
 	
 	public static boolean nombreServicio(String nombre) {
-		return formatoNumeroLetraEspacio(nombre);
+		return !nombre.equals("");
 	}
 
 	public static boolean usuario(String texto) {
