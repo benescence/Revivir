@@ -39,9 +39,7 @@ public class VentanaPrincipal extends Ventana {
 		repaint();
 		pack();
 		setBounds(0, 0, 1000, 700);
-		setLocationRelativeTo(null);	
-		ImageIcon img = new ImageIcon("imagenes/logocsm.png");
-		setIconImage(img.getImage());
+		setLocationRelativeTo(null);
 		
 		lblLogo = new JLabel(new ImageIcon("imagenes/cementerioFinal.png"));
 		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
