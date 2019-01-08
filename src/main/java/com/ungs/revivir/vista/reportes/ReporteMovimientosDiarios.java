@@ -40,7 +40,7 @@ public class ReporteMovimientosDiarios {
 			clientes.add(apellidoCliente);
 			servicios.add(Formato.servicioDesdeCargo(pago));
 			montos.add(pago.getImporte());
-			suma= suma + pago.getImporte();		
+			suma= suma + pago.getImporte();
 		}
 		
 		if (pagos.size() != 0) {
