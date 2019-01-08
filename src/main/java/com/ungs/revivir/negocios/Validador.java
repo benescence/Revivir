@@ -23,7 +23,7 @@ public class Validador {
 	}
 	
 	public static boolean codigo(String codigo) {
-		return (formatoNumero(codigo));
+		return (formatoNumeroLetra(codigo));
 	}
 	
 	public static boolean nombreServicio(String nombre) {
