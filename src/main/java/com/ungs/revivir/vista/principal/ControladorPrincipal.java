@@ -116,7 +116,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 			nuevo.setPassword(nuevaPass);
 			nuevo.setUsuario(usuario.getUsuario());
 			try {
-				UsuarioManager.modificar(nuevo, user);
+				//UsuarioManager.modificar(nuevo, user);
 			} catch (Exception e) {
 			
 				e.printStackTrace();

@@ -2,7 +2,6 @@ package com.ungs.revivir.negocios.manager;
 
 import java.util.List;
 
-import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Usuario;
 import com.ungs.revivir.persistencia.interfaces.UsuarioOBD;
@@ -10,13 +9,11 @@ import com.ungs.revivir.persistencia.interfaces.UsuarioOBD;
 public class UsuarioManager {
 	
 	public static void guardar(Usuario usuario) throws Exception {
-		usuario = Verificador.usuario(usuario, null);
 		UsuarioOBD obd = FactoryOBD.crearUsuarioOBD();
 		obd.insert(usuario);
 	}
 	
-	public static void modificar(Usuario nuevo, Usuario anterior) throws Exception {
-		nuevo = Verificador.usuario(nuevo, anterior);
+	public static void modificar(Usuario nuevo) throws Exception {
 		UsuarioOBD obd = FactoryOBD.crearUsuarioOBD();
 		obd.update(nuevo);
 	}

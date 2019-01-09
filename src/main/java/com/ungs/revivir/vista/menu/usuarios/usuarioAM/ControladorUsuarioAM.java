@@ -1,6 +1,7 @@
 package com.ungs.revivir.vista.menu.usuarios.usuarioAM;
 
 import com.ungs.revivir.negocios.manager.UsuarioManager;
+import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.definidos.Rol;
 import com.ungs.revivir.persistencia.entidades.Usuario;
 import com.ungs.revivir.vista.principal.ControladorExterno;
@@ -33,19 +34,17 @@ public class ControladorUsuarioAM implements ControladorExterno{
 	
 	private void aceptar() {
 		ventana.requestFocusInWindow();
+		
 		try {
-			String usuario = ventana.getUsuario().getText();
-			String password = ventana.getPassword().getText();
-			Rol rol = (Rol) ventana.getPermisos().getSelectedItem();
-			Usuario nuevo = new Usuario(-1, usuario, password, rol);
+			Usuario usuario = traerUsuarioVerificado();
 			
 			// AGREGAR USUARIO
 			if (modificar == null)
-				UsuarioManager.guardar(nuevo);
+				UsuarioManager.guardar(usuario);
 			
 			// MODIFICAR USUARIO
 			else
-				UsuarioManager.modificar(nuevo, modificar);
+				UsuarioManager.modificar(usuario);
 			
 			invocador.actualizarUsuarios();
 			ventana.dispose();
@@ -53,6 +52,16 @@ public class ControladorUsuarioAM implements ControladorExterno{
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
 		}
+	}
+	
+	private Usuario traerUsuarioVerificado() throws Exception {
+		String usuario = ventana.getUsuario().getText();
+		String password = ventana.getPassword().getText();
+		Rol rol = (Rol) ventana.getPermisos().getSelectedItem();
+		Usuario nuevo = new Usuario(-1, usuario, password, rol);
+		if (modificar != null)
+			nuevo.setID(modificar.getID());
+		return Verificador.usuario(nuevo);
 	}
 	
 	private void cancelar() {
