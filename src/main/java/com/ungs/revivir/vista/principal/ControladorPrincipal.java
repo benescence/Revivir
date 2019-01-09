@@ -2,7 +2,6 @@ package com.ungs.revivir.vista.principal;
 
 import com.ungs.revivir.negocios.Sesion;
 import com.ungs.revivir.negocios.Validador;
-import com.ungs.revivir.negocios.manager.UsuarioManager;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Usuario;
 import com.ungs.revivir.persistencia.interfaces.UsuarioOBD;
@@ -37,6 +36,7 @@ import com.ungs.revivir.vista.menu.usuarios.usuarioAM.UsuarioInvocable;
 import com.ungs.revivir.vista.menu.vencimientos.ControladorVencimientos;
 import com.ungs.revivir.vista.sesion.VentanaModificarPassword;
 import com.ungs.revivir.vista.sesion.iniciar.ControladorIniciarSesion;
+import com.ungs.revivir.vista.sesion.password.ControladorCambiarPassword;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
@@ -62,7 +62,9 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana.getServicioAlta().addActionListener(e -> colocarVentanaExterna(new ControladorServicioAM(this)));
 		ventana.getUsuarioAlta().addActionListener(e -> colocarVentanaExterna(new ControladorUsuarioAM(this)));
 		ventana.getPrincipalAlta().addActionListener(e -> colocarVentanaExterna(new ControladorAltaCompleta(this)));
-
+		ventana.getPrincipalCambiarPassword().addActionListener(e -> colocarVentanaExterna(new ControladorCambiarPassword(this)));
+		
+		
 		// VENTNAS INTERNAS
 		ventana.getCargoConsultar().addActionListener(e -> colocarVentanaInterna(new ControladorCargoABM(this)));
 		ventana.getClienteConsulta().addActionListener(e -> colocarVentanaInterna(new ControladorClientesABM(this)));
@@ -78,7 +80,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		
 		
 		ventana.getPrincipalCerrarSesion().addActionListener(s -> cerrarSesion());
-		ventana.getPrincipalCambiarPassword().addActionListener(s -> mostrarCambiarPass());
+		//ventana.getPrincipalCambiarPassword().addActionListener(s -> mostrarCambiarPass());
 	}
 
 	private void mostrarCambiarPass() {
@@ -116,7 +118,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 			nuevo.setPassword(nuevaPass);
 			nuevo.setUsuario(usuario.getUsuario());
 			try {
-				UsuarioManager.modificar(nuevo, user);
+				//UsuarioManager.modificar(nuevo, user);
 			} catch (Exception e) {
 			
 				e.printStackTrace();

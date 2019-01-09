@@ -84,7 +84,6 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		if (ventana.getInCheckMacizo().isEnabled())
 			bis_macizo = ventana.getInCheckMacizo().isSelected();
 
-		System.out.println(ventana.getInCheckMacizo().isEnabled());
 		Integer sepultura = (ventana.getSepultura().isEnabled() ? ventana.getSepultura().getValor() : null);
 		Integer parcela = (ventana.getParcela().isEnabled() ? ventana.getParcela().getValor() : null);
 		Integer mueble = (ventana.getMueble().isEnabled() ? ventana.getMueble().getValor() : null);

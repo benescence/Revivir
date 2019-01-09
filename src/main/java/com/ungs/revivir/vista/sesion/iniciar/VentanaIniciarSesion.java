@@ -29,7 +29,7 @@ public class VentanaIniciarSesion extends Ventana {
 		
 		// comentar antes de entregar
 		inUsuario.getTextField().setText("admin");
-		inPassword.getTextField().setText("admin");
+		inPassword.getTextField().setText("admin123");
 		// comentar antes de entregar
 		
 		btnAceptar = new Boton("Aceptar", dimBoton);

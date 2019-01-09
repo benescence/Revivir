@@ -1,11 +1,10 @@
 package com.ungs.revivir.vista.menu.principal;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.negocios.Almanaque;
@@ -64,6 +63,7 @@ public class VentanaAltaCompleta extends Ventana {
 		
 		PanelHorizontal panelPersonas = new PanelHorizontal();
 		panelPersonas.add(panelCliente());
+		panelPersonas.add(new JSeparator(SwingConstants.VERTICAL));
 		panelPersonas.add(panelFallecido());
 		panelPersonas.setBorder(new EmptyBorder(0, 0, 10, 0));
 		
@@ -95,9 +95,12 @@ public class VentanaAltaCompleta extends Ventana {
 		panelBotones.add(btnSelCliente);
 		panelBotones.add(btnLimpiarCliente);
 
+		TextoCentrado titulo = new TextoCentrado("Datos del cliente");
+		titulo.setBorder(new EmptyBorder(0, 0, 10, 0));
+		
 		PanelVertical ret = new PanelVertical();
-		ret.setBorder(new EmptyBorder(0, 0, 0, 10));
-		ret.add(new TextoCentrado("Datos del cliente"));
+		ret.setBorder(new EmptyBorder(0, 0, 0, 15));
+		ret.add(titulo);
 		ret.add(inNombreCli);
 		ret.add(inApellidoCli);
 		ret.add(inDNICli);
@@ -115,7 +118,7 @@ public class VentanaAltaCompleta extends Ventana {
 		inNombreFal = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellidoFal = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
 		inDNIFal = new EntradaTexto("DNI", dimTexto, dimEntrada);
-		inCocheria = new EntradaTexto("Cocheria", dimTexto, dimEntrada);
+		inCocheria = new EntradaTexto("Cochería", dimTexto, dimEntrada);
 		inFFallecimiento = new EntradaFecha(null, "Fecha de fallecimiento", dimTexto, dimEntrada);
 		inFIngreso = new EntradaFecha(Almanaque.hoy(), "Fecha de Ingreso", dimTexto, dimEntrada);
 		inTipo = new EntradaLista<>("Tipo de fallecimiento", dimTexto, dimEntrada);
@@ -123,9 +126,12 @@ public class VentanaAltaCompleta extends Ventana {
 			inTipo.getComboBox().addItem(tipo);
 		inTipo.getComboBox().setSelectedItem(TipoFallecimiento.NO_TRAUMATICO);
 		
+		TextoCentrado titulo = new TextoCentrado("Datos del fallecido");
+		titulo.setBorder(new EmptyBorder(0, 0, 10, 0));
+		
 		PanelVertical ret = new PanelVertical();
-		ret.setBorder(new EmptyBorder(0, 10, 0, 0));
-		ret.add(new TextoCentrado("Datos del fallecido"));
+		ret.setBorder(new EmptyBorder(0, 15, 0, 0));
+		ret.add(titulo);
 		ret.add(inNombreFal);
 		ret.add(inApellidoFal);
 		ret.add(inDNIFal);
@@ -140,20 +146,21 @@ public class VentanaAltaCompleta extends Ventana {
 		Dimension dimTexto1 = new Dimension(140, 25);
 		Dimension dimTexto2 = new Dimension(140, 25);
 		Dimension dimEntrada = new Dimension(200, 25);
+		Dimension dimEntradaVencimiento = new Dimension(570, 25);
 
-		inSeccion = new EntradaTexto("Seccion", dimTexto1, dimEntrada);
-		inCementerio = new EntradaTexto("Cementerio", dimTexto1, dimEntrada);
+		inCirc = new EntradaNumero("Circ", dimTexto2, dimEntrada);
+		inSeccion = new EntradaTexto("Sección", dimTexto1, dimEntrada);
 		inMacizo = new EntradaNumero("Macizo", dimTexto1, dimEntrada);
+		inParcela = new EntradaNumero("Parcela", dimTexto2, dimEntrada);
 		inUnidad = new EntradaNumero("Unidad", dimTexto1, dimEntrada);
-		inSepultura = new EntradaNumero("Sepultura", dimTexto1, dimEntrada);
-		inInhumacion = new EntradaNumero("Inhumacion", dimTexto1, dimEntrada);
 		inNicho = new EntradaNumero("Nicho", dimTexto2, dimEntrada);
 		inFila = new EntradaNumero("Fila", dimTexto2, dimEntrada);
-		inCirc = new EntradaNumero("Circ", dimTexto2, dimEntrada);
-		inParcela = new EntradaNumero("Parcela", dimTexto2, dimEntrada);
 		inMueble = new EntradaNumero("Mueble", dimTexto2, dimEntrada);
-		inVencimiento = new EntradaFecha(Almanaque.hoy(), "Vencimiento", dimTexto1, dimEntrada);
-		
+		inSepultura = new EntradaNumero("Sepultura", dimTexto1, dimEntrada);
+		inInhumacion = new EntradaNumero("Inhumación", dimTexto1, dimEntrada);
+		inCementerio = new EntradaTexto("Cementerio", dimTexto1, dimEntrada);
+		inVencimiento = new EntradaFecha(Almanaque.hoy(), "Vencimiento", dimTexto1, dimEntradaVencimiento);
+
 		inCheckBis = new JCheckBox("Bis");
 		inCheckMacizo = new JCheckBox("Macizo");
 		PanelHorizontal panelCheck = new PanelHorizontal();
@@ -167,53 +174,44 @@ public class VentanaAltaCompleta extends Ventana {
 			inSector.getComboBox().addItem(sector);
 		
 		// EL SUB SECTOR DEPENDE DEL SECTOR ESCOGIDO
-		inSector.getComboBox().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				recargarSubSectores();
-			}
-		});
-
+		inSector.getComboBox().addActionListener(e -> recargarSubSectores());
 		inSector.getComboBox().setSelectedIndex(0);
 
 		// DEPENDEINDO DEL SUB SECTOR ESCOGIDO ALGUNOS CAMPOS SE INHABILITAN
-		inSubSector.getComboBox().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				seleccionarSubSector();
-			}
-		});
+		inSubSector.getComboBox().addActionListener(e -> seleccionarSubSector());
 		inSubSector.getComboBox().setSelectedIndex(0);
 		
 		// ORGANIZACION DE PANELES
-		PanelVertical ret1 = new PanelVertical();
-		ret1.setBorder(new EmptyBorder(10, 0, 0, 10));
-		ret1.add(inSector);
-		ret1.add(inSeccion);
-		ret1.add(inCementerio);
-		ret1.add(inMacizo);
-		ret1.add(inUnidad);
-		ret1.add(inSepultura);
-		ret1.add(inInhumacion);
-		ret1.add(inVencimiento);
+		PanelVertical panelIzquierdo = new PanelVertical();
+		panelIzquierdo.setBorder(new EmptyBorder(10, 0, 0, 0));
+		panelIzquierdo.add(inSector);
+		panelIzquierdo.add(inSubSector);
+		panelIzquierdo.add(inCirc);
+		panelIzquierdo.add(inSeccion);
+		panelIzquierdo.add(inMacizo);
+		panelIzquierdo.add(inParcela);
+		panelIzquierdo.add(inUnidad);
 		
-		PanelVertical ret2 = new PanelVertical();
-		ret2.setBorder(new EmptyBorder(10, 10, 0, 0));
-		ret2.add(inSubSector);
-		ret2.add(inNicho);
-		ret2.add(inFila);
-		ret2.add(inCirc);
-		ret2.add(inParcela);
-		ret2.add(inMueble);
-		ret2.add(panelCheck);
+		PanelVertical panelDerecho = new PanelVertical();
+		panelDerecho.setBorder(new EmptyBorder(10, 30, 0, 0));
+		panelDerecho.add(inNicho);
+		panelDerecho.add(inFila);
+		panelDerecho.add(inMueble);
+		panelDerecho.add(inSepultura);
+		panelDerecho.add(inInhumacion);
+		panelDerecho.add(panelCheck);
+		panelDerecho.add(inCementerio);
 		
-		PanelHorizontal ret3 = new PanelHorizontal();
-		ret3.add(ret1);
-		ret3.add(ret2);
-		
-		PanelVertical ret4 = new PanelVertical();
-		ret4.setBorder(new EmptyBorder(10, 0, 0, 0));
-		ret4.add(new TextoCentrado("Datos de la ubicacion"));
-		ret4.add(ret3);
-		return ret4;
+		PanelHorizontal panelHorizontal = new PanelHorizontal();
+		panelHorizontal.add(panelIzquierdo);
+		panelHorizontal.add(panelDerecho);
+
+		PanelVertical ret = new PanelVertical();
+		ret.setBorder(new EmptyBorder(10, 0, 0, 0));
+		ret.add(new TextoCentrado("Datos de la ubicación"));
+		ret.add(panelHorizontal);
+		ret.add(inVencimiento);
+		return ret;
 	}
 	
 	private void seleccionarSubSector() {
@@ -290,6 +288,7 @@ public class VentanaAltaCompleta extends Ventana {
 	
 	private void habilitarCamposUbicacion(boolean habilitado) {
 		inSeccion.habilitado(habilitado);
+		inCementerio.habilitado(habilitado);
 		inMacizo.habilitado(habilitado);
 		inUnidad.habilitado(habilitado);
 		inSepultura.habilitado(habilitado);

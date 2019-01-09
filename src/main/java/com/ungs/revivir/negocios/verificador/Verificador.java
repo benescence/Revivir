@@ -194,7 +194,7 @@ public class Verificador {
 		return nuevo;
 	}
 	
-	public static Usuario usuario(Usuario nuevo, Usuario anterior) throws Exception {
+	public static Usuario usuario(Usuario nuevo) throws Exception {
 		String nombre = anular(nuevo.getUsuario());
 		String password = anular(nuevo.getPassword());
 		String mensaje = "";
@@ -205,22 +205,21 @@ public class Verificador {
 			mensaje += "\n    -El NOMBRE solo puede estar compuesto de letras y numeros.";
 		else {
 			Usuario objetoNombre = UsuarioManager.traerPorUsuario(nombre);
-			if (objetoNombre != null && (anterior == null || anterior.getID() != objetoNombre.getID()))
+			if (objetoNombre != null && (nuevo.getID() != objetoNombre.getID()))
 				mensaje += "\n    -Ya se encuentra registrado un USUARIO con el nombre: "+nombre+".";
 		}
 		
 		if (password == null)
-			mensaje += "\n    -El PASSWORD no puede estar vac�o.";
+			mensaje += "\n    -El PASSWORD no puede estar vacío.";
 		else if (!Validador.password(password))
-			mensaje += "\n    -El PASSWORD solo puede estar compuesto de letras, numeros y espacios.";
-		
+			mensaje += "\n    -El PASSWORD solo puede estar compuesto de letras y números.";
+		else if (password.length() < 6 || password.length() > 8)
+			mensaje += "\n    -El PASSWORD debe contener entre 6 y 8 caracteres.";
 		
 		if (!mensaje.equals(""))
 			throw new Exception("Se encontraron los siguientes errores en el formulario:"+mensaje);
 		
 		// Debo setearlos porque pudieron ser anulados
-		if (anterior != null)
-			nuevo.setID(anterior.getID());
 		nuevo.setUsuario(nombre);
 		nuevo.setPassword(password);
 		return nuevo;

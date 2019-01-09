@@ -40,6 +40,10 @@ public class VerificadorUbicacion {
 		
 		// *****************  VERIFICO CASO A CASO ***********************************************************************
 		
+		if (subSector == SubSector.DEPOSITO1 || subSector == SubSector.DEPOSITO2 || subSector == SubSector.DEPOSITO3) {
+			return verificar;
+		}
+
 		if (subSector.equals(SubSector.PALMERAS_SEPULTURAS)) {
 			String mensaje = "";
 				
