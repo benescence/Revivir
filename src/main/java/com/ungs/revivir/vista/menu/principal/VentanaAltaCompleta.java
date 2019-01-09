@@ -288,6 +288,7 @@ public class VentanaAltaCompleta extends Ventana {
 	
 	private void habilitarCamposUbicacion(boolean habilitado) {
 		inSeccion.habilitado(habilitado);
+		inCementerio.habilitado(habilitado);
 		inMacizo.habilitado(habilitado);
 		inUnidad.habilitado(habilitado);
 		inSepultura.habilitado(habilitado);
