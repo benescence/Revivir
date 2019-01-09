@@ -9,24 +9,29 @@ import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
 
 public class EntradaPassword extends PanelHorizontal {
 	private static final long serialVersionUID = 1L;
-	private JPasswordField textField;
+	private JPasswordField entrada;
 	
-	public EntradaPassword(String texto, Dimension largoLabel, Dimension largoTextfield) {
+	public EntradaPassword(String texto, Dimension dimTexto, Dimension dimEntrada) {
 		JLabel label = new JLabel(texto);
-		label.setMaximumSize(largoLabel);
-		label.setMinimumSize(largoLabel);
-		label.setPreferredSize(largoLabel);
+		label.setMaximumSize(dimTexto);
+		label.setMinimumSize(dimTexto);
+		label.setPreferredSize(dimTexto);
 		add(label);
 		
-		textField = new JPasswordField();
-		textField.setMaximumSize(largoTextfield);
-		textField.setMinimumSize(largoTextfield);
-		textField.setPreferredSize(largoTextfield);
-		add(textField);
+		entrada = new JPasswordField();
+		entrada.setMaximumSize(dimEntrada);
+		entrada.setMinimumSize(dimEntrada);
+		entrada.setPreferredSize(dimEntrada);
+		add(entrada);
 	}
 	
 	public JPasswordField getTextField() {
-		return textField;
+		return entrada;
+	}
+
+	@SuppressWarnings("deprecation")
+	public String getValor() {
+		return entrada.getText();
 	}
 
 }
