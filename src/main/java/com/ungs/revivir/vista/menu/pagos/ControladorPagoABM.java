@@ -21,6 +21,7 @@ import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.reportes.ReporteFacturaPago;
 import com.ungs.revivir.vista.reportes.ReporteMovimientosDiarios;
+import com.ungs.revivir.vista.reportes.ReporteVariosCargos;
 import com.ungs.revivir.vista.seleccion.clientes.ClienteSeleccionable;
 import com.ungs.revivir.vista.seleccion.clientes.ControladorSeleccionCliente;
 import com.ungs.revivir.vista.seleccion.fallecidos.ControladorSeleccionarFallecido;
@@ -137,16 +138,10 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable,
 
 	private void factura() {
 		List<Pago> lista = ventana.getTabla().obtenerSeleccion();
-		
-		if (lista.size() != 1) {
-			Popup.mostrar("Debe seleccionar exactamente 1 pago para ver su reporte");
-			return;
-		}
-
-		List <Pago> pagos = new ArrayList<Pago>();
-		pagos.add(lista.get(0));
-		ReporteFacturaPago reporte = new ReporteFacturaPago(pagos);
-		reporte.mostrar();
+		//List <Pago> pagos = new ArrayList<Pago>();
+		//pagos.add(lista.get(0));
+		ReporteVariosCargos reporte = new ReporteVariosCargos(lista);
+		//reporte.mostrar();
 	}
 	
 	private void agregar() {

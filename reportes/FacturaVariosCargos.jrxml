@@ -10,6 +10,7 @@
 	<parameter name="fallecido" class="java.lang.String"/>
 	<parameter name="ubicacion" class="java.lang.String"/>
 	<parameter name="total" class="java.util.List"/>
+	<parameter name="DNIfallecido" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
@@ -120,7 +121,7 @@
 			<frame>
 				<reportElement x="0" y="10" width="560" height="44" uuid="495cafa0-314b-4098-bfb9-5798ef649fec"/>
 				<textField>
-					<reportElement mode="Transparent" x="27" y="4" width="120" height="40" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
+					<reportElement mode="Transparent" x="40" y="4" width="120" height="40" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
@@ -134,7 +135,7 @@
 					<textFieldExpression><![CDATA["$" + $P{monto}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement mode="Transparent" x="340" y="5" width="220" height="29" forecolor="#050505" backcolor="#F7ECC3" uuid="7b3cb927-55f7-4f20-b1ce-87b63705ae2b"/>
+					<reportElement mode="Transparent" x="320" y="4" width="220" height="29" forecolor="#050505" backcolor="#F7ECC3" uuid="7b3cb927-55f7-4f20-b1ce-87b63705ae2b"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
@@ -153,31 +154,38 @@
 				<textFieldExpression><![CDATA[$P{fallecido}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="20" y="40" width="64" height="18" uuid="1a23ca4d-7859-4e6c-b241-a781191f6467"/>
+				<reportElement x="28" y="40" width="64" height="18" uuid="1a23ca4d-7859-4e6c-b241-a781191f6467"/>
 				<textElement>
 					<font fontName="Calibri" size="14"/>
 				</textElement>
 				<text><![CDATA[Fallecido :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="20" y="58" width="75" height="30" uuid="8375a57b-5a1b-49a6-a08e-f410aa8cad4e"/>
+				<reportElement x="28" y="60" width="75" height="30" uuid="8375a57b-5a1b-49a6-a08e-f410aa8cad4e"/>
 				<textElement>
 					<font fontName="Calibri" size="14"/>
 				</textElement>
-				<text><![CDATA[Ubicacion:]]></text>
+				<text><![CDATA[Ubicacion :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="130" y="60" width="430" height="60" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
+				<reportElement x="130" y="60" width="430" height="28" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
 				<textElement>
 					<font fontName="Calibri" size="14" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{ubicacion}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="130" y="80" width="430" height="28" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
+				<textElement>
+					<font fontName="Calibri" size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DNIfallecido}]]></textFieldExpression>
+			</textField>
 			<rectangle>
 				<reportElement x="0" y="10" width="532" height="20" backcolor="#EDEBEB" uuid="c441a3f3-76e3-46ea-97ac-374e0e29b7a7"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="10" y="10" width="100" height="20" uuid="bce812af-a8a0-4a7b-a537-2716cfef2d95"/>
+				<reportElement x="28" y="10" width="100" height="20" uuid="bce812af-a8a0-4a7b-a537-2716cfef2d95"/>
 				<textElement>
 					<font fontName="Calibri" size="14"/>
 				</textElement>
@@ -190,6 +198,13 @@
 				</textElement>
 				<textFieldExpression><![CDATA["$" + $P{total}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="28" y="80" width="85" height="30" uuid="b065d771-a1d4-423f-b943-6f560650c350"/>
+				<textElement>
+					<font fontName="Calibri" size="14"/>
+				</textElement>
+				<text><![CDATA[Nro fallecido :]]></text>
+			</staticText>
 		</band>
 	</columnFooter>
 </jasperReport>

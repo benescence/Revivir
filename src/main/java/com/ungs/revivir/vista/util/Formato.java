@@ -27,15 +27,17 @@ public class Formato {
 		return fallecido.getApellido()+", "+fallecido.getNombre();
 	}
 
+
 	// COMPUESTOS
 	public static String cliente(Pago pago) {
 		Cliente cliente = ClienteManager.traerPorID(pago.getCliente());
 		return cliente(cliente);
 	}
 
-	public static String fallecido(Pago pago) {
+	public static String DNIfallecido(Pago pago) {
 		Cargo cargo = CargoManager.traerPorID(pago.getCargo());
-		return fallecido(cargo);
+		Fallecido fallecido = FallecidoManager.traerPorID(cargo.getFallecido());
+		return fallecido.getDNI();
 	}
 
 	public static String codigoServicio(Pago pago) {
@@ -47,6 +49,10 @@ public class Formato {
 	public static String fallecido(Cargo cargo) {
 		Fallecido fallecido = FallecidoManager.traerPorID(cargo.getFallecido());
 		return fallecido(fallecido);
+	}
+	public static String fallecido(Pago pago) {
+		Cargo cargo = CargoManager.traerPorID(pago.getCargo());
+		return fallecido(cargo);
 	}
 	
 	public static String fallecido(Movimiento movimiento) {

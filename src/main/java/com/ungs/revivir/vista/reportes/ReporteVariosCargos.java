@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.ungs.revivir.negocios.manager.PagoManager;
+
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
@@ -29,7 +29,7 @@ public class ReporteVariosCargos {
     	Map<String, Object> totalPagos = new HashMap<String, Object>();
 		List<String> servicios = new ArrayList<String>();
 		List<String> observaciones = new ArrayList<String>();
-		pagos = PagoManager.traerTodo();
+		//pagos = PagoManager.traerTodo();
 		List<Double> montos = new ArrayList<Double>();
 		Double suma = 0.0;
 		List<Double> total = new ArrayList<Double>();
@@ -53,7 +53,7 @@ public class ReporteVariosCargos {
     	totalPagos.put("ubicacion", Formato.ubicaciondesdePago(pagos.get(0)));
 		totalPagos.put("monto", montos);
 		totalPagos.put("total", total);
-    	
+		totalPagos.put("DNIfallecido",Formato.DNIfallecido(pagos.get(0)));
     	
 		try {
 			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\FacturaVariosCargos.jasper");

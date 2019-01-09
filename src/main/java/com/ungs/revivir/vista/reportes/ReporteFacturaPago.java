@@ -31,6 +31,7 @@ public class ReporteFacturaPago {
     	totalPersonas.put("observaciones", pago.getObservaciones());
     	totalPersonas.put("fallecido", Formato.fallecido(pagos.get(0)));
     	totalPersonas.put("ubicacion", Formato.ubicaciondesdePago(pagos.get(0)));
+    	totalPersonas.put("DNIFallecido", Formato.DNIfallecido(pagos.get(0)));
     	
     	try	{
         	this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\FacturaPago.jasper");
