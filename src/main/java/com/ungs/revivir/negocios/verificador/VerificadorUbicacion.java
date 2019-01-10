@@ -119,6 +119,7 @@ public class VerificadorUbicacion {
 				throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
 			
 			verificar.setSeccion(seccion);
+			verificar.setCirc(circ);
 			verificar.setMacizo(macizo);
 			verificar.setUnidad(unidad);
 			verificar.setSepultura(sepultura);
@@ -168,9 +169,6 @@ public class VerificadorUbicacion {
 			
 			if (unidad == null)
 				mensaje += "\n    -La UNIDAD no puede estar vacio.";
-			
-			if (parcela == null)
-				mensaje += "\n    -La PARCELA no puede estar vacio.";
 
 			if (!mensaje.equals(""))
 				throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
@@ -179,7 +177,6 @@ public class VerificadorUbicacion {
 			verificar.setMacizo(macizo);
 			verificar.setUnidad(unidad);
 			verificar.setSepultura(sepultura);
-			verificar.setParcela(parcela);
 			verificar.setBis(bis);
 			verificar.setBis_macizo(bisMacizo);
 			return verificar;

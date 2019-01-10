@@ -242,6 +242,7 @@ public class VentanaAltaCompleta extends Ventana {
 			inCheckMacizo.setEnabled(true);
 			inCheckBis.setEnabled(true);
 			inParcela.habilitado(true);
+			inCirc.habilitado(true);
 			
 		}else if (subSector == SubSector.INDIGENTES) {
 			inSeccion.habilitado(true);
@@ -279,6 +280,7 @@ public class VentanaAltaCompleta extends Ventana {
 			inParcela.habilitado(true);
 			inUnidad.habilitado(true);
 			inCheckBis.setEnabled(true);
+			inCheckMacizo.setEnabled(true);
 		
 		} else if (subSector == SubSector.OTRO_CEMENTERIO) {
 			inCementerio.habilitado(true);
