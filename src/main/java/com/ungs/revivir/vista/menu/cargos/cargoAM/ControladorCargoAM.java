@@ -13,6 +13,7 @@ import com.ungs.revivir.vista.seleccion.fallecidos.FallecidoSeleccionable;
 import com.ungs.revivir.vista.seleccion.servicio.ControladorSeleccionarServicio;
 import com.ungs.revivir.vista.seleccion.servicio.ServicioSeleccionable;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
+import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorCargoAM implements ControladorExterno, ServicioSeleccionable, FallecidoSeleccionable {
@@ -129,6 +130,7 @@ public class ControladorCargoAM implements ControladorExterno, ServicioSeleccion
 			ventana.dispose();
 			invocador.actualizarCargos();
 			invocador.mostrar();
+			
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
 		}
@@ -152,6 +154,7 @@ public class ControladorCargoAM implements ControladorExterno, ServicioSeleccion
 		ventana.getNombre().getTextField().setText(fallecido.getNombre());
 		ventana.getApellido().getTextField().setText(fallecido.getApellido());
 		ventana.getDNI().getTextField().setText(fallecido.getDNI());
+		ventana.getUbicacion().setValor(Formato.ubicacion(fallecido));
 	}
 
 	@Override

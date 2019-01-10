@@ -14,7 +14,7 @@ import com.ungs.revivir.vista.util.entradas.EntradaTexto;
 public class VentanaCargoAM extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private Boton btnAceptar, btnCancelar, btnSelFallecido, btnSelServicio, btnCargarFallecido, btnCargarServicio;
-	private EntradaTexto inNombre, inApellido, inDNI;
+	private EntradaTexto inNombre, inApellido, inDNI, inUbicacion;
 	private EntradaTexto inCodigo, inNombreServicio, inDescripcion, inImporte;
 	private EntradaTexto inObservaciones;
 	
@@ -51,9 +51,11 @@ public class VentanaCargoAM extends Ventana {
 		inNombre = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellido = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
 		inDNI = new EntradaTexto("DNI", dimTexto, dimEntrada);
+		inUbicacion = new EntradaTexto("Ubicacion", dimTexto, dimEntrada);
 		
 		inNombre.habilitado(false);
 		inApellido.habilitado(false);
+		inUbicacion.habilitado(false);
 		
 		btnCargarFallecido = new Boton("Cargar", dimBoton);
 		btnSelFallecido = new Boton("Seleccionar", dimBoton);
@@ -66,6 +68,7 @@ public class VentanaCargoAM extends Ventana {
 		ret.add(new TextoCentrado("Datos del fallecido"));
 		ret.add(inNombre);
 		ret.add(inApellido);
+		ret.add(inUbicacion);
 		ret.add(inDNI);
 		ret.add(panelBotones);
 		return ret;
@@ -137,6 +140,10 @@ public class VentanaCargoAM extends Ventana {
 
 	public EntradaTexto getDNI() {
 		return inDNI;
+	}	
+
+	public EntradaTexto getUbicacion() {
+		return inUbicacion;
 	}	
 
 	public EntradaTexto getCodigo() {
