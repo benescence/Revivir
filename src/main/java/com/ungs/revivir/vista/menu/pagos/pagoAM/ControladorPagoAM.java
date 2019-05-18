@@ -28,7 +28,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	private VentanaPagoAM ventana;
 	private PagoInvocable invocador;
 	private Cargo cargo;
-	private Cliente cliente;
+	//private Cliente cliente;
 	private Pago pago;
 	
 	public ControladorPagoAM(PagoInvocable invocador) {
@@ -43,7 +43,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		inicializar();
 		this.pago = pago;
 		seleccionarCargo(CargoManager.traerPorID(pago.getCargo()));
-		seleccionarCliente(ClienteManager.traerPorID(pago.getCliente()));
+		//seleccionarCliente(ClienteManager.traerPorID(pago.getCliente()));
 	}
 
 	private void inicializar() {
@@ -52,8 +52,8 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		ventana.botonAceptar().setAccion(e -> aceptar());
 		ventana.botonAceptarVer().setAccion(e -> aceptarVer());
 		ventana.botonCancelar().setAccion(e -> cancelar());
-		ventana.botonSelCliente().setAccion(e -> seleccionarCliente());
-		ventana.botonCargarCliente().setAccion(e -> cargarCliente());
+		//ventana.botonSelCliente().setAccion(e -> seleccionarCliente());
+		//ventana.botonCargarCliente().setAccion(e -> cargarCliente());
 		ventana.botonSelCargo().setAccion(e -> seleccionarCargo());
 		ventana.botonCargarCargo().setAccion(e -> cargarCargo());
 	} 
@@ -100,7 +100,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		ventana.getImporte().getTextField().requestFocusInWindow();
 	}
 	
-	private void cargarCliente() {
+	/*private void cargarCliente() {
 		ventana.requestFocusInWindow();
 		
 		String DNI = ventana.getDNICli().getTextField().getText();
@@ -118,7 +118,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		seleccionarCliente(directo);
 		ventana.getDNIFal().getTextField().requestFocusInWindow();
 	}
-	
+	*/
 	private void seleccionarCargo() {
 		ventana.setEnabled(false);
 		new ControladorSeleccionCargo(this);
@@ -133,15 +133,20 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		ventana.requestFocusInWindow();
 		
 		try {
-			if (cliente == null || cargo == null) {
-				Popup.mostrar("Debe seleccionar un cargo y un cliente para poder hacer un pago.");
+			if ( cargo == null) {
+				Popup.mostrar("Debe seleccionar un cargo  para poder hacer un pago.");
 				return false;
 			}
+			/*if (cliente == null || cargo == null) {
+				Popup.mostrar("Debe seleccionar un cargo y un cliente para poder hacer un pago.");
+				return false;
+			}*/
 			
 			String observaciones = ventana.getObservaciones().getTextField().getText();
 			Double importe = new Double(ventana.getImporte().getTextField().getText());
 			Date fecha = new Date(ventana.getFecha().getDataChooser().getDate().getTime());
-			Pago pagoNuevo = new Pago(-1, cargo.getID(), cliente.getID(), importe, observaciones, fecha);
+			//Pago pagoNuevo = new Pago(-1, cargo.getID(), cliente.getID(), importe, observaciones, fecha);
+			Pago pagoNuevo = new Pago(-1, cargo.getID(), importe, observaciones, fecha);
 			
 			// Estoy dando el alta
 			if (pago == null)
@@ -182,10 +187,10 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 
 	@Override
 	public void seleccionarCliente(Cliente cliente) {
-		this.cliente = cliente;
-		ventana.getNombreCli().getTextField().setText(cliente.getNombre());
-		ventana.getApellidoCli().getTextField().setText(cliente.getApellido());
-		ventana.getDNICli().getTextField().setText(cliente.getDNI());
+		//this.cliente = cliente;
+		//ventana.getNombreCli().getTextField().setText(cliente.getNombre());
+		//ventana.getApellidoCli().getTextField().setText(cliente.getApellido());
+		//ventana.getDNICli().getTextField().setText(cliente.getDNI());
 	}
 
 	@Override
@@ -205,6 +210,8 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		Servicio servicio = ServicioManager.traerPorID(cargo.getServicio());
 		ventana.getNombreSer().getTextField().setText(servicio.getNombre());
 		ventana.getCodigo().getTextField().setText(servicio.getCodigo());
-	}	
+	}
+
+
 
 }

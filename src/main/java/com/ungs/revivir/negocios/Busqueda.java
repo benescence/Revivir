@@ -49,36 +49,36 @@ public class Busqueda {
 				inhumacionMax, inhumacionMin, macizoMax, macizoMin, seccion, subSector);
 	}
 
-	public static List<Pago> pagos(Cliente cliente, Fallecido fallecido, Date fecha) throws Exception {
-	
+	//public static List<Pago> pagos(Cliente cliente, Fallecido fallecido, Date fecha) throws Exception {
+		public static List<Pago> pagos( Fallecido fallecido, Date fecha) throws Exception {
 		// validaciones
-		if (cliente == null && fallecido == null && fecha == null)
-			throw new Exception("Debe llenar al menos uno de los 3 campos: cliente, fallecido o fecha.");
+		if (fallecido == null && fecha == null)
+			throw new Exception("Debe llenar al menos uno de los 2 campos: cliente, fallecido o fecha.");
 		
-		if (cliente != null && fallecido != null)
-			throw new Exception("Esta busqueda se hace o por cliente o por fallecido, "
-					+"no por los dos.\nPresione limpiar para volver a empezar.");
+		/*if (fallecido != null)
+			throw new Exception("Esta busqueda se hace  por fallecido, "
+					+".\nPresione limpiar para volver a empezar.");*/
 		
 		
 		// Solo lleno solo la fecha
-		if (cliente == null && fallecido == null)
+		if ( fallecido == null)
 			return PagoManager.traerPorFecha(fecha);
 			
-		// Solo lleno solo el cliente
+		/*// Solo lleno solo el cliente
 		if (fallecido == null)
-			return traerPagos(cliente, fecha);
+			return traerPagos(cliente, fecha);*/
 		else
 			return traerPagos(fallecido, fecha);
 	}
 		
-	public static List<Pago> traerPagos(Cliente cliente, Date fecha) {
+	/*public static List<Pago> traerPagos(Cliente cliente, Date fecha) {
 		if (fecha == null)
 			return Relacionador.traerPagos(cliente);
 		else {
 			PagoOBD obd = FactoryOBD.crearPagoOBD();
 			return obd.selectByClienteFecha(cliente, fecha);
 		}
-	}
+	}*/
 
 	public static List<Pago> traerPagos(Fallecido fallecido, Date fecha) {
 		List<Pago> pagos = Relacionador.traerPagos(fallecido);

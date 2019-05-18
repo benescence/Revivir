@@ -32,7 +32,7 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable,
 	private VentanaPagoABM ventana;
 	private ControladorPrincipal invocador;
 	private Fallecido fallecido;
-	private Cliente cliente;
+	//private Cliente cliente;
 	
 	public ControladorPagoABM(ControladorPrincipal invocador) {
 		this.invocador = invocador;
@@ -43,9 +43,9 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable,
 		ventana.botonFactura().addActionListener(e -> factura());
 		ventana.botonMovimientos().addActionListener(e -> movimientos());
 		
-		ventana.botonSelCliente().setAccion(e -> seleccionarCliente());
+		//ventana.botonSelCliente().setAccion(e -> seleccionarCliente());
 		ventana.botonSelFallecido().setAccion(e -> seleccionarFallecido());
-		ventana.botonCargarCliente().setAccion(e -> cargarCliente());
+		//ventana.botonCargarCliente().setAccion(e -> cargarCliente());
 		ventana.botonCargarFallecido().setAccion(e -> cargarFallecido());
 		ventana.botonBuscar().setAccion(e -> actualizarPagos());
 		ventana.botonLimpiar().setAccion(e -> limpiar());
@@ -56,13 +56,13 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable,
 		ventana.getNombreFal().getTextField().setText("");
 		ventana.getApellidoFal().getTextField().setText("");
 		ventana.getDNIFal().getTextField().setText("");
-		
-		cliente = null;
+	}
+		/*cliente = null;
 		ventana.getNombreCli().getTextField().setText("");
 		ventana.getApellidoCli().getTextField().setText("");
 		ventana.getDNICli().getTextField().setText("");
 		ventana.getTabla().recargar(new ArrayList<>());
-	}
+	}*/
 	
 	private void movimientos() {
 		Date fecha = ventana.getFecha().getValor();
@@ -78,14 +78,14 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable,
 		actualizarPagos();
 	}
 
-	@Override
+	/*@Override
 	public void seleccionarCliente(Cliente cliente) {
 		this.cliente = cliente;
 		ventana.getNombreCli().getTextField().setText(cliente.getNombre());
 		ventana.getApellidoCli().getTextField().setText(cliente.getApellido());
 		ventana.getDNICli().getTextField().setText(cliente.getDNI());
 		actualizarPagos();
-	}
+	}*/
 
 	private void seleccionarFallecido() {
 		ventana.deshabilitar();
@@ -132,7 +132,7 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable,
 		}
 		
 		seleccionarFallecido(directo);
-		ventana.getDNICli().getTextField().requestFocusInWindow();
+		//ventana.getDNICli().getTextField().requestFocusInWindow();
 	}
 
 	private void factura() {
@@ -195,12 +195,18 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable,
 	public void actualizarPagos() {
 		try {
 			Date fecha = ventana.getFecha().getValor();
-			List<Pago> pagos = Busqueda.pagos(cliente, fallecido, fecha);
+			List<Pago> pagos = Busqueda.pagos( fallecido, fecha);
 			ventana.getTabla().recargar(pagos);
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
 			//e.printStackTrace();
 		}
+	}
+
+	
+	public void seleccionarCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

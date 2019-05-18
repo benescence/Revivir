@@ -46,7 +46,7 @@ public class ReporteVariosCargos {
 	
 		total.add(suma);
 		totalPagos.put("fecha", pagos.get(0).getFecha());
-		totalPagos.put("cliente",Formato.cliente(pagos.get(0)));
+		//totalPagos.put("cliente",Formato.cliente(pagos.get(0)));
 		totalPagos.put("descripcion", servicios);
 		totalPagos.put("observaciones",observaciones);
 		totalPagos.put("fallecido", Formato.fallecido(pagos.get(0)));

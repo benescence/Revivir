@@ -17,7 +17,7 @@ import com.ungs.revivir.vista.util.entradas.EntradaTexto;
 public class VentanaPagoAM extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private Boton btnAceptar, btnAceptarVer, btnCancelar, btnSelCliente, btnCargarCliente, btnSelCargo, btnCargarCargo;
-	private EntradaTexto inNombreCli, inApellidoCli, inDNICli;
+	//private EntradaTexto inNombreCli, inApellidoCli, inDNICli;
 	private EntradaTexto inNombreFal, inApellidoFal, inDNIFal;
 	private EntradaTexto inCodigo, inNombreSer;
 	private EntradaTexto inImporte, inObservaciones;
@@ -58,7 +58,7 @@ public class VentanaPagoAM extends Ventana {
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
 		setContentPane(panelPrincipal);
 		
-		panelPrincipal.add(panelCliente());
+		//panelPrincipal.add(panelCliente());
 		panelPrincipal.add(panelCargo());
 		panelPrincipal.add(inFecha);
 		panelPrincipal.add(inImporte);
@@ -67,12 +67,12 @@ public class VentanaPagoAM extends Ventana {
 		compactar();
 	}
 	
-	private PanelVertical panelCliente() {
+	/*private PanelVertical panelCliente() {
 		Dimension dimTexto = new Dimension(100, 25);
 		Dimension dimEntrada = new Dimension(300, 25);
-		Dimension dimBoton = new Dimension(150, 25);
+		Dimension dimBoton = new Dimension(150, 25);*/
 		
-		inNombreCli = new EntradaTexto("Nombres", dimTexto, dimEntrada);
+		/*inNombreCli = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellidoCli = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
 		inDNICli = new EntradaTexto("DNI", dimTexto, dimEntrada);
 		inNombreCli.habilitado(false);
@@ -85,7 +85,7 @@ public class VentanaPagoAM extends Ventana {
 		panelBotones.add(btnCargarCliente);
 		panelBotones.add(btnSelCliente);
 		
-		PanelVertical ret = new PanelVertical();
+		/*PanelVertical ret = new PanelVertical();
 		ret.add(new TextoCentrado("Datos del cliente"));
 		ret.add(inNombreCli);
 		ret.add(inApellidoCli);
@@ -93,7 +93,7 @@ public class VentanaPagoAM extends Ventana {
 		ret.add(panelBotones);
 		return ret;
 	}
-	
+	*/
 	private PanelVertical panelCargo() {
 		Dimension dimTexto = new Dimension(100, 25);
 		Dimension dimEntrada = new Dimension(300, 25);
@@ -162,7 +162,7 @@ public class VentanaPagoAM extends Ventana {
 	}
 	
 
-	public EntradaTexto getNombreCli() {
+	/*public EntradaTexto getNombreCli() {
 		return inNombreCli;
 	}
 	
@@ -174,7 +174,7 @@ public class VentanaPagoAM extends Ventana {
 
 	public EntradaTexto getDNICli() {
 		return inDNICli;
-	}
+	}*/
 	
 
 	public EntradaTexto getNombreFal() {

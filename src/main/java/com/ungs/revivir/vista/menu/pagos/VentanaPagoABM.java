@@ -22,7 +22,7 @@ public class VentanaPagoABM extends VentanaInterna {
 	private EntradaFecha inFecha;
 	private Boton btnAgregar, btnModificar, btnEliminar, btnFactura, btnMovimientos, btnBuscar, btnLimpiar;
 	private Boton btnCargarFallecido, btnSelFallecido;
-	private Boton btnCargarCliente, btnSelCliente;
+	//private Boton btnCargarCliente, btnSelCliente;
 	private EntradaTexto inNombreFal, inApellidoFal, inDNIFal;
 	private EntradaTexto inNombreCli, inApellidoCli, inDNICli;
 	
@@ -56,7 +56,7 @@ public class VentanaPagoABM extends VentanaInterna {
 		
 		PanelHorizontal panelBusqueda = new PanelHorizontal();
 		panelBusqueda.add(panelFallecido());
-		panelBusqueda.add(panelCliente());
+		//panelBusqueda.add(panelCliente());
 
 		inFecha = new EntradaFecha(Almanaque.hoy(), "Fecha", dimTexto, dimEntrada);
 		inFecha.setBorder(new EmptyBorder(0, 0, 10, 0));
@@ -100,7 +100,7 @@ public class VentanaPagoABM extends VentanaInterna {
 		return ret;
 	}
 	
-	private PanelVertical panelCliente() {
+	/*private PanelVertical panelCliente() {
 		Dimension dimTexto = new Dimension(100, 25);
 		Dimension dimEntrada = new Dimension(300, 25);
 		Dimension dimBoton = new Dimension(150, 25);
@@ -127,7 +127,7 @@ public class VentanaPagoABM extends VentanaInterna {
 		ret.add(inDNICli);
 		ret.add(panelBotones);
 		return ret;
-	}
+	}*/
 	
 	public TablaPagos getTabla() {
 		return tabla;
@@ -165,18 +165,19 @@ public class VentanaPagoABM extends VentanaInterna {
 		return inFecha;
 	}
 	
-	public Boton botonSelCliente() {
+	/*public Boton botonSelCliente() {
 		return btnSelCliente;
 	}
-	
+		public Boton botonCargarCliente() {
+		return btnCargarCliente;
+	}
+		
+	*/
 	public Boton botonSelFallecido() {
 		return btnSelFallecido;
 	}
 
-	public Boton botonCargarCliente() {
-		return btnCargarCliente;
-	}
-		
+
 	public Boton botonCargarFallecido() {
 		return btnCargarFallecido;
 	}

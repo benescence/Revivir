@@ -59,9 +59,9 @@ public class VerificadorBorrado {
 		if (!responsables.isEmpty())
 			mensaje += "\n    -Tiene fallecidos asociados.";
 		
-		List<Pago> pagos = Relacionador.traerPagos(cliente);
+		/*List<Pago> pagos = Relacionador.traerPagos(cliente);
 		if (!pagos.isEmpty())
-			mensaje += "\n    -Tiene pagos asociados";
+			mensaje += "\n    -Tiene pagos asociados";*/
 		
 		if (!mensaje.equals(""))
 			throw new Exception("El cliente con DNI "+cliente.getDNI()+" no puede borrarse porque:"+mensaje);

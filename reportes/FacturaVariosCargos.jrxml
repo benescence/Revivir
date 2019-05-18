@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="Fecha" class="java.lang.String"/>
@@ -61,26 +61,12 @@
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 				</reportElement>
 				<staticText>
-					<reportElement x="50" y="55" width="80" height="23" uuid="281cee38-914d-492e-b4dc-9b7e4524c65f"/>
-					<textElement textAlignment="Center">
-						<font size="14" isBold="true"/>
-					</textElement>
-					<text><![CDATA[CLIENTE :]]></text>
-				</staticText>
-				<staticText>
 					<reportElement x="3" y="-2" width="128" height="23" uuid="d8f320db-dcc7-459d-8040-aea3690a2bf0"/>
 					<textElement textAlignment="Center">
 						<font size="14" isBold="true"/>
 					</textElement>
 					<text><![CDATA[FECHA DE PAGO:]]></text>
 				</staticText>
-				<textField>
-					<reportElement x="140" y="57" width="258" height="18" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
-					<textElement>
-						<font size="14" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$P{cliente}]]></textFieldExpression>
-				</textField>
 				<textField>
 					<reportElement x="150" y="0" width="210" height="18" uuid="78c2ee9a-adf6-4344-9ac5-e5bcf92bb29d"/>
 					<textElement>

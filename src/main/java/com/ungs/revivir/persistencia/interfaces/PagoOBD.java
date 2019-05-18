@@ -25,9 +25,9 @@ public interface PagoOBD {
 	
 	// METODOS ESPECIFICOS
 	
-	public List<Pago> selectByCliente(Cliente cliente);
+	//public List<Pago> selectByCliente(Cliente cliente);
 	
-	public List<Pago> selectByClienteFecha(Cliente cliente, Date fecha);
+	//public List<Pago> selectByClienteFecha(Cliente cliente, Date fecha);
 	
 	public List<Pago> selectByCargo(Cargo cargo);
 	

@@ -50,12 +50,12 @@ INSERT INTO rev_expensas (responsable, periodo, ubicacion, fecha_vencimiento, im
 (3, 2, 4,'2019-10-20', 880.5, "prueba 3"),
 (2, 3, 1,'2018-10-20', 0, "prueba 4");
 
-INSERT INTO rev_pagos (cargo, cliente, importe, observaciones, fecha) VALUES
-(1,2,990,"pagos 1",'2018-10-22'),
-(2,1,1990,"pagos 2",'2018-10-22'),
-(3,5,2990,"pagos 3",'2018-10-22'),
-(2,5,99,"pagos 4",'2019-01-02'),
-(1,1,99.40,"pagos 5",'2019-01-02');
+INSERT INTO rev_pagos (cargo, importe, observaciones, fecha) VALUES
+(1,990,"pagos 1",'2018-10-22'),
+(2,1990,"pagos 2",'2018-10-22'),
+(3,2990,"pagos 3",'2018-10-22'),
+(2,99,"pagos 4",'2019-01-02'),
+(1,99.40,"pagos 5",'2019-01-02');
 
 INSERT INTO rev_movimientos (fallecido, antigua_ubicacion, causa_traslado, observaciones, fecha_movimiento) VALUES
 (2,"tranladando 1", "no hay porque", "porque ",'2018-10-22'),

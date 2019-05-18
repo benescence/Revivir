@@ -25,7 +25,7 @@ public class ReporteFacturaPago {
     	Map <String, Object> totalPersonas = new HashMap<String, Object>();
     	Pago pago = pagos.get(0);
     	totalPersonas.put("fecha", pago.getFecha());
-    	totalPersonas.put("cliente",Formato.cliente(pagos.get(0)));
+    	//totalPersonas.put("cliente",Formato.cliente(pagos.get(0)));
     	totalPersonas.put("cargo",Formato.servicioDesdeCargo(pago));
     	totalPersonas.put("monto", pago.getImporte());
     	totalPersonas.put("observaciones", pago.getObservaciones());

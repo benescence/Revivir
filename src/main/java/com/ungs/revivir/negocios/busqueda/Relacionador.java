@@ -55,10 +55,10 @@ public class Relacionador {
 		return obd.selectByCliente(cliente);
 	}
 
-	public static List<Pago> traerPagos(Cliente cliente) {
+	/*public static List<Pago> traerPagos(Cliente cliente) {
 		PagoOBD obd = FactoryOBD.crearPagoOBD();
 		return obd.selectByCliente(cliente);
-	}
+	}*/
 	
 	public static List<Pago> traerPagos(Cargo cargo) {
 		PagoOBD obd = FactoryOBD.crearPagoOBD();

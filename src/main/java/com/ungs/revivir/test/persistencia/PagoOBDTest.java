@@ -29,7 +29,8 @@ class PagoOBDTest {
 		if (cliente == null)
 			fail("Debe existir al menos un cliente en la BD para correr este TEST");
 		
-		return new Pago(-1, cargo.getID(), cliente.getID(), 999.0, "Observaciones", Almanaque.hoy());
+		return new Pago(-1, cargo.getID(), 999.0, "Observaciones", Almanaque.hoy());
+		//return new Pago(-1, cargo.getID(), cliente.getID(), 999.0, "Observaciones", Almanaque.hoy());
 	}
 
 	@Test
@@ -88,7 +89,7 @@ class PagoOBDTest {
 	}	
 
 	private void iguales(Pago obj1, Pago obj2) {
-		assertTrue(obj1.getCliente().equals(obj2.getCliente()));
+		//assertTrue(obj1.getCliente().equals(obj2.getCliente()));
 		assertTrue(obj1.getCargo().equals(obj2.getCargo()));
 		assertTrue(obj1.getImporte().equals(obj2.getImporte()));
 		assertTrue(obj1.getObservaciones().equals(obj2.getObservaciones()));
@@ -98,12 +99,13 @@ class PagoOBDTest {
 	}
 	
 	private void distintos(Pago obj1, Pago obj2) {
-		boolean cliente = obj1.getCliente().equals(obj2.getCliente());
+		//boolean cliente = obj1.getCliente().equals(obj2.getCliente());
 		boolean cargo = obj1.getCargo().equals(obj2.getCargo());
 		boolean importe = obj1.getImporte().equals(obj2.getImporte());
 		boolean observaciones = obj1.getObservaciones().equals(obj2.getObservaciones());
 		boolean fecha = obj1.getFecha().equals(obj2.getFecha());
-		assertFalse(cliente && cargo && importe &&observaciones && fecha);
+		//assertFalse(cliente && cargo && importe &&observaciones && fecha);
+		assertFalse( cargo && importe &&observaciones && fecha);
 	}
 
 }

@@ -29,10 +29,10 @@ public class Formato {
 
 
 	// COMPUESTOS
-	public static String cliente(Pago pago) {
+	/*public static String cliente(Pago pago) {
 		Cliente cliente = ClienteManager.traerPorID(pago.getCliente());
 		return cliente(cliente);
-	}
+	}*/
 
 	public static String DNIfallecido(Pago pago) {
 		Cargo cargo = CargoManager.traerPorID(pago.getCargo());

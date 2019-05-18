@@ -27,17 +27,17 @@ public class ReporteMovimientosDiarios {
 	public ReporteMovimientosDiarios(Date fecha) {
 		Map<String, Object> totalPagos = new HashMap<String, Object>();
 		List<String> servicios = new ArrayList<String>();
-		List<String> clientes = new ArrayList<String>();
+		//List<String> clientes = new ArrayList<String>();
 		List<Pago> pagos = PagoManager.traerPorFecha(fecha);
 		List<Double> montos = new ArrayList<Double>();
 		Double suma = 0.0;
 		List<Double> total = new ArrayList<Double>();
 		
 		for (Pago pago : pagos) {
-			String nombreCliente = ClienteManager.traerPorID(pago.getCliente()).getNombre();
-			String apellidoCliente = ClienteManager.traerPorID(pago.getCliente()).getApellido();
-			clientes.add(nombreCliente);
-			clientes.add(apellidoCliente);
+			//String nombreCliente = ClienteManager.traerPorID(pago.getCliente()).getNombre();
+			//String apellidoCliente = ClienteManager.traerPorID(pago.getCliente()).getApellido();
+			//clientes.add(nombreCliente);
+			//clientes.add(apellidoCliente);
 			servicios.add(Formato.servicioDesdeCargo(pago));
 			montos.add(pago.getImporte());
 			suma= suma + pago.getImporte();
@@ -47,7 +47,7 @@ public class ReporteMovimientosDiarios {
 		
 		total.add(suma);
 		totalPagos.put("descripcion", servicios);
-		totalPagos.put("cliente", clientes);
+		//totalPagos.put("cliente", clientes);
 		totalPagos.put("monto", montos);
 		totalPagos.put("total", total);
 		

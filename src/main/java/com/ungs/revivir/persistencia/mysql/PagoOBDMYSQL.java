@@ -15,7 +15,8 @@ import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 
 public class PagoOBDMYSQL extends OBD implements PagoOBD{
-	private final String campos = "cargo, cliente, importe, observaciones, fecha";
+	private final String campos = "cargo, importe, observaciones, fecha";
+	//private final String campos = "cargo, cliente, importe, observaciones, fecha";
 	private final String tabla = "rev_pagos";
 	
 	@Override
@@ -23,7 +24,7 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 		String observaciones = (pago.getObservaciones() != null) ? "'"+pago.getObservaciones()+"'" : null;
 		
 		String valores = pago.getCargo()
-				+", "+pago.getCliente()
+				//+", "+pago.getCliente()
 				+", "+pago.getImporte()
 				+", "+observaciones
 				+", '"+pago.getFecha()+"'";
@@ -37,7 +38,7 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 		
 		String condicion = "ID = "+pago.getID();
 		String valores = " cargo = "+pago.getCargo()
-				+", cliente = "+pago.getCliente()
+				//+", cliente = "+pago.getCliente()
 				+", importe = "+pago.getImporte()
 				+", observaciones = "+observaciones
 				+", fecha= '"+pago.getFecha()+"'";
@@ -71,7 +72,7 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 
 	//*********************** METODOS ESPECIFICOS ************************************
 	
-	@Override
+	/*@Override
 	public List<Pago> selectByCliente(Cliente cliente) {
 		String condicion = "cliente = "+cliente.getID();
 		return selectByCondicion(condicion);
@@ -81,7 +82,7 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 	public List<Pago> selectByClienteFecha(Cliente cliente, Date fecha) {
 		String condicion = "cliente = "+cliente.getID()+" and fecha = '"+fecha+"'";
 		return selectByCondicion(condicion);
-	}
+	}*/
 	
 	@Override
 	public List<Pago> selectByFecha(Date fecha) {
@@ -111,7 +112,7 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 				ret.add(new Pago(
 					resultados.getInt("ID"),
 					resultados.getInt("cargo"),
-					resultados.getInt("cliente"),
+					//resultados.getInt("cliente"),
 					resultados.getDouble("importe"),
 					resultados.getString("observaciones"),
 					resultados.getDate("fecha")

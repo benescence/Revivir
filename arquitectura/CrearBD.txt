@@ -76,6 +76,7 @@ CREATE TABLE rev_fallecidos (
 	cocheria VARCHAR(20) NULL,
 	fecha_fallecimiento DATE NULL,
 	fecha_ingreso DATE NOT NULL,
+	Id_fallecido INT(10) AUTO_INCREMENT,
 	PRIMARY KEY (ID),
 	FOREIGN KEY (tipo_fallecimiento) REFERENCES rev_tipo_fallecimiento(ID),
 	FOREIGN KEY (ubicacion) REFERENCES rev_ubicaciones(ID)
@@ -143,12 +144,10 @@ CREATE TABLE rev_cargos (
 CREATE TABLE rev_pagos (
 	ID INT(10) AUTO_INCREMENT,
 	cargo INT(10) NOT NULL,
-	cliente INT(10) NOT NULL,
 	importe DOUBLE(10, 2) NOT NULL,
 	observaciones VARCHAR(100) NULL,
 	fecha DATE NOT NULL,
 	PRIMARY KEY (ID),
-	FOREIGN KEY (cliente) REFERENCES rev_clientes(ID),
 	FOREIGN KEY (cargo) REFERENCES rev_cargos(ID)
 );
 
