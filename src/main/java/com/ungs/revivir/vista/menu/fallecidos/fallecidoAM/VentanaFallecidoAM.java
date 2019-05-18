@@ -29,7 +29,8 @@ public class VentanaFallecidoAM extends Ventana {
 	private Boton btnAceptar, btnCancelar;
 	
 	// DATOS DEL DIFUNTO
-	private EntradaTexto inNombre, inApellido, inDNI, inCocheria;
+	//private EntradaTexto inNombre, inApellido, inDNI, inCocheria;
+	private EntradaTexto inNombre, inApellido, inCod, inCocheria;
 	private EntradaFecha inFechaFallecimiento, inFechaIngreso;
 	private EntradaLista<TipoFallecimiento> inTipo;
 	
@@ -51,7 +52,8 @@ public class VentanaFallecidoAM extends Ventana {
 		inicializar(fallecido);
 		inNombre.getTextField().setText(fallecido.getNombre());
 		inApellido.getTextField().setText(fallecido.getApellido());
-		inDNI.getTextField().setText(fallecido.getDNI());
+		//inDNI.getTextField().setText(fallecido.getDNI());
+		inCod.getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 		inCocheria.getTextField().setText(fallecido.getCocheria());
 		inTipo.getComboBox().setSelectedItem(fallecido.getTipoFallecimiento());
 	}
@@ -85,7 +87,8 @@ public class VentanaFallecidoAM extends Ventana {
 		
 		inNombre = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellido = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		inDNI = new EntradaTexto("DNI", dimTexto, dimEntrada);
+		//inDNI = new EntradaTexto("DNI", dimTexto, dimEntrada);
+		inCod = new EntradaTexto("Cod Fallecido", dimTexto, dimEntrada);
 		inCocheria = new EntradaTexto("Cochería", dimTexto, dimEntrada);
 		inFechaFallecimiento = new EntradaFecha(null, "Fecha de fallecimiento", dimTexto, dimEntrada);
 		inFechaIngreso = new EntradaFecha(Almanaque.hoy(), "Fecha de Ingreso", dimTexto, dimEntrada);
@@ -100,7 +103,8 @@ public class VentanaFallecidoAM extends Ventana {
 		panelFallecido.add(new TextoCentrado("Datos del fallecido"));
 		panelFallecido.add(inNombre);
 		panelFallecido.add(inApellido);
-		panelFallecido.add(inDNI);
+		//panelFallecido.add(inDNI);
+		panelFallecido.add(inCod);
 		panelFallecido.add(inCocheria);
 		panelFallecido.add(inTipo);
 		panelFallecido.add(inFechaFallecimiento);
@@ -275,8 +279,11 @@ public class VentanaFallecidoAM extends Ventana {
 			inSubSector.getComboBox().addItem(elemento);
 	}
 
-	public JTextField getDNIFallecido() {
+	/*public JTextField getDNIFallecido() {
 		return inDNI.getTextField();
+	}*/
+	public JTextField getCod_Fallecido() {
+		return inCod.getTextField();
 	}
 
 	public JTextField getApellidoFallecido() {

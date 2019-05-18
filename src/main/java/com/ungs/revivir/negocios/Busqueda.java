@@ -19,13 +19,14 @@ import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class Busqueda {
 	
-	public static List<Fallecido> fallecidos(String DNI, String nombres, String apellido) {
+	public static List<Fallecido> fallecidos(String DNI, String nombres, String apellido,Integer cod_fallecido) {
 		DNI = Verificador.anular(DNI);
+		cod_fallecido = Verificador.anularInt(cod_fallecido);
 		nombres = Verificador.anular(nombres);
 		apellido = Verificador.anular(apellido);
 		
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		return obd.selectByNombreApellidoDNI(nombres, apellido, DNI);
+		return obd.selectByNombreApellidoCOD(nombres, apellido, /*DNI*/cod_fallecido);
 	}
 
 	public static List<Ubicacion> ubicaciones(

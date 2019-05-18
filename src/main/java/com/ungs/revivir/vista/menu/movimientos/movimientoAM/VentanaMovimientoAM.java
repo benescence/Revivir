@@ -26,7 +26,7 @@ public class VentanaMovimientoAM extends Ventana {
 	private Boton btnAceptar, btnCancelar;
 	private EntradaTexto inObservaciones, inCausa;
 	private EntradaFecha inFecha;
-	private EntradaTexto inNombreFal, inApellidoFal, inDNIFal;
+	private EntradaTexto inNombreFal, inApellidoFal, /*inDNIFal*/ inCODFal;
 	private Boton btnCargarFallecido, btnSelFallecido;
 	
 	// DATOS DE UBICACION
@@ -101,7 +101,8 @@ public class VentanaMovimientoAM extends Ventana {
 		
 		inNombreFal = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellidoFal = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		inDNIFal = new EntradaTexto("DNI", dimTexto, dimEntrada);
+		//inDNIFal = new EntradaTexto("DNI", dimTexto, dimEntrada);
+		inCODFal = new EntradaTexto("Cod Fallecido", dimTexto, dimEntrada);
 		inNombreFal.habilitado(false);
 		inApellidoFal.habilitado(false);
 		
@@ -120,7 +121,8 @@ public class VentanaMovimientoAM extends Ventana {
 		ret.add(titulo);
 		ret.add(inNombreFal);
 		ret.add(inApellidoFal);
-		ret.add(inDNIFal);
+		//ret.add(inDNIFal);
+		ret.add(inCODFal);
 		ret.add(panelBotones);
 		return ret;
 	}
@@ -322,8 +324,11 @@ public class VentanaMovimientoAM extends Ventana {
 		return inApellidoFal;
 	}
 	
-	public EntradaTexto getDNIFal() {
+	/*public EntradaTexto getDNIFal() {
 		return inDNIFal;
+	}*/
+	public EntradaTexto getCODFal() {
+		return inCODFal;
 	}
 	
 	public Boton botonCargarFallecido() {

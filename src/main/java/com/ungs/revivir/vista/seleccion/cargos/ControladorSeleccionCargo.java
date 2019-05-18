@@ -66,25 +66,37 @@ public class ControladorSeleccionCargo implements FallecidoSeleccionable, Client
 		}
 		
 		seleccionarCliente(directo);
-		ventana.getDNIFal().getTextField().requestFocusInWindow();
+		ventana.getCODFal().getTextField().requestFocusInWindow();
 	}
 
 	private void cargarFallecido() {
 		ventana.requestFocusInWindow();
 		
-		String DNI = ventana.getDNIFal().getTextField().getText();
+		/*String DNI = ventana.getDNIFal().getTextField().getText();
 		if (!Validador.DNI(DNI)) {
 			Popup.mostrar("El DNI solo puede consistir de numeros");
 			return;
 		}
 		
-		Fallecido directo = FallecidoManager.traerPorDNI(DNI);
+		Fallecido directo = FallecidoManager.traerPorCOD(cod_fallecido);
 		if (directo == null) {
 			Popup.mostrar("No hay registros de un fallecido con el DNI: "+DNI+".");
 			return;
 		}
+		*/
+		Integer cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
+		if (!Validador.cod_fallecido(Integer.toString(cod_fallecido))) {
+			Popup.mostrar("El codigo solo puede consistir de numeros");
+			return;
+		}
+
+		Fallecido fallecido = FallecidoManager.traerPorCOD(cod_fallecido);
+		if (fallecido == null) {
+			Popup.mostrar("No hay registros de un fallecido con el codigo: "+cod_fallecido+".");
+			return;
+		}
 		
-		seleccionarFallecido(directo);
+		seleccionarFallecido(fallecido);
 		ventana.getDNICli().getTextField().requestFocusInWindow();
 	}
 	
@@ -92,7 +104,9 @@ public class ControladorSeleccionCargo implements FallecidoSeleccionable, Client
 		fallecido = null;
 		ventana.getNombreFal().getTextField().setText("");
 		ventana.getApellidoFal().getTextField().setText("");
-		ventana.getDNIFal().getTextField().setText("");
+		//ventana.getDNIFal().getTextField().setText("");
+		ventana.getCODFal().getTextField().setText("");
+		
 		
 		cliente = null;
 		ventana.getNombreCli().getTextField().setText("");
@@ -129,7 +143,8 @@ public class ControladorSeleccionCargo implements FallecidoSeleccionable, Client
 		this.fallecido = fallecido;
 		ventana.getNombreFal().getTextField().setText(fallecido.getNombre());
 		ventana.getApellidoFal().getTextField().setText(fallecido.getApellido());
-		ventana.getDNIFal().getTextField().setText(fallecido.getDNI());
+		//ventana.getDNIFal().getTextField().setText(fallecido.getDNI());
+		ventana.getCODFal().getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 		actualizarCargos();
 	}
 

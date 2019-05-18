@@ -19,7 +19,7 @@ public class VentanaResponsableABMFallecido extends VentanaInterna {
 	private TablaClientes tabla;
 	private Boton btnAgregar, btnModificar, btnEliminar;
 	private Boton btnCargarFallecido, btnSelFallecido;
-	private EntradaTexto inNombreFal, inApellidoFal, inDNIFal;
+	private EntradaTexto inNombreFal, inApellidoFal, /*inDNIFal*/ inCODFal;
 	
 	public VentanaResponsableABMFallecido() {
 		super("Consultar por fallecido", 500, 500);
@@ -54,7 +54,8 @@ public class VentanaResponsableABMFallecido extends VentanaInterna {
 		
 		inNombreFal = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellidoFal = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		inDNIFal = new EntradaTexto("DNI", dimTexto, dimEntrada);
+		//inDNIFal = new EntradaTexto("DNI", dimTexto, dimEntrada);
+		inCODFal = new EntradaTexto("Cod. Fallecido", dimTexto, dimEntrada);
 		
 		inNombreFal.habilitado(false);
 		inApellidoFal.habilitado(false);
@@ -71,7 +72,8 @@ public class VentanaResponsableABMFallecido extends VentanaInterna {
 		ret.add(new TextoCentrado("Datos del fallecidos"));
 		ret.add(inNombreFal);
 		ret.add(inApellidoFal);
-		ret.add(inDNIFal);
+		//ret.add(inDNIFal);
+		ret.add(inCODFal);
 		ret.add(panelBotones);
 		return ret;
 	}
@@ -108,8 +110,12 @@ public class VentanaResponsableABMFallecido extends VentanaInterna {
 		return inApellidoFal;
 	}
 
-	public EntradaTexto getDNIFal() {
-		return inDNIFal;
+	/*public EntradaTexto getDNIFal() {
+	return inDNIFal;
+	}*/
+	public EntradaTexto getCODFal() {
+	return inCODFal;
 	}
+	
 	
 }

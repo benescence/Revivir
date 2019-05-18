@@ -14,7 +14,7 @@ import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 
 public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
-	private final String campos = " ubicacion, DNI, apellido, nombre, fecha_fallecimiento, tipo_fallecimiento, cocheria, fecha_ingreso";
+	private final String campos = " ubicacion, DNI, apellido, nombre, fecha_fallecimiento, tipo_fallecimiento, cod_fallecido, cocheria, fecha_ingreso";
 	private final String tabla = "rev_fallecidos";
 	
 	@Override
@@ -24,9 +24,10 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 		String valores = fallecido.getUbicacion()
 				+", '"+fallecido.getDNI()+"'"
 				+", '"+fallecido.getApellido()+"'"
-				+", '"+fallecido.getNombre()+"'"
+				+", '"+fallecido.getNombre()+"'"						
 				+", "+fechaFal
 				+", "+Definido.tipoFallecimiento(fallecido.getTipoFallecimiento())
+				+", '"+fallecido.getCod_fallecido()+"'"
 				+", '"+fallecido.getCocheria()+"'"+", '"+fallecido.getFechaIngreso()+"'";
 		String sql = "insert into "+tabla+"("+campos+") values("+valores+");";
 		ejecutarSQL(sql);		
@@ -43,6 +44,7 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 				+", nombre = '"+fallecido.getNombre()+"'"
 				+", fecha_fallecimiento = "+fechaFal
 				+", tipo_fallecimiento = "+Definido.tipoFallecimiento(fallecido.getTipoFallecimiento())
+				+", cod_fallecido = '"+fallecido.getCod_fallecido()+"'"
 				+", cocheria = '"+fallecido.getCocheria()+"'"
 				+", fecha_ingreso = '"+fallecido.getFechaIngreso()+"'";
 		String consulta = "update "+tabla+" set "+valores+"  where ("+condicion+");";
@@ -64,7 +66,26 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 	}
 
 	@Override
-	public List<Fallecido> selectByNombreApellidoDNI(String nombre, String apellido, String DNI) {
+	public List<Fallecido> selectByNombreApellidoCOD(String nombre, String apellido, Integer cod_fallecido) {
+		String condicion = "";
+		if (nombre != null)
+			condicion += "upper(nombre) like '"+nombre.toUpperCase()+"%'";
+		
+		if (apellido != null) {
+			if (!condicion.equals(""))
+				condicion += " and "; 
+			condicion += "upper(apellido) like '"+apellido.toUpperCase()+"%'";
+		}
+		
+		if (cod_fallecido != null) {
+			if (!condicion.equals(""))
+				condicion += " and "; 
+			condicion += "cod_fallecido like '"+cod_fallecido+"%'";
+		}
+		
+		return selectByCondicion(condicion);
+	}
+	/*public List<Fallecido> selectByNombreApellidoDNI(String nombre, String apellido, String DNI) {
 		String condicion = "";
 		if (nombre != null)
 			condicion += "upper(nombre) like '"+nombre.toUpperCase()+"%'";
@@ -83,7 +104,7 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 		
 		return selectByCondicion(condicion);
 	}
-
+*/
 	
 	@Override
 	public List<Fallecido> selectByNombreApellido(String nombre, String apellido) {
@@ -116,7 +137,9 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 						resultados.getInt("ID"),
 						resultados.getInt("ubicacion"),
 						Definido.tipoFallecimiento(resultados.getInt("tipo_fallecimiento")),
-						resultados.getString("DNI"),
+						resultados.getInt("cod_fallecido"),
+						//resultados.getString("DNI"),
+						resultados.getString("cod_fallecido"),
 						resultados.getString("apellido"),
 						resultados.getString("nombre"),
 						resultados.getString("cocheria"),
@@ -138,13 +161,20 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 	}
 
 	@Override
-	public Fallecido selectByDNI(String DNI) {
-		String condicion = "DNI = '"+DNI+"'";
+	public Fallecido selectByCOD(Integer cod_fallecido) {
+		String condicion = "cod_fallecido = '"+cod_fallecido+"'";
 		List<Fallecido> lista = selectByCondicion(condicion);
 		if (lista.isEmpty())
 			return null;
 		return lista.get(0);
 	}
+	/*public Fallecido selectByDNI(String DNI) {
+		String condicion = "DNI = '"+DNI+"'";
+		List<Fallecido> lista = selectByCondicion(condicion);
+		if (lista.isEmpty())
+			return null;
+		return lista.get(0);
+	}*/
 
 	@Override
 	public List<Fallecido> selectByUbicacion(Ubicacion ubicacion) {

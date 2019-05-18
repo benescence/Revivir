@@ -17,7 +17,7 @@ public class VentanaFallecidosABM extends VentanaInterna {
 	private static final long serialVersionUID = 1L;
 	private TablaFallecidos tabla;
 	private Boton btnAgregar, btnModificar, btnEliminar, btnBuscar, btnLimpiar;
-	private EntradaTexto inNombre, inApellido, inDNI;
+	private EntradaTexto inNombre, inApellido, /*inDNI*/ inCodFal;
 		
 	public VentanaFallecidosABM() {
 		super("Gestion de fallecidos", 500, 500);
@@ -51,7 +51,8 @@ public class VentanaFallecidosABM extends VentanaInterna {
 		
 		inNombre = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellido = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		inDNI = new EntradaTexto("DNI", dimTexto, dimEntrada);
+		//inDNI = new EntradaTexto("DNI", dimTexto, dimEntrada);
+		inCodFal = new EntradaTexto("Cod Fallecido", dimTexto, dimEntrada);
 		
 		btnBuscar = new Boton("Buscar", dimBoton);
 		btnLimpiar = new Boton("Limpiar", dimBoton);
@@ -63,7 +64,8 @@ public class VentanaFallecidosABM extends VentanaInterna {
 		PanelVertical ret = new PanelVertical();
 		ret.add(inNombre);
 		ret.add(inApellido);
-		ret.add(inDNI);
+		//ret.add(inDNI);
+		ret.add(inCodFal);
 		ret.add(panelBotones);
 		return ret;
 	}
@@ -100,8 +102,11 @@ public class VentanaFallecidosABM extends VentanaInterna {
 		return inApellido;
 	}
 
-	public EntradaTexto getDNI() {
+	/*public EntradaTexto getDNI() {
 		return inDNI;
+	}*/
+	public EntradaTexto getCOD() {
+		return inCodFal;
 	}
 	
 }

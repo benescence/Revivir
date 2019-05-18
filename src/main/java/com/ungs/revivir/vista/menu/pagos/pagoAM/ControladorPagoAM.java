@@ -73,21 +73,26 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			return;
 		}
 
-		String DNI = ventana.getDNIFal().getTextField().getText();
+		/*String DNI = ventana.getDNIFal().getTextField().getText();
 		if (!Validador.DNI(DNI)) {
 			Popup.mostrar("El DNI solo puede consistir de numeros.");
 			return;
+		}*/
+		Integer cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
+		if (!Validador.cod_fallecido(Integer.toString(cod_fallecido))) {
+			Popup.mostrar("El codigo solo puede consistir de numeros");
+			return;
 		}
 
-		Fallecido fallecido = FallecidoManager.traerPorDNI(DNI);
+		Fallecido fallecido = FallecidoManager.traerPorCOD(cod_fallecido);
 		if (fallecido == null) {
-			Popup.mostrar("No hay registros de un fallecido con el DNI: "+DNI+".");
+			Popup.mostrar("No hay registros de un fallecido con el codigo: "+cod_fallecido+".");
 			return;
 		}
 
 		List<Cargo> directos = CargoManager.traerPorFallecidoServicio(fallecido, servicio);
 		if (directos.isEmpty()) {
-			Popup.mostrar("No hay registros de un cargo de un servicio de codigo "+codigo+" sobre el fallecido con DNI: "+DNI+".");
+			Popup.mostrar("No hay registros de un cargo de un servicio de codigo "+codigo+" sobre el fallecido con codigo: "+cod_fallecido+".");
 			return;
 		}
 
@@ -205,8 +210,8 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		Fallecido fallecido = FallecidoManager.traerPorID(cargo.getFallecido());
 		ventana.getNombreFal().getTextField().setText(fallecido.getNombre());
 		ventana.getApellidoFal().getTextField().setText(fallecido.getApellido());
-		ventana.getDNIFal().getTextField().setText(fallecido.getDNI());
-		
+		//ventana.getDNIFal().getTextField().setText(fallecido.getDNI());
+		ventana.getCODFal().getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 		Servicio servicio = ServicioManager.traerPorID(cargo.getServicio());
 		ventana.getNombreSer().getTextField().setText(servicio.getNombre());
 		ventana.getCodigo().getTextField().setText(servicio.getCodigo());

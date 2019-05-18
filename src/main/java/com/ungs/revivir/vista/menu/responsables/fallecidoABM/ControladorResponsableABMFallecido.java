@@ -91,7 +91,7 @@ public class ControladorResponsableABMFallecido implements ResponsableInvocable,
 	private void cargarFallecido() {
 		ventana.requestFocusInWindow();
 		
-		String DNI = ventana.getDNIFal().getValor();
+		/*String DNI = ventana.getDNIFal().getValor();
 		if (!Validador.DNI(DNI)) {
 			Popup.mostrar("El DNI solo puede consistir de numeros");
 			return;
@@ -101,8 +101,18 @@ public class ControladorResponsableABMFallecido implements ResponsableInvocable,
 		if (directo == null) {
 			Popup.mostrar("No hay registros de un fallecido con el DNI: "+DNI+".");
 			return;
+		}*/
+		Integer cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
+		if (!Validador.cod_fallecido(Integer.toString(cod_fallecido))) {
+			Popup.mostrar("El codigo solo puede consistir de numeros");
+			return;
 		}
-		
+		//Fallecido directo = FallecidoManager.traerPorDNI(DNI);
+		Fallecido directo = FallecidoManager.traerPorCOD(cod_fallecido);
+		if (directo == null) {
+			Popup.mostrar("No hay registros de un fallecidos con el codigo "+cod_fallecido+".");
+			return;
+		}
 		seleccionarFallecido(directo);
 	}
 
@@ -126,7 +136,8 @@ public class ControladorResponsableABMFallecido implements ResponsableInvocable,
 		this.fallecido = fallecido;
 		ventana.getNombreFal().setValor(fallecido.getNombre());
 		ventana.getApellidoFal().setValor(fallecido.getApellido());
-		ventana.getDNIFal().setValor(fallecido.getDNI());
+		//ventana.getDNIFal().getTextField().setText(fallecido.getDNI());
+				ventana.getCODFal().getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 		actualizarResponsables();
 	}
 	

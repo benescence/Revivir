@@ -81,15 +81,17 @@ public class ControladorCargoAM implements ControladorExterno, ServicioSeleccion
 	private void cargarFallecido() {
 		ventana.requestFocusInWindow();
 		
-		String DNI = ventana.getDNI().getTextField().getText();
-		if (!Validador.DNI(DNI)) {
+		//String DNI = ventana.getDNI().getTextField().getText();
+		Integer cod_fallecido = Integer.parseInt(ventana.getCOD().getTextField().getText());
+		if (!Validador.cod_fallecido(Integer.toString(cod_fallecido))) {
 			Popup.mostrar("El DNI solo puede consistir de numeros");
 			return;
 		}
 		
-		Fallecido directo = FallecidoManager.traerPorDNI(DNI);
+		//Fallecido directo = FallecidoManager.traerPorDNI(DNI);
+		Fallecido directo = FallecidoManager.traerPorCOD(cod_fallecido);
 		if (directo == null) {
-			Popup.mostrar("No hay registros de un fallecidos con el DNI "+DNI+".");
+			Popup.mostrar("No hay registros de un fallecido con el codigo "+cod_fallecido+".");
 			return;
 		}
 		
@@ -153,7 +155,8 @@ public class ControladorCargoAM implements ControladorExterno, ServicioSeleccion
 		this.fallecido = fallecido;
 		ventana.getNombre().getTextField().setText(fallecido.getNombre());
 		ventana.getApellido().getTextField().setText(fallecido.getApellido());
-		ventana.getDNI().getTextField().setText(fallecido.getDNI());
+		//ventana.getDNI().getTextField().setText(fallecido.getDNI());
+		ventana.getCOD().getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 		ventana.getUbicacion().setValor(Formato.ubicacion(fallecido));
 	}
 

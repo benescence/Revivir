@@ -32,8 +32,10 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 		try {
 			String nombre = ventana.getNombre().getValor();
 			String apellido = ventana.getApellido().getValor();
-			String DNI = ventana.getDNI().getValor();
-			List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, DNI);
+			Integer cod_fallecido =Integer.parseInt(ventana.getCOD().getValor());
+			//String DNI = ventana.getDNI().getValor();
+			//List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, DNI);
+			List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, cod_fallecido);
 			
 			if (lista.isEmpty())
 				Popup.mostrar("No se ha encontrado ningun fallecido con los parametros ingresados.");
@@ -48,7 +50,8 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 	private void limpiar() {
 		ventana.getNombre().setValor("");
 		ventana.getApellido().setValor("");
-		ventana.getDNI().setValor("");
+		//ventana.getDNI().setValor("");
+		ventana.getCOD().setValor("");
 	}
 
 	private void modificar() {

@@ -27,8 +27,9 @@ public class ControladorSeleccionarFallecido {
 		try {
 			String nombre = ventana.getNombre().getTextField().getText();
 			String apellido = ventana.getApellido().getTextField().getText();
-			String DNI = ventana.getDNI().getTextField().getText();
-			List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, DNI);
+			//String DNI = ventana.getDNI().getTextField().getText();
+			Integer cod_fallecido = Integer.parseInt(ventana.getDNI().getTextField().getText());
+			List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, cod_fallecido);
 			if (lista.isEmpty())
 				Popup.mostrar("No se ha encontrado ningun fallecido con los paramteros ingresados.");
 			ventana.getTabla().recargar(lista);

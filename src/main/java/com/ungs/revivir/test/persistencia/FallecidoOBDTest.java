@@ -25,7 +25,7 @@ class FallecidoOBDTest {
 		Ubicacion ubicacion = UbicacionManager.traerMasReciente();
 		if (ubicacion == null)
 			fail("Debe haber al menos una ubicacion en la BD para correr este test.");
-		return new Fallecido(-1, ubicacion.getID(), TipoFallecimiento.TRAUMATICO, "000", "Apellido", "Nombre", "Cocheria", Almanaque.hoy(), Almanaque.hoy());
+		return new Fallecido(-1, ubicacion.getID(), TipoFallecimiento.TRAUMATICO,20, "000", "Apellido", "Nombre", "Cocheria", Almanaque.hoy(), Almanaque.hoy());
 	}
 
 	@Test

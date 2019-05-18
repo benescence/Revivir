@@ -31,9 +31,13 @@ public class FallecidoManager {
 		return obd.select();
 	}
 
-	public static Fallecido traerPorDNI(String DNI) {
+	/*public static Fallecido traerPorDNI(String DNI) {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		return obd.selectByDNI(DNI);
+	}*/
+	public static Fallecido traerPorCOD(Integer cod_fallecido) {
+		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
+		return obd.selectByCOD(cod_fallecido);
 	}
 
 	public static Fallecido traerPorID(Integer ID) {
@@ -46,10 +50,11 @@ public class FallecidoManager {
 		return obd.ultimoInsertado();
 	}
 
-	public static List<Fallecido> traer(String nombres, String apellido, String DNI) throws Exception {
+	public static List<Fallecido> traer(String nombres, String apellido, /*String DNI*/Integer cod_fallecido) throws Exception {
 		nombres = Verificador.anular(nombres);
 		apellido = Verificador.anular(apellido);
-		DNI = Verificador.anular(DNI);
+		//DNI = Verificador.anular(DNI);
+		cod_fallecido = Verificador.anularInt(cod_fallecido);
 		String mensaje = "";
 
 		if (nombres != null && !Validador.nombrePersona(nombres))
@@ -58,17 +63,21 @@ public class FallecidoManager {
 		if (apellido != null && !Validador.apellido(apellido))
 			mensaje += "\n    -El APELLIDO solo puede estar compuesto de letras y espacios.";
 		
-		if (DNI != null && !Validador.DNI(DNI))
-			mensaje += "\n    -El DNI solo puede estar compuesto de n�meros.";
+		/*if (DNI != null && !Validador.DNI(DNI))
+			mensaje += "\n    -El DNI solo puede estar compuesto de n�meros.";*/
+		if (cod_fallecido != null && !Validador.cod_fallecido(Integer.toString((cod_fallecido))))
+			mensaje += "\n    -El codigo solo puede estar compuesto de n�meros.";
 		
-		if (nombres == null && apellido == null && DNI == null)
+		if (nombres == null && apellido == null && /*DNI == null*/ cod_fallecido == null)
 			mensaje += "\n    -Debe llenar al menos uno de los campos para realizar la busqueda.";
 		
 		if (!mensaje.equals(""))
 			throw new Exception("Se encontraron los siguientes errores:"+mensaje);
-		
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		return obd.selectByNombreApellidoDNI(nombres, apellido, DNI);
+		
+		return obd.selectByNombreApellidoCOD(nombres, apellido, cod_fallecido);
+		/*FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
+		return obd.selectByNombreApellidoDNI(nombres, apellido, DNI);*/
 	}
 	
 }

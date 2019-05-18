@@ -69,7 +69,7 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 		
 		ventana.getNombreFal().setValor("");
 		ventana.getApellidoFal().setValor("");
-		ventana.getDNIFal().setValor("");
+		//ventana.getDNIFal().setValor("");
 		ventana.getCocheria().setValor("");
 
 		ventana.getCirc().setValor("");
@@ -185,13 +185,15 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 	private Fallecido obtenerFallecidoVerificado() throws Exception {
 		String nombre = ventana.getNombreFal().getValor();
 		String apellido = ventana.getApellidoFal().getValor();
-		String DNI = ventana.getDNIFal().getValor();
+		//String DNI = ventana.getDNIFal().getValor();
+		String DNI = "default";
 		String cocheria = ventana.getCocheria().getValor();
 		TipoFallecimiento tipo = (TipoFallecimiento) ventana.getTipo().getComboBox().getSelectedItem();
+		Integer cod_fallecido = Integer.parseInt(ventana.getCodFal().getValor()); 
 		Date fFallecimiento = ventana.getFFallecimiento().getValor();
 		Date fIngreso = ventana.getFIngreso().getValor();
 		
-		Fallecido fallecido = new Fallecido(-1, -1, tipo, DNI, apellido, nombre, cocheria, fFallecimiento, fIngreso);
+		Fallecido fallecido = new Fallecido(-1, -1, tipo, cod_fallecido, DNI, apellido, nombre, cocheria, fFallecimiento, fIngreso);
 		return Verificador.fallecido(fallecido);
 	}
 	

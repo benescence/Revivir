@@ -2,6 +2,7 @@ package com.ungs.revivir.vista.menu.fallecidos.fallecidoAM;
 
 import java.sql.Date;
 
+import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.negocios.verificador.Verificador;
@@ -42,6 +43,10 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		
 		try {
 			Fallecido fallecido = traerFallecidoVerificado();
+			if (fallecido.getCod_fallecido() == 0) {
+				Popup.mostrar("El codigo solo puede consistir de numeros");
+				return;
+			}
 			
 			// Es un alta
 			if (modificar == null) {
@@ -100,13 +105,15 @@ public class ControladorFallecidoAM implements ControladorExterno{
 	private Fallecido traerFallecidoVerificado() throws Exception {
 		String nombre = ventana.getNombreFallecido().getText();;
 		String apellido = ventana.getApellidoFallecido().getText();
-		String DNI = ventana.getDNIFallecido().getText();
+		//String DNI = ventana.getDNIFallecido().getText();
+		String DNI = "";
 		String cocheria = ventana.getCocheria().getText();
 		TipoFallecimiento tipo = (TipoFallecimiento) ventana.getInTipoFallecimiento().getSelectedItem();
+		Integer cod_fallecido = Validador.cod_fallecido(ventana.getCod_Fallecido().getText()) ? Integer.parseInt(ventana.getCod_Fallecido().getText()) : 0;
 		Date fFallecimiento = ventana.getInFechaFallecimiento().getValor();
 		Date fIngreso = ventana.getInFechaIngreso().getValor();
 		
-		Fallecido fallecido = new Fallecido(-1, -1, tipo, DNI, apellido, nombre, cocheria, fFallecimiento, fIngreso);
+		Fallecido fallecido = new Fallecido(-1, -1, tipo,cod_fallecido, DNI, apellido, nombre, cocheria, fFallecimiento, fIngreso);
 		if (modificar != null)
 			fallecido.setID(modificar.getID());
 		

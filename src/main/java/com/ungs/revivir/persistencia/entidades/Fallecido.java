@@ -5,22 +5,31 @@ import java.sql.Date;
 import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 
 public class Fallecido {
-	private Integer ID, ubicacion;
+	private Integer ID, ubicacion,cod_fallecido;
 	private String DNI, apellido, nombre, cocheria;
 	private Date fechaFallecimiento, fechaIngreso;
 	private TipoFallecimiento tipoFallecimiento;
 	
-	public Fallecido(Integer ID, Integer ubicacion, TipoFallecimiento tipoFallecimiento, String DNI, String apellido, String nombre, String cocheria,
+	public Fallecido(Integer ID, Integer ubicacion, TipoFallecimiento tipoFallecimiento, Integer cod_fallecido, String DNI, String apellido, String nombre, String cocheria,
 			Date fechaFallecimiento, Date fechaIngreso) {
 		this.ID = ID;
 		this.ubicacion = ubicacion;
 		this.tipoFallecimiento = tipoFallecimiento;
+		this.cod_fallecido = cod_fallecido;
 		this.DNI = DNI;
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.cocheria = cocheria;
 		this.fechaFallecimiento = fechaFallecimiento;
 		this.fechaIngreso = fechaIngreso;
+	}
+
+	public Integer getCod_fallecido() {
+		return cod_fallecido;
+	}
+
+	public void setCod_fallecido(Integer cod_fallecido) {
+		this.cod_fallecido = cod_fallecido;
 	}
 
 	public Integer getID() {

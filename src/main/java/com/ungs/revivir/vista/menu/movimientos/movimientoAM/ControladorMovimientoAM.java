@@ -50,15 +50,16 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 	private void cargarFallecido() {
 		ventana.requestFocusInWindow();
 		
-		String DNI = ventana.getDNIFal().getTextField().getText();
-		if (!Validador.DNI(DNI)) {
-			Popup.mostrar("El DNI solo puede consistir de numeros");
+		//String DNI = ventana.getDNIFal().getTextField().getText();
+		Integer cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
+		if (!Validador.cod_fallecido(Integer.toString(cod_fallecido))) {
+			Popup.mostrar("El codigo solo puede consistir de numeros");
 			return;
 		}
 		
-		Fallecido directo = FallecidoManager.traerPorDNI(DNI);
+		Fallecido directo = FallecidoManager.traerPorCOD(cod_fallecido);
 		if (directo == null) {
-			Popup.mostrar("No hay registros de un fallecidos con el DNI "+DNI+".");
+			Popup.mostrar("No hay registros de un fallecidos con el codigo "+cod_fallecido+".");
 			return;
 		}
 		
@@ -125,7 +126,8 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 		this.fallecido = fallecido;
 		ventana.getNombreFal().getTextField().setText(fallecido.getNombre());
 		ventana.getApellidoFal().getTextField().setText(fallecido.getApellido());
-		ventana.getDNIFal().getTextField().setText(fallecido.getDNI());
+		//ventana.getDNIFal().getTextField().setText(fallecido.getDNI());
+		ventana.getCODFal().getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 	}
 	
 	private Ubicacion traerUbicacionVerificada() throws Exception {

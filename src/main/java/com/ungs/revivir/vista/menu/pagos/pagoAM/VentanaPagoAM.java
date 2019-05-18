@@ -18,7 +18,7 @@ public class VentanaPagoAM extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private Boton btnAceptar, btnAceptarVer, btnCancelar, btnSelCliente, btnCargarCliente, btnSelCargo, btnCargarCargo;
 	//private EntradaTexto inNombreCli, inApellidoCli, inDNICli;
-	private EntradaTexto inNombreFal, inApellidoFal, inDNIFal;
+	private EntradaTexto inNombreFal, inApellidoFal, /*inDNIFal*/inCODFal;
 	private EntradaTexto inCodigo, inNombreSer;
 	private EntradaTexto inImporte, inObservaciones;
 	private EntradaFecha inFecha;
@@ -101,7 +101,8 @@ public class VentanaPagoAM extends Ventana {
 		
 		inNombreFal = new EntradaTexto("Nombres fallecido", dimTexto, dimEntrada);
 		inApellidoFal = new EntradaTexto("Apellidos fallecido", dimTexto, dimEntrada);
-		inDNIFal = new EntradaTexto("DNI fallecido", dimTexto, dimEntrada);
+		inCODFal = new EntradaTexto("Cod Fallecido", dimTexto, dimEntrada);
+		//inDNIFal = new EntradaTexto("DNI fallecido", dimTexto, dimEntrada);
 		inNombreSer = new EntradaTexto("Servicio", dimTexto, dimEntrada);
 		inCodigo = new EntradaTexto("Codigo servicio", dimTexto, dimEntrada);
 		inNombreFal.habilitado(false);
@@ -119,7 +120,8 @@ public class VentanaPagoAM extends Ventana {
 		ret.add(new TextoCentrado("Datos del cargo"));
 		ret.add(inNombreFal);
 		ret.add(inApellidoFal);
-		ret.add(inDNIFal);
+		//ret.add(inDNIFal);
+		ret.add(inCODFal);
 		ret.add(inNombreSer);
 		ret.add(inCodigo);
 		ret.add(panelBotones);
@@ -187,10 +189,12 @@ public class VentanaPagoAM extends Ventana {
 	}
 	
 
-	public EntradaTexto getDNIFal() {
-		return inDNIFal;
+	/*public EntradaTexto getDNIFal() {
+	return inDNIFal;
+	}*/
+	public EntradaTexto getCODFal() {
+	return inCODFal;
 	}
-	
 
 	public EntradaTexto getCodigo() {
 		return inCodigo;

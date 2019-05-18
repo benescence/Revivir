@@ -69,6 +69,7 @@ CREATE TABLE rev_tipo_fallecimiento (
 CREATE TABLE rev_fallecidos (
 	ID INT(10) AUTO_INCREMENT,
 	tipo_fallecimiento INT(1) NOT NULL,
+	cod_fallecido INT(11) NOT NULL,
 	ubicacion INT(10) NOT NULL,
 	nombre VARCHAR(100) NOT NULL,
 	apellido VARCHAR(50) NOT NULL,
@@ -76,7 +77,6 @@ CREATE TABLE rev_fallecidos (
 	cocheria VARCHAR(20) NULL,
 	fecha_fallecimiento DATE NULL,
 	fecha_ingreso DATE NOT NULL,
-	Id_fallecido INT(10) AUTO_INCREMENT,
 	PRIMARY KEY (ID),
 	FOREIGN KEY (tipo_fallecimiento) REFERENCES rev_tipo_fallecimiento(ID),
 	FOREIGN KEY (ubicacion) REFERENCES rev_ubicaciones(ID)
@@ -223,6 +223,7 @@ INSERT INTO rev_subsector (ID, sector, descripcion) VALUES
 (13, 6, 'DEPOSITO 2'),
 (14, 6, 'DEPOSITO 3'),
 (15, 7, 'OTRO CMENTERIO');
+
 
 insert into rev_usuarios (rol, usuario, password) values 
 (1, 'admin', 'admin');
