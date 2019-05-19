@@ -140,10 +140,15 @@ public class ControladorResponsableAM implements ControladorExterno, ClienteSele
 			Popup.mostrar("No hay registros de un fallecido con el DNI: "+DNI+".");
 			return;
 		}*/
-		Integer cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
-		if (!Validador.cod_fallecido(Integer.toString(cod_fallecido))) {
-			Popup.mostrar("El codigo solo puede consistir de numeros");
-			return;
+		Integer cod_fallecido;
+		if (!Validador.cod_fallecido(ventana.getCODFal().getTextField().getText())) {
+			
+				Popup.mostrar("El codigo solo puede consistir de numeros");
+				return;
+			
+		}
+		else {
+			cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
 		}
 		//Fallecido directo = FallecidoManager.traerPorDNI(DNI);
 		Fallecido directo = FallecidoManager.traerPorCOD(cod_fallecido);

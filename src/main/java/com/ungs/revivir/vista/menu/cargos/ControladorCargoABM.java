@@ -81,7 +81,7 @@ public class ControladorCargoABM implements ControladorInterno, FallecidoSelecci
 		}*/
 		Integer cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
 		if (!Validador.cod_fallecido(Integer.toString(cod_fallecido))) {
-			Popup.mostrar("El Dcodigo solo puede consistir de numeros");
+			Popup.mostrar("El Codigo solo puede consistir de numeros");
 			return;
 		}
 		//Fallecido directo = FallecidoManager.traerPorDNI(DNI);

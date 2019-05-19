@@ -11,7 +11,7 @@ import com.ungs.revivir.vista.util.Formato;
 
 public class TablaFallecidos extends JTable{
 	private static final long serialVersionUID = 1L;
-	private String[] columnas = { "DNI", "Nombre", "Apellido", /*"Fecha de\nfallecimiento", "Tipo de fallecimiento", "Cocheria", */"Ubicacion"};
+	private String[] columnas = { "Codigo", "Nombre", "Apellido", /*"Fecha de\nfallecimiento", "Tipo de fallecimiento", "Cocheria", */"Ubicacion"};
 	private DefaultTableModel modelo;
 	private List<Fallecido> fallecidos;
 
@@ -29,7 +29,8 @@ public class TablaFallecidos extends JTable{
 
 		for (Fallecido elemento: lista) {
 			Object[] fila = {
-					elemento.getDNI(),
+					//elemento.getDNI(),
+					elemento.getCod_fallecido(),
 					elemento.getNombre(),
 					elemento.getApellido(),
 					//elemento.getFechaFallecimiento(),
@@ -41,7 +42,7 @@ public class TablaFallecidos extends JTable{
 		}
 		
 		// tama�os preferenciales
-		getColumn("DNI").setPreferredWidth(30);
+		getColumn("Codigo").setPreferredWidth(30);
 		getColumn("Nombre").setPreferredWidth(100);
 		getColumn("Apellido").setPreferredWidth(80);
 		//getColumn("Fecha de fallecimiento").setPreferredWidth(25);

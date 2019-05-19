@@ -84,7 +84,7 @@ public class ControladorCargoAM implements ControladorExterno, ServicioSeleccion
 		//String DNI = ventana.getDNI().getTextField().getText();
 		Integer cod_fallecido = Integer.parseInt(ventana.getCOD().getTextField().getText());
 		if (!Validador.cod_fallecido(Integer.toString(cod_fallecido))) {
-			Popup.mostrar("El DNI solo puede consistir de numeros");
+			Popup.mostrar("El Codigo de  Fallecido solo puede consistir de numeros");
 			return;
 		}
 		

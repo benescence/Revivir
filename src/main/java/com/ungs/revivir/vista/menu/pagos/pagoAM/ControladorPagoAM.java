@@ -63,7 +63,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		
 		String codigo = ventana.getCodigo().getTextField().getText();
 		if (!Validador.codigo(codigo)) {
-			Popup.mostrar("El CODIGO solo puede consistir de numeros");
+			Popup.mostrar("El CODIGO de servicio solo puede consistir de numeros");
 			return;
 		}
 
@@ -78,10 +78,15 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			Popup.mostrar("El DNI solo puede consistir de numeros.");
 			return;
 		}*/
-		Integer cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
-		if (!Validador.cod_fallecido(Integer.toString(cod_fallecido))) {
-			Popup.mostrar("El codigo solo puede consistir de numeros");
-			return;
+		Integer cod_fallecido;
+		if (!Validador.cod_fallecido(ventana.getCODFal().getTextField().getText())) {
+			
+				Popup.mostrar("El codigo de fallecido  solo puede consistir de numeros");
+				return;
+			
+		}
+		else {
+			cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
 		}
 
 		Fallecido fallecido = FallecidoManager.traerPorCOD(cod_fallecido);
@@ -102,7 +107,12 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		}
 		
 		seleccionarCargo(directos.get(0));
+		
+	
+		
 		ventana.getImporte().getTextField().requestFocusInWindow();
+		
+		
 	}
 	
 	/*private void cargarCliente() {
@@ -134,9 +144,10 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		new ControladorSeleccionCliente(this);
 	}
 	
+	@SuppressWarnings("deprecation")
 	private boolean aceptar() {
 		ventana.requestFocusInWindow();
-		
+		Double importe;
 		try {
 			if ( cargo == null) {
 				Popup.mostrar("Debe seleccionar un cargo  para poder hacer un pago.");
@@ -148,8 +159,14 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			}*/
 			
 			String observaciones = ventana.getObservaciones().getTextField().getText();
-			Double importe = new Double(ventana.getImporte().getTextField().getText());
+			//Double importe =  new Double(0,0);
+		
+				 importe = new Double(ventana.getImporte().getTextField().getText());
+			
+			
+			
 			Date fecha = new Date(ventana.getFecha().getDataChooser().getDate().getTime());
+			
 			//Pago pagoNuevo = new Pago(-1, cargo.getID(), cliente.getID(), importe, observaciones, fecha);
 			Pago pagoNuevo = new Pago(-1, cargo.getID(), importe, observaciones, fecha);
 			
@@ -169,7 +186,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			return true;
 			
 		} catch (Exception e) {
-			Popup.mostrar(e.getMessage());
+			Popup.mostrar("Debe colocar un importe ");
 			return false;
 		}
 		

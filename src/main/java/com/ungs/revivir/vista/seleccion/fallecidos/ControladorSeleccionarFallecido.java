@@ -2,6 +2,7 @@ package com.ungs.revivir.vista.seleccion.fallecidos;
 
 import java.util.List;
 
+import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
@@ -28,7 +29,16 @@ public class ControladorSeleccionarFallecido {
 			String nombre = ventana.getNombre().getTextField().getText();
 			String apellido = ventana.getApellido().getTextField().getText();
 			//String DNI = ventana.getDNI().getTextField().getText();
-			Integer cod_fallecido = Integer.parseInt(ventana.getDNI().getTextField().getText());
+			Integer cod_fallecido;
+			if (!Validador.cod_fallecido(ventana.getCODFal().getTextField().getText())) {
+				
+					Popup.mostrar("El codigo solo puede consistir de numeros");
+					return;
+				
+			}
+			else {
+				cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
+			}
 			List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, cod_fallecido);
 			if (lista.isEmpty())
 				Popup.mostrar("No se ha encontrado ningun fallecido con los paramteros ingresados.");
@@ -41,7 +51,8 @@ public class ControladorSeleccionarFallecido {
 	private void limpiar() {
 		ventana.getNombre().getTextField().setText("");
 		ventana.getApellido().getTextField().setText("");
-		ventana.getDNI().getTextField().setText("");
+		//ventana.getDNI().getTextField().setText("");
+		ventana.getCODFal().getTextField().setText("");
 	}
 
 	private void seleccionar() {
