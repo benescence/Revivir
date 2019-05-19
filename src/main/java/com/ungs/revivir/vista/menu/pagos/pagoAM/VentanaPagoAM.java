@@ -2,6 +2,7 @@ package com.ungs.revivir.vista.menu.pagos.pagoAM;
 
 import java.awt.Dimension;
 
+import javax.swing.JCheckBox;
 import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.negocios.Almanaque;
@@ -19,11 +20,12 @@ public class VentanaPagoAM extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private Boton btnAceptar, btnAceptarVer, btnCancelar, btnSelCliente, btnCargarCliente, btnSelCargo, btnCargarCargo;
 	//private EntradaTexto inNombreCli, inApellidoCli, inDNICli;
-	private EntradaTexto inNombreFal, inApellidoFal, /*inDNIFal*/inCODFal;
+	private EntradaTexto inNombreFal, inApellidoFal;
 	private EntradaTexto inCodigo, inNombreSer;
 	private EntradaTexto inImporte, inObservaciones;
 	private EntradaFecha inFecha;
-	private EntradaNumero inRepetir;
+	private EntradaNumero inRepetir, inCODFal;
+	private JCheckBox inCrearCargo;
 
 	public VentanaPagoAM() {
 		super("Alta de pago");
@@ -48,6 +50,7 @@ public class VentanaPagoAM extends Ventana {
 		inObservaciones = new EntradaTexto("Observaciones", dimTexto, dimEntrada);
 		inRepetir = new EntradaNumero("Repetir", dimTexto, dimEntrada);
 		inRepetir.setValor("1");
+		inCrearCargo = new JCheckBox("Crear cargo");
 		
 		btnAceptar = new Boton("Aceptar", dimBoton);
 		btnAceptarVer = new Boton("Aceptar y ver", dimBoton);
@@ -68,6 +71,7 @@ public class VentanaPagoAM extends Ventana {
 		panelPrincipal.add(inImporte);
 		panelPrincipal.add(inObservaciones);
 		panelPrincipal.add(inRepetir);
+		panelPrincipal.add(inCrearCargo);
 		panelPrincipal.add(panelBotones);
 		compactar();
 	}
@@ -106,7 +110,7 @@ public class VentanaPagoAM extends Ventana {
 		
 		inNombreFal = new EntradaTexto("Nombres fallecido", dimTexto, dimEntrada);
 		inApellidoFal = new EntradaTexto("Apellidos fallecido", dimTexto, dimEntrada);
-		inCODFal = new EntradaTexto("Cod Fallecido", dimTexto, dimEntrada);
+		inCODFal = new EntradaNumero("Cod Fallecido", dimTexto, dimEntrada);
 		//inDNIFal = new EntradaTexto("DNI fallecido", dimTexto, dimEntrada);
 		inNombreSer = new EntradaTexto("Servicio", dimTexto, dimEntrada);
 		inCodigo = new EntradaTexto("Codigo servicio", dimTexto, dimEntrada);
@@ -143,6 +147,9 @@ public class VentanaPagoAM extends Ventana {
 		return btnCancelar;
 	}
 	
+	public JCheckBox checkCrearCargo() {
+		return inCrearCargo;
+	}
 
 	public Boton botonAceptarVer() {
 		return btnAceptarVer;
@@ -197,8 +204,9 @@ public class VentanaPagoAM extends Ventana {
 	/*public EntradaTexto getDNIFal() {
 	return inDNIFal;
 	}*/
-	public EntradaTexto getCODFal() {
-	return inCODFal;
+	
+	public EntradaNumero getCODFal() {
+		return inCODFal;
 	}
 
 	public EntradaTexto getCodigo() {

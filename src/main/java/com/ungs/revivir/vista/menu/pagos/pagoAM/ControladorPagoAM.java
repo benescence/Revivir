@@ -6,10 +6,10 @@ import java.util.List;
 
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.manager.CargoManager;
-import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.PagoManager;
 import com.ungs.revivir.negocios.manager.ServicioManager;
+import com.ungs.revivir.negocios.servicios.Pagador;
 import com.ungs.revivir.persistencia.entidades.Cargo;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
@@ -20,7 +20,6 @@ import com.ungs.revivir.vista.reportes.ReporteVariosCargos;
 import com.ungs.revivir.vista.seleccion.cargos.CargoSeleccionable;
 import com.ungs.revivir.vista.seleccion.cargos.ControladorSeleccionCargo;
 import com.ungs.revivir.vista.seleccion.clientes.ClienteSeleccionable;
-import com.ungs.revivir.vista.seleccion.clientes.ControladorSeleccionCliente;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 
@@ -28,9 +27,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	private VentanaPagoAM ventana;
 	private PagoInvocable invocador;
 	private Cargo cargo;
-	//private Cliente cliente;
 	private Pago pago;
-	private Double importe;
 	
 	public ControladorPagoAM(PagoInvocable invocador) {
 		this.invocador = invocador;
@@ -44,17 +41,14 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		inicializar();
 		this.pago = pago;
 		seleccionarCargo(CargoManager.traerPorID(pago.getCargo()));
-		//seleccionarCliente(ClienteManager.traerPorID(pago.getCliente()));
 	}
 
 	private void inicializar() {
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cancelar()));
-
 		ventana.botonAceptar().setAccion(e -> aceptar());
 		ventana.botonAceptarVer().setAccion(e -> aceptarVer());
 		ventana.botonCancelar().setAccion(e -> cancelar());
-		//ventana.botonSelCliente().setAccion(e -> seleccionarCliente());
-		//ventana.botonCargarCliente().setAccion(e -> cargarCliente());
+
 		ventana.botonSelCargo().setAccion(e -> seleccionarCargo());
 		ventana.botonCargarCargo().setAccion(e -> cargarCargo());
 	} 
@@ -62,7 +56,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	private void cargarCargo() {
 		ventana.requestFocusInWindow();
 		
-		String codigo = ventana.getCodigo().getTextField().getText();
+		String codigo = ventana.getCodigo().getValor();
 		if (!Validador.codigo(codigo)) {
 			Popup.mostrar("El CODIGO de servicio solo puede consistir de numeros");
 			return;
@@ -72,38 +66,25 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		if (servicio == null) {
 			Popup.mostrar("No hay registros de un servicio con el codigo: "+codigo+".");
 			return;
-		}
+		}		
 		
+		ventana.getImporte().setValor(Double.toString(servicio.getImporte()));
 		
-		ventana.getImporte().getTextField().setText(Double.toString(servicio.getImporte()));
-		
-		/*String DNI = ventana.getDNIFal().getTextField().getText();
-		if (!Validador.DNI(DNI)) {
-			Popup.mostrar("El DNI solo puede consistir de numeros.");
+		Integer codFallecido = ventana.getCODFal().getValor();
+		if (!Validador.cod_fallecido(codFallecido.toString())) {
+			Popup.mostrar("El codigo de fallecido  solo puede consistir de numeros");
 			return;
-		}*/
-		Integer cod_fallecido;
-		if (!Validador.cod_fallecido(ventana.getCODFal().getTextField().getText())) {
-			
-				Popup.mostrar("El codigo de fallecido  solo puede consistir de numeros");
-				return;
-			
-		}
-		else {
-			cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
 		}
 
-		Fallecido fallecido = FallecidoManager.traerPorCOD(cod_fallecido);
+		Fallecido fallecido = FallecidoManager.traerPorCOD(codFallecido);
 		if (fallecido == null) {
-			Popup.mostrar("No hay registros de un fallecido con el codigo: "+cod_fallecido+".");
+			Popup.mostrar("No hay registros de un fallecido con el codigo: "+codFallecido+".");
 			return;
 		}
 
+		// Si no tiene un cargo asociado se crea en el momento
 		List<Cargo> directos = CargoManager.traerPorFallecidoServicio(fallecido, servicio);
-		
 		if (directos.isEmpty()) {
-			
-			//Popup.mostrar("No hay registros de un cargo de un servicio de codigo "+codigo+" sobre el fallecido con codigo: "+cod_fallecido+".");
 			Cargo cargoNuevo = new Cargo(-1, fallecido.getID(), servicio.getID(), ventana.getObservaciones().getTextField().getText() , true);
 			directos.add(cargoNuevo);
 			try {
@@ -131,75 +112,42 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		
 	}
 	
-	/*private void cargarCliente() {
-		ventana.requestFocusInWindow();
-		
-		String DNI = ventana.getDNICli().getTextField().getText();
-		if (!Validador.DNI(DNI)) {
-			Popup.mostrar("El DNI solo puede consistir de numeros.");
-			return;
-		}
-		
-		Cliente directo = ClienteManager.traerPorDNI(DNI);
-		if (directo == null) {
-			Popup.mostrar("No hay registros de un cliente con el DNI "+DNI+".");
-			return;
-		}
-		
-		seleccionarCliente(directo);
-		ventana.getDNIFal().getTextField().requestFocusInWindow();
-	}
-	*/
 	private void seleccionarCargo() {
 		ventana.setEnabled(false);
 		new ControladorSeleccionCargo(this);
 	}
 
-	private void seleccionarCliente() {
-		ventana.setEnabled(false);
-		new ControladorSeleccionCliente(this);
-	}
-	
-	@SuppressWarnings("deprecation")
 	private boolean aceptar() {
+		if (!verificarFormulario())
+			return false;
+		
 		ventana.requestFocusInWindow();
-		//Double importe;
 		
 		try {
-			if ( cargo == null) {
-				Popup.mostrar("Debe seleccionar un cargo  para poder hacer un pago.");
-				return false;
+			if (pago != null) {
+				aceptarModificar();
+				return true;
 			}
-			/*if (cliente == null || cargo == null) {
-				Popup.mostrar("Debe seleccionar un cargo y un cliente para poder hacer un pago.");
-				return false;
-			}*/
 			
-			String observaciones = ventana.getObservaciones().getTextField().getText();
-			importe = new Double(ventana.getImporte().getTextField().getText());
-			Date fecha = new Date(ventana.getFecha().getDataChooser().getDate().getTime());
+			boolean crearCargo = ventana.checkCrearCargo().isSelected();
+			int repetir = ventana.getRepetir().getValor();
 			
-			Servicio servicio =ServicioManager.traerActivoPorCodigo(ventana.getCodigo().getTextField().getText());
-			
-			Cargo cargoAux = CargoManager.traerPorServicio(servicio).get(0);
-			//Pago pagoNuevo = new Pago(-1, cargo.getID(), cliente.getID(), importe, observaciones, fecha);
-			Pago pagoNuevo = new Pago(-1, cargoAux.getID(), importe, observaciones, fecha);
-			
-			// Estoy dando de alta nuevos pagos
-			if (pago == null) {
-				int cantidad = ventana.getRepetir().getValor();
-				
-				for (int i = 0; i < cantidad; i++)
-					PagoManager.guardar(pagoNuevo);
-				
-				System.out.println("Se ha guardado "+cantidad+" pagos.");
+			// debe crear el cargo antes de guardar el pago
+			if (crearCargo) {
+				for(int i=0; i<repetir; i++) {
+					Pago pago = traerPagoVerificado();
+					Servicio servicio = ServicioManager.traerActivoPorCodigo(ventana.getCodigo().getValor());
+					Fallecido fallecido = FallecidoManager.traerPorCOD(ventana.getCODFal().getValor());
+					Cargo cargo = new Cargo(-1, fallecido.getID(), servicio.getID(), pago.getObservaciones(), false);					
+					Pagador.crearCargoYPagar(cargo, pago);
+				}				
 			}
-				
-			// Estoy modificando
-			else {
-				pagoNuevo.setID(pago.getID());
-				PagoManager.modificar(pagoNuevo);
-			}
+			
+			// el cargo ya existe solo registra el pago
+			else {	
+				Pago pago = traerPagoVerificado();
+				Pagador.pagarCargoExistente(pago, cargo);
+			}			
 			
 			ventana.dispose();
 			invocador.actualizarPagos();
@@ -209,6 +157,17 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		} catch (Exception e) {
 			Popup.mostrar("Debe colocar un importe ");
 			return false;
+		}
+		
+	}
+
+	private void aceptarModificar() {
+		Pago pagoNuevo = traerPagoVerificado();
+		pagoNuevo.setID(pago.getID());
+		try {
+			PagoManager.modificar(pagoNuevo);
+		} catch (Exception e) {
+			Popup.mostrar(e.getMessage());
 		}
 		
 	}
@@ -229,12 +188,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	}
 
 	@Override
-	public void seleccionarCliente(Cliente cliente) {
-		//this.cliente = cliente;
-		//ventana.getNombreCli().getTextField().setText(cliente.getNombre());
-		//ventana.getApellidoCli().getTextField().setText(cliente.getApellido());
-		//ventana.getDNICli().getTextField().setText(cliente.getDNI());
-	}
+	public void seleccionarCliente(Cliente cliente) {}
 
 	@Override
 	public void mostrar() {
@@ -255,6 +209,42 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		ventana.getCodigo().getTextField().setText(servicio.getCodigo());
 	}
 
-
-
+	// tare el pago ingresado en formulario sin el cargo
+	private Pago traerPagoVerificado() {
+		String observaciones = ventana.getObservaciones().getValor();
+		double importe = new Double(ventana.getImporte().getTextField().getText());
+		Date fecha = new Date(ventana.getFecha().getDataChooser().getDate().getTime());
+		return new Pago(-1, -1, importe, observaciones, fecha);
+	}
+	
+	private boolean verificarFormulario () {
+		boolean isOk = true;
+		String mensaje = "";
+		
+		if (ventana.getImporte().getValor().equals("")) {
+			isOk = false;
+			mensaje += "    -Debe colocar un importe.\n";
+		}
+		
+		if (FallecidoManager.traerPorCOD(ventana.getCODFal().getValor()) == null) {
+			isOk = false;
+			mensaje += "    -Debe indicar un fallecido.\n";
+		}
+	
+		if (ServicioManager.traerActivoPorCodigo(ventana.getCodigo().getValor())== null) {
+			isOk = false;
+			mensaje += "    -Debe indicar un servicio a pagar.\n";
+		}
+		
+		if (cargo == null && !ventana.checkCrearCargo().isSelected()) {
+			isOk = false;
+			mensaje += "    -Debe seleccionar un cargo o chequear 'crear cargo'.\n";
+		}
+		
+		if (!mensaje.equals(""))
+			Popup.mostrar("Se encontraron los siguientes errores:\n"+mensaje);
+		
+		return isOk;		
+	}
+	
 }

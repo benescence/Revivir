@@ -65,6 +65,11 @@ public class CargoManager {
 		return ret;
 	}
 
+	public static Cargo traerUltimoGuardado() {
+		CargoOBD obd = FactoryOBD.crearCargoOBD();
+		return obd.ultimoInsertado();
+	}
+	
 	public static List<Cargo> traerPorFallecidoCliente(Fallecido fallecido, Cliente cliente) {
 		if (cliente == null)
 			return traerPorFallecido(fallecido);
