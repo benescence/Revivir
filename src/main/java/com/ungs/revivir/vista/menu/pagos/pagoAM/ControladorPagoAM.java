@@ -30,6 +30,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	private Cargo cargo;
 	//private Cliente cliente;
 	private Pago pago;
+	private Double importe;
 	
 	public ControladorPagoAM(PagoInvocable invocador) {
 		this.invocador = invocador;
@@ -72,7 +73,10 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			Popup.mostrar("No hay registros de un servicio con el codigo: "+codigo+".");
 			return;
 		}
-
+		
+		
+		ventana.getImporte().getTextField().setText(Double.toString(servicio.getImporte()));
+		
 		/*String DNI = ventana.getDNIFal().getTextField().getText();
 		if (!Validador.DNI(DNI)) {
 			Popup.mostrar("El DNI solo puede consistir de numeros.");
@@ -96,10 +100,22 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		}
 
 		List<Cargo> directos = CargoManager.traerPorFallecidoServicio(fallecido, servicio);
+		
 		if (directos.isEmpty()) {
-			Popup.mostrar("No hay registros de un cargo de un servicio de codigo "+codigo+" sobre el fallecido con codigo: "+cod_fallecido+".");
-			return;
+			
+			//Popup.mostrar("No hay registros de un cargo de un servicio de codigo "+codigo+" sobre el fallecido con codigo: "+cod_fallecido+".");
+			Cargo cargoNuevo = new Cargo(-1, fallecido.getID(), servicio.getID(), ventana.getObservaciones().getTextField().getText() , true);
+			directos.add(cargoNuevo);
+			try {
+				CargoManager.guardar(cargoNuevo);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			cargo = cargoNuevo;
 		}
+		
 
 		if (directos.size() > 1) {
 			Popup.mostrar("Se encontraron demsiados cargos con los parametros ingresados.\nPor favor elija el apropiado de la lista con el boton seleccionar.");
@@ -147,7 +163,8 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	@SuppressWarnings("deprecation")
 	private boolean aceptar() {
 		ventana.requestFocusInWindow();
-		Double importe;
+		//Double importe;
+		
 		try {
 			if ( cargo == null) {
 				Popup.mostrar("Debe seleccionar un cargo  para poder hacer un pago.");
@@ -161,14 +178,17 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			String observaciones = ventana.getObservaciones().getTextField().getText();
 			//Double importe =  new Double(0,0);
 		
-				 importe = new Double(ventana.getImporte().getTextField().getText());
+			importe = new Double(ventana.getImporte().getTextField().getText());
 			
 			
 			
 			Date fecha = new Date(ventana.getFecha().getDataChooser().getDate().getTime());
 			
+			Servicio servicio =ServicioManager.traerActivoPorCodigo(ventana.getCodigo().getTextField().getText());
+			
+			Cargo cargoAux = CargoManager.traerPorServicio(servicio).get(0);
 			//Pago pagoNuevo = new Pago(-1, cargo.getID(), cliente.getID(), importe, observaciones, fecha);
-			Pago pagoNuevo = new Pago(-1, cargo.getID(), importe, observaciones, fecha);
+			Pago pagoNuevo = new Pago(-1, cargoAux.getID(), importe, observaciones, fecha);
 			
 			// Estoy dando el alta
 			if (pago == null)
