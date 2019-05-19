@@ -12,6 +12,7 @@ import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 import com.ungs.revivir.vista.util.contenedores.Ventana;
 import com.ungs.revivir.vista.util.entradas.EntradaFecha;
+import com.ungs.revivir.vista.util.entradas.EntradaNumero;
 import com.ungs.revivir.vista.util.entradas.EntradaTexto;
 
 public class VentanaPagoAM extends Ventana {
@@ -22,6 +23,7 @@ public class VentanaPagoAM extends Ventana {
 	private EntradaTexto inCodigo, inNombreSer;
 	private EntradaTexto inImporte, inObservaciones;
 	private EntradaFecha inFecha;
+	private EntradaNumero inRepetir;
 
 	public VentanaPagoAM() {
 		super("Alta de pago");
@@ -44,6 +46,8 @@ public class VentanaPagoAM extends Ventana {
 		inFecha = new EntradaFecha(Almanaque.hoy(), "Fecha", dimTexto, dimEntrada);
 		inImporte = new EntradaTexto("Importe", dimTexto, dimEntrada);
 		inObservaciones = new EntradaTexto("Observaciones", dimTexto, dimEntrada);
+		inRepetir = new EntradaNumero("Repetir", dimTexto, dimEntrada);
+		inRepetir.setValor("1");
 		
 		btnAceptar = new Boton("Aceptar", dimBoton);
 		btnAceptarVer = new Boton("Aceptar y ver", dimBoton);
@@ -63,6 +67,7 @@ public class VentanaPagoAM extends Ventana {
 		panelPrincipal.add(inFecha);
 		panelPrincipal.add(inImporte);
 		panelPrincipal.add(inObservaciones);
+		panelPrincipal.add(inRepetir);
 		panelPrincipal.add(panelBotones);
 		compactar();
 	}
@@ -213,6 +218,10 @@ public class VentanaPagoAM extends Ventana {
 
 	public EntradaTexto getObservaciones() {
 		return inObservaciones;
+	}
+	
+	public EntradaNumero getRepetir() {
+		return inRepetir;
 	}
 	
 

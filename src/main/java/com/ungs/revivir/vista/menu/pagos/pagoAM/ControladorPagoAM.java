@@ -160,19 +160,22 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			
 			String observaciones = ventana.getObservaciones().getTextField().getText();
 			//Double importe =  new Double(0,0);
-		
-				 importe = new Double(ventana.getImporte().getTextField().getText());
-			
-			
+			importe = new Double(ventana.getImporte().getTextField().getText());
 			
 			Date fecha = new Date(ventana.getFecha().getDataChooser().getDate().getTime());
 			
 			//Pago pagoNuevo = new Pago(-1, cargo.getID(), cliente.getID(), importe, observaciones, fecha);
 			Pago pagoNuevo = new Pago(-1, cargo.getID(), importe, observaciones, fecha);
 			
-			// Estoy dando el alta
-			if (pago == null)
-				PagoManager.guardar(pagoNuevo);
+			// Estoy dando de alta nuevos pagos
+			if (pago == null) {
+				int cantidad = ventana.getRepetir().getValor();
+				
+				for (int i = 0; i < cantidad; i++)
+					PagoManager.guardar(pagoNuevo);
+				
+				System.out.println("Se ha guardado "+cantidad+" pagos.");
+			}
 				
 			// Estoy modificando
 			else {
