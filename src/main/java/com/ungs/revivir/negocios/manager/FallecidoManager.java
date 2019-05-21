@@ -44,7 +44,14 @@ public class FallecidoManager {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		return obd.selectByID(ID);
 	}
-
+	public Integer selectLastCod_fallecido() {
+		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
+		Integer id_fallecido = obd.selectLastID( "rev_fallecidos");
+		Fallecido fallecido = obd.selectByID(id_fallecido);
+		return fallecido.getCod_fallecido();
+	} 
+	
+	
 	public static Fallecido traerMasReciente() {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		return obd.ultimoInsertado();

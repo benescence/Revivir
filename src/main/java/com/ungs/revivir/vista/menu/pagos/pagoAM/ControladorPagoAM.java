@@ -86,6 +86,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		List<Cargo> directos = CargoManager.traerPorFallecidoServicio(fallecido, servicio);
 		if (directos.isEmpty()) {
 			Cargo cargoNuevo = new Cargo(-1, fallecido.getID(), servicio.getID(), ventana.getObservaciones().getTextField().getText() , true);
+			
 			directos.add(cargoNuevo);
 			try {
 				CargoManager.guardar(cargoNuevo);
@@ -99,7 +100,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		
 
 		if (directos.size() > 1) {
-			Popup.mostrar("Se encontraron demsiados cargos con los parametros ingresados.\nPor favor elija el apropiado de la lista con el boton seleccionar.");
+			Popup.mostrar("Se encontraron demasiados cargos con los parametros ingresados.\nPor favor elija el apropiado de la lista con el boton seleccionar.");
 			return;
 		}
 		

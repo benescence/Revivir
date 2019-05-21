@@ -34,4 +34,6 @@ public interface FallecidoOBD {
 
 	public List<Fallecido> selectByNombreApellidoCOD(String nombre, String apellido, Integer cod_fallecido);
 
+	public Integer selectLastID(String tabla);
+
 }

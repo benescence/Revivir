@@ -36,6 +36,8 @@ public class ControladorFallecidoAM implements ControladorExterno{
 		ventana.botonAceptar().setAccion(e -> aceptar());
 		ventana.botonCancelar().setAccion(e -> cancelar());
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cancelar()));
+		Fallecido fallecido = FallecidoManager.traerMasReciente();
+		ventana.getCod_Fallecido().setText(Integer.toString(fallecido.getCod_fallecido()+1));
 	} 
 	
 	private void aceptar() {

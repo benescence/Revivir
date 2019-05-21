@@ -12,7 +12,7 @@ public class OBD {
 	// DESARROLLO
 	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir"; 
 	protected String usuarioBD = "root"; 
-	protected String passwordBD = "root";
+	protected String passwordBD = "pass";
 	//protected String passwordBD = "pass";
 	
 	// PRODUCCION
