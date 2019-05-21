@@ -54,6 +54,12 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	} 
 	
 	private void cargarCargo() {
+		try {
+			autoCompletarFallecido();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		ventana.requestFocusInWindow();
 		
 		String codigo = ventana.getCodigo().getValor();
@@ -86,7 +92,6 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		List<Cargo> directos = CargoManager.traerPorFallecidoServicio(fallecido, servicio);
 		if (directos.isEmpty()) {
 			Cargo cargoNuevo = new Cargo(-1, fallecido.getID(), servicio.getID(), ventana.getObservaciones().getTextField().getText() , true);
-			
 			directos.add(cargoNuevo);
 			try {
 				CargoManager.guardar(cargoNuevo);
@@ -100,7 +105,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		
 
 		if (directos.size() > 1) {
-			Popup.mostrar("Se encontraron demasiados cargos con los parametros ingresados.\nPor favor elija el apropiado de la lista con el boton seleccionar.");
+			Popup.mostrar("Se encontraron demsiados cargos con los parametros ingresados.\nPor favor elija el apropiado de la lista con el boton seleccionar.");
 			return;
 		}
 		
@@ -119,12 +124,20 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	}
 
 	private boolean aceptar() {
-		if (!verificarFormulario())
-			return false;
-		
 		ventana.requestFocusInWindow();
 		
 		try {
+			if (!autoCompletarFallecido())
+				return false;
+			
+			if (!autoCompletarServicio())
+				return false;
+			
+			if (!verificarFormulario())
+				return false;
+			
+
+			
 			if (pago != null) {
 				aceptarModificar();
 				return true;
@@ -198,6 +211,13 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 
 	@Override
 	public void seleccionarCargo(Cargo cargo) {
+		try {
+			autoCompletarFallecido();
+			autoCompletarServicio();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.cargo = cargo;
 		
 		Fallecido fallecido = FallecidoManager.traerPorID(cargo.getFallecido());
@@ -247,5 +267,67 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		
 		return isOk;		
 	}
+		
+	private boolean autoCompletarFallecido() throws Exception {
+		// - Busca fallecidos con los datos ingresados
+		// - Si encuentra un unico fallecido lo coloca en el formulario
+		// - Si no encuentra ninguno lanza mensaje pidiendo llenar los campos correspondientes
+		// - Si encuentra demasiados abre ventana para seleccionar de una lista
+		
+		boolean aprueba = true;
+		String nombre = ventana.getNombreFal().getValor();
+		String apellido = ventana.getApellidoFal().getValor();
+		Integer codFallecido = ventana.getCODFal().getValor();
+		List<Fallecido> fallecidos = FallecidoManager.traer(nombre, apellido, codFallecido);
+		
+		if (fallecidos.size() == 0) {
+			Popup.mostrar("No existe ningun fallecido con los parametros ingresados");
+			aprueba = false;
+		}
+		
+		if (fallecidos.size() > 1) {
+			Popup.mostrar("Existen demasiados fallecidos con los parametros ingresados");
+			aprueba = false;
+		}
+		
+		if (fallecidos.size() == 1) {
+			Fallecido unico = fallecidos.get(0);
+			ventana.getCODFal().setValor(unico.getCod_fallecido().toString());
+			ventana.getNombreFal().setValor(unico.getNombre());
+			ventana.getApellidoFal().setValor(unico.getApellido());
+		}
+		
+		return aprueba;
+	}
 	
+	private boolean autoCompletarServicio() throws Exception {
+		// - Busca servicios con los datos ingresados
+		// - Si encuentra un unico servicio lo coloca en el formulario
+		// - Si no encuentra ninguno lanza mensaje pidiendo llenar los campos correspondientes
+		// - Si encuentra demasiados abre ventana para seleccionar de una lista
+		
+		boolean aprueba = true;
+		String nombre = ventana.getNombreSer().getValor();
+		String codigo = ventana.getCodigo().getValor();
+		List<Servicio> servicios = ServicioManager.traer(nombre, codigo);
+		
+		if (servicios.size() == 0) {
+			Popup.mostrar("No existe ningun servicio con los parametros ingresados");
+			aprueba = false;
+		}
+		
+		if (servicios.size() > 1) {
+			Popup.mostrar("Existen demasiados servicios con los parametros ingresados");
+			aprueba = false;
+		}
+		
+		if (servicios.size() == 1) {
+			Servicio unico = servicios.get(0);
+			ventana.getCodigo().setValor(unico.getCodigo());
+			ventana.getNombreSer().setValor(unico.getNombre());
+		}
+		
+		return aprueba;
+	}
+		
 }

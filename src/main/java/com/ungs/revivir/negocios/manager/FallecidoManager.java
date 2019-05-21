@@ -10,6 +10,8 @@ import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 
 public class FallecidoManager {
 	
+	
+	
 	public static void guardar(Fallecido nuevo) throws Exception {
 		Fallecido fallecido = Verificador.fallecido(nuevo);
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
@@ -44,13 +46,13 @@ public class FallecidoManager {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		return obd.selectByID(ID);
 	}
-	public Integer selectLastCod_fallecido() {
-		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		Integer id_fallecido = obd.selectLastID( "rev_fallecidos");
-		Fallecido fallecido = obd.selectByID(id_fallecido);
-		return fallecido.getCod_fallecido();
+public Integer selectLastCod_fallecido() {
+		//FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
+		//Integer id_fallecido = obd.selectLastID( "rev_fallecidos");
+		//Fallecido fallecido = obd.selectByID(id_fallecido);
+		//return fallecido.getCod_fallecido();
+		return null;
 	} 
-	
 	
 	public static Fallecido traerMasReciente() {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
