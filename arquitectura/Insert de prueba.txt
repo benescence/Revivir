@@ -21,12 +21,12 @@ INSERT INTO rev_ubicaciones (subsector, circ, seccion, macizo, parcela, fila, un
 (4, null, "Verde", 10, null, 1, 7, null, 7, null, null, "La trinidad", null, null, null),
 (5, null, null, 15, null, 1, null, null, 7, null, null, null, null, null, null);
 
-INSERT INTO rev_fallecidos (tipo_fallecimiento, ubicacion, nombre, apellido, dni, cocheria, fecha_fallecimiento, fecha_ingreso) VALUES
-(1, 1, "Goku", "Son", "1", "Cell y amigos", '2018-10-20', '2018-10-22'),
-(1, 2, "Leonardo", "Di Caprio", "2", "Titanic", '1912-10-20', '2018-10-22'),
-(1, 3, "Bruce", "Willis", "3", "Armagedon", '2018-10-20', '2018-10-22'),
-(1, 4, "Depredador", "1", "4", "Arnold", '2018-10-20', '2018-10-22'),
-(2, 5, "Stan", "Lee", "5", "Marvel", '2018-10-20', '2018-10-22');
+INSERT INTO rev_fallecidos (tipo_fallecimiento,cod_fallecido, ubicacion, nombre, apellido, dni, cocheria, fecha_fallecimiento, fecha_ingreso) VALUES
+(1, 1 ,  1, "Goku", "Son", "1", "Cell y amigos", '2018-10-20', '2018-10-22'),
+(1, 2, 2, "Leonardo", "Di Caprio", "2", "Titanic", '1912-10-20', '2018-10-22'),
+(1, 3, 3, "Bruce", "Willis", "3", "Armagedon", '2018-10-20', '2018-10-22'),
+(1, 4, 4, "Depredador", "1", "4", "Arnold", '2018-10-20', '2018-10-22'),
+(2, 5, 5, "Stan", "Lee", "5", "Marvel", '2018-10-20', '2018-10-22');
 
 INSERT INTO rev_cargos (fallecido, servicio, observaciones, pagado) VALUES
 (1, 1, "No cobrar", false),
