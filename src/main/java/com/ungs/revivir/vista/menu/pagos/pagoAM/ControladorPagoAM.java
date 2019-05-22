@@ -90,7 +90,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 
 		// Si no tiene un cargo asociado se crea en el momento
 		List<Cargo> directos = CargoManager.traerPorFallecidoServicio(fallecido, servicio);
-		if (directos.isEmpty()) {
+	/*	if (directos.isEmpty()) {
 			Cargo cargoNuevo = new Cargo(-1, fallecido.getID(), servicio.getID(), ventana.getObservaciones().getTextField().getText() , true);
 			directos.add(cargoNuevo);
 			try {
@@ -102,14 +102,16 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			}
 			cargo = cargoNuevo;
 		}
-		
+		*/
 
 		if (directos.size() > 1) {
 			Popup.mostrar("Se encontraron demsiados cargos con los parametros ingresados.\nPor favor elija el apropiado de la lista con el boton seleccionar.");
 			return;
 		}
 		
-		seleccionarCargo(directos.get(0));
+		
+		
+		//seleccionarCargo(directos.get(0));
 		
 	
 		
@@ -155,13 +157,22 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 					Cargo cargo = new Cargo(-1, fallecido.getID(), servicio.getID(), pago.getObservaciones(), false);					
 					Pagador.crearCargoYPagar(cargo, pago);
 				}				
-			}
 			
+			}
 			// el cargo ya existe solo registra el pago
-			else {	
+			else {
+				Fallecido fallecido = FallecidoManager.traerPorCOD(ventana.getCODFal().getValor());
+				Servicio servicio = ServicioManager.traerActivoPorCodigo(ventana.getCodigo().getValor());
+				System.out.println(CargoManager.traerPorFallecidoServicio(fallecido, servicio).get(0).getServicio());
+				System.out.println(CargoManager.traerPorFallecidoServicio(fallecido, servicio).get(0).getFallecido());
+				if (CargoManager.traerPorFallecidoServicio(fallecido, servicio).size() != 0) {
 				Pago pago = traerPagoVerificado();
-				Pagador.pagarCargoExistente(pago, cargo);
-			}			
+				Pagador.pagarCargoExistente(pago, cargo);}
+				else {
+			
+					Popup.mostrar("No hay registros de un cargo vinculado a este fallecido");
+					return false;
+				}}			
 			
 			ventana.dispose();
 			invocador.actualizarPagos();
