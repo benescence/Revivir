@@ -100,7 +100,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			cargo = cargoNuevo;
+			cargo = cargoNuevo; // de mas
 		}
 		*/
 
