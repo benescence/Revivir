@@ -5,7 +5,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import com.ungs.revivir.vista.sesion.iniciar.ControladorIniciarSesion;
 
 public class Main {
-
+//ahdgfsahgf
 	public static void configurarApariencia() {
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
