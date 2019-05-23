@@ -22,7 +22,8 @@ public class PanelFallecidos extends PanelVertical {
 		inApellido = new EntradaTexto("Apellidos fallecido", dimTexto, dimEntrada);
 		inCodigo = new EntradaNumero("Cod. Fallecido", dimTexto, dimEntrada);
 		Boton btnCargar = new Boton("Cargar", dimBoton);
-		btnCargar.addActionListener(e-> {
+		btnCargar.setAccion(e-> {
+			this.requestFocus();
 			autocompletar();
 		});
 		

@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.persistencia.entidades.Pago;
+import com.ungs.revivir.vista.paneles.PanelFallecidos;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.TextoCentrado;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
@@ -66,6 +67,7 @@ public class VentanaPagoAM extends Ventana {
 		setContentPane(panelPrincipal);
 		
 		//panelPrincipal.add(panelCliente());
+		panelPrincipal.add(new PanelFallecidos(dimTexto, dimEntrada, dimBoton));
 		panelPrincipal.add(panelCargo());
 		panelPrincipal.add(inFecha);
 		panelPrincipal.add(inImporte);
