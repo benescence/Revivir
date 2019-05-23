@@ -2,7 +2,6 @@ package com.ungs.revivir.vista.seleccion.fallecidos;
 
 import java.util.List;
 
-import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
@@ -28,7 +27,8 @@ public class ControladorSeleccionarFallecido {
 		try {
 			String nombre = ventana.getNombre().getTextField().getText();
 			String apellido = ventana.getApellido().getTextField().getText();
-			//String DNI = ventana.getDNI().getTextField().getText();
+			Integer cod_fallecido = ventana.getCODFal().getValor();
+			/*String DNI = ventana.getDNI().getTextField().getText();
 			Integer cod_fallecido;
 			if (!Validador.cod_fallecido(ventana.getCODFal().getTextField().getText())) {
 				
@@ -39,12 +39,14 @@ public class ControladorSeleccionarFallecido {
 			else {
 				cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
 			}
+			*/
 			List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, cod_fallecido);
 			if (lista.isEmpty())
 				Popup.mostrar("No se ha encontrado ningun fallecido con los paramteros ingresados.");
 			ventana.getTabla().recargar(lista);
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	
@@ -69,6 +71,14 @@ public class ControladorSeleccionarFallecido {
 	private void cancelar() {
 		ventana.dispose();
 		invocador.mostrar();
+	}
+	
+	public void setParametros(String nombre, String apellido, Integer codFallecido) {
+		ventana.getNombre().setValor(nombre);
+		ventana.getApellido().setValor(apellido);
+		if (codFallecido != null)
+			ventana.getCODFal().setValor(codFallecido.toString());
+		buscar();
 	}
 	
 }

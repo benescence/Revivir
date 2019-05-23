@@ -20,13 +20,12 @@ import com.ungs.revivir.vista.util.entradas.EntradaTexto;
 public class VentanaPagoAM extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private Boton btnAceptar, btnAceptarVer, btnCancelar, btnSelCliente, btnCargarCliente, btnSelCargo, btnCargarCargo;
-	//private EntradaTexto inNombreCli, inApellidoCli, inDNICli;
-	private EntradaTexto inNombreFal, inApellidoFal;
 	private EntradaTexto inCodigo, inNombreSer;
 	private EntradaTexto inImporte, inObservaciones;
 	private EntradaFecha inFecha;
-	private EntradaNumero inRepetir, inCODFal;
+	private EntradaNumero inRepetir;
 	private JCheckBox inCrearCargo;
+	private PanelFallecidos panelFallecidos;
 
 	public VentanaPagoAM() {
 		super("Alta de pago");
@@ -66,8 +65,8 @@ public class VentanaPagoAM extends Ventana {
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
 		setContentPane(panelPrincipal);
 		
-		//panelPrincipal.add(panelCliente());
-		panelPrincipal.add(new PanelFallecidos(dimTexto, dimEntrada, dimBoton));
+		panelFallecidos = new PanelFallecidos(this, dimTexto, dimEntrada, dimBoton);
+		panelPrincipal.add(panelFallecidos);
 		panelPrincipal.add(panelCargo());
 		panelPrincipal.add(inFecha);
 		panelPrincipal.add(inImporte);
@@ -83,15 +82,8 @@ public class VentanaPagoAM extends Ventana {
 		Dimension dimEntrada = new Dimension(300, 25);
 		Dimension dimBoton = new Dimension(150, 25);
 		
-		inNombreFal = new EntradaTexto("Nombres fallecido", dimTexto, dimEntrada);
-		inApellidoFal = new EntradaTexto("Apellidos fallecido", dimTexto, dimEntrada);
-		inCODFal = new EntradaNumero("Cod Fallecido", dimTexto, dimEntrada);
-		//inDNIFal = new EntradaTexto("DNI fallecido", dimTexto, dimEntrada);
 		inNombreSer = new EntradaTexto("Servicio", dimTexto, dimEntrada);
 		inCodigo = new EntradaTexto("Codigo servicio", dimTexto, dimEntrada);
-		//inNombreFal.habilitado(false);
-		//inApellidoFal.habilitado(false);
-		inNombreSer.habilitado(false);
 		
 		btnCargarCargo = new Boton("Cargar", dimBoton);
 		btnSelCargo = new Boton("Seleccionar", dimBoton);
@@ -102,10 +94,6 @@ public class VentanaPagoAM extends Ventana {
 		
 		PanelVertical ret = new PanelVertical();
 		ret.add(new TextoCentrado("Datos del cargo"));
-		ret.add(inNombreFal);
-		ret.add(inApellidoFal);
-		//ret.add(inDNIFal);
-		ret.add(inCODFal);
 		ret.add(inNombreSer);
 		ret.add(inCodigo);
 		ret.add(panelBotones);
@@ -150,38 +138,19 @@ public class VentanaPagoAM extends Ventana {
 		return btnCargarCargo;
 	}
 	
-
-	/*public EntradaTexto getNombreCli() {
-		return inNombreCli;
-	}
-	
-
-	public EntradaTexto getApellidoCli() {
-		return inApellidoCli;
-	}
-	
-
-	public EntradaTexto getDNICli() {
-		return inDNICli;
-	}*/
 	
 
 	public EntradaTexto getNombreFal() {
-		return inNombreFal;
+		return panelFallecidos.getNombre();
 	}
 	
 
 	public EntradaTexto getApellidoFal() {
-		return inApellidoFal;
+		return panelFallecidos.getApellido();
 	}
-	
-
-	/*public EntradaTexto getDNIFal() {
-	return inDNIFal;
-	}*/
-	
+		
 	public EntradaNumero getCODFal() {
-		return inCODFal;
+		return panelFallecidos.getCodigo();
 	}
 
 	public EntradaTexto getCodigo() {

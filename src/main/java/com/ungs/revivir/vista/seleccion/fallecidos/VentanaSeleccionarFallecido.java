@@ -11,12 +11,14 @@ import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 import com.ungs.revivir.vista.util.contenedores.Ventana;
+import com.ungs.revivir.vista.util.entradas.EntradaNumero;
 import com.ungs.revivir.vista.util.entradas.EntradaTexto;
 
 public class VentanaSeleccionarFallecido extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private TablaFallecidos tabla;
-	private EntradaTexto inNombre, inApellido, /*inDNI*/inCODFal;
+	private EntradaTexto inNombre, inApellido /*inDNI*/;
+	private EntradaNumero inCODFal;
 	private Boton btnBuscar, btnLimpiar, btnSeleccionar, btnCancelar;
 		
 	public VentanaSeleccionarFallecido() {
@@ -51,7 +53,7 @@ public class VentanaSeleccionarFallecido extends Ventana {
 		inNombre = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellido = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
 		//inDNI = new EntradaTexto("DNI", dimTexto, dimEntrada);
-		inCODFal = new EntradaTexto("Codigo de Fallecido", dimTexto, dimEntrada);
+		inCODFal = new EntradaNumero("Codigo de Fallecido", dimTexto, dimEntrada);
 		
 		btnBuscar = new Boton("Buscar", dimBoton);
 		btnLimpiar = new Boton("Limpiar", dimBoton);
@@ -100,7 +102,7 @@ public class VentanaSeleccionarFallecido extends Ventana {
 	/*public EntradaTexto getDNIFal() {
 	return inDNIFal;
 	}*/
-	public EntradaTexto getCODFal() {
+	public EntradaNumero getCODFal() {
 	return inCODFal;
 	}
 	

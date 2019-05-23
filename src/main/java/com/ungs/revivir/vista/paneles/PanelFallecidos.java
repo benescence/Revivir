@@ -5,19 +5,24 @@ import java.util.List;
 
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.vista.seleccion.fallecidos.ControladorSeleccionarFallecido;
+import com.ungs.revivir.vista.seleccion.fallecidos.FallecidoSeleccionable;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.util.TextoCentrado;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
+import com.ungs.revivir.vista.util.contenedores.Ventana;
 import com.ungs.revivir.vista.util.entradas.EntradaNumero;
 import com.ungs.revivir.vista.util.entradas.EntradaTexto;
 
-public class PanelFallecidos extends PanelVertical {
+public class PanelFallecidos extends PanelVertical implements FallecidoSeleccionable {
 	private static final long serialVersionUID = 1L;
 	private EntradaTexto inNombre, inApellido;
 	private EntradaNumero inCodigo;
+	private Ventana ventana;
 	
-	public PanelFallecidos(Dimension dimTexto, Dimension dimEntrada, Dimension dimBoton) {
+	public PanelFallecidos(Ventana ventana, Dimension dimTexto, Dimension dimEntrada, Dimension dimBoton) {
+		this.ventana = ventana;
 		inNombre = new EntradaTexto("Nombres fallecido", dimTexto, dimEntrada);
 		inApellido = new EntradaTexto("Apellidos fallecido", dimTexto, dimEntrada);
 		inCodigo = new EntradaNumero("Cod. Fallecido", dimTexto, dimEntrada);
@@ -51,8 +56,9 @@ public class PanelFallecidos extends PanelVertical {
 				Popup.mostrar("No existe ningun fallecido con los parametros ingresados");
 				
 			} else if (fallecidos.size() > 1) {
-				Popup.mostrar("Existen demasiados fallecidos con los parametros ingresados");
-				// mostrar ventana
+				ventana.deshabilitar();
+				ControladorSeleccionarFallecido c = new ControladorSeleccionarFallecido(this);
+				c.setParametros(nombre, apellido, codFallecido);
 				
 			} else {
 				Fallecido unico = fallecidos.get(0);
@@ -80,6 +86,18 @@ public class PanelFallecidos extends PanelVertical {
 
 	public EntradaNumero getCodigo() {
 		return inCodigo;
+	}
+
+	@Override
+	public void seleccionarFallecido(Fallecido fallecido) {
+		inNombre.setValor(fallecido.getNombre());
+		inApellido.setValor(fallecido.getApellido());
+		inCodigo.setValor(fallecido.getCod_fallecido().toString());
+	}
+
+	@Override
+	public void mostrar() {
+		ventana.mostrar();
 	}
 	
 }
