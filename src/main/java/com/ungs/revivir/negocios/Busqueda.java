@@ -96,5 +96,9 @@ public class Busqueda {
 		
 		return ret;
 	}
-	
+	public static List<Pago> traerPagosFallecido(Fallecido fallecido) {
+		List<Pago> pagos = Relacionador.traerPagos(fallecido);
+		
+			return pagos;
+	}
 }

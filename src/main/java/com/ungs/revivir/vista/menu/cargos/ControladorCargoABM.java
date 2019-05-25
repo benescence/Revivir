@@ -22,7 +22,7 @@ import com.ungs.revivir.vista.seleccion.fallecidos.ControladorSeleccionarFalleci
 import com.ungs.revivir.vista.seleccion.fallecidos.FallecidoSeleccionable;
 import com.ungs.revivir.vista.util.Popup;
 
-public class ControladorCargoABM implements ControladorInterno, FallecidoSeleccionable, ClienteSeleccionable,
+public class ControladorCargoABM implements ControladorInterno, FallecidoSeleccionable, 
 		CargoInvocable {
 	private VentanaCargoABM ventana;
 	private ControladorPrincipal invocador;
@@ -37,9 +37,9 @@ public class ControladorCargoABM implements ControladorInterno, FallecidoSelecci
 		ventana.botonEliminar().addActionListener(e -> eliminar());
 		
 		ventana.botonSelFallecido().setAccion(e -> seleccionarFallecido());
-		ventana.botonSelCliente().setAccion(e -> seleccionarCliente());
+		//ventana.botonSelCliente().setAccion(e -> seleccionarCliente());
 		ventana.botonCargarFallecido().setAccion(e -> cargarFallecido());
-		ventana.botonCargarCliente().setAccion(e -> cargarCliente());		
+		//ventana.botonCargarCliente().setAccion(e -> cargarCliente());		
 	}
 	
 	private void seleccionarFallecido() {
@@ -47,12 +47,12 @@ public class ControladorCargoABM implements ControladorInterno, FallecidoSelecci
 		new ControladorSeleccionarFallecido(this);
 	}
 
-	private void seleccionarCliente() {
+	/*private void seleccionarCliente() {
 		ventana.deshabilitar();
 		new ControladorSeleccionCliente(this);
-	}
+	}*/
 
-	private void cargarCliente() {
+	/*private void cargarCliente() {
 		ventana.requestFocusInWindow();
 		
 		String DNI = ventana.getDNICli().getTextField().getText();
@@ -69,7 +69,7 @@ public class ControladorCargoABM implements ControladorInterno, FallecidoSelecci
 		
 		seleccionarCliente(directo);
 		ventana.getCODFal().getTextField().requestFocusInWindow();
-	}
+	}*/
 
 	private void cargarFallecido() {
 		ventana.requestFocusInWindow();
@@ -92,7 +92,7 @@ public class ControladorCargoABM implements ControladorInterno, FallecidoSelecci
 		}
 		
 		seleccionarFallecido(directo);
-		ventana.getDNICli().getTextField().requestFocusInWindow();
+		ventana.getCODFal().getTextField().requestFocusInWindow();
 	}
 
 	private void agregar() { 
@@ -159,7 +159,7 @@ public class ControladorCargoABM implements ControladorInterno, FallecidoSelecci
 		ventana.getCODFal().getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 		actualizarCargos();
 	}
-
+/*
 	@Override
 	public void seleccionarCliente(Cliente cliente) {
 		this.cliente = cliente;
@@ -167,8 +167,7 @@ public class ControladorCargoABM implements ControladorInterno, FallecidoSelecci
 		ventana.getApellidoCli().getTextField().setText(cliente.getApellido());
 		ventana.getDNICli().getTextField().setText(cliente.getDNI());
 		actualizarCargos();
-	}
-
+	}*/
 	@Override
 	public void actualizarCargos() {
 		if (cliente != null || fallecido != null) {
@@ -176,5 +175,6 @@ public class ControladorCargoABM implements ControladorInterno, FallecidoSelecci
 			ventana.getTabla().recargar(lista);
 		}		
 	}
+
 
 }

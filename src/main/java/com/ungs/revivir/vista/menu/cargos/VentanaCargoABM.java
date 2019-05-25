@@ -42,7 +42,7 @@ public class VentanaCargoABM extends VentanaInterna {
 		
 		PanelHorizontal panelBusqueda = new PanelHorizontal();
 		panelBusqueda.add(panelFallecido());
-		panelBusqueda.add(panelCliente());
+		//panelBusqueda.add(panelCliente());
 		
 		PanelVertical panelPrincipal = new PanelVertical();
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -84,7 +84,7 @@ public class VentanaCargoABM extends VentanaInterna {
 		return ret;
 	}
 	
-	private PanelVertical panelCliente() {
+	/*private PanelVertical panelCliente() {
 		Dimension dimTexto = new Dimension(100, 25);
 		Dimension dimEntrada = new Dimension(300, 25);
 		Dimension dimBoton = new Dimension(150, 25);
@@ -111,7 +111,7 @@ public class VentanaCargoABM extends VentanaInterna {
 		ret.add(inDNICli);
 		ret.add(panelBotones);
 		return ret;
-	}
+	}*/
 	
 	public TablaCargos getTabla() {
 		return tabla;
@@ -159,7 +159,7 @@ public class VentanaCargoABM extends VentanaInterna {
 	public EntradaTexto getCODFal() {
 		return inCODFal;
 	}
-	public EntradaTexto getNombreCli() {
+	/*public EntradaTexto getNombreCli() {
 		return inNombreCli;
 	}
 
@@ -169,6 +169,6 @@ public class VentanaCargoABM extends VentanaInterna {
 
 	public EntradaTexto getDNICli() {
 		return inDNICli;
-	}
+	}*/
 	
 }

@@ -206,9 +206,16 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable,
 	@Override
 	public void actualizarPagos() {
 		try {
-			Date fecha = ventana.getFecha().getValor();
-			List<Pago> pagos = Busqueda.pagos( fallecido, fecha);
-			ventana.getTabla().recargar(pagos);
+			 if (ventana.checkincluirFecha().isSelected()) {
+				 Date fecha = ventana.getFecha().getValor();
+					List<Pago> pagos = Busqueda.pagos(fallecido,fecha);
+					ventana.getTabla().recargar(pagos);
+					
+			 }
+			 else {
+			
+			List<Pago> pagos = Busqueda.traerPagosFallecido(fallecido);
+			ventana.getTabla().recargar(pagos);}
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
 			//e.printStackTrace();

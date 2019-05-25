@@ -3,6 +3,7 @@ package com.ungs.revivir.vista.menu.pagos;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
@@ -23,6 +24,7 @@ public class VentanaPagoABM extends VentanaInterna {
 	private Boton btnAgregar, btnModificar, btnEliminar, btnFactura, btnMovimientos, btnBuscar, btnLimpiar;
 	private Boton btnCargarFallecido, btnSelFallecido;
 	//private Boton btnCargarCliente, btnSelCliente;
+	private JCheckBox incluirFecha;
 	private EntradaTexto inNombreFal, inApellidoFal, /*inDNIFal*/ inCODFal;
 	private EntradaTexto inNombreCli, inApellidoCli, inDNICli;
 	
@@ -43,6 +45,7 @@ public class VentanaPagoABM extends VentanaInterna {
 		btnEliminar = new Boton("Eliminar", dimBoton);
 		btnFactura = new Boton("Factura", dimBoton);
 		btnMovimientos = new Boton("Movimientos", dimBoton);
+		incluirFecha = new JCheckBox("Incluir Fecha");
 
 		PanelHorizontal panelBotones = new PanelHorizontal();
 		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
@@ -66,6 +69,7 @@ public class VentanaPagoABM extends VentanaInterna {
 		setContentPane(panelPrincipal);
 		
 		panelPrincipal.add(inFecha);
+		panelPrincipal.add(incluirFecha);
 		panelPrincipal.add(panelBusqueda);
 		panelPrincipal.add(panelTabla);
 		panelPrincipal.add(panelBotones);
@@ -175,6 +179,9 @@ public class VentanaPagoABM extends VentanaInterna {
 	}
 		
 	*/
+	public JCheckBox checkincluirFecha() {
+		return incluirFecha;
+	}
 	public Boton botonSelFallecido() {
 		return btnSelFallecido;
 	}
