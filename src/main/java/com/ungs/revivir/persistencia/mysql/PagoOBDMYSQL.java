@@ -22,7 +22,7 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 	@Override
 	public void insert(Pago pago) {
 		String observaciones = (pago.getObservaciones() != null) ? "'"+pago.getObservaciones()+"'" : null;
-		
+		//System.out.println(pago.getCargo());
 		String valores = pago.getCargo()
 				//+", "+pago.getCliente()
 				+", "+pago.getImporte()

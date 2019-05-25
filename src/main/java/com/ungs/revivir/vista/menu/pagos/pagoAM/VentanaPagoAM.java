@@ -38,6 +38,7 @@ public class VentanaPagoAM extends Ventana {
 		inImporte.getTextField().setText(pago.getImporte().toString());
 		inObservaciones.getTextField().setText(pago.getObservaciones());
 		inFecha.getDataChooser().setDate(pago.getFecha());
+		
 	}
 	
 	public void inicializar() {
@@ -51,6 +52,7 @@ public class VentanaPagoAM extends Ventana {
 		inRepetir = new EntradaNumero("Repetir", dimTexto, dimEntrada);
 		inRepetir.setValor("1");
 		inCrearCargo = new JCheckBox("Crear cargo");
+
 		
 		btnAceptar = new Boton("Aceptar", dimBoton);
 		btnAceptarVer = new Boton("Aceptar y ver", dimBoton);
@@ -83,6 +85,7 @@ public class VentanaPagoAM extends Ventana {
 		Dimension dimBoton = new Dimension(150, 25);
 		
 		inNombreSer = new EntradaTexto("Servicio", dimTexto, dimEntrada);
+		inNombreSer.setEnabled(false);
 		inCodigo = new EntradaTexto("Codigo servicio", dimTexto, dimEntrada);
 		
 		btnCargarCargo = new Boton("Cargar", dimBoton);

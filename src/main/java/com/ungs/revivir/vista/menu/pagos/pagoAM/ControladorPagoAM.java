@@ -28,6 +28,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	private PagoInvocable invocador;
 	private Cargo cargo;
 	private Pago pago;
+	private Boolean reporte;
 	
 	public ControladorPagoAM(PagoInvocable invocador) {
 		this.invocador = invocador;
@@ -37,7 +38,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	
 	public ControladorPagoAM(PagoInvocable invocador, Pago pago) {
 		this.invocador = invocador;
-		ventana = new VentanaPagoAM(pago);		
+		ventana = new VentanaPagoAM(pago);
 		inicializar();
 		this.pago = pago;
 		seleccionarCargo(CargoManager.traerPorID(pago.getCargo()));
@@ -48,9 +49,9 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		ventana.botonAceptar().setAccion(e -> aceptar());
 		ventana.botonAceptarVer().setAccion(e -> aceptarVer());
 		ventana.botonCancelar().setAccion(e -> cancelar());
-
 		ventana.botonSelCargo().setAccion(e -> seleccionarCargo());
 		ventana.botonCargarCargo().setAccion(e -> cargarCargo());
+		reporte = false;
 	} 
 	
 	private void cargarCargo() {
@@ -75,6 +76,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		}		
 		
 		ventana.getImporte().setValor(Double.toString(servicio.getImporte()));
+		ventana.getNombreSer().getTextField().setText(servicio.getNombre());
 		
 		Integer codFallecido = ventana.getCODFal().getValor();
 		if (!Validador.cod_fallecido(codFallecido.toString())) {
@@ -102,11 +104,14 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			}
 			cargo = cargoNuevo; // de mas
 		}
-		*/
+		*/	
 
 		if (directos.size() > 1) {
 			Popup.mostrar("Se encontraron demsiados cargos con los parametros ingresados.\nPor favor elija el apropiado de la lista con el boton seleccionar.");
 			return;
+		}
+		else if (directos.size() == 1) {
+		this.cargo = directos.get(0);
 		}
 		
 		
@@ -127,21 +132,28 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 
 	private boolean aceptar() {
 		ventana.requestFocusInWindow();
+		String mensaje = "";
+		reporte = true;
 		
 		try {
-			if (!autoCompletarFallecido())
-				return false;
+			if (!autoCompletarFallecido()) {
+				
+				mensaje = "2";
+				return false;}
 			
-			if (!autoCompletarServicio())
-				return false;
+			if (!autoCompletarServicio()) {
+				mensaje = "3";
+			return false;}
 			
-			if (!verificarFormulario())
-				return false;
+			if (!verificarFormulario()) {
+				mensaje = "4";
+			return false;}
 			
 
 			
 			if (pago != null) {
 				aceptarModificar();
+				mensaje = "1";
 				return true;
 			}
 			
@@ -150,44 +162,57 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			
 			// debe crear el cargo antes de guardar el pago
 			if (crearCargo) {
+				
 				for(int i=0; i<repetir; i++) {
-					Pago pago = traerPagoVerificado();
+					
+					
 					Servicio servicio = ServicioManager.traerActivoPorCodigo(ventana.getCodigo().getValor());
 					Fallecido fallecido = FallecidoManager.traerPorCOD(ventana.getCODFal().getValor());
-					Cargo cargo = new Cargo(-1, fallecido.getID(), servicio.getID(), pago.getObservaciones(), false);					
+					Cargo cargo = new Cargo(-1, fallecido.getID(), servicio.getID(), ventana.getObservaciones().getTextField().getText(), false);
+					Pago pago = traerPagoVerificado(cargo);
 					Pagador.crearCargoYPagar(cargo, pago);
-				}				
-			
+					
+				}
+				ventana.dispose();
+				invocador.actualizarPagos();
+				invocador.mostrar();
+				return true;
 			}
 			// el cargo ya existe solo registra el pago
 			else {
 				Fallecido fallecido = FallecidoManager.traerPorCOD(ventana.getCODFal().getValor());
 				Servicio servicio = ServicioManager.traerActivoPorCodigo(ventana.getCodigo().getValor());
-				System.out.println(CargoManager.traerPorFallecidoServicio(fallecido, servicio).get(0).getServicio());
-				System.out.println(CargoManager.traerPorFallecidoServicio(fallecido, servicio).get(0).getFallecido());
-				if (CargoManager.traerPorFallecidoServicio(fallecido, servicio).size() != 0) {
-				Pago pago = traerPagoVerificado();
-				Pagador.pagarCargoExistente(pago, cargo);}
+				if (CargoManager.traerPorFallecidoServicio(fallecido, servicio).size() != 0) 
+				{
+				
+				Cargo cargo2 = CargoManager.traerPorFallecidoServicio(fallecido, servicio).get(0);
+				Pago pago = traerPagoVerificado(cargo2);
+				Pagador.pagarCargoExistente(pago,cargo2);
+				
+				}
 				else {
 			
-					Popup.mostrar("No hay registros de un cargo vinculado a este fallecido");
+					mensaje = "No hay registros de un cargo vinculado a este fallecido";
 					return false;
-				}}			
+				}
+				
+				}			
 			
 			ventana.dispose();
 			invocador.actualizarPagos();
 			invocador.mostrar();
+			reporte = true;
 			return true;
 			
 		} catch (Exception e) {
-			Popup.mostrar("Debe colocar un importe ");
+			Popup.mostrar(mensaje);
 			return false;
 		}
 		
 	}
 
 	private void aceptarModificar() {
-		Pago pagoNuevo = traerPagoVerificado();
+		Pago pagoNuevo = traerPagoVerificado(cargo);
 		pagoNuevo.setID(pago.getID());
 		try {
 			PagoManager.modificar(pagoNuevo);
@@ -198,11 +223,16 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	}
 	
 	private void aceptarVer() {
+		if (reporte == true) {
 		aceptar();
 		List <Pago> pagos = new ArrayList<Pago>();
 		Pago pago = PagoManager.traerUltimoGuardado();
 		pagos.add(pago);
-		new ReporteVariosCargos(pagos);
+		new ReporteVariosCargos(pagos);}
+		else {
+			Popup.confirmar("No hay factura que mostrar");
+		}
+		
 	}
 	
 	private void cancelar() {
@@ -242,17 +272,18 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	}
 
 	// tare el pago ingresado en formulario sin el cargo
-	private Pago traerPagoVerificado() {
+	private Pago traerPagoVerificado(Cargo cargo) {
 		String observaciones = ventana.getObservaciones().getValor();
-		double importe = new Double(ventana.getImporte().getTextField().getText());
+		//double importe = new Double(ventana.getImporte().getTextField().getText());
+		Double importe = Double.parseDouble(ventana.getImporte().getTextField().getText());
 		Date fecha = new Date(ventana.getFecha().getDataChooser().getDate().getTime());
-		return new Pago(-1, -1, importe, observaciones, fecha);
+		System.out.println(importe);
+		return new Pago(-1,cargo.getID(), importe, observaciones, fecha);
 	}
 	
 	private boolean verificarFormulario () {
 		boolean isOk = true;
 		String mensaje = "";
-		
 		if (ventana.getImporte().getValor().equals("")) {
 			isOk = false;
 			mensaje += "    -Debe colocar un importe.\n";
