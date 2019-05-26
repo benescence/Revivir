@@ -1,5 +1,6 @@
 package com.ungs.revivir.vista.paneles;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.util.List;
 
@@ -20,9 +21,12 @@ public class PanelFallecidos extends PanelVertical implements FallecidoSeleccion
 	private EntradaTexto inNombre, inApellido;
 	private EntradaNumero inCodigo;
 	private Ventana ventana;
+	private Component siguienteComponente;
 	
-	public PanelFallecidos(Ventana ventana, Dimension dimTexto, Dimension dimEntrada, Dimension dimBoton) {
+	public PanelFallecidos(Ventana ventana, Dimension dimTexto, Dimension dimEntrada, Dimension dimBoton, Component siguienteComponente) {
 		this.ventana = ventana;
+		this.siguienteComponente = siguienteComponente;
+		
 		inNombre = new EntradaTexto("Nombres fallecido", dimTexto, dimEntrada);
 		inApellido = new EntradaTexto("Apellidos fallecido", dimTexto, dimEntrada);
 		inCodigo = new EntradaNumero("Cod. Fallecido", dimTexto, dimEntrada);
@@ -52,19 +56,24 @@ public class PanelFallecidos extends PanelVertical implements FallecidoSeleccion
 		
 		try {
 			fallecidos = FallecidoManager.traer(nombre, apellido, codFallecido);
+			
 			if (fallecidos.size() == 0) {
-				Popup.mostrar("No existe ningun fallecido con los parametros ingresados");
+				Popup.mostrar("No existe ningun fallecido con los parametros ingresados.");
 				
 			} else if (fallecidos.size() > 1) {
 				ventana.deshabilitar();
-				ControladorSeleccionarFallecido c = new ControladorSeleccionarFallecido(this);
-				c.setParametros(nombre, apellido, codFallecido);
+				ControladorSeleccionarFallecido controlador = new ControladorSeleccionarFallecido(this);
+				controlador.setParametros(nombre, apellido, codFallecido);
+				if (siguienteComponente != null)
+					siguienteComponente.requestFocus();
 				
 			} else {
 				Fallecido unico = fallecidos.get(0);
 				inNombre.setValor(unico.getNombre());
 				inApellido.setValor(unico.getApellido());
 				inCodigo.setValor(unico.getCod_fallecido().toString());
+				if (siguienteComponente != null)
+					siguienteComponente.requestFocus();
 			}
 		
 		} catch (Exception e) {
@@ -73,16 +82,13 @@ public class PanelFallecidos extends PanelVertical implements FallecidoSeleccion
 		
 	}
 
-	
 	public EntradaTexto getNombre() {
 		return inNombre;
-	}
-	
+	}	
 
 	public EntradaTexto getApellido() {
 		return inApellido;
 	}
-	
 
 	public EntradaNumero getCodigo() {
 		return inCodigo;

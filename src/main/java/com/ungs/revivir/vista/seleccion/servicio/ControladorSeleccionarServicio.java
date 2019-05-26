@@ -58,4 +58,10 @@ public class ControladorSeleccionarServicio {
 		invocador.mostrar();
 	}
 	
+	public void setParametros(String nombre, String codigo) {
+		ventana.getNombre().setValor(nombre);
+		ventana.getCodigo().setValor(codigo);
+		buscar();
+	}
+
 }
