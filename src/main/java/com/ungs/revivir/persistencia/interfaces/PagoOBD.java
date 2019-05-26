@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.ungs.revivir.persistencia.entidades.Cargo;
-import com.ungs.revivir.persistencia.entidades.Cliente;
+import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
 
 public interface PagoOBD {
@@ -24,13 +24,11 @@ public interface PagoOBD {
 	public List<Pago > select();
 	
 	// METODOS ESPECIFICOS
-	
-	//public List<Pago> selectByCliente(Cliente cliente);
-	
-	//public List<Pago> selectByClienteFecha(Cliente cliente, Date fecha);
-	
+		
 	public List<Pago> selectByCargo(Cargo cargo);
 	
 	public List<Pago> selectByFecha(Date fecha);
+	
+	public List<Pago> selectByFallecidoDesdeHasta(Fallecido fallecido, Date desde, Date hasta);
 	
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.entidades.Cargo;
-import com.ungs.revivir.persistencia.entidades.Cliente;
+import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 
@@ -132,6 +132,13 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 	private Pago selectUnicoByCondicion(String condicion) {
 		List<Pago> lista = selectByCondicion(condicion);
 		return (lista.size() > 0) ? lista.get(0) : null; 
+	}
+
+	@Override
+	public List<Pago> selectByFallecidoDesdeHasta(Fallecido fallecido, Date desde, Date hasta) {
+		String condicion = "fallecido = "+fallecido.getID();
+		condicion += " and fecha between '" +desde+"' and '"+hasta+"'";
+		return selectByCondicion(condicion);
 	}
 
 }

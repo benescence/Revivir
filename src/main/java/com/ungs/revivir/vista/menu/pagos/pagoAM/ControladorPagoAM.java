@@ -13,7 +13,6 @@ import com.ungs.revivir.negocios.manager.PagoManager;
 import com.ungs.revivir.negocios.manager.ServicioManager;
 import com.ungs.revivir.negocios.servicios.Pagador;
 import com.ungs.revivir.persistencia.entidades.Cargo;
-import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Servicio;
@@ -21,7 +20,6 @@ import com.ungs.revivir.vista.principal.ControladorExterno;
 import com.ungs.revivir.vista.reportes.ReporteVariosCargos;
 import com.ungs.revivir.vista.seleccion.cargos.CargoSeleccionable;
 import com.ungs.revivir.vista.seleccion.cargos.ControladorSeleccionCargo;
-import com.ungs.revivir.vista.seleccion.clientes.ClienteSeleccionable;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 
@@ -223,9 +221,9 @@ public class ControladorPagoAM implements ControladorExterno, CargoSeleccionable
 		
 		// Verifico los datos del cargo
 		boolean crearCargo = ventana.checkCrearCargo().isSelected();
-		if (fallecidos.size() == 1 && servicios.size() == 1) {
+		if (fallecidos.size() == 1 && servicios.size() == 1 && !crearCargo) {
 			List<Cargo> cargos = CargoManager.traerPorFallecidoServicio(fallecidos.get(0), servicios.get(0));
-			if (cargos.size() == 0 && !crearCargo)
+			if (cargos.size() == 0)
 				mensaje += "    \n-El fallecido no tiene un cargo con el servicio ingresado. Si desea crearlo ahora presione 'crear cargo'.";
 
 			if (cargos.size() > 1)

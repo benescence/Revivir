@@ -9,7 +9,6 @@ import com.ungs.revivir.negocios.manager.PagoManager;
 import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.definidos.SubSector;
-import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
@@ -51,7 +50,7 @@ public class Busqueda {
 	}
 
 	//public static List<Pago> pagos(Cliente cliente, Fallecido fallecido, Date fecha) throws Exception {
-		public static List<Pago> pagos( Fallecido fallecido, Date fecha) throws Exception {
+	public static List<Pago> pagos( Fallecido fallecido, Date fecha) throws Exception {
 		// validaciones
 		if (fallecido == null && fecha == null)
 			throw new Exception("Debe llenar al menos uno de los 2 campos: cliente, fallecido o fecha.");
@@ -96,9 +95,14 @@ public class Busqueda {
 		
 		return ret;
 	}
-	public static List<Pago> traerPagosFallecido(Fallecido fallecido) {
-		List<Pago> pagos = Relacionador.traerPagos(fallecido);
-		
-			return pagos;
+	
+	public static List<Pago> traerPagos(Fallecido fallecido, Date fechaDesde, Date fechaHasta) {
+		PagoOBD obd = FactoryOBD.crearPagoOBD();
+		return obd.selectByFallecidoDesdeHasta(fallecido, fechaDesde, fechaHasta);
 	}
+	
+	public static List<Pago> traerPagosFallecido(Fallecido fallecido) {
+		return Relacionador.traerPagos(fallecido);
+	}
+
 }

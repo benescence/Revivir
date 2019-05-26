@@ -45,7 +45,7 @@ public class VentanaPagoAM extends Ventana {
 	public void inicializar() {
 		
 		// Establezco dimensiones generales del formulario
-		Dimension dimTexto = new Dimension(120, 25);
+		Dimension dimTexto = new Dimension(180, 25);
 		Dimension dimEntrada = new Dimension(300, 25);
 		Dimension dimBoton = new Dimension(150, 25);
 		
