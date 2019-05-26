@@ -18,8 +18,6 @@ public class Pagador {
 	 * -El cargo aun no debe estar pagado
 	 */
 	public static void pagarCargoExistente(Pago pago, Cargo cargo) throws Exception {
-		System.out.println(cargo.getID());
-		System.out.println(pago.getCargo());
 		PagoManager.guardar(pago);
 		
 		// Si con este pago ya pago todo el cargo le coloco el flag de pagado

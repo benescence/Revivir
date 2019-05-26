@@ -55,13 +55,9 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 	} 
 	
 	private void cargarCargo() {
+		ventana.requestFocusInWindow();
 		try {
 			autoCompletarFallecido();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		ventana.requestFocusInWindow();
 		
 		String codigo = ventana.getCodigo().getValor();
 		if (!Validador.codigo(codigo)) {
@@ -90,8 +86,6 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			return;
 		}
 
-		// Si no tiene un cargo asociado se crea en el momento
-		List<Cargo> directos = CargoManager.traerPorFallecidoServicio(fallecido, servicio);
 	/*	if (directos.isEmpty()) {
 			Cargo cargoNuevo = new Cargo(-1, fallecido.getID(), servicio.getID(), ventana.getObservaciones().getTextField().getText() , true);
 			directos.add(cargoNuevo);
@@ -105,13 +99,25 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 			cargo = cargoNuevo; // de mas
 		}
 		*/	
-
+		// Si no tiene un cargo asociado se crea en el momento
+		List<Cargo> directos = CargoManager.traerPorFallecidoServicio(fallecido, servicio);
 		if (directos.size() > 1) {
-			Popup.mostrar("Se encontraron demsiados cargos con los parametros ingresados.\nPor favor elija el apropiado de la lista con el boton seleccionar.");
+			Popup.mostrar("Se encontraron demasiados cargos con los parametros ingresados.\nPor favor elija el apropiado de la lista con el boton seleccionar.");
+			ventana.getNombreSer().getTextField().setText("");
+			ventana.getCodigo().getTextField().setText("");
 			return;
 		}
 		else if (directos.size() == 1) {
 		this.cargo = directos.get(0);
+		
+		}
+		else {
+			
+			return;
+		}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		
 		
@@ -173,6 +179,7 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 					Pagador.crearCargoYPagar(cargo, pago);
 					
 				}
+				
 				ventana.dispose();
 				invocador.actualizarPagos();
 				invocador.mostrar();
@@ -277,7 +284,6 @@ public class ControladorPagoAM implements ControladorExterno, ClienteSeleccionab
 		//double importe = new Double(ventana.getImporte().getTextField().getText());
 		Double importe = Double.parseDouble(ventana.getImporte().getTextField().getText());
 		Date fecha = new Date(ventana.getFecha().getDataChooser().getDate().getTime());
-		System.out.println(importe);
 		return new Pago(-1,cargo.getID(), importe, observaciones, fecha);
 	}
 	

@@ -23,7 +23,7 @@ public class VentanaPagoAM extends Ventana {
 	private EntradaTexto inCodigo, inNombreSer;
 	private EntradaTexto inImporte, inObservaciones;
 	private EntradaFecha inFecha;
-	private EntradaNumero inRepetir;
+	private EntradaNumero inRepetir, inTotal;
 	private JCheckBox inCrearCargo;
 	private PanelFallecidos panelFallecidos;
 
@@ -51,6 +51,7 @@ public class VentanaPagoAM extends Ventana {
 		inObservaciones = new EntradaTexto("Observaciones", dimTexto, dimEntrada);
 		inRepetir = new EntradaNumero("Repetir", dimTexto, dimEntrada);
 		inRepetir.setValor("1");
+		inTotal =new EntradaNumero("Total", dimTexto, dimEntrada);
 		inCrearCargo = new JCheckBox("Crear cargo");
 
 		
@@ -74,6 +75,7 @@ public class VentanaPagoAM extends Ventana {
 		panelPrincipal.add(inImporte);
 		panelPrincipal.add(inObservaciones);
 		panelPrincipal.add(inRepetir);
+		panelPrincipal.add(inTotal);
 		panelPrincipal.add(inCrearCargo);
 		panelPrincipal.add(panelBotones);
 		compactar();
@@ -169,7 +171,9 @@ public class VentanaPagoAM extends Ventana {
 	public EntradaTexto getImporte() {
 		return inImporte;
 	}
-	
+	public EntradaNumero getTotal() {
+		return inTotal;
+	}
 
 	public EntradaTexto getObservaciones() {
 		return inObservaciones;

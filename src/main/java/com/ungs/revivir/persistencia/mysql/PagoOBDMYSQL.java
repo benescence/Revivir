@@ -22,7 +22,6 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 	@Override
 	public void insert(Pago pago) {
 		String observaciones = (pago.getObservaciones() != null) ? "'"+pago.getObservaciones()+"'" : null;
-		//System.out.println(pago.getCargo());
 		String valores = pago.getCargo()
 				//+", "+pago.getCliente()
 				+", "+pago.getImporte()
@@ -101,7 +100,6 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 	private List<Pago> selectByCondicion(String condicion) {
 		List<Pago> ret = new ArrayList<Pago>();
 		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
-		System.out.println(condicion + "  "+comandoSQL);
 		try { 
 			Class.forName(driver); 
 			Connection conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD); 
@@ -124,7 +122,7 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 			conexion.close();
 			
 		}catch(Exception e) {
-			System.out.println(comandoSQL);
+			
 			e.printStackTrace();
 		}
 			
