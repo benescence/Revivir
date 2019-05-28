@@ -10,20 +10,17 @@ import java.util.List;
 
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.entidades.Cargo;
-import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 
 public class PagoOBDMYSQL extends OBD implements PagoOBD{
 	private final String campos = "cargo, importe, observaciones, fecha";
-	//private final String campos = "cargo, cliente, importe, observaciones, fecha";
 	private final String tabla = "rev_pagos";
 	
 	@Override
 	public void insert(Pago pago) {
 		String observaciones = (pago.getObservaciones() != null) ? "'"+pago.getObservaciones()+"'" : null;
 		String valores = pago.getCargo()
-				//+", "+pago.getCliente()
 				+", "+pago.getImporte()
 				+", "+observaciones
 				+", '"+pago.getFecha()+"'";
@@ -37,7 +34,6 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 		
 		String condicion = "ID = "+pago.getID();
 		String valores = " cargo = "+pago.getCargo()
-				//+", cliente = "+pago.getCliente()
 				+", importe = "+pago.getImporte()
 				+", observaciones = "+observaciones
 				+", fecha= '"+pago.getFecha()+"'";
@@ -135,9 +131,22 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 	}
 
 	@Override
-	public List<Pago> selectByFallecidoDesdeHasta(Fallecido fallecido, Date desde, Date hasta) {
-		String condicion = "fallecido = "+fallecido.getID();
-		condicion += " and fecha between '" +desde+"' and '"+hasta+"'";
+	public List<Pago> selectByCargosDesdeHasta(List<Cargo> cargos, Date desde, Date hasta) {
+		if (cargos.size() == 0)
+			return new ArrayList<>();
+		
+		String condicionFecha = "fecha between '" +desde+"' and '"+hasta+"'";
+		String condicionCargo = "cargo in (";
+		
+		for (int i = 0; i<cargos.size(); i++) {
+			if (i>0)
+				condicionCargo += ", ";
+			condicionCargo += cargos.get(i).getID();
+		}
+		
+		condicionCargo += ")";
+		
+		String condicion = "("+condicionFecha+") and ("+condicionCargo+")";
 		return selectByCondicion(condicion);
 	}
 

@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ungs.revivir.negocios.busqueda.Relacionador;
+import com.ungs.revivir.negocios.manager.CargoManager;
 import com.ungs.revivir.negocios.manager.PagoManager;
 import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.definidos.SubSector;
+import com.ungs.revivir.persistencia.entidades.Cargo;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
@@ -97,8 +99,9 @@ public class Busqueda {
 	}
 	
 	public static List<Pago> traerPagos(Fallecido fallecido, Date fechaDesde, Date fechaHasta) {
+		List<Cargo> cargos = CargoManager.traerPorFallecido(fallecido);
 		PagoOBD obd = FactoryOBD.crearPagoOBD();
-		return obd.selectByFallecidoDesdeHasta(fallecido, fechaDesde, fechaHasta);
+		return obd.selectByCargosDesdeHasta(cargos, fechaDesde, fechaHasta);
 	}
 	
 	public static List<Pago> traerPagosFallecido(Fallecido fallecido) {
