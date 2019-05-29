@@ -1,6 +1,7 @@
 package com.ungs.revivir.vista.menu.pagos;
 
 import java.awt.Dimension;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
@@ -56,7 +57,7 @@ public class VentanaPagoABM extends VentanaInterna {
 		PanelHorizontal panelBusqueda = new PanelHorizontal();
 		panelBusqueda.add(panelFallecidos);
 
-		inFechaDesde = new EntradaFecha(Almanaque.hoy(), "Fecha desde", dimTexto, dimEntrada);
+		inFechaDesde = new EntradaFecha(Date.valueOf("2000-1-1"), "Fecha desde", dimTexto, dimEntrada);
 		inFechaHasta = new EntradaFecha(Almanaque.hoy(), "Fecha hasta", dimTexto, dimEntrada);
 		//inFecha.setBorder(new EmptyBorder(0, 0, 10, 0));
 		

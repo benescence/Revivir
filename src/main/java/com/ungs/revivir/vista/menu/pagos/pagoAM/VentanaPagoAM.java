@@ -67,6 +67,7 @@ public class VentanaPagoAM extends Ventana {
 		btnAceptar = new Boton("Aceptar", dimBoton);
 		btnAceptarVer = new Boton("Aceptar y ver", dimBoton);
 		btnCancelar = new Boton("Cancelar", dimBoton);
+		
 		PanelHorizontal panelBotones = new PanelHorizontal();
 		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
 		panelBotones.add(btnAceptar);

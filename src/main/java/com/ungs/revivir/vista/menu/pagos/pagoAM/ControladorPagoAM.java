@@ -1,3 +1,4 @@
+
 package com.ungs.revivir.vista.menu.pagos.pagoAM;
 
 import java.awt.event.KeyEvent;
@@ -107,6 +108,9 @@ public class ControladorPagoAM implements ControladorExterno, CargoSeleccionable
 		
 	}
 
+	
+	
+	
 	private void aceptarModificar() {
 		Pago pagoModificado = traerPagoVerificado();
 		pagoModificado.setID(pago.getID());
@@ -144,13 +148,11 @@ public class ControladorPagoAM implements ControladorExterno, CargoSeleccionable
 	@Override
 	public void seleccionarCargo(Cargo cargo) {
 		this.cargo = cargo;
-		
+		Servicio servicio = ServicioManager.traerPorID(cargo.getServicio());
 		Fallecido fallecido = FallecidoManager.traerPorID(cargo.getFallecido());
 		ventana.getNombreFal().getTextField().setText(fallecido.getNombre());
 		ventana.getApellidoFal().getTextField().setText(fallecido.getApellido());
 		ventana.getCODFal().getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
-
-		Servicio servicio = ServicioManager.traerPorID(cargo.getServicio());
 		ventana.getNombreSer().getTextField().setText(servicio.getNombre());
 		ventana.getCodigo().getTextField().setText(servicio.getCodigo());
 	}

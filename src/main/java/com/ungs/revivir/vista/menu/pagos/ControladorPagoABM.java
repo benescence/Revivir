@@ -31,7 +31,6 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 		ventana.botonEliminar().addActionListener(e -> eliminar());
 		ventana.botonFactura().addActionListener(e -> factura());
 		ventana.botonMovimientos().addActionListener(e -> movimientos());
-		
 		ventana.botonBuscar().setAccion(e -> actualizarPagos());
 		ventana.botonLimpiar().setAccion(e -> limpiar());
 	}
@@ -106,7 +105,7 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 	@Override
 	public void actualizarPagos() {
 		Date desde = ventana.getFechaDesde().getValor();
-		Date hasta = ventana.getFechaDesde().getValor();
+		Date hasta = ventana.getFechaHasta().getValor();
 		String nombre = ventana.getNombreFal().getValor();
 		String apellido = ventana.getApellidoFal().getValor();
 		Integer codigo = ventana.getCODFal().getValor();
