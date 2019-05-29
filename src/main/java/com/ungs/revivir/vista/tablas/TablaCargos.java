@@ -31,7 +31,7 @@ public class TablaCargos extends JTable {
 			Object[] fila = {
 					Formato.fallecido(elemento),
 					Formato.servicio(elemento),
-					elemento.getPagado(),
+					elemento.getPagado() ? "Si" : "No",
 					elemento.getObservaciones()
 				};
 			modelo.addRow(fila);
