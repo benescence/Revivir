@@ -57,7 +57,13 @@ public class ControladorPagoAM implements ControladorExterno, CargoSeleccionable
 	
 	private void seleccionarCargo() {
 		ventana.setEnabled(false);
-		new ControladorSeleccionCargo(this);
+		ControladorSeleccionCargo c = new ControladorSeleccionCargo(this);
+		String nombreFal = ventana.getNombreFal().getValor();
+		String apellidoFal = ventana.getApellidoFal().getValor();
+		Integer codFallecido = ventana.getCODFal().getValor();
+		String nombreSer = ventana.getNombreSer().getValor();
+		String codServicio = ventana.getCodigo().getValor();
+		c.setParametros(nombreFal, apellidoFal, codFallecido, nombreSer, codServicio);
 	}
 
 	private boolean aceptar() {
@@ -90,7 +96,8 @@ public class ControladorPagoAM implements ControladorExterno, CargoSeleccionable
 			// Situacion 2: El cargo ya existe y es unico, registra todos los pagos a ese cargo
 			else {
 				Pago pago = traerPagoVerificado();
-				Cargo cargo = CargoManager.traerPorFallecidoServicio(fallecido, servicio).get(0);
+				if (cargo == null)
+					cargo = CargoManager.traerPorFallecidoServicio(fallecido, servicio).get(0);
 				pago.setCargo(cargo.getID());				
 				for(int i=0; i<repetir; i++)
 					Pagador.pagarCargoExistente(pago,cargo);				
@@ -108,9 +115,6 @@ public class ControladorPagoAM implements ControladorExterno, CargoSeleccionable
 		
 	}
 
-	
-	
-	
 	private void aceptarModificar() {
 		Pago pagoModificado = traerPagoVerificado();
 		pagoModificado.setID(pago.getID());
@@ -169,6 +173,7 @@ public class ControladorPagoAM implements ControladorExterno, CargoSeleccionable
 		
 		// Revisamos que todos los campos obligatorios se hallan llenado correctamente
 		String mensaje = "";
+		boolean seleccionarCargo = false;
 
 		// Los datos del fallecido
 		String nombreFal = ventana.getNombreFal().getValor();
@@ -223,19 +228,25 @@ public class ControladorPagoAM implements ControladorExterno, CargoSeleccionable
 		
 		// Verifico los datos del cargo
 		boolean crearCargo = ventana.checkCrearCargo().isSelected();
-		if (fallecidos.size() == 1 && servicios.size() == 1 && !crearCargo) {
+		if (fallecidos.size() == 1 && servicios.size() == 1 && !crearCargo && cargo == null) {
 			List<Cargo> cargos = CargoManager.traerPorFallecidoServicio(fallecidos.get(0), servicios.get(0));
 			if (cargos.size() == 0)
 				mensaje += "    \n-El fallecido no tiene un cargo con el servicio ingresado. Si desea crearlo ahora presione 'crear cargo'.";
 
-			if (cargos.size() > 1)
+			if (cargos.size() > 1) {
 				mensaje += "    \n-El fallecido posee demasiados cargos con el servicio ingresado.";
+				seleccionarCargo = true;
+			}
 		}
 		
 		if (mensaje.equals(""))
 			return true;
 		
 		Popup.mostrar("Se encontraron los siguientes errores:"+mensaje);
+		
+		// Si tiene demasiados cargos debe elegir uno en particular
+		if (seleccionarCargo)
+			seleccionarCargo();
 		return false;		
 	}
 	

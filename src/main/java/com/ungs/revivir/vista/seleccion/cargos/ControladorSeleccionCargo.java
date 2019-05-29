@@ -167,4 +167,14 @@ public class ControladorSeleccionCargo implements FallecidoSeleccionable, Client
 		ventana.mostrar();
 	}
 	
+	public void setParametros(String nombreFal, String apellidoFal, Integer codFallecido, String nombreSer, String codServicio){
+		// seteo los datos del fallecido
+		ventana.getNombreFal().setValor(nombreFal);
+		ventana.getApellidoFal().setValor(apellidoFal);
+		ventana.getCODFal().setValor(codFallecido.toString());
+		
+		// seteo los datos del servicio
+		actualizarCargos();
+	}
+	
 }

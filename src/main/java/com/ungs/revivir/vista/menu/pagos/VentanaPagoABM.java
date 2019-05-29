@@ -25,6 +25,7 @@ public class VentanaPagoABM extends VentanaInterna {
 	private Boton btnAgregar, btnModificar, btnEliminar, btnFactura, btnMovimientos, btnBuscar, btnLimpiar;
 	private PanelFallecidos panelFallecidos;
 	
+	@SuppressWarnings("deprecation")
 	public VentanaPagoABM() {
 		super("Gestion de pagos", 500, 500);
 		
@@ -56,8 +57,12 @@ public class VentanaPagoABM extends VentanaInterna {
 		
 		PanelHorizontal panelBusqueda = new PanelHorizontal();
 		panelBusqueda.add(panelFallecidos);
-
-		inFechaDesde = new EntradaFecha(Date.valueOf("2000-1-1"), "Fecha desde", dimTexto, dimEntrada);
+		
+		// La fecha desde es por defecto hace un año, la hasta es hoy
+		//inFechaDesde = new EntradaFecha(Date.valueOf("2000-1-1"), "Fecha desde", dimTexto, dimEntrada);
+		Date fechaDesde = Almanaque.hoy();
+		fechaDesde.setYear(fechaDesde.getYear()-1);
+		inFechaDesde = new EntradaFecha(fechaDesde, "Fecha desde", dimTexto, dimEntrada);
 		inFechaHasta = new EntradaFecha(Almanaque.hoy(), "Fecha hasta", dimTexto, dimEntrada);
 		//inFecha.setBorder(new EmptyBorder(0, 0, 10, 0));
 		
