@@ -7,8 +7,10 @@ import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.persistencia.entidades.Pago;
+import com.ungs.revivir.persistencia.entidades.Servicio;
 import com.ungs.revivir.vista.paneles.PanelFallecidos;
 import com.ungs.revivir.vista.paneles.PanelServicios;
+import com.ungs.revivir.vista.paneles.ServicioAutocompletable;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
@@ -18,7 +20,7 @@ import com.ungs.revivir.vista.util.entradas.EntradaFecha;
 import com.ungs.revivir.vista.util.entradas.EntradaNumero;
 import com.ungs.revivir.vista.util.entradas.EntradaTexto;
 
-public class VentanaPagoAM extends Ventana {
+public class VentanaPagoAM extends Ventana implements ServicioAutocompletable{
 	private static final long serialVersionUID = 1L;
 	private Boton btnAceptar, btnAceptarVer, btnCancelar, btnSelCargo, btnCargarCargo;
 	private EntradaTexto inObservaciones;
@@ -61,7 +63,7 @@ public class VentanaPagoAM extends Ventana {
 		inCrearCargo.setSelected(true);
 
 		// creo los paneles de fallecido y servicios
-		panelServicios = new PanelServicios(this, dimTexto, dimEntrada, dimBoton, inFecha.getDataChooser());
+		panelServicios = new PanelServicios(this, dimTexto, dimEntrada, dimBoton, inFecha.getDataChooser(), this);
 		panelFallecidos = new PanelFallecidos(this, dimTexto, dimEntrada, dimBoton, panelServicios.getNombre().getTextField());
 		
 		btnAceptar = new Boton("Aceptar", dimBoton);
@@ -152,6 +154,11 @@ public class VentanaPagoAM extends Ventana {
 	
 	public EntradaFecha getFecha() {
 		return inFecha;
+	}
+
+	@Override
+	public void servicioAutocompletado(Servicio servicio) {
+		inImporte.setValor(servicio.getImporte().toString());		
 	}
 
 }

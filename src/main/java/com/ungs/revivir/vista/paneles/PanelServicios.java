@@ -20,11 +20,12 @@ public class PanelServicios extends PanelVertical implements ServicioSeleccionab
 	private EntradaTexto inNombre, inCodigo;
 	private Ventana ventana;
 	private Component siguienteComponente;
+	private ServicioAutocompletable observador;
 	
-	public PanelServicios(Ventana ventana, Dimension dimTexto, Dimension dimEntrada, Dimension dimBoton, Component siguienteComponente) {
+	public PanelServicios(Ventana ventana, Dimension dimTexto, Dimension dimEntrada, Dimension dimBoton, Component siguienteComponente, ServicioAutocompletable observador) {
 		this.ventana = ventana;
 		this.siguienteComponente = siguienteComponente;
-		
+		this.observador = observador;
 		inNombre = new EntradaTexto("Nombre servicio", dimTexto, dimEntrada);
 		inCodigo = new EntradaTexto("Codigo servicio", dimTexto, dimEntrada);
 		Boton btnCargar = new Boton("Cargar", dimBoton);
@@ -68,6 +69,8 @@ public class PanelServicios extends PanelVertical implements ServicioSeleccionab
 				inCodigo.setValor(unico.getCodigo());
 				if (siguienteComponente != null)
 					siguienteComponente.requestFocusInWindow();
+				if (observador != null)
+					observador.servicioAutocompletado(unico);
 			}
 		
 		} catch (Exception e) {
