@@ -6,6 +6,7 @@ import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 
 public class FallecidoManager {
@@ -45,6 +46,10 @@ public class FallecidoManager {
 	public static Fallecido traerPorID(Integer ID) {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		return obd.selectByID(ID);
+	}
+	public static List<Fallecido> traerPorUbicacion(Ubicacion ubicacion) {
+		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
+		return obd.selectByUbicacion(ubicacion);
 	}
 public Integer selectLastCod_fallecido() {
 		//FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();

@@ -7,14 +7,19 @@ import java.util.List;
 import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.busqueda.Relacionador;
+import com.ungs.revivir.negocios.manager.PagoManager;
 import com.ungs.revivir.negocios.manager.VencimientoManager;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Cliente;
+import com.ungs.revivir.persistencia.entidades.Expensas;
+import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.menu.vencimientos.modificar.ControladorVencimientoAM;
 import com.ungs.revivir.vista.menu.vencimientos.modificar.VencimientoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
+import com.ungs.revivir.vista.reportes.ReporteVariosCargos;
+import com.ungs.revivir.vista.reportes.reporteVencimientos;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.visualizador.Visualizable;
 import com.ungs.revivir.vista.visualizador.clientes.ControladorVerClientes;
@@ -30,6 +35,7 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		ventana.botonLimpiar().setAccion(e -> limpiar());
 		ventana.botonVerClientes().setAccion(e -> verClientes());
 		ventana.botonModificar().setAccion(e -> modificar());
+		ventana.botonImpLista().setAccion(e -> imprimirLista());
 	}
 
 	private void modificar() {
@@ -63,7 +69,17 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		List<Ubicacion> vencimientos = VencimientoManager.buscarVencimientos(subSector, desde, hasta);
 		ventana.getTabla().recargar(vencimientos);
 	}	
+	private void imprimirLista() {
+		
+		//List <Expensas>  vencimientos = new ArrayList<Pago>();
+		//pagos.add(PagoManager.traerUltimoGuardado());
+		SubSector subSector = (SubSector) ventana.getSubsector().getComboBox().getSelectedItem();
+		Date desde = ventana.getDesde().getValor();
+		Date hasta = ventana.getHasta().getValor();
+		List<Ubicacion> vencimientos = VencimientoManager.buscarVencimientos(subSector, desde, hasta);
+		new reporteVencimientos(vencimientos);
 	
+}
 	private void limpiar() {
 		ventana.getTabla().recargar(new ArrayList<>());
 	}

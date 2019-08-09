@@ -1,5 +1,6 @@
 package com.ungs.revivir.vista.util;
 
+import java.util.Date;
 import java.util.List;
 
 import com.ungs.revivir.negocios.Vinculador;
@@ -15,6 +16,7 @@ import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Servicio;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
+import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class Formato {
 
@@ -60,7 +62,11 @@ public class Formato {
 		return fallecido(fallecido);
 	}
 	
-	
+	/*public static String vencimiento(Ubicacion ubicacion) {
+		Ubicacion obd = UbicacionOBD
+		Date fecha  = obd.getVencimiento();
+		return fallecido(obd.fallecido);
+	}*/
 	public static String dinero(Double importe) {
 		String ret = String.format( "%.2f", importe);
 		return "$ "+ret;
