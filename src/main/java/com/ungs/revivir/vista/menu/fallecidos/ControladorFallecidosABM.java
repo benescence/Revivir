@@ -32,7 +32,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 		try {
 			String nombre = ventana.getNombre().getValor();
 			String apellido = ventana.getApellido().getValor();
-			Integer cod_fallecido =Integer.parseInt(ventana.getCOD().getValor());
+			Integer cod_fallecido = ventana.getCOD().getValor();
 			//String DNI = ventana.getDNI().getValor();
 			//List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, DNI);
 			List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, cod_fallecido);
