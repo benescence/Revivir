@@ -36,7 +36,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 			//String DNI = ventana.getDNI().getValor();
 			//List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, DNI);
 			List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, cod_fallecido);
-			
+			System.out.println(nombre);
 			if (lista.isEmpty())
 				Popup.mostrar("No se ha encontrado ningun fallecido con los parametros ingresados.");
 			ventana.getTabla().recargar(lista);
