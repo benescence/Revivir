@@ -109,6 +109,9 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 		String nombre = ventana.getNombreFal().getValor();
 		String apellido = ventana.getApellidoFal().getValor();
 		Integer codigo = ventana.getCODFal().getValor();
+		System.out.println(nombre);
+		System.out.println(apellido);
+		System.out.println(codigo);
 
 		try {
 			List<Fallecido> fallecidos = FallecidoManager.traer(nombre, apellido, codigo);

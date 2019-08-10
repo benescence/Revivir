@@ -12,7 +12,7 @@ import com.ungs.revivir.vista.util.Formato;
 public class TablaPagos extends JTable{
 	private static final long serialVersionUID = 1L;
 	//private String[] columnas = { "Cliente", "Fallecido", "Codigo", "Servicio", "Importe", "Fecha"};
-	private String[] columnas = {  "Fallecido", "Codigo", "Servicio", "Importe", "Fecha"};
+	private String[] columnas = {  "Fallecido", "Observaciones", "Servicio", "Importe", "Fecha"};
 	private DefaultTableModel modelo;
 	private List<Pago> pagos;	
 	
@@ -32,10 +32,10 @@ public class TablaPagos extends JTable{
 			Object[] fila = {
 					//Formato.cliente(elemento),
 					Formato.fallecido(elemento),
-					Formato.codigoServicio(elemento),
+					elemento.getObservaciones(),
 					Formato.cargo(elemento),
 					Formato.dinero(elemento.getImporte()),
-					elemento.getFecha()
+					Formato.formatoFecha(elemento.getFecha())
 			};
 			modelo.addRow(fila);
 		}		
