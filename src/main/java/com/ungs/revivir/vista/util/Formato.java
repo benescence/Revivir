@@ -1,11 +1,11 @@
 package com.ungs.revivir.vista.util;
 
-import java.util.Date;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.ungs.revivir.negocios.Vinculador;
 import com.ungs.revivir.negocios.manager.CargoManager;
-import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.ServicioManager;
 import com.ungs.revivir.negocios.manager.UbicacionManager;
@@ -16,7 +16,6 @@ import com.ungs.revivir.persistencia.entidades.Movimiento;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Servicio;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
-import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class Formato {
 
@@ -72,11 +71,10 @@ public class Formato {
 		return "$ "+ret;
 	}
 
-	
-	
-	
-	
-	
+	public static String formatoFecha(Date fecha) {
+		SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+		return formateador.format(fecha);
+	}
 	
 	public static String ubicacion(Ubicacion ubicacion) {
 		String ret = "Sector "+ubicacion.getSubsector();
