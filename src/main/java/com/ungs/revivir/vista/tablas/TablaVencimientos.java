@@ -13,7 +13,7 @@ import com.ungs.revivir.vista.util.Formato;
 
 public class TablaVencimientos extends JTable {
 	private static final long serialVersionUID = 1L;
-	private String[] columnas = { "Fecha", "Fallecido", "Ubicacion"};
+	private String[] columnas = {"Fallecido" ,"Ubicacion"};
 	private DefaultTableModel modelo;
 	private List<Ubicacion> lista;
 
@@ -38,8 +38,8 @@ public class TablaVencimientos extends JTable {
 			modelo.addRow(fila);
 		}
 		
-		getColumn("Fecha").setPreferredWidth(20);
-		getColumn("Fecha").setWidth(20);
+		//getColumn("Fecha").setPreferredWidth(20);
+		//getColumn("Fecha").setWidth(20);
 		getColumn("Fallecido").setWidth(20);
 		getColumn("Fallecido").setPreferredWidth(20);
 		getColumn("Ubicacion").setWidth(400);
@@ -48,7 +48,6 @@ public class TablaVencimientos extends JTable {
 	
 	private String tablaFallecido(Ubicacion ubicacion) {
 		Fallecido fallecido = FallecidoManager.traerPorUbicacion(ubicacion).get(0);
-		System.out.println(FallecidoManager.traerPorUbicacion(ubicacion).size());
 		return Formato.fallecido(fallecido);
 	}
 	

@@ -1,7 +1,9 @@
 package com.ungs.revivir.vista.util;
 
+
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+
 import java.util.List;
 
 import com.ungs.revivir.negocios.Vinculador;
@@ -91,12 +93,24 @@ public class Formato {
 		ret += (ubicacion.getBis() != null) ? ", bis "+ubicacion.getBis() : ""; 
 		ret += (ubicacion.getBis_macizo() != null) ? ", bis macizo "+ubicacion.getBis_macizo() : ""; 
 		ret += (ubicacion.getCementerio() != null) ? ", cementerio "+ubicacion.getCementerio(): ""; 
+		ret += (ubicacion.getVencimiento() != null) ? ", cementerio "+ubicacion.getVencimiento(): "";
 		return ret;
 	}
 	
 	public static String ubicacion(Fallecido fallecido) {
 		Ubicacion ubicacion = UbicacionManager.traerPorFallecido(fallecido);
 		return ubicacion(ubicacion);
+	}
+	
+	public static String fallecido(Ubicacion ubicacion) {
+		List<Fallecido> fallecido =FallecidoManager.traerPorUbicacion(ubicacion);
+		return fallecido.get(0).getNombre() + fallecido.get(0).getApellido() ;
+	}
+	
+	public static Date Vencimientoubicacion(Fallecido fallecido) {
+		Ubicacion ubicacion = UbicacionManager.traerPorFallecido(fallecido);
+		return ubicacion.getVencimiento();
+		//return formatoFecha(ubicacion.getVencimiento());
 	}
 	public static String ubicaciondesdePago(Pago pago) {
 		Cargo cargo = CargoManager.traerPorID(pago.getCargo());

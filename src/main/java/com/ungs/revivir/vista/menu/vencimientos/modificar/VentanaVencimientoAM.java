@@ -23,8 +23,8 @@ public class VentanaVencimientoAM extends Ventana {
 	public VentanaVencimientoAM(Ubicacion ubicacion) {
 		super("Modificar vencimientos");
 		
-		Dimension dimTexto = new Dimension(150, 25);
-		Dimension dimEntrada = new Dimension(400, 25);
+		Dimension dimTexto = new Dimension(100, 25);
+		Dimension dimEntrada = new Dimension(300, 25);
 		Dimension dimBoton = new Dimension(100, 25);
 		
 		inUbicacion = new EntradaTexto("Ubicacion", dimTexto, dimEntrada);

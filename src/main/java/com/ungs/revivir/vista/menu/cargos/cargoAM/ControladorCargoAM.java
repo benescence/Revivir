@@ -158,6 +158,7 @@ public class ControladorCargoAM implements ControladorExterno, ServicioSeleccion
 		//ventana.getDNI().getTextField().setText(fallecido.getDNI());
 		ventana.getCOD().getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 		ventana.getUbicacion().setValor(Formato.ubicacion(fallecido));
+		//ventana.getUbicacion().setValor(Formato.ubicacion(fallecido));
 	}
 
 	@Override

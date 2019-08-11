@@ -36,6 +36,7 @@ public class TablaPagos extends JTable{
 					Formato.cargo(elemento),
 					Formato.dinero(elemento.getImporte()),
 					Formato.formatoFecha(elemento.getFecha())
+					
 			};
 			modelo.addRow(fila);
 		}		
