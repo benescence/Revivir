@@ -13,7 +13,7 @@ import com.ungs.revivir.vista.util.Formato;
 
 public class TablaVencimientos extends JTable {
 	private static final long serialVersionUID = 1L;
-	private String[] columnas = {"Fallecido" ,"Ubicacion"};
+	private String[] columnas = {"Fecha", "Fallecido" ,"Ubicacion"};
 	private DefaultTableModel modelo;
 	private List<Ubicacion> lista;
 
@@ -30,25 +30,24 @@ public class TablaVencimientos extends JTable {
 		modelo.setColumnIdentifiers(columnas);
 
 		for (Ubicacion elemento : lista) {
-			Object[] fila = {
-					//Formato.formatoFecha(elemento.getVencimiento()),
-					tablaFallecido(elemento),
-					Formato.ubicacion(elemento)
-					};
-			modelo.addRow(fila);
+			List<Fallecido> fallecudosEnUbicacion = FallecidoManager.traerPorUbicacion(elemento);
+			if (fallecudosEnUbicacion.size() > 0) {
+				Fallecido fallecido = fallecudosEnUbicacion.get(0);
+				Object[] fila = {
+						Formato.formatoFecha(elemento.getVencimiento()),
+						Formato.fallecido(fallecido),
+						Formato.ubicacion(elemento)
+				};
+				modelo.addRow(fila);				
+			}
 		}
 		
-		//getColumn("Fecha").setPreferredWidth(20);
-		//getColumn("Fecha").setWidth(20);
+		getColumn("Fecha").setPreferredWidth(20);
+		getColumn("Fecha").setWidth(20);
 		getColumn("Fallecido").setWidth(20);
 		getColumn("Fallecido").setPreferredWidth(20);
 		getColumn("Ubicacion").setWidth(400);
 		getColumn("Ubicacion").setPreferredWidth(400);
-	}
-	
-	private String tablaFallecido(Ubicacion ubicacion) {
-		Fallecido fallecido = FallecidoManager.traerPorUbicacion(ubicacion).get(0);
-		return Formato.fallecido(fallecido);
 	}
 	
 	public List<Ubicacion> obtenerSeleccion() {
