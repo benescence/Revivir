@@ -93,7 +93,7 @@ public class Formato {
 		ret += (ubicacion.getBis() != null) ? ", bis "+ubicacion.getBis() : ""; 
 		ret += (ubicacion.getBis_macizo() != null) ? ", bis macizo "+ubicacion.getBis_macizo() : ""; 
 		ret += (ubicacion.getCementerio() != null) ? ", cementerio "+ubicacion.getCementerio(): ""; 
-		ret += (ubicacion.getVencimiento() != null) ? ", cementerio "+ubicacion.getVencimiento(): "";
+		//ret += (ubicacion.getVencimiento() != null) ? ", cementerio "+ubicacion.getVencimiento(): "";
 		return ret;
 	}
 	

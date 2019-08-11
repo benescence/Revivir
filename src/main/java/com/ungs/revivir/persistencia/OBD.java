@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class OBD {
 	protected final String driver = "com.mysql.jdbc.Driver";
-	protected final Integer limite = 20;
+	protected final Integer limite = 100;
 	
 	// DESARROLLO
 	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir"; 
