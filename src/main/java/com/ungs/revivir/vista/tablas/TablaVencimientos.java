@@ -31,7 +31,7 @@ public class TablaVencimientos extends JTable {
 
 		for (Ubicacion elemento : lista) {
 			Object[] fila = {
-					Formato.formatoFecha(elemento.getVencimiento()),
+					//Formato.formatoFecha(elemento.getVencimiento()),
 					tablaFallecido(elemento),
 					Formato.ubicacion(elemento)
 					};
