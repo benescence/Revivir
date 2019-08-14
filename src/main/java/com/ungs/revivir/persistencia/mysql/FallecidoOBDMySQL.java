@@ -40,7 +40,7 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 		
 		String valores = " DNI = '"+fallecido.getDNI()+"'"
 				+", apellido = '"+fallecido.getApellido()+"'"
-				+", ubicacion = "+fallecido.getUbicacion()
+				//+", ubicacion = "+fallecido.getUbicacion()
 				+", nombre = '"+fallecido.getNombre()+"'"
 				+", fecha_fallecimiento = "+fechaFal
 				+", tipo_fallecimiento = "+Definido.tipoFallecimiento(fallecido.getTipoFallecimiento())
