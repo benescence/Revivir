@@ -44,7 +44,7 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 				+", nombre = '"+fallecido.getNombre()+"'"
 				+", fecha_fallecimiento = "+fechaFal
 				+", tipo_fallecimiento = "+Definido.tipoFallecimiento(fallecido.getTipoFallecimiento())
-				+", cod_fallecido = '"+fallecido.getCod_fallecido()+"'"
+				//+", cod_fallecido = '"+fallecido.getCod_fallecido()+"'"
 				+", cocheria = '"+fallecido.getCocheria()+"'"
 				+", fecha_ingreso = '"+fallecido.getFechaIngreso()+"'";
 		String consulta = "update "+tabla+" set "+valores+"  where ("+condicion+");";

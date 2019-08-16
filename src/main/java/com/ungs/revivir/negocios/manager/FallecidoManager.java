@@ -8,6 +8,7 @@ import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class FallecidoManager {
 	
@@ -26,7 +27,10 @@ public class FallecidoManager {
 	
 	public static void eliminar(Fallecido fallecido) {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
+		UbicacionOBD obdubi = FactoryOBD.crearUbicacionOBD();
 		obd.delete(fallecido);
+		Ubicacion eliminar = obdubi.selectByFallecido(fallecido);
+		obdubi.delete(eliminar);
 	}
 	
 	public static List<Fallecido> traerTodo() {
