@@ -21,8 +21,15 @@ public class FallecidoManager {
 	}
 
 	public static void modificar(Fallecido fallecido) {
+		Fallecido fallecido1 = null;
+		try {
+			 fallecido1 = Verificador.fallecido(fallecido);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		obd.update(fallecido);
+		obd.update(fallecido1);
 	}
 	
 	public static void eliminar(Fallecido fallecido) {

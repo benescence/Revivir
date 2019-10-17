@@ -106,11 +106,15 @@ public class Formato {
 		List<Fallecido> fallecido =FallecidoManager.traerPorUbicacion(ubicacion);
 		return fallecido.get(0).getNombre() + fallecido.get(0).getApellido() ;
 	}
+	public static Integer fallecidoCod(Ubicacion ubicacion) {
+		List<Fallecido> fallecido =FallecidoManager.traerPorUbicacion(ubicacion);
+		return fallecido.get(0).getCod_fallecido() ;
+	}
 	
-	public static Date Vencimientoubicacion(Fallecido fallecido) {
+	public static String Vencimientoubicacion(Fallecido fallecido) {
 		Ubicacion ubicacion = UbicacionManager.traerPorFallecido(fallecido);
-		return ubicacion.getVencimiento();
-		//return formatoFecha(ubicacion.getVencimiento());
+		//return ubicacion.getVencimiento();
+		return formatoFecha(ubicacion.getVencimiento());
 	}
 	public static String ubicaciondesdePago(Pago pago) {
 		Cargo cargo = CargoManager.traerPorID(pago.getCargo());
