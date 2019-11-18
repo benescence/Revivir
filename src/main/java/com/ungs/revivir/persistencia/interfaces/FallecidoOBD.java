@@ -36,4 +36,6 @@ public interface FallecidoOBD {
 
 	public Integer selectLastID(String tabla);
 
+	void updateSinUbicacion(Fallecido fallecido);
+
 }

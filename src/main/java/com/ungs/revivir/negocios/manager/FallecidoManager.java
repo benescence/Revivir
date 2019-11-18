@@ -29,6 +29,17 @@ public class FallecidoManager {
 			e.printStackTrace();
 		}
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
+		obd.updateSinUbicacion(fallecido1);
+	}
+	public static void modificarUbicacion(Fallecido fallecido) {
+		Fallecido fallecido1 = null;
+		try {
+			 fallecido1 = Verificador.fallecido(fallecido);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		obd.update(fallecido1);
 	}
 	

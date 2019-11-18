@@ -91,7 +91,7 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 			
 			// Le coloco su nueva ubicacion al fallecido
 			fallecido.setUbicacion(nuevaUbicacion.getID());
-			FallecidoManager.modificar(fallecido);
+			FallecidoManager.modificarUbicacion(fallecido);
 			
 			// Si nadie esta usando la otra ubicacion la borro
 			List<Fallecido> fallecidosAsociados = Relacionador.traerFallecidos(ubicacionActual);

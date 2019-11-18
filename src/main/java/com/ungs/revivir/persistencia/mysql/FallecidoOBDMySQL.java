@@ -51,6 +51,25 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 		ejecutarSQL(consulta);
 	}
 
+	
+	@Override
+	public void updateSinUbicacion(Fallecido fallecido) {
+		String fechaFal = (fallecido.getFechaFallecimiento() == null) ? null: "'"+fallecido.getFechaFallecimiento()+"'";
+		String condicion = "ID = "+fallecido.getID();
+		
+		String valores = " DNI = '"+fallecido.getDNI()+"'"
+				+", apellido = '"+fallecido.getApellido()+"'"
+				//+", ubicacion = "+fallecido.getUbicacion()
+				+", nombre = '"+fallecido.getNombre()+"'"
+				+", fecha_fallecimiento = "+fechaFal
+				+", tipo_fallecimiento = "+Definido.tipoFallecimiento(fallecido.getTipoFallecimiento())
+				//+", cod_fallecido = '"+fallecido.getCod_fallecido()+"'"
+				+", cocheria = '"+fallecido.getCocheria()+"'"
+				+", fecha_ingreso = '"+fallecido.getFechaIngreso()+"'";
+		String consulta = "update "+tabla+" set "+valores+"  where ("+condicion+");";
+		ejecutarSQL(consulta);
+	}
+
 	@Override
 	public void delete(Fallecido obciso) {
 		String condicion = "ID = "+obciso.getID();
