@@ -138,7 +138,7 @@ public class Verificador {
 			Fallecido objetoCOD = FallecidoManager.traerPorCOD(Cod_Fal);
 		
 			
-			if (objetoCOD != null &&objetoCOD.getCod_fallecido()!= 0  && verificar.getID() != objetoCOD.getID())
+			if (objetoCOD != null &&objetoCOD.getCod_fallecido()!= 0  && verificar.getID() == objetoCOD.getID())
 				mensaje += "\n    -Ya se encuentra registrado un fallecido con el codigo: "+cod_fallecido+".";
 		}
 		
