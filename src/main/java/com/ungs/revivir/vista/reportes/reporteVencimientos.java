@@ -34,7 +34,7 @@ public class reporteVencimientos {
     	List<String> fallecidos = new ArrayList<String>();
     	List<String> vencimientos = new ArrayList<String>();
 		List<String> ubicaciones = new ArrayList<String>();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String fecha = sdf.format(Almanaque.hoy());
 		
 		
