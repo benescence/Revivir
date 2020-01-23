@@ -52,9 +52,9 @@ public class reporteVencimientos {
 		
 		if (Vencimientos.size() != 0) {
 
-			totalVencimientos.put("fecha vencimiento", vencimientos);
-			totalVencimientos.put("Fallecido", fallecidos);
-			totalVencimientos.put("Ubicacion",ubicaciones);
+			totalVencimientos.put("vencimientos", vencimientos);
+			totalVencimientos.put("fallecidos", fallecidos);
+			totalVencimientos.put("ubicaciones",ubicaciones);
 			totalVencimientos.put("fecha",fecha);
 		
 		try {
