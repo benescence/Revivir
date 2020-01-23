@@ -29,6 +29,8 @@ public class FallecidoManager {
 			e.printStackTrace();
 		}
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
+		UbicacionOBD obd1 = FactoryOBD.crearUbicacionOBD();
+		fallecido1.setUbicacion(obd1.selectByFallecido(fallecido).getID());
 		obd.update(fallecido1);
 	}
 	

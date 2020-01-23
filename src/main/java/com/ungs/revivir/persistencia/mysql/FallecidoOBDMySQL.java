@@ -165,7 +165,7 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 
 	@Override
 	public Fallecido selectByCOD(Integer cod_fallecido) {
-		String condicion = "cod_fallecido = '"+cod_fallecido+"'";
+		String condicion = "cod_fallecido = "+cod_fallecido+"";
 		List<Fallecido> lista = selectByCondicion(condicion);
 		if (lista.isEmpty())
 			return null;

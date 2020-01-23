@@ -2,6 +2,7 @@
 package com.ungs.revivir.vista.reportes;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
-
+import com.ungs.revivir.negocios.Almanaque;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -33,6 +34,8 @@ public class reporteVencimientos {
     	List<String> fallecidos = new ArrayList<String>();
     	List<String> vencimientos = new ArrayList<String>();
 		List<String> ubicaciones = new ArrayList<String>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String fecha = sdf.format(Almanaque.hoy());
 		
 		
 		for (Ubicacion  ubicacion : Vencimientos) {
@@ -52,6 +55,7 @@ public class reporteVencimientos {
 			totalVencimientos.put("fecha vencimiento", vencimientos);
 			totalVencimientos.put("Fallecido", fallecidos);
 			totalVencimientos.put("Ubicacion",ubicaciones);
+			totalVencimientos.put("fecha",fecha);
 		
 		try {
 			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\reporteVencimientos.jasper");
@@ -61,7 +65,7 @@ public class reporteVencimientos {
 			mostrar();
 	
 	} catch (JRException ex) {
-		System.out.println("Ocurrio un error mientras se cargaba el archivo movimientosVariosCargos.Jasper \n " + ex);
+		System.out.println("Ocurrio un error mientras se cargaba el archivo reporteVencimientos.jasper \n " + ex);
 	}
 	}
 	else {
