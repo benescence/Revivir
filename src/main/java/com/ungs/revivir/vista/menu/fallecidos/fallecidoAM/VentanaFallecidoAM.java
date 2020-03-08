@@ -53,7 +53,7 @@ public class VentanaFallecidoAM extends Ventana {
 		inNombre.getTextField().setText(fallecido.getNombre());
 		inApellido.getTextField().setText(fallecido.getApellido());
 		//inDNI.getTextField().setText(fallecido.getDNI());
-		inCod.getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
+		//sinCod.getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 		inCocheria.getTextField().setText(fallecido.getCocheria());
 		inTipo.getComboBox().setSelectedItem(fallecido.getTipoFallecimiento());
 	}
@@ -67,6 +67,7 @@ public class VentanaFallecidoAM extends Ventana {
 		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
 		panelBotones.add(btnAceptar);
 		panelBotones.add(btnCancelar);
+	
 		
 		// PANELES
 		PanelVertical panelPrincipal = crearPanelPrincipal();
