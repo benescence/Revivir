@@ -58,7 +58,8 @@ public class TablaVencimientos extends JTable {
 			int registro = convertRowIndexToModel(indice);
 			registros.add(lista.get(registro));
 		}
-
+		System.out.println("indices: "+indices);
+		System.out.println("registros: "+registros);
 		return registros;		
 	}
 
