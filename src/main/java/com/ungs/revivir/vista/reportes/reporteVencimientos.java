@@ -46,7 +46,7 @@ public class reporteVencimientos {
 			System.out.println(listaFallecidos);
 			for (Fallecido fallec : listaFallecidos) { 
 				System.out.println("gggggggggggggggggggggggg");
-				fallecidos.add(fallec.getApellido()+ " " + fallecidos.add(fallec.getNombre()));
+				fallecidos.add(fallec.getApellido()+ " " + fallec.getNombre());
 			}
 		
 			
@@ -58,7 +58,8 @@ public class reporteVencimientos {
 			totalVencimientos.put("vencimientos", vencimientos);
 			totalVencimientos.put("fallecidos", fallecidos);
 			totalVencimientos.put("ubicaciones",ubicaciones);
-			totalVencimientos.put("fecha",fecha);
+			//totalVencimientos.put("fecha",fecha);
+			System.out.println(totalVencimientos);
 		
 		try {
 			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\reporteVencimientos.jasper");

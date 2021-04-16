@@ -33,6 +33,7 @@ public class ControladorFallecidoAM implements ControladorExterno{
 	}
 	
 	private void inicializar() {
+		ventana.getCod_Fallecido().setEnabled(false);
 		ventana.botonAceptar().setAccion(e -> aceptar());
 		ventana.botonCancelar().setAccion(e -> cancelar());
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cancelar()));
