@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="fallecidos" class="java.util.List"/>
+	<parameter name="vencimientos" class="java.util.List"/>
+	<parameter name="ubicaciones" class="java.util.List"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<group name="Group1"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="794" splitType="Immediate">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<frame>
+				<reportElement x="0" y="0" width="550" height="590" uuid="4ea98ad8-9867-4850-a494-c64efc3b21b3"/>
+				<textField>
+					<reportElement mode="Transparent" x="140" y="160" width="240" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{fallecidos}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="160" width="93" height="25" uuid="e1268f27-454b-41af-805a-7c5576333d8a">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial Black" size="11"/>
+					</textElement>
+					<text><![CDATA[Familiares de :  ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="185" width="70" height="25" uuid="2404a98c-0ed2-4b32-8ecf-eecabcd8e48a">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Black"/>
+					</textElement>
+					<text><![CDATA[Domicilio: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="210" width="102" height="25" uuid="0d8ef0b0-b804-48df-a3c6-98584f70d788">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Black"/>
+					</textElement>
+					<text><![CDATA[Código postal : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="235" width="70" height="25" uuid="2453d17b-3859-4696-a1bb-769c15d596bd">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Black"/>
+					</textElement>
+					<text><![CDATA[Localidad:  ]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Transparent" x="10" y="400" width="535" height="30" forecolor="#050505" backcolor="#F7ECC3" uuid="bddee6d5-8475-4b2b-8631-8d255685d2e5">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{ubicaciones}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Transparent" x="302" y="330" width="110" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c9dfdad9-de3f-4338-b0f1-f82bffd8ea6d">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{vencimientos}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="290" width="530" height="31" uuid="96bf48f8-e9b3-41db-97fa-4a5bcac2e54d">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Por medio de la presente y como administradores del Cementerio San Antonio de Padua, San Miguel, les informamos que:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="330" width="291" height="21" uuid="d7de0bcd-d90e-4594-a018-5d3ce49949fe">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Segun nuestros registros, a la fecha de la presente : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="360" width="530" height="31" uuid="559dd240-6015-4234-a2bc-0174b6e7816b">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Registra una deuda en lo que respecta a su arrendamiento, expensas y/o conseción en la  ubicación: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="440" width="530" height="55" uuid="c8270d50-8eba-4ce5-9a4f-ccd152b05b2b">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[En consecuencia, les solicitamos tengan a bien presentarse en la administración de este cementerio de Lunes a Viernes de 8:00 a 17:00 hs dentro de los 5 días recibida la presente a efectos de regularizar la situación del mismo.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="510" width="530" height="31" uuid="a7339e85-6e54-4a53-9294-06a09c1a7191">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Se hace saber que en caso de silencio o no presentación , se procederá al desalojo del mismo de acuendo con la normativa legal vigente.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="560" width="530" height="21" uuid="88e0a34b-dc40-4d75-959b-3a7094bca7cd">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Sin otro motivo, aprovechamos la oportunidad para saludarlos muy cordialmente. ]]></text>
+				</staticText>
+				<frame>
+					<reportElement x="7" y="0" width="540" height="150" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
+					<staticText>
+						<reportElement x="105" y="110" width="340" height="31" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
+						<textElement textAlignment="Center">
+							<font fontName="Arial Black" size="18"/>
+						</textElement>
+						<text><![CDATA[Notificación por falta de pago]]></text>
+					</staticText>
+					<image hAlign="Center">
+						<reportElement x="240" y="10" width="110" height="50" uuid="749ca9cc-7b40-4aa1-8710-adeeae3d14a1"/>
+						<imageExpression><![CDATA["imagenes/Logo.png"]]></imageExpression>
+					</image>
+					<staticText>
+						<reportElement x="5" y="10" width="220" height="30" uuid="076a12af-713a-4405-b590-a8b0ab2908cc"/>
+						<textElement>
+							<font fontName="Calibri" size="14"/>
+						</textElement>
+						<text><![CDATA[CEMENTERIO S.A. DE PADUA]]></text>
+					</staticText>
+					<textField>
+						<reportElement mode="Transparent" x="360" y="20" width="160" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
+						<textElement>
+							<font size="12"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="5" y="43" width="125" height="17" uuid="4645c0df-e3c7-405e-b7c4-d100118e49ff"/>
+						<text><![CDATA[Revivir Constructora S.R.L. ]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="5" y="70" width="165" height="30" uuid="48dc2fc6-8e8c-4c90-8c45-be67836cccfb"/>
+						<text><![CDATA[Av. Gaspar Campos 4698 (1663) San Miguel. tel: 4451 5824]]></text>
+					</staticText>
+				</frame>
+				<rectangle>
+					<reportElement mode="Transparent" x="5" y="160" width="521" height="25" uuid="3ff20528-99ac-4a24-9b58-1cdd15398f37">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="5" y="185" width="521" height="25" uuid="ef126a06-1908-4a13-b4d4-aa18ec2292b7">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="5" y="210" width="521" height="25" uuid="a09994e0-d8eb-47d3-bf2a-587f36e13a2e">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+				</rectangle>
+				<rectangle>
+					<reportElement mode="Transparent" x="5" y="235" width="521" height="25" uuid="00937fed-8ef6-41c6-b6f9-1695a4a37d64">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+				</rectangle>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>
