@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="fallecidos" class="java.util.List"/>
 	<parameter name="vencimientos" class="java.util.List"/>
 	<parameter name="ubicaciones" class="java.util.List"/>
@@ -14,9 +23,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="101" splitType="Stretch">
+		<band height="140" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="0" width="540" height="90" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
+				<reportElement x="140" y="0" width="540" height="90" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
 				<staticText>
 					<reportElement x="180" y="59" width="220" height="31" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
 					<textElement>
@@ -51,30 +60,26 @@
 					<text><![CDATA[Av. Gaspar Campos 4698 (1663) San Miguel. tel: 4451 5824]]></text>
 				</staticText>
 			</frame>
-		</band>
-	</title>
-	<columnHeader>
-		<band height="54" splitType="Stretch">
-			<frame>
-				<reportElement x="0" y="11" width="540" height="41" backcolor="rgba(0, 255, 242, 0.1764706)" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36">
+			<frame borderSplitType="DrawBorders">
+				<reportElement x="10" y="120" width="780" height="20" backcolor="rgba(0, 255, 242, 0.1764706)" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 				</reportElement>
 				<staticText>
-					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="20" y="9" width="110" height="23" uuid="62a7320b-7f88-4c05-8895-e86978607b40"/>
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="10" y="1" width="90" height="18" uuid="62a7320b-7f88-4c05-8895-e86978607b40"/>
 					<textElement textAlignment="Center">
 						<font size="14" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Fallecido ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="380" y="9" width="78" height="23" uuid="cd8d9e5e-a008-4992-a455-931260090e53"/>
+					<reportElement x="200" y="0" width="80" height="20" uuid="cd8d9e5e-a008-4992-a455-931260090e53"/>
 					<textElement textAlignment="Center">
 						<font size="14" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Ubicacion ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement positionType="FixRelativeToBottom" x="130" y="9" width="160" height="23" uuid="5d9dfff1-82dc-4301-a734-51dd91936b4a"/>
+					<reportElement positionType="FixRelativeToBottom" x="104" y="0" width="90" height="19" uuid="5d9dfff1-82dc-4301-a734-51dd91936b4a"/>
 					<textElement textAlignment="Center">
 						<font size="14" isBold="true"/>
 					</textElement>
@@ -82,28 +87,31 @@
 				</staticText>
 			</frame>
 		</band>
+	</title>
+	<columnHeader>
+		<band height="8" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
 		<band height="46" splitType="Immediate">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<frame>
-				<reportElement x="20" y="10" width="509" height="20" uuid="495cafa0-314b-4098-bfb9-5798ef649fec"/>
+				<reportElement x="0" y="0" width="796" height="29" uuid="495cafa0-314b-4098-bfb9-5798ef649fec"/>
 				<textField>
-					<reportElement mode="Transparent" x="0" y="10" width="120" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
+					<reportElement mode="Transparent" x="6" y="10" width="120" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{fallecidos}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement mode="Transparent" x="120" y="10" width="70" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c9dfdad9-de3f-4338-b0f1-f82bffd8ea6d"/>
+					<reportElement mode="Transparent" x="136" y="10" width="70" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c9dfdad9-de3f-4338-b0f1-f82bffd8ea6d"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{vencimientos}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement mode="Transparent" x="190" y="10" width="310" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="bddee6d5-8475-4b2b-8631-8d255685d2e5"/>
+					<reportElement mode="Transparent" x="210" y="10" width="570" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="bddee6d5-8475-4b2b-8631-8d255685d2e5"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
@@ -113,6 +121,6 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="37" splitType="Stretch"/>
+		<band height="12" splitType="Stretch"/>
 	</columnFooter>
 </jasperReport>

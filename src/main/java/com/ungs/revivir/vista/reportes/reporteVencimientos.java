@@ -43,23 +43,20 @@ public class reporteVencimientos {
 			ubicaciones.add(Formato.ubicacion(ubicacion));
 			
 			List<Fallecido> listaFallecidos =  FallecidoManager.traerPorUbicacion(ubicacion);
-			System.out.println(listaFallecidos);
-			for (Fallecido fallec : listaFallecidos) { 
-				System.out.println("gggggggggggggggggggggggg");
+			
+			for (Fallecido fallec : listaFallecidos) {
 				fallecidos.add(fallec.getApellido()+ " " + fallec.getNombre());
 			}
 		
 			
 		}
-		System.out.println(fallecidos);
 		
 		if (Vencimientos.size() != 0) {
 
 			totalVencimientos.put("vencimientos", vencimientos);
 			totalVencimientos.put("fallecidos", fallecidos);
 			totalVencimientos.put("ubicaciones",ubicaciones);
-			//totalVencimientos.put("fecha",fecha);
-			System.out.println(totalVencimientos);
+			totalVencimientos.put("fecha",fecha);
 		
 		try {
 			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\reporteVencimientos.jasper");
