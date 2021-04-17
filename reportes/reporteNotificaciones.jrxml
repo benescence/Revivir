@@ -58,7 +58,7 @@
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial Black"/>
 					</textElement>
-					<text><![CDATA[Código postal : ]]></text>
+					<text><![CDATA[Teléfono : ]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="10" y="235" width="70" height="25" uuid="2453d17b-3859-4696-a1bb-769c15d596bd">
@@ -70,7 +70,7 @@
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial Black"/>
 					</textElement>
-					<text><![CDATA[Localidad:  ]]></text>
+					<text><![CDATA[Mail:  ]]></text>
 				</staticText>
 				<textField>
 					<reportElement mode="Transparent" x="10" y="400" width="535" height="30" forecolor="#050505" backcolor="#F7ECC3" uuid="bddee6d5-8475-4b2b-8631-8d255685d2e5">
