@@ -75,6 +75,8 @@ public class Formato {
 
 	public static String formatoFecha(Date fecha) {
 		SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+		if (fecha == null)
+			return "Sin fecha";
 		return formateador.format(fecha);
 	}
 	
