@@ -5,6 +5,9 @@
 	<parameter name="fallecidos" class="java.util.List"/>
 	<parameter name="vencimientos" class="java.util.List"/>
 	<parameter name="ubicaciones" class="java.util.List"/>
+	<parameter name="telefonos" class="java.util.List"/>
+	<parameter name="direcciones" class="java.util.List"/>
+	<parameter name="mails" class="java.util.List"/>
 	<parameter name="fecha" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
@@ -214,6 +217,33 @@
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 				</rectangle>
+				<textField>
+					<reportElement mode="Transparent" x="140" y="237" width="240" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="35397de3-c45e-4e69-8e84-e28e50f1bc35">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{mails}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Transparent" x="140" y="210" width="240" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="0e2f0f69-9159-4e6d-9d71-8dc6193ad755">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{telefonos}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Transparent" x="140" y="190" width="240" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="b5c70303-bf04-4301-942a-87937e4d288a">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{direcciones}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
+				</textField>
 			</frame>
 		</band>
 	</detail>
