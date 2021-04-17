@@ -34,6 +34,9 @@ public class ReporteNotificaciones {
     	List<String> fallecidos = new ArrayList<String>();
     	List<String> vencimientos = new ArrayList<String>();
 		List<String> ubicaciones = new ArrayList<String>();
+		List<String> telefonos = new ArrayList<String>();
+		List<String> direcciones = new ArrayList<String>();
+		List<String> mails = new ArrayList<String>();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String fecha = sdf.format(Almanaque.hoy());
 		
@@ -46,6 +49,19 @@ public class ReporteNotificaciones {
 			
 			for (Fallecido fallec : listaFallecidos) {
 				fallecidos.add(fallec.getApellido()+ " " + fallec.getNombre());
+				if (fallec.getCliente() != null ) {
+					String telefono = (fallec.getCliente().getTelefono() == null) ? " ":fallec.getCliente().getTelefono();
+					String direccion = (fallec.getCliente().getDireccion() == null) ? " ":fallec.getCliente().getDireccion();
+					String mail=  (fallec.getCliente().getMail() == null) ? " ":fallec.getCliente().getMail();
+				telefonos.add(telefono);
+				direcciones.add(direccion);
+				direcciones.add(mail);
+			}
+				else {
+					telefonos.add(" ");
+					direcciones.add(" ");
+					direcciones.add(" ");
+				}
 			}
 		
 			
@@ -57,6 +73,9 @@ public class ReporteNotificaciones {
 			totalVencimientos.put("fallecidos", fallecidos);
 			totalVencimientos.put("ubicaciones",ubicaciones);
 			totalVencimientos.put("fecha",fecha);
+			totalVencimientos.put("telefonos",telefonos);
+			totalVencimientos.put("direcciones",telefonos);
+			totalVencimientos.put("mails",telefonos);
 		
 		try {
 			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\reporteNotificaciones.jasper");
