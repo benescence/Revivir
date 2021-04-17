@@ -10,7 +10,7 @@ public class OBD {
 	protected final Integer limite = 100;
 	
 	// DESARROLLO
-	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir"; 
+	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir?useSSL=false"; 
 	protected String usuarioBD = "root"; 
 	protected String passwordBD = "root";
 	//protected String passwordBD = "pass";
