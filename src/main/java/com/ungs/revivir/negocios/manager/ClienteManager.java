@@ -1,11 +1,14 @@
 package com.ungs.revivir.negocios.manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Cliente;
+import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.Responsable;
 import com.ungs.revivir.persistencia.interfaces.ClienteOBD;
 
 public class ClienteManager {
@@ -35,6 +38,14 @@ public class ClienteManager {
 	public static Cliente traerPorID(Integer ID) {
 		ClienteOBD obd = FactoryOBD.crearClienteOBD();
 		return obd.selectByID(ID);
+	}
+
+	public static List<Cliente> traerPorFallecido(Fallecido fallecido) {
+		List<Responsable> responsables = ResponsableManager.traerPorFallecido(fallecido);
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		for (Responsable responsable : responsables)
+			clientes.add(ClienteManager.traerPorID(responsable.getCliente()));
+		return clientes;
 	}
 	
 	public static Cliente traerPorDNI(String DNI) {
