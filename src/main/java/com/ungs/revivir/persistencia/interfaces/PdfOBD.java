@@ -4,11 +4,11 @@ import com.ungs.revivir.persistencia.entidades.Pdf;
 
 public interface PdfOBD {
 	
-	public void insert (Pdf alumno);
+	public void insert (Pdf fallecido);
 	
-	public void update (Pdf alumno);
+	public void update (Pdf fallecido);
 	
-	public void delete (Pdf alumno);
+	public void delete (Pdf fallecido);
 	
 	public String abrir (Integer id);
 	

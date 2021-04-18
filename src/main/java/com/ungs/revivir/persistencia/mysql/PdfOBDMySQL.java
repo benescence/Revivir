@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PdfODBMySQL  extends OBD implements PdfOBD{
+public class PdfOBDMySQL  extends OBD implements PdfOBD{
 
 	public Pdf traerPdf(Integer id) {
 		Pdf ret = new Pdf();

@@ -2,8 +2,8 @@ package com.ungs.revivir.persistencia;
 
 import java.sql.Date;
 
-import com.ungs.formar.persistencia.interfaces.PdfOBD;
-import com.ungs.formar.persistencia.mysql.PdfODBMySQL;
+import com.ungs.revivir.persistencia.interfaces.PdfOBD;
+import com.ungs.revivir.persistencia.mysql.PdfOBDMySQL;
 import com.ungs.revivir.persistencia.interfaces.CargoOBD;
 import com.ungs.revivir.persistencia.interfaces.ClienteOBD;
 import com.ungs.revivir.persistencia.interfaces.ConfiguracionOBD;
@@ -22,6 +22,7 @@ import com.ungs.revivir.persistencia.mysql.ExpensasOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.FallecidoOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.MovimientoOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.PagoOBDMYSQL;
+import com.ungs.revivir.persistencia.mysql.PdfOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ResponsableOBDMYSQL;
 import com.ungs.revivir.persistencia.mysql.ServicioOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.UbicacionOBDMySQL;
@@ -75,7 +76,7 @@ public class FactoryOBD {
 		return new ConfiguracionOBDMySQL();
 	}
 	public static PdfOBD crearPdfOBD() {
-		return new PdfODBMySQL();
+		return new PdfOBDMySQL();
 	}
 	public static PagoOBD selectByFecha(Date fecha) {
 		return new PagoOBDMYSQL();
