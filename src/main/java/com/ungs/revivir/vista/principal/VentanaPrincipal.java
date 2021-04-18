@@ -20,7 +20,7 @@ import com.ungs.revivir.vista.util.contenedores.Ventana;
 
 public class VentanaPrincipal extends Ventana {
 	private static final long serialVersionUID = 1L;
-	private JMenuItem principalAlta, principalCambiarPassword, principalCerrarSesion;
+	private JMenuItem principalAlta,exportarBD,actualizarBD, principalCambiarPassword, principalCerrarSesion;
 	private JMenuItem clienteAlta, clienteConsulta; 
 	private JMenuItem fallecidoAlta, fallecidoConsulta;
 	private JMenuItem cargoAlta, cargoConsultar; 
@@ -60,6 +60,8 @@ public class VentanaPrincipal extends Ventana {
 		JMenu menuPrincipal = new JMenu("Principal");
 		menuPrincipal.setMnemonic('l');
 		menuPrincipal.add(principalAlta = new JMenuItem("Alta completa", 'a'));
+		menuPrincipal.add(exportarBD = new JMenuItem("Exportar BD", 'e'));
+		menuPrincipal.add(actualizarBD = new JMenuItem("Actualizar BD", 'f'));
 		menuPrincipal.add(principalCambiarPassword = new JMenuItem("Cambiar password", 'p'));
 		menuPrincipal.add(principalCerrarSesion = new JMenuItem("Cerrar sesion", 's'));
 		principalAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, Event.CTRL_MASK | Event.ALT_MASK));
@@ -205,7 +207,12 @@ public class VentanaPrincipal extends Ventana {
 	public JMenuItem getPrincipalAlta() {
 		return principalAlta;
 	}
-
+	public JMenuItem getExportarBD() {
+		return exportarBD;
+	}
+	public JMenuItem getActualizarBD() {
+		return actualizarBD;
+	}
 	public JMenuItem getPrincipalCambiarPassword() {
 		return principalCambiarPassword;
 	}

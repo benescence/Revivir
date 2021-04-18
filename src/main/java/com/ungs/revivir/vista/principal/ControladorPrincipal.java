@@ -1,5 +1,16 @@
 package com.ungs.revivir.vista.principal;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
+
 import com.ungs.revivir.negocios.Sesion;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.persistencia.FactoryOBD;
@@ -62,6 +73,8 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana.getServicioAlta().addActionListener(e -> colocarVentanaExterna(new ControladorServicioAM(this)));
 		ventana.getUsuarioAlta().addActionListener(e -> colocarVentanaExterna(new ControladorUsuarioAM(this)));
 		ventana.getPrincipalAlta().addActionListener(e -> colocarVentanaExterna(new ControladorAltaCompleta(this)));
+		ventana.getExportarBD().addActionListener(e -> GenerarBackupMySQL());
+		ventana.getActualizarBD().addActionListener(e -> ActualizarBackupMySQL());
 		ventana.getPrincipalCambiarPassword().addActionListener(e -> colocarVentanaExterna(new ControladorCambiarPassword(this)));
 		
 		
@@ -219,5 +232,92 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		if (controladorInterno instanceof ResponsableInvocable)
 			((ResponsableInvocable)controladorInterno).actualizarResponsables();
 	}	
+	private void ActualizarBackupMySQL() {
+		int selecRestauraBack = 1;
+		File nombrebackup;
 
+		JFileChooser RealizarBackupMySQL = new JFileChooser();
+		int resp;
+		// MOSTRAR EL CUADRO CON OPCION GUARDAR
+		resp = RealizarBackupMySQL.showOpenDialog(ventana);
+		// SI USUARIO PRESIONA ACEPTAR, BACKUP
+		if (resp == JFileChooser.APPROVE_OPTION) {
+			try {
+				if (selecRestauraBack == 1) {
+
+					try {
+						nombrebackup = new File(RealizarBackupMySQL.getSelectedFile().toString().trim());
+
+						Process p = Runtime.getRuntime().exec(
+								"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql -uroot -proot revivir");
+
+						OutputStream os = p.getOutputStream();
+						FileInputStream fis = new FileInputStream(nombrebackup);
+						byte[] buffer = new byte[1000];
+
+						int leido = fis.read(buffer);
+						while (leido > 0) {
+							os.write(buffer, 0, leido);
+							leido = fis.read(buffer);
+						}
+
+						os.flush();
+						os.close();
+						fis.close();
+
+						JOptionPane.showMessageDialog(null, "BaseActualizada", "Verificar",
+								JOptionPane.INFORMATION_MESSAGE);
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null,
+								"Error no se actualizo la DB por el siguiente motivo: " + e.getMessage(), "Verificar",
+								JOptionPane.ERROR_MESSAGE);
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Ha sido cancelada la actualizacion del Backup");
+				}
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null,
+						"Error no se genero el archivo por el siguiente motivo:" + e.getMessage(), "Verificar",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
+	private void GenerarBackupMySQL() {
+		JFileChooser RealizarBackupMySQL = new JFileChooser();
+		int resp;
+		resp = RealizarBackupMySQL.showSaveDialog(ventana);
+		
+		if (resp == JFileChooser.APPROVE_OPTION) {
+			try {
+				Runtime runtime = Runtime.getRuntime();
+				File backupFile = new File(String.valueOf(RealizarBackupMySQL.getSelectedFile().toString()) + "_"
+						+ ".sql");
+				FileWriter fw = new FileWriter(backupFile);
+				Process child = runtime.exec(
+						"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump --opt --password=root --user=root --databases revivir");
+				
+				InputStreamReader irs = new InputStreamReader(child.getInputStream());
+				BufferedReader br = new BufferedReader(irs);
+				String line;
+				while ((line = br.readLine()) != null) {
+					fw.write(line + "\n");
+				}
+				fw.close();
+				irs.close();
+				br.close();
+
+				JOptionPane.showMessageDialog(null, "Archivo generado", "Verificar", JOptionPane.INFORMATION_MESSAGE);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null,
+						"Error no se genero el archivo por el siguiente motivo:" + e.getMessage(), "Verificar",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		} else if (resp == JFileChooser.CANCEL_OPTION) {
+			JOptionPane.showMessageDialog(null, "Ha sido cancelada la generacion del Backup");
+		}
+	}
+	
 }
