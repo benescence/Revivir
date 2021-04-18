@@ -40,6 +40,11 @@ public class ResponsableManager {
 		return obd.selectByCliente(cliente);
 	}
 
+	public static List<Responsable> traerPorFallecido(Fallecido fallecido) {
+		ResponsableOBD obd = FactoryOBD.crearResponsableOBD();
+		return obd.selectByFallecido(fallecido);
+	}
+
 	public static Responsable traerPorClienteFallecido(Cliente cliente, Fallecido fallecido) {
 		ResponsableOBD obd = FactoryOBD.crearResponsableOBD();
 		return obd.selectByClienteFallecido(cliente, fallecido);

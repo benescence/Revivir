@@ -9,8 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.UbicacionManager;
+import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.util.Formato;
@@ -47,12 +49,15 @@ public class ReporteNotificaciones {
 			
 			List<Fallecido> listaFallecidos =  FallecidoManager.traerPorUbicacion(ubicacion);
 			
+			
+			
 			for (Fallecido fallec : listaFallecidos) {
 				fallecidos.add(fallec.getApellido()+ " " + fallec.getNombre());
-				if (fallec.getCliente() != null ) {
-					String telefono = (fallec.getCliente().getTelefono() == null) ? " ":fallec.getCliente().getTelefono();
-					String direccion = (fallec.getCliente().getDireccion() == null) ? " ":fallec.getCliente().getDireccion();
-					String mail=  (fallec.getCliente().getMail() == null) ? " ":fallec.getCliente().getMail();
+				List<Cliente> listaClientes =ClienteManager.traerPorFallecido(fallec);
+				if (listaClientes.get(0) != null ) {
+					String telefono = (listaClientes.get(0).getTelefono() == null) ? " ":listaClientes.get(0).getTelefono();
+					String direccion = (listaClientes.get(0).getDomicilio() == null) ? " ":listaClientes.get(0).getDomicilio();
+					String mail=  (listaClientes.get(0).getEmail() == null) ? " ":listaClientes.get(0).getEmail();
 				telefonos.add(telefono);
 				direcciones.add(direccion);
 				direcciones.add(mail);

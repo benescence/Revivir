@@ -17,13 +17,7 @@
   </properties>
 
 
-<repositories>
-        <repository>
-            <id>com.e-iceblue</id>
-            <name>e-iceblue</name>
-            <url>http://repo.e-iceblue.com/nexus/content/groups/public/</url>
-        </repository>
-</repositories>
+
 
   <dependencies>
   		<dependency>
@@ -32,19 +26,13 @@
     <version>6.8.0</version>
 </dependency>
 
-<dependency>
-    <groupId>e-iceblue</groupId>
-    <artifactId>spire.pdf</artifactId>
-    <version>3.11.6</version>
-</dependency>
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <scope>runtime</scope>
-    <version>8.0.13</version>
-</dependency>
+  		
+	 <dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>8.0.12</version>
+	</dependency>
 
-  
 	<dependency>
 	    <groupId>tomcat</groupId>
 	    <artifactId>jasper-runtime</artifactId>
