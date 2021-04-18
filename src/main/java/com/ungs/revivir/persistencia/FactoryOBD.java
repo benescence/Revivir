@@ -2,6 +2,8 @@ package com.ungs.revivir.persistencia;
 
 import java.sql.Date;
 
+import com.ungs.formar.persistencia.interfaces.PdfOBD;
+import com.ungs.formar.persistencia.mysql.PdfODBMySQL;
 import com.ungs.revivir.persistencia.interfaces.CargoOBD;
 import com.ungs.revivir.persistencia.interfaces.ClienteOBD;
 import com.ungs.revivir.persistencia.interfaces.ConfiguracionOBD;
@@ -72,7 +74,9 @@ public class FactoryOBD {
 	public static ConfiguracionOBD crearConfiguracionOBD() {
 		return new ConfiguracionOBDMySQL();
 	}
-
+	public static PdfOBD crearPdfOBD() {
+		return new PdfODBMySQL();
+	}
 	public static PagoOBD selectByFecha(Date fecha) {
 		return new PagoOBDMYSQL();
 	}
