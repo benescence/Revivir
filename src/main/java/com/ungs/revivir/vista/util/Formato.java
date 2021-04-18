@@ -30,12 +30,13 @@ public class Formato {
 		return fallecido.getApellido()+", "+fallecido.getNombre();
 	}
 
+	public static String BooleanoACadena(boolean valor) {
+		if (valor)
+			return "Sí";
+		return "No";
+	}
 
 	// COMPUESTOS
-	/*public static String cliente(Pago pago) {
-		Cliente cliente = ClienteManager.traerPorID(pago.getCliente());
-		return cliente(cliente);
-	}*/
 
 	public static String DNIfallecido(Pago pago) {
 		Cargo cargo = CargoManager.traerPorID(pago.getCargo());
@@ -53,6 +54,7 @@ public class Formato {
 		Fallecido fallecido = FallecidoManager.traerPorID(cargo.getFallecido());
 		return fallecido(fallecido);
 	}
+	
 	public static String fallecido(Pago pago) {
 		Cargo cargo = CargoManager.traerPorID(pago.getCargo());
 		return fallecido(cargo);
@@ -63,11 +65,6 @@ public class Formato {
 		return fallecido(fallecido);
 	}
 	
-	/*public static String vencimiento(Ubicacion ubicacion) {
-		Ubicacion obd = UbicacionOBD
-		Date fecha  = obd.getVencimiento();
-		return fallecido(obd.fallecido);
-	}*/
 	public static String dinero(Double importe) {
 		String ret = String.format( "%.2f", importe);
 		return "$ "+ret;
@@ -108,6 +105,7 @@ public class Formato {
 		List<Fallecido> fallecido =FallecidoManager.traerPorUbicacion(ubicacion);
 		return fallecido.get(0).getNombre() + fallecido.get(0).getApellido() ;
 	}
+	
 	public static Integer fallecidoCod(Ubicacion ubicacion) {
 		List<Fallecido> fallecido =FallecidoManager.traerPorUbicacion(ubicacion);
 		return fallecido.get(0).getCod_fallecido() ;
@@ -115,9 +113,9 @@ public class Formato {
 	
 	public static String Vencimientoubicacion(Fallecido fallecido) {
 		Ubicacion ubicacion = UbicacionManager.traerPorFallecido(fallecido);
-		//return ubicacion.getVencimiento();
 		return formatoFecha(ubicacion.getVencimiento());
 	}
+	
 	public static String ubicaciondesdePago(Pago pago) {
 		Cargo cargo = CargoManager.traerPorID(pago.getCargo());
 		Fallecido fallecido = FallecidoManager.traerPorID(cargo.getFallecido());
@@ -125,8 +123,6 @@ public class Formato {
 		return ubicacion(ubicacion);
 	}
 
-
-	
 	public static String cargo(Pago pago) {
 		Cargo cargo = CargoManager.traerPorID(pago.getCargo());
 		return servicio(cargo);
@@ -142,7 +138,6 @@ public class Formato {
 		Servicio servicio = ServicioManager.traerPorID(cargo.getServicio());
 		return servicio.getNombre();
 	}
-	
 	
 	public static String fallecidos(Cliente cliente) {
 		List<Fallecido> fallecidos = Vinculador.traerFallecidosDeCliente(cliente);
@@ -181,18 +176,6 @@ public class Formato {
 		return renglonesMaximo*20;
 	}
 
-	
-	
 	// REPORTES
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
