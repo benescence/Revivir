@@ -54,18 +54,18 @@ public class ReporteNotificaciones {
 			for (Fallecido fallec : listaFallecidos) {
 				fallecidos.add(fallec.getApellido()+ " " + fallec.getNombre());
 				List<Cliente> listaClientes =ClienteManager.traerPorFallecido(fallec);
-				if (listaClientes.get(0) != null ) {
+				if (listaClientes.size() >0 ) {
 					String telefono = (listaClientes.get(0).getTelefono() == null) ? " ":listaClientes.get(0).getTelefono();
 					String direccion = (listaClientes.get(0).getDomicilio() == null) ? " ":listaClientes.get(0).getDomicilio();
 					String mail=  (listaClientes.get(0).getEmail() == null) ? " ":listaClientes.get(0).getEmail();
 				telefonos.add(telefono);
 				direcciones.add(direccion);
-				direcciones.add(mail);
+				mails.add(mail);
 			}
 				else {
 					telefonos.add(" ");
 					direcciones.add(" ");
-					direcciones.add(" ");
+					mails.add(" ");
 				}
 			}
 		
@@ -79,8 +79,8 @@ public class ReporteNotificaciones {
 			totalVencimientos.put("ubicaciones",ubicaciones);
 			totalVencimientos.put("fecha",fecha);
 			totalVencimientos.put("telefonos",telefonos);
-			totalVencimientos.put("direcciones",telefonos);
-			totalVencimientos.put("mails",telefonos);
+			totalVencimientos.put("direcciones",direcciones);
+			totalVencimientos.put("mails",mails);
 		
 		try {
 			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\reporteNotificaciones.jasper");
