@@ -141,13 +141,13 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 
 		String condicionNicho = (nichoMin!= null && nichoMax != null) ? (" and nicho > "+nichoMin +" and nicho < " + nichoMax) : "";
 		String condicionFila = (filaMin!= null && filaMax != null) ? (" and fila > "+filaMin +" and fila < " + filaMax) : "";
-		String condicionCirc = (circMin!= null && circMax != null) ? (" and circ > "+circMin +" and circ <" + circMax) : "";
-		String condicionUnidad = (unidadMin!= null && unidadMax != null) ? (" and unidad > "+unidadMin +"and unidad <" + unidadMax) : "";
-		String condicionParcela = (parcelaMin!= null && parcelaMax != null) ? (" and parcela > "+parcelaMin +"and  parcela <" + parcelaMax) : "";
-		String condicionMueble = (muebleMin!= null && muebleMax != null) ? (" and mueble >"+muebleMin +"and mueble <" + muebleMax) : "";
-		String condicionMacizo = (macizoMin!= null && macizoMax != null) ? (" and macizo > "+macizoMin +"and macizo <" + macizoMax) : "";
-		String condicioninhumacion = (inhumacionMin!= null && inhumacionMax != null) ? (" and inhumacion >"+inhumacionMin +"and inhumacion <" + inhumacionMax) : "";
-		String condicionSepultura = (sepulturaMin!= null && sepulturaMax != null) ? (" and sepultura > "+sepulturaMin +"and sepultura <" + sepulturaMax) : "";
+		String condicionCirc = (circMin!= null && circMax != null) ? (" and circ > "+circMin +" and circ < " + circMax) : "";
+		String condicionUnidad = (unidadMin!= null && unidadMax != null) ? (" and unidad > "+unidadMin +" and unidad < " + unidadMax) : "";
+		String condicionParcela = (parcelaMin!= null && parcelaMax != null) ? (" and parcela > "+parcelaMin +" and  parcela < " + parcelaMax) : "";
+		String condicionMueble = (muebleMin!= null && muebleMax != null) ? (" and mueble > "+muebleMin +" and mueble < " + muebleMax) : "";
+		String condicionMacizo = (macizoMin!= null && macizoMax != null) ? (" and macizo > "+macizoMin +" and macizo < " + macizoMax) : "";
+		String condicioninhumacion = (inhumacionMin!= null && inhumacionMax != null) ? (" and inhumacion > "+inhumacionMin +" and inhumacion < " + inhumacionMax) : "";
+		String condicionSepultura = (sepulturaMin!= null && sepulturaMax != null) ? (" and sepultura > "+sepulturaMin +" and sepultura < " + sepulturaMax) : "";
 		
 		String condicion =  condicionSubsector 
 							+ condicionSeccion
@@ -162,7 +162,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 							+ condicionSepultura ;
 		
 	
-			
+			System.out.println(condicion);
 			return selectByCondicion(condicion);
 		
 	}
