@@ -12,8 +12,6 @@ import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class FallecidoManager {
 	
-	
-	
 	public static void guardar(Fallecido nuevo) throws Exception {
 		Fallecido fallecido = Verificador.fallecido(nuevo);
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
@@ -33,6 +31,7 @@ public class FallecidoManager {
 		fallecido1.setUbicacion(obd1.selectByFallecido(fallecido).getID());
 		obd.updateSinUbicacion(fallecido1);
 	}
+	
 	public static void modificarUbicacion(Fallecido fallecido) {
 		Fallecido fallecido1 = null;
 		try {
@@ -58,10 +57,6 @@ public class FallecidoManager {
 		return obd.select();
 	}
 
-	/*public static Fallecido traerPorDNI(String DNI) {
-		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		return obd.selectByDNI(DNI);
-	}*/
 	public static Fallecido traerPorCOD(Integer cod_fallecido) {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		return obd.selectByCOD(cod_fallecido);
@@ -71,16 +66,18 @@ public class FallecidoManager {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		return obd.selectByID(ID);
 	}
+	
 	public static List<Fallecido> traerPorUbicacion(Ubicacion ubicacion) {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		return obd.selectByUbicacion(ubicacion);
 	}
-public Integer selectLastCod_fallecido() {
-		//FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		//Integer id_fallecido = obd.selectLastID( "rev_fallecidos");
-		//Fallecido fallecido = obd.selectByID(id_fallecido);
-		//return fallecido.getCod_fallecido();
-		return null;
+	
+	public static Integer traerUltimoCodFallecido() {
+		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
+		Integer cod_fallecido = obd.traerUltimoCodFallecido();
+		if (cod_fallecido != null)
+			return cod_fallecido;
+		return 0;
 	} 
 	
 	public static Fallecido traerMasReciente() {

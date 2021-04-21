@@ -59,11 +59,9 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 		
 		String valores = " DNI = '"+fallecido.getDNI()+"'"
 				+", apellido = '"+fallecido.getApellido()+"'"
-				//+", ubicacion = "+fallecido.getUbicacion()
 				+", nombre = '"+fallecido.getNombre()+"'"
 				+", fecha_fallecimiento = "+fechaFal
 				+", tipo_fallecimiento = "+Definido.tipoFallecimiento(fallecido.getTipoFallecimiento())
-				//+", cod_fallecido = '"+fallecido.getCod_fallecido()+"'"
 				+", cocheria = '"+fallecido.getCocheria()+"'"
 				+", fecha_ingreso = '"+fallecido.getFechaIngreso()+"'";
 		String consulta = "update "+tabla+" set "+valores+"  where ("+condicion+");";
@@ -76,11 +74,6 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 		String consulta = "delete from "+tabla+" where ("+condicion+");";
 		ejecutarSQL(consulta);
 	}
-
-	
-
-	
-	
 	
 	@Override
 	public List<Fallecido> select() {
@@ -107,6 +100,7 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 		
 		return selectByCondicion(condicion);
 	}
+	
 	/*public List<Fallecido> selectByNombreApellidoDNI(String nombre, String apellido, String DNI) {
 		String condicion = "";
 		if (nombre != null)
@@ -190,14 +184,7 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 			return null;
 		return lista.get(0);
 	}
-	/*public Fallecido selectByDNI(String DNI) {
-		String condicion = "DNI = '"+DNI+"'";
-		List<Fallecido> lista = selectByCondicion(condicion);
-		if (lista.isEmpty())
-			return null;
-		return lista.get(0);
-	}*/
-
+	
 	@Override
 	public List<Fallecido> selectByUbicacion(Ubicacion ubicacion) {
 		String condicion = "ubicacion = "+ubicacion.getID();
@@ -211,6 +198,31 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 			return null;
 		else
 			return selectByID(ID);
+	}
+	
+	public Integer traerUltimoCodFallecido() {
+		String sql = "select cod_fallecido from "+tabla+" order by cod_fallecido desc limit 1";
+		Integer ret = null;
+		try { 
+			Class.forName(driver); 
+			Connection conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD); 
+			Statement sentencia = conexion.createStatement ();
+			ResultSet resultados = sentencia.executeQuery(sql);			
+	
+			if (resultados.next())
+				ret = resultados.getInt("cod_fallecido");
+				
+			resultados.close();
+			sentencia.close();
+			conexion.close();
+			
+		}catch(Exception e) {
+			System.out.println(sql);
+			e.printStackTrace();
+		}
+			
+		return ret;
+		
 	}
 
 	public Fallecido selectByID(Integer ID) {

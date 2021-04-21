@@ -2,7 +2,6 @@ package com.ungs.revivir.vista.menu.principal;
 
 import java.awt.Dimension;
 
-import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
@@ -378,6 +377,7 @@ public class VentanaAltaCompleta extends Ventana {
 	/*public EntradaTexto getDNIFal() {
 		return inDNIFal;
 	}*/
+	
 	public EntradaTexto getCodFal() {
 		return inCodFal;
 	}
@@ -456,10 +456,10 @@ public class VentanaAltaCompleta extends Ventana {
 	public EntradaLista<SubSector> getSubSector() {
 		return inSubSector;
 	}
+	
 	public EntradaFecha getVencimiento() {
 		return inVencimiento;
 	}
 
-	
 	
 }
