@@ -66,16 +66,16 @@ public class ControladorUbicacionesLibres implements ControladorInterno {
 		Integer unidadMin = ventana.getUnidad().getValorMin();
 		Integer unidadMax = ventana.getUnidad().getValorMax();
 
-		Integer nichoMin = ventana.getNicho().getValorMax();
+		Integer nichoMin = ventana.getNicho().getValorMin();
 		Integer nichoMax = ventana.getNicho().getValorMax();
 
-		Integer muebleMin = ventana.getMueble().getValorMax();
+		Integer muebleMin = ventana.getMueble().getValorMin();
 		Integer muebleMax = ventana.getMueble().getValorMax();
 
-		Integer sepulturaMin= ventana.getSepultura().getValorMax();
+		Integer sepulturaMin= ventana.getSepultura().getValorMin();
 		Integer sepulturaMax = ventana.getSepultura().getValorMax();
 		
-		Integer inhumacionMin = ventana.getInhumacion().getValorMax();
+		Integer inhumacionMin = ventana.getInhumacion().getValorMin();
 		Integer inhumacionMax= ventana.getInhumacion().getValorMax();
 		
 		SubSector subSector = (SubSector) ventana.getSubsector().getComboBox().getSelectedItem();
