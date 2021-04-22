@@ -1,11 +1,17 @@
 package com.ungs.revivir.negocios;
 
 import com.ungs.revivir.persistencia.FactoryOBD;
+import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.entidades.Usuario;
 import com.ungs.revivir.persistencia.interfaces.UsuarioOBD;
 
 public class Sesion {
 	private static Usuario usuario;
+	
+	public static void ejecutarQuery(){
+		OBD obd = new OBD();
+		obd.ejecutarTimeZone();
+	}
 	
 	public static void iniciarSesion(String nombre, String password) throws Exception {
 		UsuarioOBD obd = FactoryOBD.crearUsuarioOBD();
