@@ -32,7 +32,7 @@ public class Formato {
 
 	public static String BooleanoACadena(boolean valor) {
 		if (valor)
-			return "Sí";
+			return "Sï¿½";
 		return "No";
 	}
 
@@ -79,7 +79,7 @@ public class Formato {
 	
 	public static String ubicacion(Ubicacion ubicacion) {
 		String ret = "Sector "+ubicacion.getSubsector();
-		ret += (ubicacion.getCirc() != null) ? ", circ " + ubicacion.getCirc() : ""; 
+		ret += (ubicacion.getCirc() != null)  ? ", circ " + ubicacion.getCirc() : ""; 
 		ret += (ubicacion.getSeccion() != null) ? ", seccion " + ubicacion.getSeccion() : ""; 
 		ret += (ubicacion.getMacizo() != null) ? ", macizo " + ubicacion.getMacizo() : ""; 
 		ret += (ubicacion.getParcela() != null) ? ", parcela " + ubicacion.getParcela() : ""; 
