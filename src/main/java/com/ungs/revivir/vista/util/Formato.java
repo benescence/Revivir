@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 
 import java.util.List;
 
+import com.ungs.revivir.negocios.Localizador;
 import com.ungs.revivir.negocios.Vinculador;
 import com.ungs.revivir.negocios.manager.CargoManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
@@ -32,7 +33,7 @@ public class Formato {
 
 	public static String BooleanoACadena(boolean valor) {
 		if (valor)
-			return "S�";
+			return "Sí";
 		return "No";
 	}
 
@@ -78,7 +79,7 @@ public class Formato {
 	}
 	
 	public static String ubicacion(Ubicacion ubicacion) {
-		String ret = "Sector "+ubicacion.getSubsector();
+		String ret = "Sector "+ Localizador.traerSector(ubicacion.getSubsector()) + "-" + ubicacion.getSubsector();
 		ret += (ubicacion.getCirc() != null)  ? ", circ " + ubicacion.getCirc() : ""; 
 		ret += (ubicacion.getSeccion() != null) ? ", seccion " + ubicacion.getSeccion() : ""; 
 		ret += (ubicacion.getMacizo() != null) ? ", macizo " + ubicacion.getMacizo() : ""; 
