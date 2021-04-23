@@ -50,7 +50,6 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 	private void cargarFallecido() {
 		ventana.requestFocusInWindow();
 		
-		//String DNI = ventana.getDNIFal().getTextField().getText();
 		Integer cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
 		if (!Validador.cod_fallecido(Integer.toString(cod_fallecido))) {
 			Popup.mostrar("El codigo solo puede consistir de numeros");
@@ -91,13 +90,6 @@ public class ControladorMovimientoAM implements FallecidoSeleccionable, Controla
 			
 			// Le coloco su nueva ubicacion al fallecido
 			fallecido.setUbicacion(nuevaUbicacion.getID());
-
-			System.out.println(fallecido.getNombre());
-			System.out.println(fallecido.getUbicacion());
-			
-			//FallecidoManager.modificar(fallecido);
-			System.out.println(fallecido.getUbicacion());
-
 			FallecidoManager.modificarUbicacion(fallecido);
 
 			

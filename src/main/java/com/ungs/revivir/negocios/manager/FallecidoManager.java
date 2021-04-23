@@ -33,15 +33,15 @@ public class FallecidoManager {
 	}
 	
 	public static void modificarUbicacion(Fallecido fallecido) {
-		Fallecido fallecido1 = null;
+		/*Fallecido fallecido1 = null;
 		try {
 			 fallecido1 = Verificador.fallecido(fallecido);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		obd.update(fallecido1);
+		obd.update(fallecido);
 	}
 	
 	public static void eliminar(Fallecido fallecido) {
