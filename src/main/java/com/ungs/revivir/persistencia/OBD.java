@@ -14,7 +14,7 @@ public class OBD {
 	protected static Connection conexion = null;
 	
 	// DESARROLLO
-	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir"; 
+	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir?serverTimezone=UTC"; 
 	protected String usuarioBD = "root"; 
 	protected String passwordBD = "root";
 	//protected String passwordBD = "pass";
@@ -61,6 +61,7 @@ public class OBD {
 		} catch (Exception ex) {
 		}
 	}
+	
 	public Integer selectLastID(String tabla) {
 		String sql = "select ID from "+tabla+" order by ID desc limit 1";
 		Integer ret = null;
@@ -84,24 +85,27 @@ public class OBD {
 			
 		return ret;
 	}
+	
 	public void ejecutarTimeZone() {
 		try { 
-			
-			String sql = "SET @@global.time_zone = '+00:00' ;";
+/*			String sql1 = "SET @@global.time_zone = '+00:00' ;";
 			String sql2 = "SET @@session.time_zone = '+00:00';";
 			Class.forName(driver); 
 			Connection conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD); 
 			Statement sentencia = conexion.createStatement ();
+			sentencia.executeQuery(sql1);
 			sentencia.executeQuery(sql2);
-			sentencia.executeQuery(sql);
 			sentencia.close();
 			conexion.close();
+			*/
+			ejecutarSQL("SET @@global.time_zone = '+00:00' ;");
+			ejecutarSQL("SET @@session.time_zone = '+00:00';");
+			
 			
 		}catch(Exception e) {
 			
 			e.printStackTrace();
-		}
-	
+		}	
 		
 	}
 
