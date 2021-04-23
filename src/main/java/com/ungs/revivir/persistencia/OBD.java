@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.ungs.revivir.persistencia.entidades.Usuario;
-
 public class OBD {
 	protected final String driver = "com.mysql.jdbc.Driver";
 	protected final Integer limite = 100;
@@ -17,7 +15,6 @@ public class OBD {
 	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir?serverTimezone=UTC"; 
 	protected String usuarioBD = "root"; 
 	protected String passwordBD = "root";
-	//protected String passwordBD = "pass";
 	
 	// PRODUCCION
 	//protected final String cadenaConexion = "jdbc:mysql://sql143.main-hosting.eu:3306/u147800277_cemen"; 
@@ -45,11 +42,14 @@ public class OBD {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD);
+				
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
 		}
 		return conexion;
 	}
@@ -58,7 +58,9 @@ public class OBD {
 		try {
 			conexion.close();
 			conexion = null;
+			
 		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 	
@@ -87,27 +89,8 @@ public class OBD {
 	}
 	
 	public void ejecutarTimeZone() {
-		try { 
-/*			String sql1 = "SET @@global.time_zone = '+00:00' ;";
-			String sql2 = "SET @@session.time_zone = '+00:00';";
-			Class.forName(driver); 
-			Connection conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD); 
-			Statement sentencia = conexion.createStatement ();
-			sentencia.executeQuery(sql1);
-			sentencia.executeQuery(sql2);
-			sentencia.close();
-			conexion.close();
-			*/
-			ejecutarSQL("SET @@global.time_zone = '+00:00' ;");
-			ejecutarSQL("SET @@session.time_zone = '+00:00';");
-			
-			
-		}catch(Exception e) {
-			
-			e.printStackTrace();
-		}	
-		
+		ejecutarSQL("SET @@global.time_zone = '+00:00' ;");
+		ejecutarSQL("SET @@session.time_zone = '+00:00';");			
 	}
 
 }
-	
