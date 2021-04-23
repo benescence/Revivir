@@ -14,7 +14,7 @@ public class OBD {
 	protected static Connection conexion = null;
 	
 	// DESARROLLO
-	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir"; 
+	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir?serverTimezone=UTC";
 	protected String usuarioBD = "root"; 
 	protected String passwordBD = "root";
 	//protected String passwordBD = "pass";
