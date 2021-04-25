@@ -36,10 +36,12 @@ public class reporteVencimientos {
 		List<String> ubicaciones = new ArrayList<String>();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String fecha = sdf.format(Almanaque.hoy());
-		
+	
+
 		
 		for (Ubicacion  ubicacion : Vencimientos) {
 			vencimientos.add(ubicacion.getVencimiento().toString());
+			System.out.println(ubicacion.getID());
 			ubicaciones.add(Formato.ubicacion(ubicacion));
 			
 			List<Fallecido> listaFallecidos =  FallecidoManager.traerPorUbicacion(ubicacion);
@@ -53,7 +55,7 @@ public class reporteVencimientos {
 		}
 		
 		if (Vencimientos.size() != 0) {
-
+		
 			totalVencimientos.put("vencimientos", vencimientos);
 			totalVencimientos.put("fallecidos", fallecidos);
 			totalVencimientos.put("ubicaciones",ubicaciones);

@@ -25,10 +25,10 @@
 	<title>
 		<band height="140" splitType="Stretch">
 			<frame>
-				<reportElement x="140" y="0" width="540" height="90" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
+				<reportElement x="140" y="0" width="540" height="100" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
 				<staticText>
-					<reportElement x="180" y="59" width="220" height="31" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
-					<textElement>
+					<reportElement x="190" y="69" width="220" height="31" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
+					<textElement textAlignment="Center">
 						<font size="18"/>
 					</textElement>
 					<text><![CDATA[Catastro ]]></text>
@@ -45,7 +45,7 @@
 					<text><![CDATA[CEMENTERIO S.A. DE PADUA]]></text>
 				</staticText>
 				<textField>
-					<reportElement mode="Transparent" x="290" y="60" width="160" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
+					<reportElement mode="Transparent" x="360" y="10" width="160" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
@@ -92,28 +92,28 @@
 		<band height="8" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="46" splitType="Immediate">
+		<band height="52" splitType="Immediate">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<frame>
-				<reportElement x="0" y="0" width="796" height="29" uuid="495cafa0-314b-4098-bfb9-5798ef649fec"/>
+				<reportElement x="0" y="0" width="796" height="40" uuid="495cafa0-314b-4098-bfb9-5798ef649fec"/>
 				<textField>
-					<reportElement mode="Transparent" x="6" y="10" width="120" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
+					<reportElement mode="Transparent" x="0" y="10" width="120" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c731b59a-9b1c-4e52-8a5d-059e0a6f6282"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{fallecidos}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement mode="Transparent" x="136" y="10" width="70" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="c9dfdad9-de3f-4338-b0f1-f82bffd8ea6d"/>
+					<reportElement mode="Transparent" x="119" y="10" width="80" height="30" forecolor="#050505" backcolor="#F7ECC3" uuid="c9dfdad9-de3f-4338-b0f1-f82bffd8ea6d"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{vencimientos}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement mode="Transparent" x="210" y="10" width="570" height="20" forecolor="#050505" backcolor="#F7ECC3" uuid="bddee6d5-8475-4b2b-8631-8d255685d2e5"/>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="199" y="10" width="590" height="30" forecolor="#050505" backcolor="#F7ECC3" uuid="bddee6d5-8475-4b2b-8631-8d255685d2e5"/>
 					<textElement>
-						<font size="12"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{ubicaciones}.get($V{REPORT_COUNT}-1)]]></textFieldExpression>
 				</textField>
@@ -121,6 +121,6 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="12" splitType="Stretch"/>
+		<band height="7" splitType="Stretch"/>
 	</columnFooter>
 </jasperReport>
