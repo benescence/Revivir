@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -251,7 +252,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 						mueble,
 						inhumacion,
 						circ,
-						resultados.getDate("vencimiento")
+						Date.valueOf(resultados.getObject("vencimiento", LocalDate.class))
 					));
 			}
 
