@@ -40,8 +40,7 @@ public class reporteVencimientos {
 
 		
 		for (Ubicacion  ubicacion : Vencimientos) {
-			vencimientos.add(ubicacion.getVencimiento().toString());
-			System.out.println(ubicacion.getID());
+			vencimientos.add(sdf.format(ubicacion.getVencimiento()));
 			ubicaciones.add(Formato.ubicacion(ubicacion));
 			
 			List<Fallecido> listaFallecidos =  FallecidoManager.traerPorUbicacion(ubicacion);
