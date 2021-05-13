@@ -28,7 +28,7 @@ public class ControladorIniciarSesion {
 			
 			try {
 				
-				Sesion.ejecutarQuery();
+				//Sesion.ejecutarQuery();
 				Sesion.iniciarSesion(nombre, password);
 				ventana.dispose();
 				ventana = null;

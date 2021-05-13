@@ -249,7 +249,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 						nombrebackup = new File(RealizarBackupMySQL.getSelectedFile().toString().trim());
 
 						Process p = Runtime.getRuntime().exec(
-								"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql -uroot -proot revivir");
+								"C:\\Program Files\\MySQL\\MySQL Server 5.5\\bin\\mysql -uroot -proot revivir");
 
 						OutputStream os = p.getOutputStream();
 						FileInputStream fis = new FileInputStream(nombrebackup);
@@ -297,7 +297,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 						+ ".sql");
 				FileWriter fw = new FileWriter(backupFile);
 				Process child = runtime.exec(
-						"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump --opt --password=root --user=root --databases revivir");
+						"C:\\Program Files\\MySQL\\MySQL Server 5.5\\bin\\mysqldump --opt --password=root --user=root --databases revivir");
 				
 				InputStreamReader irs = new InputStreamReader(child.getInputStream());
 				BufferedReader br = new BufferedReader(irs);

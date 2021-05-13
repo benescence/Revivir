@@ -1,11 +1,13 @@
 package com.ungs.revivir.vista.menu.clientes;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.negocios.manager.ClienteManager;
+import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.vista.tablas.TablaClientes;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
@@ -22,7 +24,8 @@ public class VentanaClientesABM extends VentanaInterna {
 	public VentanaClientesABM() {
 		super("Gestion de clientes", 500, 500);
 		
-		tabla = new TablaClientes(ClienteManager.traerTodo());
+		//tabla = new TablaClientes(ClienteManager.traerTodo());
+		tabla = new TablaClientes(new ArrayList<Cliente>());
 		JScrollPane panelTabla = new JScrollPane(tabla);
 		
 		Dimension dimBoton = new Dimension(100, 25);

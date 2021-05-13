@@ -1,11 +1,13 @@
 package com.ungs.revivir.vista.menu.fallecidos;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.negocios.manager.FallecidoManager;
+import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.vista.tablas.TablaFallecidos;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
@@ -24,7 +26,8 @@ public class VentanaFallecidosABM extends VentanaInterna {
 	public VentanaFallecidosABM() {
 		super("Gestion de fallecidos", 500, 500);
 		
-		tabla = new TablaFallecidos(FallecidoManager.traerTodo());
+		//tabla = new TablaFallecidos(FallecidoManager.traerTodo());
+		tabla = new TablaFallecidos(new ArrayList<Fallecido>());
 		JScrollPane panelTabla = new JScrollPane(tabla);
 		
 		Dimension dimBoton = new Dimension(100, 25);

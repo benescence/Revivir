@@ -7,20 +7,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class OBD {
-	protected final String driver = "com.mysql.jdbc.Driver";
+	//protected final String driver = "com.mysql.jdbc.Driver";
+	protected final String driver = "org.mariadb.jdbc.Driver";
 	protected final Integer limite = 100;
 	protected static Connection conexion = null;
 	
 	// DESARROLLO
-	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir?serverTimezone=UTC"; 
-	protected String usuarioBD = "root"; 
-	protected String passwordBD = "root";
+	//protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir?serverTimezone=UTC"; 
+	//protected String usuarioBD = "root"; 
+	//protected String passwordBD = "root";
 	
-	// PRODUCCION
-	//protected final String cadenaConexion = "jdbc:mysql://sql143.main-hosting.eu:3306/u147800277_cemen"; 
-	//protected String usuarioBD = "u147800277_ben";
-	//protected String passwordBD = "Tiburones";
-			
+	protected final String cadenaConexion = "jdbc:mysql://crematorioescobar.com:3306/cretorioescobar_REVIVIR"; 
+	protected String usuarioBD = "cretorioescobar_REVIVIR";
+	protected String passwordBD = "REVIVIR1a";
 	// Ejecutar sentencias que no traigan resultados
 	public void ejecutarSQL(String sql) {
 		try { 
