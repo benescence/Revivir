@@ -87,7 +87,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	@Override
 	public Ubicacion selectByID(Integer ID) {
 		String condicion = "ID = "+ID;
-		List<Ubicacion> lista = selectByCondicion(condicion);
+		List<Ubicacion> lista = selectByCondicion(condicion,limite);
 		if (lista.size() > 0)
 			return lista.get(0);
 		return null;
@@ -109,7 +109,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 				+" and inhumacion" + ((ubicacion.getInhumacion() != null) ? (" = "+ubicacion.getInhumacion()) :  " is null")
 				+" and circ" + ((ubicacion.getCirc() != null) ? (" = "+ubicacion.getCirc()) :  " is null");
 				System.out.println(condicion);
-		List<Ubicacion> lista = selectByCondicion(condicion);
+		List<Ubicacion> lista = selectByCondicion(condicion,limite);
 		if (lista.size() > 0)
 			return lista.get(0);
 		return null;
@@ -164,7 +164,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 		
 	
 			System.out.println(condicion);
-			return selectByCondicion(condicion);
+			return selectByCondicion(condicion,limite);
 		
 	}
 	
@@ -180,7 +180,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	@Override
 	public Ubicacion selectByFallecido(Fallecido fallecido) {
 		String condicion = "ID = "+fallecido.getUbicacion();
-		List<Ubicacion> lista = selectByCondicion(condicion);
+		List<Ubicacion> lista = selectByCondicion(condicion,limite);
 		if (lista.size() > 0)
 			return lista.get(0);
 		return null;
@@ -188,10 +188,10 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	
 	@Override
 	public List<Ubicacion> select() {
-		return selectByCondicion("true");
+		return selectByCondicion("true",limite);
 	}
 	
-	private List<Ubicacion> selectByCondicion(String condicion) {
+	private List<Ubicacion> selectByCondicion(String condicion, int limite) {
 		List<Ubicacion> ret = new ArrayList<>();
 		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		
@@ -272,7 +272,12 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	public List<Ubicacion> selectBySubsectorEntreFechas(SubSector subSector, Date desde, Date hasta) {
 		String condicion = "subsector = "+Definido.subsector(subSector)
 			+ " and vencimiento between '"+desde+"' and '"+hasta+"'";
-		return selectByCondicion(condicion);
+		return selectByCondicion(condicion,limite);
 	}
-	
+	@Override
+	public List<Ubicacion> selectBySubsectorEntreFechasSinLimite(SubSector subSector, Date desde, Date hasta) {
+		String condicion = "subsector = "+Definido.subsector(subSector)
+			+ " and vencimiento between '"+desde+"' and '"+hasta+"'";
+		return selectByCondicion(condicion,100000);
+	}
 }

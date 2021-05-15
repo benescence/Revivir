@@ -14,5 +14,8 @@ public class VencimientoManager {
 		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
 		return obd.selectBySubsectorEntreFechas(subSector, desde, hasta);
 	}
-
+	public static List<Ubicacion> buscarVencimientosSinLimite(SubSector subSector, Date desde, Date hasta) {
+		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
+		return obd.selectBySubsectorEntreFechasSinLimite(subSector, desde, hasta);
+	}
 }
