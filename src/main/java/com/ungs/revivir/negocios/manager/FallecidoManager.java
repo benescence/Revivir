@@ -21,14 +21,19 @@ public class FallecidoManager {
 	public static void modificar(Fallecido fallecido) {
 		Fallecido fallecido1 = null;
 		try {
+			
 			 fallecido1 = Verificador.fallecido(fallecido);
+			 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		UbicacionOBD obd1 = FactoryOBD.crearUbicacionOBD();
-		fallecido1.setUbicacion(obd1.selectByFallecido(fallecido).getID());
+		Fallecido original = obd.selectByID(fallecido.getID());
+		Ubicacion ubicacion = obd1.selectByID(original.getUbicacion());
+		fallecido1.setUbicacion(ubicacion.getID());
 		obd.updateSinUbicacion(fallecido1);
 	}
 	

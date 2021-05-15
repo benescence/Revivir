@@ -60,8 +60,9 @@ public class ControladorFallecidoAM implements ControladorExterno {
 			}
 			
 			// Es una modificacion
-			else
-				FallecidoManager.modificar(fallecido);
+			else {
+				
+				FallecidoManager.modificar(fallecido);}
 			
 			ventana.dispose();
 			invocador.actualizarFallecidos();
