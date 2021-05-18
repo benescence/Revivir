@@ -59,7 +59,7 @@ public class reporteVencimientos {
 			totalVencimientos.put("fallecidos", fallecidos);
 			totalVencimientos.put("ubicaciones",ubicaciones);
 			totalVencimientos.put("fecha",fecha);
-			
+
 		
 		try {
 			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\reporteVencimientos.jasper");
