@@ -12,7 +12,7 @@ import com.ungs.revivir.vista.util.Formato;
 public class TablaUbicacionesLibres extends JTable {
 	private static final long serialVersionUID = 1L;
 	private String[] columnas = { "Circ", "Seccion", "Macizo", "Parcela", "Fila"
-			, "Unidad", "Nicho", "Mueble", "Sepultura", "Inhumacion", "Fallecido"};
+			, "Unidad", "Nicho", "Mueble", "Sepultura", "Inhumacion"};
 	private DefaultTableModel modelo;
 	private List<Ubicacion> lista;
 
@@ -39,8 +39,7 @@ public class TablaUbicacionesLibres extends JTable {
 					elemento.getNicho(),
 					elemento.getMueble(),
 					elemento.getSepultura(),
-					elemento.getInhumacion(),
-					Formato.fallecidoCod(elemento)
+					elemento.getInhumacion()
 					};
 			modelo.addRow(fila);
 		}

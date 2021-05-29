@@ -16,6 +16,7 @@ import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionLibreOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class Busqueda {
@@ -42,14 +43,15 @@ public class Busqueda {
 			Integer inhumacionMin, Integer inhumacionMax,
 			SubSector subSector, String seccion) {
 		
-		
+		UbicacionLibreOBD obd = FactoryOBD.crearUbicacionLibreOBD();
+		return obd.select();
 		// validaciones
-		seccion = Verificador.anular(seccion);
+	/*	seccion = Verificador.anular(seccion);
 		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
 		return obd.selectByrangos(nichoMax, nichoMin, circMax, circMin, filaMax, filaMin, parcelaMax,
 				parcelaMin, unidadMax, unidadMin, muebleMax, muebleMin, sepulturaMax, sepulturaMin,
 				inhumacionMax, inhumacionMin, macizoMax, macizoMin, seccion, subSector);
-	}
+	*/}
 
 	//public static List<Pago> pagos(Cliente cliente, Fallecido fallecido, Date fecha) throws Exception {
 	public static List<Pago> pagos( Fallecido fallecido, Date fecha) throws Exception {

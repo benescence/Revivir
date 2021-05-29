@@ -3,6 +3,7 @@ package com.ungs.revivir.vista.menu.ubicaciones;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -11,6 +12,7 @@ import com.ungs.revivir.negocios.Localizador;
 import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.persistencia.definidos.Sector;
 import com.ungs.revivir.persistencia.definidos.SubSector;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.tablas.TablaUbicacionesLibres;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
@@ -33,7 +35,8 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		super("Ubicaciones libres", 500, 500);
 		Dimension dimBoton = new Dimension(100, 25);
 		
-		tabla = new TablaUbicacionesLibres(UbicacionManager.traerTodo());
+		//tabla = new TablaUbicacionesLibres(UbicacionManager.traerTodo());
+		tabla = new TablaUbicacionesLibres (new ArrayList<Ubicacion>() );
 		JScrollPane panelTabla = new JScrollPane(tabla);
 		
 		

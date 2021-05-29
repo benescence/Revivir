@@ -173,6 +173,24 @@ CREATE TABLE rev_expensas (
     FOREIGN KEY (ubicacion) REFERENCES rev_ubicaciones(ID)
 );
 
+CREATE TABLE rev_ubicaciones_totales (
+	ID INT(10) AUTO_INCREMENT,
+	subsector INT(10) NOT NULL,
+	circ INT(10) NULL,
+	seccion VARCHAR(10) NULL,
+	macizo INT(10) NULL,
+	parcela INT(10) NULL,
+	fila INT(10) NULL,
+	unidad INT(10) NULL,
+	nicho INT(10) NULL,
+	mueble INT(10) NULL,
+	sepultura INT(10) NULL,
+	inhumacion INT(10) NULL,
+	bis_macizo BOOLEAN NULL,
+	bis BOOLEAN NULL,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (subsector) REFERENCES rev_subsector(ID)
+);
 
 
 
@@ -230,3 +248,25 @@ INSERT INTO rev_fallecidos (tipo_fallecimiento,cod_fallecido, ubicacion, nombre,
 (1, 20000 ,  1, "base_codigo", "base_codigo", "1", "base_codigo", '0001-01-1', '0001-01-1');
 insert into rev_usuarios (rol, usuario, password) values 
 (1, 'admin', 'admin');
+
+--VISTA UBICACIONE LIBRES
+create view rev_v_ubicaciones_libres as
+SELECT 
+	UT.ID, UT.subsector,UT.circ,UT.seccion,UT.parcela,UT.fila,UT.unidad,UT.nicho,UT.mueble,UT.sepultura,UT.inhumacion,UT.bis_macizo,UT.bis 
+FROM rev_ubicaciones_totales ut 
+	LEFT JOIN rev_ubicaciones u ON 
+		ifnull(ut.fila,-1) = ifnull(u.fila,-1)
+		AND ifnull(ut.subsector,-1) = ifnull(u.subsector,-1)
+		AND ifnull(ut.circ,-1) = ifnull(u.circ,-1)
+		AND ifnull(ut.seccion,-1) = ifnull(u.seccion,-1)
+		AND ifnull(ut.macizo,-1) = ifnull(u.macizo,-1)
+		AND ifnull(ut.parcela,-1) = ifnull(u.parcela,-1)
+		AND ifnull(ut.unidad,-1) = ifnull(u.unidad,-1)
+		AND ifnull(ut.nicho,-1) = ifnull(u.nicho,-1)
+		AND ifnull(ut.mueble,-1) = ifnull(u.mueble,-1)
+		AND ifnull(ut.sepultura,-1) = ifnull(u.sepultura,-1)
+		AND ifnull(ut.inhumacion,-1) = ifnull(u.inhumacion,-1)
+		AND ifnull(ut.bis_macizo,-1) = ifnull(u.bis_macizo,-1)
+		AND ifnull(ut.bis,-1) = ifnull(u.bis,-1)
+WHERE u.ID IS null
+
