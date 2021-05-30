@@ -75,14 +75,9 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	@Override
 	public void delete(Ubicacion ubicacion) {
 		String condicion = "ID = "+ubicacion.getID();
-		String consulta1 = "SET FOREIGN_KEY_CHECKS=0;";
 		String consulta = " delete from "+tabla+" where ("+condicion+");";
-		String consulta3 = "SET FOREIGN_KEY_CHECKS=1;";
-
 		ejecutarSQL(consulta);	
 	}
-
-	
 	
 	@Override
 	public Ubicacion selectByID(Integer ID) {
@@ -235,7 +230,8 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 				Boolean bisMacizo = resultados.getBoolean("bis_macizo");
 				bisMacizo = (resultados.wasNull())? null: bisMacizo;
 				
-				ret.add(new Ubicacion(
+				ret.add(
+					new Ubicacion(
 						resultados.getInt("ID"),
 						Definido.subsector(resultados.getInt("subsector")),
 						resultados.getString("cementerio"),
@@ -252,7 +248,9 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 						inhumacion,
 						circ,
 						Date.valueOf(resultados.getObject("vencimiento", LocalDate.class))
-					));
+					)
+				);
+				
 			}
 
 			resultados.close();
@@ -271,12 +269,14 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	public List<Ubicacion> selectBySubsectorEntreFechas(SubSector subSector, Date desde, Date hasta) {
 		String condicion = "subsector = "+Definido.subsector(subSector)
 			+ " and vencimiento between '"+desde+"' and '"+hasta+"'";
-		return selectByCondicion(condicion,limite);
+		return selectByCondicion(condicion, limite);
 	}
+	
 	@Override
 	public List<Ubicacion> selectBySubsectorEntreFechasSinLimite(SubSector subSector, Date desde, Date hasta) {
 		String condicion = "subsector = "+Definido.subsector(subSector)
 			+ " and vencimiento between '"+desde+"' and '"+hasta+"'";
 		return selectByCondicion(condicion,100000);
 	}
+	
 }

@@ -20,8 +20,8 @@ public class VentanaCargoABM extends VentanaInterna {
 	private Boton btnAgregar, btnModificar, btnEliminar;
 	private Boton btnCargarFallecido, btnSelFallecido;
 	private Boton btnCargarCliente, btnSelCliente;
-	private EntradaTexto inNombreFal, inApellidoFal, /*]inDNIFal*/ inCODFal;
-	private EntradaTexto inNombreCli, inApellidoCli, inDNICli;
+	private EntradaTexto inNombreFal, inApellidoFal, inCODFal;
+	//private EntradaTexto inNombreCli, inApellidoCli, inDNICli;
 	
 	public VentanaCargoABM() {
 		super("Gestion de cargos", 500, 500);
@@ -60,7 +60,6 @@ public class VentanaCargoABM extends VentanaInterna {
 		
 		inNombreFal = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellidoFal = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		//inDNIFal = new EntradaTexto("DNI", dimTexto, dimEntrada);
 		inCODFal = new EntradaTexto("Cod Fallecido", dimTexto, dimEntrada);
 		
 		inNombreFal.habilitado(false);
@@ -78,7 +77,6 @@ public class VentanaCargoABM extends VentanaInterna {
 		ret.add(new TextoCentrado("Datos del fallecido"));
 		ret.add(inNombreFal);
 		ret.add(inApellidoFal);
-		//ret.add(inDNIFal);
 		ret.add(inCODFal);
 		ret.add(panelBotones);
 		return ret;
@@ -153,12 +151,10 @@ public class VentanaCargoABM extends VentanaInterna {
 		return inApellidoFal;
 	}
 
-	/*public EntradaTexto getDNIFal() {
-		return inDNIFal;
-	}*/
 	public EntradaTexto getCODFal() {
 		return inCODFal;
 	}
+	
 	/*public EntradaTexto getNombreCli() {
 		return inNombreCli;
 	}

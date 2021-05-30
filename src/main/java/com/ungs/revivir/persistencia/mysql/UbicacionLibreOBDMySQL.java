@@ -1,14 +1,11 @@
 package com.ungs.revivir.persistencia.mysql;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.ungs.revivir.persistencia.Definido;
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
@@ -21,9 +18,10 @@ public class UbicacionLibreOBDMySQL extends OBD implements UbicacionLibreOBD {
 	
 	@Override
 	public List<Ubicacion> select() {
-		return selectByCondicion("true",limite);
+		return selectByCondicion("true", limite);
 	}
-private List<Ubicacion> selectByCondicion(String condicion, int limite) {
+	
+	private List<Ubicacion> selectByCondicion(String condicion, int limite) {
 		List<Ubicacion> ret = new ArrayList<>();
 		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		try { 
@@ -67,7 +65,8 @@ private List<Ubicacion> selectByCondicion(String condicion, int limite) {
 				Boolean bisMacizo = resultados.getBoolean("bis_macizo");
 				bisMacizo = (resultados.wasNull())? null: bisMacizo;
 				
-				ret.add(new Ubicacion(
+				ret.add(
+					new Ubicacion(
 						resultados.getInt("ID"),
 						Definido.subsector(resultados.getInt("subsector")),
 						"",
@@ -84,14 +83,16 @@ private List<Ubicacion> selectByCondicion(String condicion, int limite) {
 						inhumacion,
 						circ,
 						null
-					));
+					)
+				);
+				
 			}
 
 			resultados.close();
 			sentencia.close();
 			conexion.close();
 			
-		}catch(Exception e) {
+		} catch(Exception e) {
 			System.out.println(comandoSQL);
 			e.printStackTrace();
 		}

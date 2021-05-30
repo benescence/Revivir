@@ -151,7 +151,7 @@ CREATE TABLE rev_pagos (
 	FOREIGN KEY (cargo) REFERENCES rev_cargos(ID)
 );
 
--- ESQUEMA PERIODO
+-- ESQUEMAS PERIODOS
 CREATE TABLE rev_periodos (
 	ID INT(1),
 	descripcion VARCHAR(20) NOT NULL,
@@ -173,6 +173,7 @@ CREATE TABLE rev_expensas (
     FOREIGN KEY (ubicacion) REFERENCES rev_ubicaciones(ID)
 );
 
+-- ESQUEMAS UBICACIONES TOTALES
 CREATE TABLE rev_ubicaciones_totales (
 	ID INT(10) AUTO_INCREMENT,
 	subsector INT(10) NOT NULL,
@@ -192,6 +193,39 @@ CREATE TABLE rev_ubicaciones_totales (
 	FOREIGN KEY (subsector) REFERENCES rev_subsector(ID)
 );
 
+-- VISTA UBICACIONES LIBRES
+CREATE VIEW rev_v_ubicaciones_libres AS
+	SELECT 
+		UT.ID,
+		UT.subsector,
+		UT.circ,
+		UT.seccion,
+		UT.macizo,
+		UT.parcela,
+		UT.fila,
+		UT.unidad,
+		UT.nicho,
+		UT.mueble,
+		UT.sepultura,
+		UT.inhumacion,
+		UT.bis_macizo,
+		UT.bis
+	FROM rev_ubicaciones_totales UT
+		LEFT JOIN rev_ubicaciones U ON IFNULL(UT.fila, -1) = IFNULL(U.fila, -1)
+			AND IFNULL(UT.subsector, -1) = IFNULL(U.subsector, -1)
+			AND IFNULL(UT.circ, -1) = IFNULL(U.circ, -1)
+			AND IFNULL(UT.seccion, -1) = IFNULL(U.seccion, -1)
+			AND IFNULL(UT.macizo, -1) = IFNULL(U.macizo, -1)
+			AND IFNULL(UT.parcela, -1) = IFNULL(U.parcela, -1)
+			AND IFNULL(UT.unidad, -1) = IFNULL(U.unidad, -1)
+			AND IFNULL(UT.nicho, -1) = IFNULL(U.nicho, -1)
+			AND IFNULL(UT.mueble, -1) = IFNULL(U.mueble, -1)
+			AND IFNULL(UT.sepultura, -1) = IFNULL(U.sepultura, -1)
+			AND IFNULL(UT.inhumacion, -1) = IFNULL(U.inhumacion, -1)
+			AND IFNULL(UT.bis_macizo, -1) = IFNULL(U.bis_macizo, -1)
+			AND IFNULL(UT.bis, -1) = IFNULL(U.bis, -1)
+	WHERE U.ID IS null
+;
 
 
 -- INSERT TIPOS DE FALLECIMIENTO
@@ -248,25 +282,3 @@ INSERT INTO rev_fallecidos (tipo_fallecimiento,cod_fallecido, ubicacion, nombre,
 (1, 20000 ,  1, "base_codigo", "base_codigo", "1", "base_codigo", '0001-01-1', '0001-01-1');
 insert into rev_usuarios (rol, usuario, password) values 
 (1, 'admin', 'admin');
-
---VISTA UBICACIONE LIBRES
-create view rev_v_ubicaciones_libres as
-SELECT 
-	UT.ID, UT.subsector,UT.circ,UT.seccion,UT.parcela,UT.fila,UT.unidad,UT.nicho,UT.mueble,UT.sepultura,UT.inhumacion,UT.bis_macizo,UT.bis 
-FROM rev_ubicaciones_totales ut 
-	LEFT JOIN rev_ubicaciones u ON 
-		ifnull(ut.fila,-1) = ifnull(u.fila,-1)
-		AND ifnull(ut.subsector,-1) = ifnull(u.subsector,-1)
-		AND ifnull(ut.circ,-1) = ifnull(u.circ,-1)
-		AND ifnull(ut.seccion,-1) = ifnull(u.seccion,-1)
-		AND ifnull(ut.macizo,-1) = ifnull(u.macizo,-1)
-		AND ifnull(ut.parcela,-1) = ifnull(u.parcela,-1)
-		AND ifnull(ut.unidad,-1) = ifnull(u.unidad,-1)
-		AND ifnull(ut.nicho,-1) = ifnull(u.nicho,-1)
-		AND ifnull(ut.mueble,-1) = ifnull(u.mueble,-1)
-		AND ifnull(ut.sepultura,-1) = ifnull(u.sepultura,-1)
-		AND ifnull(ut.inhumacion,-1) = ifnull(u.inhumacion,-1)
-		AND ifnull(ut.bis_macizo,-1) = ifnull(u.bis_macizo,-1)
-		AND ifnull(ut.bis,-1) = ifnull(u.bis,-1)
-WHERE u.ID IS null
-

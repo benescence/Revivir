@@ -4,14 +4,12 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.Localizador;
-import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.persistencia.definidos.Sector;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
@@ -35,7 +33,6 @@ public class VentanaVencimientos extends VentanaInterna {
 		super("Gestion de vencimientos", 500, 500);
 		
 		tabla = new TablaVencimientos(new ArrayList<Ubicacion>());
-		//tabla = new TablaVencimientos(UbicacionManager.traerTodo());
 		JScrollPane panelTabla = new JScrollPane(tabla);
 		
 		Dimension dimBoton = new Dimension(150, 25);

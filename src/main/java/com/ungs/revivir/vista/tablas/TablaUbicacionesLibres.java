@@ -7,12 +7,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
-import com.ungs.revivir.vista.util.Formato;
 
 public class TablaUbicacionesLibres extends JTable {
 	private static final long serialVersionUID = 1L;
-	private String[] columnas = { "Circ", "Seccion", "Macizo", "Parcela", "Fila"
-			, "Unidad", "Nicho", "Mueble", "Sepultura", "Inhumacion"};
+	private String[] columnas = { "Circ", "Seccion", "Macizo", "Parcela", "Fila", "Unidad",
+			"Nicho", "Mueble", "Sepultura", "Inhumacion"};
 	private DefaultTableModel modelo;
 	private List<Ubicacion> lista;
 
@@ -23,7 +22,7 @@ public class TablaUbicacionesLibres extends JTable {
 	}	
 	
 	public void recargar(List<Ubicacion> lista) {
-		this.lista= lista;
+		this.lista = lista;
 		modelo.setRowCount(0);
 		modelo.setColumnCount(0);
 		modelo.setColumnIdentifiers(columnas);
@@ -40,14 +39,10 @@ public class TablaUbicacionesLibres extends JTable {
 					elemento.getMueble(),
 					elemento.getSepultura(),
 					elemento.getInhumacion()
-					};
+				};
 			modelo.addRow(fila);
 		}
 		
-		/*getColumn("Fecha").setPreferredWidth(30);
-		getColumn("Fecha").setWidth(30);
-		getColumn("Ubicacion").setWidth(400);
-		getColumn("Ubicacion").setPreferredWidth(400);*/
 	}
 	
 	public List<Ubicacion> obtenerSeleccion() {

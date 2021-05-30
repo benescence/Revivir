@@ -9,7 +9,6 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.negocios.Localizador;
-import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.persistencia.definidos.Sector;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
@@ -27,7 +26,7 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 	private TablaUbicacionesLibres tabla;
 	private EntradaLista<Sector> inSector;
 	private EntradaLista<SubSector> inSubsector;
-	private EntradaNumeroEntre inCirc, inMacizo, inParcela, inFila, inUnidad, inNicho, inMueble,inSepultura, inInhumacion;
+	private EntradaNumeroEntre inCirc, inMacizo, inParcela, inFila, inUnidad, inNicho, inMueble, inSepultura, inInhumacion;
 	private EntradaTexto inSeccion;
 	private Boton btnBuscar, btnLimpiar;
 	
@@ -35,10 +34,8 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		super("Ubicaciones libres", 500, 500);
 		Dimension dimBoton = new Dimension(100, 25);
 		
-		//tabla = new TablaUbicacionesLibres(UbicacionManager.traerTodo());
 		tabla = new TablaUbicacionesLibres (new ArrayList<Ubicacion>() );
 		JScrollPane panelTabla = new JScrollPane(tabla);
-		
 		
 		btnBuscar = new Boton("Buscar", dimBoton);
 		btnLimpiar = new Boton("Limpiar", dimBoton);

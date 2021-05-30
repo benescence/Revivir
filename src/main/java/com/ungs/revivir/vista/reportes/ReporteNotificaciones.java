@@ -4,20 +4,19 @@ package com.ungs.revivir.vista.reportes;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
-import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
-import com.ungs.revivir.negocios.Almanaque;
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
