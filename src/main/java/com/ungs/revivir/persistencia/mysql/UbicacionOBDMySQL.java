@@ -103,7 +103,6 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 				+" and parcela" + ((ubicacion.getParcela() != null) ? (" = "+ubicacion.getParcela()) :  " is null")
 				+" and inhumacion" + ((ubicacion.getInhumacion() != null) ? (" = "+ubicacion.getInhumacion()) :  " is null")
 				+" and circ" + ((ubicacion.getCirc() != null) ? (" = "+ubicacion.getCirc()) :  " is null");
-				System.out.println(condicion);
 		List<Ubicacion> lista = selectByCondicion(condicion,limite);
 		if (lista.size() > 0)
 			return lista.get(0);
@@ -111,7 +110,8 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	}
 	
 	@Override
-	public List<Ubicacion> selectByrangos(Integer nichoMax,
+	public List<Ubicacion> selectByrangos(
+									Integer nichoMax,
 									Integer nichoMin,
 									Integer circMax,
 									Integer circMin,
@@ -158,7 +158,6 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 							+ condicionSepultura ;
 		
 	
-			System.out.println(condicion);
 			return selectByCondicion(condicion,limite);
 		
 	}

@@ -41,16 +41,22 @@ public class Busqueda {
 			Integer sepulturaMin, Integer sepulturaMax,
 			Integer inhumacionMin, Integer inhumacionMax,
 			SubSector subSector, String seccion) {
-		
+
 		UbicacionLibreOBD obd = FactoryOBD.crearUbicacionLibreOBD();
-		return obd.select();
-		// validaciones
-	/*	seccion = Verificador.anular(seccion);
-		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
-		return obd.selectByrangos(nichoMax, nichoMin, circMax, circMin, filaMax, filaMin, parcelaMax,
-				parcelaMin, unidadMax, unidadMin, muebleMax, muebleMin, sepulturaMax, sepulturaMin,
-				inhumacionMax, inhumacionMin, macizoMax, macizoMin, seccion, subSector);
-	*/}
+		return obd.selectByrangos(
+				nichoMax, nichoMin,
+				circMax, circMin,
+				filaMax, filaMin,
+				parcelaMax, parcelaMin,
+				unidadMax, unidadMin,
+				muebleMax, muebleMin,
+				sepulturaMax, sepulturaMin,
+				inhumacionMax, inhumacionMin,
+				macizoMax, macizoMin,
+				//seccion,
+				null,
+				subSector);
+	}
 
 	public static List<Pago> pagos( Fallecido fallecido, Date fecha) throws Exception {
 
