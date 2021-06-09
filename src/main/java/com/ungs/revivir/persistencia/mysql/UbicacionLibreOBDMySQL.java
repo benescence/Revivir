@@ -118,28 +118,47 @@ public class UbicacionLibreOBDMySQL extends OBD implements UbicacionLibreOBD {
 			
 		String condicionSubsector =" subsector = " + Definido.subsector(subsector);
 		String condicionSeccion = (seccion != null) ? (" and "+  "seccion = '" + seccion + "'") : "";
-		String condicionNicho = (nichoMin!= null && nichoMax != null) ? (" and nicho >= "+nichoMin +" and nicho <= " + nichoMax) : "";
-		String condicionFila = (filaMin!= null && filaMax != null) ? (" and fila >= "+filaMin +" and fila <= " + filaMax) : "";
-		String condicionCirc = (circMin!= null && circMax != null) ? (" and circ >= "+circMin +" and circ <= " + circMax) : "";
-		String condicionUnidad = (unidadMin!= null && unidadMax != null) ? (" and unidad >= "+unidadMin +" and unidad <= " + unidadMax) : "";
-		String condicionParcela = (parcelaMin!= null && parcelaMax != null) ? (" and parcela >= "+parcelaMin +" and  parcela <= " + parcelaMax) : "";
-		String condicionMueble = (muebleMin!= null && muebleMax != null) ? (" and mueble >= "+muebleMin +" and mueble <= " + muebleMax) : "";
-		String condicionMacizo = (macizoMin!= null && macizoMax != null) ? (" and macizo >= "+macizoMin +" and macizo <= " + macizoMax) : "";
-		String condicioninhumacion = (inhumacionMin!= null && inhumacionMax != null) ? (" and inhumacion >= "+inhumacionMin +" and inhumacion <= " + inhumacionMax) : "";
-		String condicionSepultura = (sepulturaMin!= null && sepulturaMax != null) ? (" and sepultura >= "+sepulturaMin +" and sepultura <= " + sepulturaMax) : "";
-		
+		String condicionNichoMin = (nichoMin!= null ) ? (" and nicho >= "+nichoMin ): "";
+		String condicionNichoMax = ( nichoMax != null) ? (" and nicho <= " + nichoMax) : "";
+		String condicionFilaMax = (filaMax != null) ? ("  and fila <= " + filaMax) : "";
+		String condicionFilaMin = (filaMin!= null ) ? (" and fila >= "+filaMin) : "";
+		String condicionCircMax = (circMax != null) ? (" and circ <= " + circMax) : "";
+		String condicionCircMin = (circMin!= null) ? (" and circ >= "+circMin ) : "";
+		String condicionUnidadMin = (unidadMin!= null ) ? (" and unidad >= "+unidadMin ) : "";
+		String condicionUnidadMax= ( unidadMax != null) ? ("  and unidad <= " + unidadMax) : "";		
+		String condicionParcelaMax = ( parcelaMax != null) ? ("  and  parcela <= " + parcelaMax) : "";
+		String condicionParcelaMin = (parcelaMin!= null ) ? (" and parcela >= "+parcelaMin ) : "";
+		String condicionMuebleMax = (  muebleMax != null) ? ("  and mueble <= " + muebleMax) : "";
+		String condicionMuebleMin = (muebleMin!= null ) ? (" and mueble >= "+muebleMin) : "";
+		String condicionMacizoMax = ( macizoMax != null) ? ("  and macizo <= " + macizoMax) : "";
+		String condicionMacizoMin = (macizoMin!= null ) ? (" and macizo >= "+macizoMin ) : "";	
+		String condicioninhumacionMax = (inhumacionMax != null) ? ("  and inhumacion <= " + inhumacionMax) : "";
+		String condicioninhumacionMin = (inhumacionMin!= null) ? (" and inhumacion >= "+inhumacionMin) : "";
+		String condicionSepulturaMax = (sepulturaMax != null) ? ("  and sepultura <= " + sepulturaMax) : "";
+		String condicionSepulturaMin = (sepulturaMin!= null) ? (" and sepultura >= "+sepulturaMin ) : "";
 		String condicion =  condicionSubsector 
 							+ condicionSeccion
-							+ condicionNicho
-							+ condicionFila
-							+ condicionCirc
-							+ condicionUnidad
-							+ condicionParcela
-							+ condicionMueble
-							+ condicionMacizo
-							+ condicioninhumacion
-							+ condicionSepultura ;
+							+ condicionNichoMax
+							+ condicionNichoMin
+							+ condicionFilaMin
+							+ condicionFilaMax
+							+ condicionCircMax
+							+ condicionCircMin
+							+ condicionUnidadMax
+							+ condicionUnidadMin
+							+ condicionParcelaMin
+							+ condicionParcelaMax
+							+ condicionMuebleMax
+							+ condicionMuebleMin
+							+ condicionMacizoMax
+							+ condicionMacizoMin
+							+ condicioninhumacionMax
+							+ condicioninhumacionMin
+							+ condicionSepulturaMax 
+							+ condicionSepulturaMin;
 		return selectByCondicion(condicion, limite);		
 	}
 
+	
+	
 }

@@ -85,53 +85,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 				
 		ventana.getPrincipalCerrarSesion().addActionListener(s -> cerrarSesion());
 	}
-/*
-	private void mostrarCambiarPass() {
-		ventana.setEnabled(false);
-		VentanaModificarPassword ventanaCambiarPass = new VentanaModificarPassword();
-		ventanaCambiarPass.setVisible(true);
-		ventanaCambiarPass.getBtnAceptar().addActionListener(s -> validarCambioPass(ventanaCambiarPass));
-		ventanaCambiarPass.getBtnCancelar().addActionListener(s -> cerrarCambioPass(ventanaCambiarPass));
-		ventanaCambiarPass.getBtnReglaPassword().addActionListener(
-				s -> Popup.mostrar("La contraseña debe consistir de 6 a 8 caracteres alfanumericos."));
-	}
 
-	private void cerrarCambioPass(VentanaModificarPassword ventanaCambiarPass){
-		ventana.setEnabled(true);
-		ventanaCambiarPass.dispose();
-	}
-	
-	private void validarCambioPass(VentanaModificarPassword ventanaCambiarPass){
-		String pass1 = new String(ventanaCambiarPass.getPassword().getPassword());
-		String pass2 = new String(ventanaCambiarPass.getPasswordRep().getPassword());
-		if (pass1.isEmpty() || pass2.isEmpty())
-			Popup.mostrar("Por favor ingrese la contraseña nueva y repitala.");
-		else if (!Validador.password(pass1) || pass1.length() > 8 || pass1.length() < 6)
-			Popup.mostrar("La contraseña debe consistir de 6 a 8 caracteres alfanumericos.");
-		else if (!pass1.equals(pass2))
-			Popup.mostrar("Las contraseñas nuevas ingresadas no coinciden.");
-	
-		else {
-			Usuario usuario = Sesion.getUsuario();
-			String nuevaPass = pass2;
-			usuario.setPassword(nuevaPass);
-			UsuarioOBD obd = FactoryOBD.crearUsuarioOBD();
-			//Usuario user= obd.selectByUsuario(usuario.getUsuario());
-			Usuario nuevo =obd.selectByUsuario(usuario.getUsuario());
-			nuevo.setPassword(nuevaPass);
-			nuevo.setUsuario(usuario.getUsuario());
-			try {
-				//UsuarioManager.modificar(nuevo, user);
-			} catch (Exception e) {
-			
-				e.printStackTrace();
-			}
-			Popup.mostrar("La contraseña fue cambiada con exito");
-			ventana.setEnabled(true);
-			ventanaCambiarPass.dispose();
-		}
-	}
-*/
 	private void cerrarSesion(){
 		if(Popup.confirmar("¿Esta seguro que desea cerrar sesión?")){
 			ventana.dispose();

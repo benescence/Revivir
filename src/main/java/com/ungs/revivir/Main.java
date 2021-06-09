@@ -19,14 +19,7 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		/*try {
-			Properties props = new Properties();
-			props.put("logoString", "Revivir");
-			AcrylLookAndFeel.setCurrentTheme(props);
-			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");} 
-			catch (Exception e) {
-			e.printStackTrace();
-		}*/
+	
 	
 	}
 	

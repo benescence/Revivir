@@ -82,34 +82,7 @@ public class VentanaCargoABM extends VentanaInterna {
 		return ret;
 	}
 	
-	/*private PanelVertical panelCliente() {
-		Dimension dimTexto = new Dimension(100, 25);
-		Dimension dimEntrada = new Dimension(300, 25);
-		Dimension dimBoton = new Dimension(150, 25);
-		
-		inNombreCli = new EntradaTexto("Nombres", dimTexto, dimEntrada);
-		inApellidoCli = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		inDNICli = new EntradaTexto("DNI", dimTexto, dimEntrada);
-		
-		inNombreCli.habilitado(false);
-		inApellidoCli.habilitado(false);
-		
-		btnCargarCliente = new Boton("Cargar", dimBoton);
-		btnSelCliente = new Boton("Seleccionar", dimBoton);
-		PanelHorizontal panelBotones = new PanelHorizontal();
-		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
-		panelBotones.add(btnCargarCliente);
-		panelBotones.add(btnSelCliente);
-		
-		PanelVertical ret = new PanelVertical();
-		ret.setBorder(new EmptyBorder(0, 10, 10, 0));
-		ret.add(new TextoCentrado("Datos del cliente"));
-		ret.add(inNombreCli);
-		ret.add(inApellidoCli);
-		ret.add(inDNICli);
-		ret.add(panelBotones);
-		return ret;
-	}*/
+	
 	
 	public TablaCargos getTabla() {
 		return tabla;
@@ -155,16 +128,5 @@ public class VentanaCargoABM extends VentanaInterna {
 		return inCODFal;
 	}
 	
-	/*public EntradaTexto getNombreCli() {
-		return inNombreCli;
-	}
-
-	public EntradaTexto getApellidoCli() {
-		return inApellidoCli;
-	}
-
-	public EntradaTexto getDNICli() {
-		return inDNICli;
-	}*/
 	
 }

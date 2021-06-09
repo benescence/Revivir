@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
@@ -29,6 +30,7 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 	private EntradaNumeroEntre inCirc, inMacizo, inParcela, inFila, inUnidad, inNicho, inMueble, inSepultura, inInhumacion;
 	private EntradaTexto inSeccion;
 	private Boton btnBuscar, btnLimpiar;
+	private JCheckBox inCheckMostrarTodo;
 	
 	public VentanaUbicacionesLibres() {
 		super("Ubicaciones libres", 500, 500);
@@ -51,6 +53,8 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		panelPrincipal.add(panelBusqueda());
 		panelPrincipal.add(panelBotones);
 		panelPrincipal.add(panelTabla);
+		
+		
 	}
 	
 	private PanelVertical panelBusqueda() {
@@ -61,7 +65,7 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		// Inicializo las listas de sectores
 		inSector = new EntradaLista<>("Sector", dimTexto, dimEntrada);
 		inSubsector = new EntradaLista<>("Sub Sector", dimTexto, dimEntrada);
-
+		
 		for (Sector sector : Localizador.traerSectores())
 			inSector.getComboBox().addItem(sector);
 		
@@ -88,7 +92,8 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		inSepultura = new EntradaNumeroEntre("Sepultura", dimTexto, dimEntradaDoble);
 		inInhumacion= new EntradaNumeroEntre("Inhumacion", dimTexto, dimEntradaDoble);
 		inSeccion = new EntradaTexto("Seccion", dimTexto, dimEntrada);
-
+		inCheckMostrarTodo = new JCheckBox("MostrarTodo");
+		
 		PanelVertical ret1 = new PanelVertical();
 		ret1.setBorder(new EmptyBorder(0, 0, 0, 10));
 		ret1.add(inSector);
@@ -106,6 +111,7 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		ret2.add(inMueble);
 		ret2.add(inSepultura);
 		ret2.add(inInhumacion);
+		ret2.add(inCheckMostrarTodo);
 		
 		PanelHorizontal ret3 = new PanelHorizontal();
 		ret3.add(ret1);
@@ -169,6 +175,10 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		return inSeccion;
 	}
 
+	public JCheckBox getInCheckMostrarTodo() {
+		return inCheckMostrarTodo;
+	}
+	
 	public Boton botonBuscar() {
 		return btnBuscar;
 	}

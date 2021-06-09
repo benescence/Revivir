@@ -17,6 +17,7 @@ import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionLibreOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionesTotalesOBD;
 
 public class Busqueda {
 	
@@ -40,8 +41,21 @@ public class Busqueda {
 			Integer muebleMin, Integer muebleMax,
 			Integer sepulturaMin, Integer sepulturaMax,
 			Integer inhumacionMin, Integer inhumacionMax,
-			SubSector subSector, String seccion) {
-
+			SubSector subSector, String seccion, boolean mostrar) {
+		UbicacionesTotalesOBD obd1 = FactoryOBD.crearUbicacionesTotalesOBD();
+		if(mostrar)
+			return obd1.selectByrangos(
+					nichoMax, nichoMin,
+					circMax, circMin,
+					filaMax, filaMin,
+					parcelaMax, parcelaMin,
+					unidadMax, unidadMin,
+					muebleMax, muebleMin,
+					sepulturaMax, sepulturaMin,
+					inhumacionMax, inhumacionMin,
+					macizoMax, macizoMin,
+					seccion,
+					subSector);
 		UbicacionLibreOBD obd = FactoryOBD.crearUbicacionLibreOBD();
 		return obd.selectByrangos(
 				nichoMax, nichoMin,
@@ -53,8 +67,7 @@ public class Busqueda {
 				sepulturaMax, sepulturaMin,
 				inhumacionMax, inhumacionMin,
 				macizoMax, macizoMin,
-				//seccion,
-				null,
+				seccion,
 				subSector);
 	}
 

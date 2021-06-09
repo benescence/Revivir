@@ -18,6 +18,7 @@ import com.ungs.revivir.persistencia.definidos.Rol;
 import com.ungs.revivir.persistencia.entidades.Usuario;
 import com.ungs.revivir.vista.util.contenedores.Ventana;
 
+@SuppressWarnings("deprecation")
 public class VentanaPrincipal extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private JMenuItem principalAlta,exportarBD,actualizarBD, principalCambiarPassword, principalCerrarSesion;
@@ -47,6 +48,7 @@ public class VentanaPrincipal extends Ventana {
 		setContentPane(lblLogo);
 	}
 	
+	@SuppressWarnings("deprecation")
 	private JMenuBar crearBarra() {
 		JMenuBar barra = new JMenuBar();
 		barra.addMouseListener(new MouseAdapter() {

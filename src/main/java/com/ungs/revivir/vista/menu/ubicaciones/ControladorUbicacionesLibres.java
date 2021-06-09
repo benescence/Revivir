@@ -80,10 +80,12 @@ public class ControladorUbicacionesLibres implements ControladorInterno {
 		
 		SubSector subSector = (SubSector) ventana.getSubsector().getComboBox().getSelectedItem();
 		String seccion = ventana.getSeccion().getValor();
+		seccion = (seccion.equals("") ) ? null : seccion;
+		boolean mostrar= ventana.getInCheckMostrarTodo().isSelected();
 		
 		List<Ubicacion> ubicaciones = Busqueda.ubicaciones(circMin, circMax, macizoMin, macizoMax, parcelaMin,
 				parcelaMax, filaMin, filaMax, unidadMin, unidadMax, nichoMin, nichoMax, muebleMin,
-				muebleMax, sepulturaMin, sepulturaMax, inhumacionMin, inhumacionMax, subSector, seccion);
+				muebleMax, sepulturaMin, sepulturaMax, inhumacionMin, inhumacionMax, subSector, seccion,mostrar);
 		
 		ventana.getTabla().recargar(ubicaciones);
 	}
