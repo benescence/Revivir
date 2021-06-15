@@ -11,7 +11,7 @@ import com.ungs.revivir.persistencia.entidades.Ubicacion;
 public class TablaUbicacionesLibres extends JTable {
 	private static final long serialVersionUID = 1L;
 	private String[] columnas = { "Circ", "Seccion", "Macizo", "Parcela", "Fila", "Unidad",
-			"Nicho", "Mueble", "Sepultura", "Inhumacion"};
+			"Nicho", "Mueble", "Sepultura", "Inhumacion","Macizo bis","bis"};
 	private DefaultTableModel modelo;
 	private List<Ubicacion> lista;
 
@@ -38,7 +38,9 @@ public class TablaUbicacionesLibres extends JTable {
 					elemento.getNicho(),
 					elemento.getMueble(),
 					elemento.getSepultura(),
-					elemento.getInhumacion()
+					elemento.getInhumacion(),
+					elemento.getBis_macizo(),
+					elemento.getBis()
 				};
 			modelo.addRow(fila);
 		}

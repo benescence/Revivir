@@ -31,6 +31,8 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 	private EntradaTexto inSeccion;
 	private Boton btnBuscar, btnLimpiar;
 	private JCheckBox inCheckMostrarTodo;
+	private JCheckBox inCheckMacizo_bis;
+	private JCheckBox inCheckbis;
 	
 	public VentanaUbicacionesLibres() {
 		super("Ubicaciones libres", 500, 500);
@@ -93,6 +95,8 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		inInhumacion= new EntradaNumeroEntre("Inhumacion", dimTexto, dimEntradaDoble);
 		inSeccion = new EntradaTexto("Seccion", dimTexto, dimEntrada);
 		inCheckMostrarTodo = new JCheckBox("MostrarTodo");
+		inCheckMacizo_bis = new JCheckBox("Macizo bis");
+		inCheckbis = new JCheckBox("bis");
 		
 		PanelVertical ret1 = new PanelVertical();
 		ret1.setBorder(new EmptyBorder(0, 0, 0, 10));
@@ -112,6 +116,8 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		ret2.add(inSepultura);
 		ret2.add(inInhumacion);
 		ret2.add(inCheckMostrarTodo);
+		ret2.add(inCheckMacizo_bis);
+		ret2.add(inCheckbis);
 		
 		PanelHorizontal ret3 = new PanelHorizontal();
 		ret3.add(ret1);
@@ -175,6 +181,14 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		return inSeccion;
 	}
 
+	public JCheckBox getInCheck_macizoBis() {
+		return inCheckMacizo_bis;
+	}
+	
+	public JCheckBox getInCheckBis() {
+		return inCheckbis;
+	}
+	
 	public JCheckBox getInCheckMostrarTodo() {
 		return inCheckMostrarTodo;
 	}

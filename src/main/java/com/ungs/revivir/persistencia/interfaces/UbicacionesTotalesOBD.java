@@ -27,7 +27,9 @@ public interface UbicacionesTotalesOBD {
 			Integer macizoMax,
 			Integer macizoMin,
 			String seccion,
-			SubSector subsector);
+			SubSector subsector,
+			Boolean macizo_BIS,
+			Boolean bis);
 
 
 }

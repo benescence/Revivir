@@ -41,7 +41,7 @@ public class Busqueda {
 			Integer muebleMin, Integer muebleMax,
 			Integer sepulturaMin, Integer sepulturaMax,
 			Integer inhumacionMin, Integer inhumacionMax,
-			SubSector subSector, String seccion, boolean mostrar) {
+			SubSector subSector, String seccion, boolean mostrar, boolean macizo_bis, boolean bis) {
 		UbicacionesTotalesOBD obd1 = FactoryOBD.crearUbicacionesTotalesOBD();
 		if(mostrar)
 			return obd1.selectByrangos(
@@ -55,7 +55,7 @@ public class Busqueda {
 					inhumacionMax, inhumacionMin,
 					macizoMax, macizoMin,
 					seccion,
-					subSector);
+					subSector,macizo_bis, bis);
 		UbicacionLibreOBD obd = FactoryOBD.crearUbicacionLibreOBD();
 		return obd.selectByrangos(
 				nichoMax, nichoMin,
@@ -68,7 +68,8 @@ public class Busqueda {
 				inhumacionMax, inhumacionMin,
 				macizoMax, macizoMin,
 				seccion,
-				subSector);
+				subSector,
+				macizo_bis,bis);
 	}
 
 	public static List<Pago> pagos( Fallecido fallecido, Date fecha) throws Exception {

@@ -31,7 +31,9 @@ public class UbicacioneTotalOBDMySQL extends OBD implements UbicacionesTotalesOB
 									Integer inhumacionMax, Integer inhumacionMin,
 									Integer macizoMax, Integer macizoMin,
 									String seccion,
-									SubSector subsector) {
+									SubSector subsector,
+									Boolean macizo_BIS,
+									Boolean bis) {
 			
 		String condicionSubsector =" subsector = " + Definido.subsector(subsector);
 		String condicionSeccion = (seccion != null) ? (" and "+  "seccion = '" + seccion + "'") : "";
@@ -53,6 +55,8 @@ public class UbicacioneTotalOBDMySQL extends OBD implements UbicacionesTotalesOB
 		String condicioninhumacionMin = (inhumacionMin!= null) ? (" and inhumacion >= "+inhumacionMin) : "";
 		String condicionSepulturaMax = (sepulturaMax != null) ? ("  and sepultura <= " + sepulturaMax) : "";
 		String condicionSepulturaMin = (sepulturaMin!= null) ? (" and sepultura >= "+sepulturaMin ) : "";
+		String condicionCheckMacizobis = (macizo_BIS!= null && macizo_BIS) ? (" and bis_macizo = "+macizo_BIS ) : "";
+		String condicionCheckbis = (bis!= null && bis) ? (" and bis = "+bis ) : "";
 		String condicion =  condicionSubsector 
 							+ condicionSeccion
 							+ condicionNichoMax
@@ -72,7 +76,9 @@ public class UbicacioneTotalOBDMySQL extends OBD implements UbicacionesTotalesOB
 							+ condicioninhumacionMax
 							+ condicioninhumacionMin
 							+ condicionSepulturaMax 
-							+ condicionSepulturaMin;
+							+ condicionSepulturaMin
+							+ condicionCheckMacizobis
+							+ condicionCheckbis;
 		return selectByCondicion(condicion, limite);		
 	}
 	

@@ -48,6 +48,9 @@ public class ControladorUbicacionesLibres implements ControladorInterno {
 		ventana.getInhumacion().setValorMax("");
 		
 		ventana.getSeccion().setValor("");
+		ventana.getInCheckMostrarTodo().setSelected(false);
+		ventana.getInCheck_macizoBis().setSelected(false);
+		ventana.getInCheckBis().setSelected(false);
 	}
 	
 	private void buscar() {
@@ -82,10 +85,12 @@ public class ControladorUbicacionesLibres implements ControladorInterno {
 		String seccion = ventana.getSeccion().getValor();
 		seccion = (seccion.equals("") ) ? null : seccion;
 		boolean mostrar= ventana.getInCheckMostrarTodo().isSelected();
+		boolean macizo_bis= ventana.getInCheck_macizoBis().isSelected();
+		boolean bis= ventana.getInCheckBis().isSelected();
 		
 		List<Ubicacion> ubicaciones = Busqueda.ubicaciones(circMin, circMax, macizoMin, macizoMax, parcelaMin,
 				parcelaMax, filaMin, filaMax, unidadMin, unidadMax, nichoMin, nichoMax, muebleMin,
-				muebleMax, sepulturaMin, sepulturaMax, inhumacionMin, inhumacionMax, subSector, seccion,mostrar);
+				muebleMax, sepulturaMin, sepulturaMax, inhumacionMin, inhumacionMax, subSector, seccion,mostrar,macizo_bis,bis);
 		
 		ventana.getTabla().recargar(ubicaciones);
 	}
