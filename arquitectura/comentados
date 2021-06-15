@@ -1,0 +1,102 @@
+// VentanaCargoABM
+/*private PanelVertical panelCliente() {
+		Dimension dimTexto = new Dimension(100, 25);
+		Dimension dimEntrada = new Dimension(300, 25);
+		Dimension dimBoton = new Dimension(150, 25);
+		
+		inNombreCli = new EntradaTexto("Nombres", dimTexto, dimEntrada);
+		inApellidoCli = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
+		inDNICli = new EntradaTexto("DNI", dimTexto, dimEntrada);
+		
+		inNombreCli.habilitado(false);
+		inApellidoCli.habilitado(false);
+		
+		btnCargarCliente = new Boton("Cargar", dimBoton);
+		btnSelCliente = new Boton("Seleccionar", dimBoton);
+		PanelHorizontal panelBotones = new PanelHorizontal();
+		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
+		panelBotones.add(btnCargarCliente);
+		panelBotones.add(btnSelCliente);
+		
+		PanelVertical ret = new PanelVertical();
+		ret.setBorder(new EmptyBorder(0, 10, 10, 0));
+		ret.add(new TextoCentrado("Datos del cliente"));
+		ret.add(inNombreCli);
+		ret.add(inApellidoCli);
+		ret.add(inDNICli);
+		ret.add(panelBotones);
+		return ret;
+	}*/
+	
+	/*public EntradaTexto getNombreCli() {
+		return inNombreCli;
+	}
+
+	public EntradaTexto getApellidoCli() {
+		return inApellidoCli;
+	}
+
+	public EntradaTexto getDNICli() {
+		return inDNICli;
+	}*/
+	
+	// main
+	
+		/*try {
+			Properties props = new Properties();
+			props.put("logoString", "Revivir");
+			AcrylLookAndFeel.setCurrentTheme(props);
+			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");} 
+			catch (Exception e) {
+			e.printStackTrace();
+		}*/
+		
+		// password por mail
+		
+		/*
+	private void mostrarCambiarPass() {
+		ventana.setEnabled(false);
+		VentanaModificarPassword ventanaCambiarPass = new VentanaModificarPassword();
+		ventanaCambiarPass.setVisible(true);
+		ventanaCambiarPass.getBtnAceptar().addActionListener(s -> validarCambioPass(ventanaCambiarPass));
+		ventanaCambiarPass.getBtnCancelar().addActionListener(s -> cerrarCambioPass(ventanaCambiarPass));
+		ventanaCambiarPass.getBtnReglaPassword().addActionListener(
+				s -> Popup.mostrar("La contraseña debe consistir de 6 a 8 caracteres alfanumericos."));
+	}
+
+	private void cerrarCambioPass(VentanaModificarPassword ventanaCambiarPass){
+		ventana.setEnabled(true);
+		ventanaCambiarPass.dispose();
+	}
+	
+	private void validarCambioPass(VentanaModificarPassword ventanaCambiarPass){
+		String pass1 = new String(ventanaCambiarPass.getPassword().getPassword());
+		String pass2 = new String(ventanaCambiarPass.getPasswordRep().getPassword());
+		if (pass1.isEmpty() || pass2.isEmpty())
+			Popup.mostrar("Por favor ingrese la contraseña nueva y repitala.");
+		else if (!Validador.password(pass1) || pass1.length() > 8 || pass1.length() < 6)
+			Popup.mostrar("La contraseña debe consistir de 6 a 8 caracteres alfanumericos.");
+		else if (!pass1.equals(pass2))
+			Popup.mostrar("Las contraseñas nuevas ingresadas no coinciden.");
+	
+		else {
+			Usuario usuario = Sesion.getUsuario();
+			String nuevaPass = pass2;
+			usuario.setPassword(nuevaPass);
+			UsuarioOBD obd = FactoryOBD.crearUsuarioOBD();
+			//Usuario user= obd.selectByUsuario(usuario.getUsuario());
+			Usuario nuevo =obd.selectByUsuario(usuario.getUsuario());
+			nuevo.setPassword(nuevaPass);
+			nuevo.setUsuario(usuario.getUsuario());
+			try {
+				//UsuarioManager.modificar(nuevo, user);
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+			}
+			Popup.mostrar("La contraseña fue cambiada con exito");
+			ventana.setEnabled(true);
+			ventanaCambiarPass.dispose();
+		}
+	}
+*/
