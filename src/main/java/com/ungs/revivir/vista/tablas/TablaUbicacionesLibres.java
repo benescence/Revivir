@@ -39,8 +39,8 @@ public class TablaUbicacionesLibres extends JTable {
 					elemento.getMueble(),
 					elemento.getSepultura(),
 					elemento.getInhumacion(),
-					elemento.getBis_macizo(),
-					elemento.getBis()
+					elemento.getBis_macizo() ? "Si" : "No",
+					elemento.getBis() ? "Si" : "No"
 				};
 			modelo.addRow(fila);
 		}
