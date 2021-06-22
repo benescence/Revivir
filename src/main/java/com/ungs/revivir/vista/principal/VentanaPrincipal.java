@@ -209,12 +209,15 @@ public class VentanaPrincipal extends Ventana {
 	public JMenuItem getPrincipalAlta() {
 		return principalAlta;
 	}
+	
 	public JMenuItem getExportarBD() {
 		return exportarBD;
 	}
+	
 	public JMenuItem getActualizarBD() {
 		return actualizarBD;
 	}
+	
 	public JMenuItem getPrincipalCambiarPassword() {
 		return principalCambiarPassword;
 	}

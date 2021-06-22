@@ -26,7 +26,6 @@ public class Busqueda {
 		codFallecido = Verificador.anularInt(codFallecido);
 		nombre = Verificador.anular(nombre);
 		apellido = Verificador.anular(apellido);
-		
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		return obd.selectByNombreApellidoCOD(nombre, apellido, codFallecido);
 	}
@@ -41,7 +40,13 @@ public class Busqueda {
 			Integer muebleMin, Integer muebleMax,
 			Integer sepulturaMin, Integer sepulturaMax,
 			Integer inhumacionMin, Integer inhumacionMax,
-			SubSector subSector, String seccion, boolean mostrar, boolean macizo_bis, boolean bis) {
+			SubSector subSector,
+			String seccion,
+			boolean mostrar,
+			boolean macizo_bis,
+			boolean bis) {
+		
+		// Si esta activado el FLAG mostrar trae todas las ubicaciones posibles (no importa si esta ocupado o no)
 		UbicacionesTotalesOBD obd1 = FactoryOBD.crearUbicacionesTotalesOBD();
 		if(mostrar)
 			return obd1.selectByrangos(
@@ -56,6 +61,8 @@ public class Busqueda {
 					macizoMax, macizoMin,
 					seccion,
 					subSector,macizo_bis, bis);
+
+		// De lo contrario trae solo las ubicaciones que no estan ocupado
 		UbicacionLibreOBD obd = FactoryOBD.crearUbicacionLibreOBD();
 		return obd.selectByrangos(
 				nichoMax, nichoMin,

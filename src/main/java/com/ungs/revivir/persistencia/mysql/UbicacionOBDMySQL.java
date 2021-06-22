@@ -24,7 +24,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	@Override
 	public void insert(Ubicacion ubicacion) {
 		String cementerio = (ubicacion.getCementerio() != null) ? "'"+ubicacion.getCementerio()+"'" : null;
-		String seccion = (ubicacion.getSeccion() != null) ? "'"+ubicacion.getSeccion()+"'" : null;
+		String seccion = (ubicacion.getSeccion() != null) ? "'"+ ubicacion.getSeccion()+"'" : null;
 		String vencimiento = (ubicacion.getVencimiento() != null) ? "'"+ubicacion.getVencimiento()+"'" : null;
 		
 		String valores = Definido.subsector(ubicacion.getSubsector())
@@ -157,9 +157,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 							+ condicioninhumacion
 							+ condicionSepultura ;
 		
-	
-			return selectByCondicion(condicion,limite);
-		
+		return selectByCondicion(condicion,limite);
 	}
 	
 	@Override
@@ -275,7 +273,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	public List<Ubicacion> selectBySubsectorEntreFechasSinLimite(SubSector subSector, Date desde, Date hasta) {
 		String condicion = "subsector = "+Definido.subsector(subSector)
 			+ " and vencimiento between '"+desde+"' and '"+hasta+"'";
-		return selectByCondicion(condicion,100000);
+		return selectByCondicion(condicion, 100000);
 	}
 	
 }
