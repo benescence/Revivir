@@ -105,12 +105,10 @@ public class Verificador {
 	public static Fallecido fallecido(Fallecido verificar) throws Exception {
 		String nombre = anular(verificar.getNombre());
 		String apellido = anular(verificar.getApellido());
-		String DNI = anular(verificar.getDNI());
-		Integer cod_fallecido = anularInt(verificar.getCod_fallecido());
+		Integer codFallecido = anularInt(verificar.getCod_fallecido());
 		String cocheria = anular(verificar.getCocheria());
 		String mensaje = "";
-		Integer Cod_Fal = anularInt((verificar.getCod_fallecido()));
-
+		
 		if (nombre == null)
 			mensaje += "\n    -El NOMBRE no puede estar vacio.";
 		else if (!Validador.nombrePersona(nombre))
@@ -121,25 +119,14 @@ public class Verificador {
 		else if (!Validador.apellido(apellido))
 			mensaje += "\n    -El APELLIDO solo puede estar compuesto de letras y espacios.";
 		
-		/*if (DNI != null && !Validador.DNI(DNI))
-			mensaje += "\n    -El DNI solo puede estar compuesto de numeros.";
-		else {
-			// Verifico que no exista ya un objeto con ese DNI, y si existe debe tener el mismo iD
-			Fallecido objetoDNI = FallecidoManager.traerPorDNI(DNI);
-		
-			
-			if (objetoDNI != null && verificar.getID() != objetoDNI.getID())
-				mensaje += "\n    -Ya se encuentra registrado un fallecido con el DNI: "+DNI+".";
-		}*/
-		if (Cod_Fal != null && !Validador.cod_fallecido(Integer.toString(Cod_Fal)))
+		if (codFallecido != null && !Validador.cod_fallecido(Integer.toString(codFallecido)))
 			mensaje += "\n    -El Codigo  solo puede estar compuesto de numeros.";
 		else {
 			// Verifico que no exista ya un objeto con ese DNI, y si existe debe tener el mismo iD
-			Fallecido objetoCOD = FallecidoManager.traerPorCOD(Cod_Fal);
-		
+			Fallecido objetoCOD = FallecidoManager.traerPorCOD(codFallecido);
 			
-			if (objetoCOD != null &&objetoCOD.getCod_fallecido()!= 0  && verificar.getID() == objetoCOD.getID())
-				mensaje += "\n    -Ya se encuentra registrado un fallecido con el codigo: "+cod_fallecido+".";
+			if (objetoCOD != null && objetoCOD.getCod_fallecido()!= 0  && verificar.getID() == objetoCOD.getID())
+				mensaje += "\n    -Ya se encuentra registrado un fallecido con el codigo: " + codFallecido + ".";
 		}
 		
 		if (!mensaje.equals(""))
@@ -243,10 +230,12 @@ public class Verificador {
 		else
 			return texto;
 	}
-	public static Integer anularInt(Integer num) {
-		if (num == null )
+	
+	public static Integer anularInt(Integer numero) {
+		if (numero == null )
 			return null;
 		else
-			return num;
+			return numero;
 	}
+	
 }

@@ -18,7 +18,7 @@ public class VentanaVencimientoAM extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private EntradaTexto inUbicacion;
 	private EntradaFecha inVencimientoAnterior, inNuevoVencimiento;
-	private Boton btnAceptar, btnCancelar,btnImpLista;
+	private Boton btnAceptar, btnCancelar;
 	
 	public VentanaVencimientoAM(Ubicacion ubicacion) {
 		super("Modificar vencimientos");
@@ -56,11 +56,9 @@ public class VentanaVencimientoAM extends Ventana {
 		compactar();
 	}
 
-	
 	public EntradaFecha getNuevoVencimiento() {
 		return inNuevoVencimiento;
 	}
-
 	
 	public Boton botonAceptar() {
 		return btnAceptar;

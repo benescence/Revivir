@@ -7,6 +7,7 @@ import com.ungs.revivir.vista.sesion.iniciar.ControladorIniciarSesion;
 public class Main {
 
 	public static void configurarApariencia() {
+		
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
@@ -14,20 +15,14 @@ public class Main {
 		            break;
 		        }
 		    }
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		/*try {
-			Properties props = new Properties();
-			props.put("logoString", "Revivir");
-			AcrylLookAndFeel.setCurrentTheme(props);
-			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");} 
-			catch (Exception e) {
-			e.printStackTrace();
-		}*/
-		
+	
 	
 	}
+	
 	public static void main(String[] args) {
 		configurarApariencia();
 		new ControladorIniciarSesion();

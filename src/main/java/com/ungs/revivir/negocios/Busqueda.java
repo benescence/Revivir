@@ -16,18 +16,18 @@ import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
-import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionLibreOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionesTotalesOBD;
 
 public class Busqueda {
 	
-	public static List<Fallecido> fallecidos(String DNI, String nombres, String apellido,Integer cod_fallecido) {
+	public static List<Fallecido> fallecidos(String DNI, String nombre, String apellido, Integer codFallecido) {
 		DNI = Verificador.anular(DNI);
-		cod_fallecido = Verificador.anularInt(cod_fallecido);
-		nombres = Verificador.anular(nombres);
+		codFallecido = Verificador.anularInt(codFallecido);
+		nombre = Verificador.anular(nombre);
 		apellido = Verificador.anular(apellido);
-		
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		return obd.selectByNombreApellidoCOD(nombres, apellido, /*DNI*/cod_fallecido);
+		return obd.selectByNombreApellidoCOD(nombre, apellido, codFallecido);
 	}
 
 	public static List<Ubicacion> ubicaciones(
@@ -40,47 +40,57 @@ public class Busqueda {
 			Integer muebleMin, Integer muebleMax,
 			Integer sepulturaMin, Integer sepulturaMax,
 			Integer inhumacionMin, Integer inhumacionMax,
-			SubSector subSector, String seccion) {
+			SubSector subSector,
+			String seccion,
+			boolean mostrar,
+			boolean macizo_bis,
+			boolean bis) {
 		
-		
-		// validaciones
-		seccion = Verificador.anular(seccion);
-		UbicacionOBD obd = FactoryOBD.crearUbicacionOBD();
-		return obd.selectByrangos(nichoMax, nichoMin, circMax, circMin, filaMax, filaMin, parcelaMax,
-				parcelaMin, unidadMax, unidadMin, muebleMax, muebleMin, sepulturaMax, sepulturaMin,
-				inhumacionMax, inhumacionMin, macizoMax, macizoMin, seccion, subSector);
+		// Si esta activado el FLAG mostrar trae todas las ubicaciones posibles (no importa si esta ocupado o no)
+		UbicacionesTotalesOBD obd1 = FactoryOBD.crearUbicacionesTotalesOBD();
+		if(mostrar)
+			return obd1.selectByrangos(
+					nichoMax, nichoMin,
+					circMax, circMin,
+					filaMax, filaMin,
+					parcelaMax, parcelaMin,
+					unidadMax, unidadMin,
+					muebleMax, muebleMin,
+					sepulturaMax, sepulturaMin,
+					inhumacionMax, inhumacionMin,
+					macizoMax, macizoMin,
+					seccion,
+					subSector,macizo_bis, bis);
+
+		// De lo contrario trae solo las ubicaciones que no estan ocupado
+		UbicacionLibreOBD obd = FactoryOBD.crearUbicacionLibreOBD();
+		return obd.selectByrangos(
+				nichoMax, nichoMin,
+				circMax, circMin,
+				filaMax, filaMin,
+				parcelaMax, parcelaMin,
+				unidadMax, unidadMin,
+				muebleMax, muebleMin,
+				sepulturaMax, sepulturaMin,
+				inhumacionMax, inhumacionMin,
+				macizoMax, macizoMin,
+				seccion,
+				subSector,
+				macizo_bis,bis);
 	}
 
-	//public static List<Pago> pagos(Cliente cliente, Fallecido fallecido, Date fecha) throws Exception {
 	public static List<Pago> pagos( Fallecido fallecido, Date fecha) throws Exception {
+
 		// validaciones
 		if (fallecido == null && fecha == null)
 			throw new Exception("Debe llenar al menos uno de los 2 campos: cliente, fallecido o fecha.");
-		
-		/*if (fallecido != null)
-			throw new Exception("Esta busqueda se hace  por fallecido, "
-					+".\nPresione limpiar para volver a empezar.");*/
-		
 		
 		// Solo lleno solo la fecha
 		if ( fallecido == null)
 			return PagoManager.traerPorFecha(fecha);
 			
-		/*// Solo lleno solo el cliente
-		if (fallecido == null)
-			return traerPagos(cliente, fecha);*/
-		else
-			return traerPagos(fallecido, fecha);
-	}
-		
-	/*public static List<Pago> traerPagos(Cliente cliente, Date fecha) {
-		if (fecha == null)
-			return Relacionador.traerPagos(cliente);
-		else {
-			PagoOBD obd = FactoryOBD.crearPagoOBD();
-			return obd.selectByClienteFecha(cliente, fecha);
-		}
-	}*/
+		return traerPagos(fallecido, fecha);
+	}		
 
 	public static List<Pago> traerPagos(Fallecido fallecido, Date fecha) {
 		List<Pago> pagos = Relacionador.traerPagos(fallecido);

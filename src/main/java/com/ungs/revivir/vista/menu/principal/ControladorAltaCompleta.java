@@ -25,7 +25,6 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 	private CompletaInvocable invocador;
 	private Cliente cliente = null;
 
-
 	public ControladorAltaCompleta(CompletaInvocable invocador) {
 		this.invocador = invocador;
 		ventana = new VentanaAltaCompleta();
@@ -38,13 +37,12 @@ public class ControladorAltaCompleta implements ClienteSeleccionable, Controlado
 		ventana.botonAceptar().setAccion(e -> aceptar());
 		ventana.botonCancelar().setAccion(e -> cancelar());
 		ventana.botonLimpiarTodo().setAccion(e -> limpiarTodo());
-		Fallecido fallecido = FallecidoManager.traerMasReciente();
-		ventana.getCodFal().setValor(Integer.toString(fallecido.getCod_fallecido()+1));
-		
+		ventana.getCodFal().setValor(Integer.toString(FallecidoManager.traerUltimoCodFallecido()+1));
+		ventana.getCodFal().habilitado(false);
 	}
 
 	private void cancelar() {
-		if (Popup.confirmar("Â¿Seguro de que desea cancelar la operacion?")) {
+		if (Popup.confirmar("¿Seguro de que desea cancelar la operacion?")) {
 			ventana.dispose();
 			invocador.mostrar();			
 		}

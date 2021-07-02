@@ -1,16 +1,10 @@
 package com.ungs.revivir.vista.menu.vencimientos.modificar;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.ungs.revivir.negocios.manager.PagoManager;
 import com.ungs.revivir.negocios.manager.UbicacionManager;
-import com.ungs.revivir.persistencia.entidades.Expensas;
-import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.principal.ControladorExterno;
-import com.ungs.revivir.vista.reportes.ReporteVariosCargos;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 
@@ -27,7 +21,6 @@ public class ControladorVencimientoAM implements ControladorExterno {
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cancelar()));
 		ventana.botonCancelar().setAccion(e -> cancelar());
 		ventana.botonAceptar().setAccion(e -> aceptar());
-		
 	}
 	
 	private void aceptar() {

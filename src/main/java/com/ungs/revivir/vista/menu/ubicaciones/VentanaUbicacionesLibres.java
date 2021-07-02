@@ -3,14 +3,16 @@ package com.ungs.revivir.vista.menu.ubicaciones;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.negocios.Localizador;
-import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.persistencia.definidos.Sector;
 import com.ungs.revivir.persistencia.definidos.SubSector;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.tablas.TablaUbicacionesLibres;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
@@ -25,17 +27,19 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 	private TablaUbicacionesLibres tabla;
 	private EntradaLista<Sector> inSector;
 	private EntradaLista<SubSector> inSubsector;
-	private EntradaNumeroEntre inCirc, inMacizo, inParcela, inFila, inUnidad, inNicho, inMueble,inSepultura, inInhumacion;
+	private EntradaNumeroEntre inCirc, inMacizo, inParcela, inFila, inUnidad, inNicho, inMueble, inSepultura, inInhumacion;
 	private EntradaTexto inSeccion;
 	private Boton btnBuscar, btnLimpiar;
+	private JCheckBox inCheckMostrarTodo;
+	private JCheckBox inCheckMacizo_bis;
+	private JCheckBox inCheckbis;
 	
 	public VentanaUbicacionesLibres() {
 		super("Ubicaciones libres", 500, 500);
 		Dimension dimBoton = new Dimension(100, 25);
 		
-		tabla = new TablaUbicacionesLibres(UbicacionManager.traerTodo());
+		tabla = new TablaUbicacionesLibres (new ArrayList<Ubicacion>() );
 		JScrollPane panelTabla = new JScrollPane(tabla);
-		
 		
 		btnBuscar = new Boton("Buscar", dimBoton);
 		btnLimpiar = new Boton("Limpiar", dimBoton);
@@ -51,6 +55,8 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		panelPrincipal.add(panelBusqueda());
 		panelPrincipal.add(panelBotones);
 		panelPrincipal.add(panelTabla);
+		
+		
 	}
 	
 	private PanelVertical panelBusqueda() {
@@ -61,7 +67,7 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		// Inicializo las listas de sectores
 		inSector = new EntradaLista<>("Sector", dimTexto, dimEntrada);
 		inSubsector = new EntradaLista<>("Sub Sector", dimTexto, dimEntrada);
-
+		
 		for (Sector sector : Localizador.traerSectores())
 			inSector.getComboBox().addItem(sector);
 		
@@ -88,7 +94,10 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		inSepultura = new EntradaNumeroEntre("Sepultura", dimTexto, dimEntradaDoble);
 		inInhumacion= new EntradaNumeroEntre("Inhumacion", dimTexto, dimEntradaDoble);
 		inSeccion = new EntradaTexto("Seccion", dimTexto, dimEntrada);
-
+		inCheckMostrarTodo = new JCheckBox("MostrarTodo");
+		inCheckMacizo_bis = new JCheckBox("Macizo bis");
+		inCheckbis = new JCheckBox("bis");
+		
 		PanelVertical ret1 = new PanelVertical();
 		ret1.setBorder(new EmptyBorder(0, 0, 0, 10));
 		ret1.add(inSector);
@@ -106,6 +115,9 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		ret2.add(inMueble);
 		ret2.add(inSepultura);
 		ret2.add(inInhumacion);
+		ret2.add(inCheckMostrarTodo);
+		ret2.add(inCheckMacizo_bis);
+		ret2.add(inCheckbis);
 		
 		PanelHorizontal ret3 = new PanelHorizontal();
 		ret3.add(ret1);
@@ -169,6 +181,18 @@ public class VentanaUbicacionesLibres extends VentanaInterna{
 		return inSeccion;
 	}
 
+	public JCheckBox getInCheck_macizoBis() {
+		return inCheckMacizo_bis;
+	}
+	
+	public JCheckBox getInCheckBis() {
+		return inCheckbis;
+	}
+	
+	public JCheckBox getInCheckMostrarTodo() {
+		return inCheckMostrarTodo;
+	}
+	
 	public Boton botonBuscar() {
 		return btnBuscar;
 	}

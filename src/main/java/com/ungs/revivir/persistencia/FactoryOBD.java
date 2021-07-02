@@ -9,9 +9,12 @@ import com.ungs.revivir.persistencia.interfaces.ExpensasOBD;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 import com.ungs.revivir.persistencia.interfaces.MovimientoOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
+import com.ungs.revivir.persistencia.interfaces.PdfOBD;
 import com.ungs.revivir.persistencia.interfaces.ResponsableOBD;
 import com.ungs.revivir.persistencia.interfaces.ServicioOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionLibreOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionesTotalesOBD;
 import com.ungs.revivir.persistencia.interfaces.UsuarioOBD;
 import com.ungs.revivir.persistencia.mysql.CargoOBDMYSQL;
 import com.ungs.revivir.persistencia.mysql.ClienteOBDMySQL;
@@ -20,9 +23,12 @@ import com.ungs.revivir.persistencia.mysql.ExpensasOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.FallecidoOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.MovimientoOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.PagoOBDMYSQL;
+import com.ungs.revivir.persistencia.mysql.PdfOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ResponsableOBDMYSQL;
 import com.ungs.revivir.persistencia.mysql.ServicioOBDMySQL;
+import com.ungs.revivir.persistencia.mysql.UbicacionLibreOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.UbicacionOBDMySQL;
+import com.ungs.revivir.persistencia.mysql.UbicacioneTotalOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.UsuarioOBDMYSQL;
 
 public class FactoryOBD {
@@ -58,23 +64,34 @@ public class FactoryOBD {
 	public static ResponsableOBD crearResponsableOBD() {
 		return new ResponsableOBDMYSQL();
 	}
-
+	
+	public static UbicacionLibreOBD crearUbicacionLibreOBD() {
+		return new UbicacionLibreOBDMySQL();
+	}
+	
 	public static MovimientoOBD crearMovimientoOBD() {
 		
 		return new MovimientoOBDMySQL();
 	}
 
 	public static ExpensasOBD crearExpensasOBD() {
-		
 		return new ExpensasOBDMySQL();
 	}
 	
 	public static ConfiguracionOBD crearConfiguracionOBD() {
 		return new ConfiguracionOBDMySQL();
 	}
-
+	
+	public static PdfOBD crearPdfOBD() {
+		return new PdfOBDMySQL();
+	}
+	
 	public static PagoOBD selectByFecha(Date fecha) {
 		return new PagoOBDMYSQL();
+	}
+
+	public static UbicacionesTotalesOBD crearUbicacionesTotalesOBD() {	
+		return new UbicacioneTotalOBDMySQL();
 	}
 	
 }

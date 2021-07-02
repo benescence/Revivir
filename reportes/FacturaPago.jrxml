@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="Fecha" class="java.lang.String"/>
 	<parameter name="cliente" class="java.lang.String"/>
 	<parameter name="cargo" class="java.lang.String"/>
 	<parameter name="monto" class="java.lang.Double"/>
@@ -10,12 +9,10 @@
 	<parameter name="fallecido" class="java.lang.String"/>
 	<parameter name="ubicacion" class="java.lang.String"/>
 	<parameter name="DNIfallecido" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
-	<field name="fecha" class="java.sql.Date">
-		<fieldDescription><![CDATA[fecha]]></fieldDescription>
-	</field>
 	<group name="Group1"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -116,14 +113,14 @@
 					<textFieldExpression><![CDATA[$P{fallecido}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="90" y="290" width="430" height="60" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
+					<reportElement x="90" y="290" width="450" height="60" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
 					<textElement>
-						<font fontName="Calibri" size="14" isBold="false"/>
+						<font fontName="Calibri" size="12" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{ubicacion}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="110" y="350" width="140" height="30" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
+					<reportElement x="110" y="340" width="140" height="30" uuid="62a82063-7252-494d-806c-ffea6a9c6fd8"/>
 					<textElement>
 						<font fontName="Calibri" size="14" isBold="false"/>
 					</textElement>
@@ -148,24 +145,24 @@
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{fecha});]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="15" y="260" width="64" height="18" uuid="1a23ca4d-7859-4e6c-b241-a781191f6467"/>
+					<reportElement x="10" y="260" width="64" height="18" uuid="1a23ca4d-7859-4e6c-b241-a781191f6467"/>
 					<textElement>
 						<font fontName="Calibri" size="14"/>
 					</textElement>
 					<text><![CDATA[Fallecido :]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="5" y="290" width="75" height="30" uuid="8375a57b-5a1b-49a6-a08e-f410aa8cad4e"/>
+					<reportElement x="10" y="290" width="75" height="30" uuid="8375a57b-5a1b-49a6-a08e-f410aa8cad4e"/>
 					<textElement>
 						<font fontName="Calibri" size="14"/>
 					</textElement>
 					<text><![CDATA[Ubicacion :]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="10" y="350" width="100" height="30" uuid="220e13a0-3075-4afb-a2c6-d986eb2a4c5b"/>
+					<reportElement x="10" y="340" width="100" height="30" uuid="220e13a0-3075-4afb-a2c6-d986eb2a4c5b"/>
 					<textElement>
 						<font fontName="Calibri" size="14"/>
 					</textElement>

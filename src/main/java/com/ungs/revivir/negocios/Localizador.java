@@ -53,4 +53,38 @@ public class Localizador {
 		return ret;
 	}
 	
+	public static Sector traerSector(SubSector subSector) {
+
+		if (subSector == SubSector.COMPRADA
+				|| subSector == SubSector.ADULTOS
+				|| subSector == SubSector.ANGELITOS
+				|| subSector == SubSector.INDIGENTES)
+			return Sector.SEPULTURAS;
+
+		if (subSector == SubSector.PALMERAS_ATAUD
+				|| subSector == SubSector.PALMERAS_CENIZAS
+				|| subSector == SubSector.PALMERAS_RESTOS
+				|| subSector == SubSector.PALMERAS_SEPULTURAS)
+			return Sector.PALMERAS;
+		
+		if (subSector == SubSector.NICHERA)
+			return Sector.NICHERA;
+
+		if (subSector == SubSector.DEPOSITO1
+				|| subSector == SubSector.DEPOSITO2
+				|| subSector == SubSector.DEPOSITO3)
+			return Sector.DEPOSITO;
+
+		if (subSector == SubSector.CENIZARIO)
+			return Sector.CENIZARIO;
+		
+		if (subSector == SubSector.BOVEDA)
+			return Sector.BOVEDA;
+
+		if (subSector == SubSector.OTRO_CEMENTERIO)
+			return Sector.OTRO_CEMENTERIO;
+		
+		return null;
+	}
+	
 }

@@ -3,15 +3,16 @@ package com.ungs.revivir.vista.menu.vencimientos;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.Localizador;
-import com.ungs.revivir.negocios.manager.UbicacionManager;
 import com.ungs.revivir.persistencia.definidos.Sector;
 import com.ungs.revivir.persistencia.definidos.SubSector;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.tablas.TablaVencimientos;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
@@ -26,12 +27,12 @@ public class VentanaVencimientos extends VentanaInterna {
 	private EntradaLista<Sector> inSector;
 	private EntradaLista<SubSector> inSubsector;
 	private EntradaFecha inDesde, inHasta;
-	private Boton btnBuscar, btnLimpiar, btnVerClientes, btnModificar,btnImpLista;
+	private Boton btnBuscar, btnLimpiar, btnVerClientes, btnModificar,btnImpLista, btnImpNotificaciones;
 	
 	public VentanaVencimientos() {
 		super("Gestion de vencimientos", 500, 500);
 		
-		tabla = new TablaVencimientos(UbicacionManager.traerTodo());
+		tabla = new TablaVencimientos(new ArrayList<Ubicacion>());
 		JScrollPane panelTabla = new JScrollPane(tabla);
 		
 		Dimension dimBoton = new Dimension(150, 25);
@@ -40,6 +41,7 @@ public class VentanaVencimientos extends VentanaInterna {
 		btnVerClientes = new Boton("Ver clientes", dimBoton);
 		btnModificar = new Boton("Modificar", dimBoton);
 		btnImpLista = new Boton("Imprimir Listado", dimBoton);
+		btnImpNotificaciones= new Boton("Notificaciones", dimBoton);
 		
 		PanelHorizontal panelBotones = new PanelHorizontal();
 		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
@@ -48,6 +50,7 @@ public class VentanaVencimientos extends VentanaInterna {
 		panelBotones.add(btnVerClientes);
 		panelBotones.add(btnModificar);
 		panelBotones.add(btnImpLista);
+		panelBotones.add(btnImpNotificaciones);
 		
 		PanelVertical panelPrincipal = new PanelVertical();
 		panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -104,8 +107,13 @@ public class VentanaVencimientos extends VentanaInterna {
 		for (SubSector elemento : Localizador.traerSubSectores(sector))
 			inSubsector.getComboBox().addItem(elemento);
 	}
+	
 	public Boton botonImpLista() {
 		return btnImpLista;
+	}
+
+	public Boton botonImpNotificaciones() {
+		return btnImpNotificaciones;
 	}
 
 	public TablaVencimientos getTabla() {

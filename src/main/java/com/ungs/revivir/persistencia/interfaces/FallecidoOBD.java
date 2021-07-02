@@ -23,18 +23,17 @@ public interface FallecidoOBD {
 	
 	// METODOS ESPECIFICOS
 	
-	//public Fallecido selectByDNI(String DNI);
 	public Fallecido selectByCOD(Integer cod_fallecido);
 
 	public List<Fallecido> selectByUbicacion(Ubicacion ubicacion);
 	
 	public List<Fallecido> selectByNombreApellido(String nombre, String apellido);
 
-	//public List<Fallecido> selectByNombreApellidoDNI(String nombre, String apellido, String DNI);
-
 	public List<Fallecido> selectByNombreApellidoCOD(String nombre, String apellido, Integer cod_fallecido);
 
 	public Integer selectLastID(String tabla);
+
+	public Integer traerUltimoCodFallecido();
 
 	void updateSinUbicacion(Fallecido fallecido);
 

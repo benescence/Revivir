@@ -14,7 +14,7 @@ import com.ungs.revivir.vista.principal.ControladorExterno;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 
-public class ControladorFallecidoAM implements ControladorExterno{
+public class ControladorFallecidoAM implements ControladorExterno {
 	private VentanaFallecidoAM ventana;
 	private FallecidoInvocable invocador;
 	private Fallecido modificar;
@@ -33,11 +33,11 @@ public class ControladorFallecidoAM implements ControladorExterno{
 	}
 	
 	private void inicializar() {
+		ventana.getCod_Fallecido().setEnabled(false);
 		ventana.botonAceptar().setAccion(e -> aceptar());
 		ventana.botonCancelar().setAccion(e -> cancelar());
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cancelar()));
-		Fallecido fallecido = FallecidoManager.traerMasReciente();
-		ventana.getCod_Fallecido().setText(Integer.toString(fallecido.getCod_fallecido()+1));
+		ventana.getCod_Fallecido().setText(Integer.toString(FallecidoManager.traerUltimoCodFallecido()+1));		
 	} 
 	
 	private void aceptar() {
@@ -60,8 +60,9 @@ public class ControladorFallecidoAM implements ControladorExterno{
 			}
 			
 			// Es una modificacion
-			else
-				FallecidoManager.modificar(fallecido);
+			else {
+				
+				FallecidoManager.modificar(fallecido);}
 			
 			ventana.dispose();
 			invocador.actualizarFallecidos();

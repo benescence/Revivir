@@ -63,6 +63,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 		}
 		
 		invocador.getVentana().setEnabled(false);
+		
 		new ControladorFallecidoAM(this, lista.get(0));
 	}
 	
@@ -108,7 +109,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 
 	@Override
 	public void actualizarFallecidos() {
-		ventana.getTabla().recargar(FallecidoManager.traerTodo());
+		//ventana.getTabla().recargar(FallecidoManager.traerTodo());
 	}
 
 }

@@ -2,12 +2,13 @@
 package com.ungs.revivir.vista.reportes;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
@@ -45,7 +46,9 @@ public class ReporteVariosCargos {
 		if (pagos.size() != 0) {
 	
 		total.add(suma);
-		totalPagos.put("fecha", pagos.get(0).getFecha());
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		String fecha = sdf.format(Almanaque.hoy());
+		totalPagos.put("fecha",fecha);
 		//totalPagos.put("cliente",Formato.cliente(pagos.get(0)));
 		totalPagos.put("descripcion", servicios);
 		totalPagos.put("observaciones",observaciones);

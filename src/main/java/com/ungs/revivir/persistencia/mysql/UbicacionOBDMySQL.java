@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	@Override
 	public void insert(Ubicacion ubicacion) {
 		String cementerio = (ubicacion.getCementerio() != null) ? "'"+ubicacion.getCementerio()+"'" : null;
-		String seccion = (ubicacion.getSeccion() != null) ? "'"+ubicacion.getSeccion()+"'" : null;
+		String seccion = (ubicacion.getSeccion() != null) ? "'"+ ubicacion.getSeccion()+"'" : null;
 		String vencimiento = (ubicacion.getVencimiento() != null) ? "'"+ubicacion.getVencimiento()+"'" : null;
 		
 		String valores = Definido.subsector(ubicacion.getSubsector())
@@ -74,19 +75,14 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	@Override
 	public void delete(Ubicacion ubicacion) {
 		String condicion = "ID = "+ubicacion.getID();
-		String consulta1 = "SET FOREIGN_KEY_CHECKS=0;";
 		String consulta = " delete from "+tabla+" where ("+condicion+");";
-		String consulta3 = "SET FOREIGN_KEY_CHECKS=1;";
-
 		ejecutarSQL(consulta);	
 	}
-
-	
 	
 	@Override
 	public Ubicacion selectByID(Integer ID) {
 		String condicion = "ID = "+ID;
-		List<Ubicacion> lista = selectByCondicion(condicion);
+		List<Ubicacion> lista = selectByCondicion(condicion,limite);
 		if (lista.size() > 0)
 			return lista.get(0);
 		return null;
@@ -107,15 +103,15 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 				+" and parcela" + ((ubicacion.getParcela() != null) ? (" = "+ubicacion.getParcela()) :  " is null")
 				+" and inhumacion" + ((ubicacion.getInhumacion() != null) ? (" = "+ubicacion.getInhumacion()) :  " is null")
 				+" and circ" + ((ubicacion.getCirc() != null) ? (" = "+ubicacion.getCirc()) :  " is null");
-				System.out.println(condicion);
-		List<Ubicacion> lista = selectByCondicion(condicion);
+		List<Ubicacion> lista = selectByCondicion(condicion,limite);
 		if (lista.size() > 0)
 			return lista.get(0);
 		return null;
 	}
 	
 	@Override
-	public List<Ubicacion> selectByrangos(Integer nichoMax,
+	public List<Ubicacion> selectByrangos(
+									Integer nichoMax,
 									Integer nichoMin,
 									Integer circMax,
 									Integer circMin,
@@ -138,15 +134,16 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 			
 		String condicionSubsector =" subsector = "+Definido.subsector(subsector);
 		String condicionSeccion = (seccion != null) ? (" and "+  "seccion = '" + seccion+"'") : "";
-		String condicionNicho = (nichoMin!= null && nichoMax != null) ? (" and "+nichoMin +"< nicho <" + nichoMax) : "";
-		String condicionFila = (filaMin!= null && filaMax != null) ? (" and "+filaMin +"< fila <" + filaMax) : "";
-		String condicionCirc = (circMin!= null && circMax != null) ? (" and "+circMin +"< circ <" + circMax) : "";
-		String condicionUnidad = (unidadMin!= null && unidadMax != null) ? (" and "+unidadMin +"< unidad <" + unidadMax) : "";
-		String condicionParcela = (parcelaMin!= null && parcelaMax != null) ? (" and "+parcelaMin +"< parcela <" + parcelaMax) : "";
-		String condicionMueble = (muebleMin!= null && muebleMax != null) ? (" and "+muebleMin +"< mueble <" + muebleMax) : "";
-		String condicionMacizo = (macizoMin!= null && macizoMax != null) ? (" and "+macizoMin +"< macizo <" + macizoMax) : "";
-		String condicioninhumacion = (inhumacionMin!= null && inhumacionMax != null) ? (" and "+inhumacionMin +"< inhumacion <" + inhumacionMax) : "";
-		String condicionSepultura = (sepulturaMin!= null && sepulturaMax != null) ? (" and "+sepulturaMin +"< nicho <" + sepulturaMax) : "";
+
+		String condicionNicho = (nichoMin!= null && nichoMax != null) ? (" and nicho > "+nichoMin +" and nicho < " + nichoMax) : "";
+		String condicionFila = (filaMin!= null && filaMax != null) ? (" and fila > "+filaMin +" and fila < " + filaMax) : "";
+		String condicionCirc = (circMin!= null && circMax != null) ? (" and circ > "+circMin +" and circ < " + circMax) : "";
+		String condicionUnidad = (unidadMin!= null && unidadMax != null) ? (" and unidad > "+unidadMin +" and unidad < " + unidadMax) : "";
+		String condicionParcela = (parcelaMin!= null && parcelaMax != null) ? (" and parcela > "+parcelaMin +" and  parcela < " + parcelaMax) : "";
+		String condicionMueble = (muebleMin!= null && muebleMax != null) ? (" and mueble > "+muebleMin +" and mueble < " + muebleMax) : "";
+		String condicionMacizo = (macizoMin!= null && macizoMax != null) ? (" and macizo > "+macizoMin +" and macizo < " + macizoMax) : "";
+		String condicioninhumacion = (inhumacionMin!= null && inhumacionMax != null) ? (" and inhumacion > "+inhumacionMin +" and inhumacion < " + inhumacionMax) : "";
+		String condicionSepultura = (sepulturaMin!= null && sepulturaMax != null) ? (" and sepultura > "+sepulturaMin +" and sepultura < " + sepulturaMax) : "";
 		
 		String condicion =  condicionSubsector 
 							+ condicionSeccion
@@ -160,10 +157,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 							+ condicioninhumacion
 							+ condicionSepultura ;
 		
-	
-			
-			return selectByCondicion(condicion);
-		
+		return selectByCondicion(condicion,limite);
 	}
 	
 	@Override
@@ -178,7 +172,7 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	@Override
 	public Ubicacion selectByFallecido(Fallecido fallecido) {
 		String condicion = "ID = "+fallecido.getUbicacion();
-		List<Ubicacion> lista = selectByCondicion(condicion);
+		List<Ubicacion> lista = selectByCondicion(condicion,limite);
 		if (lista.size() > 0)
 			return lista.get(0);
 		return null;
@@ -186,13 +180,12 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	
 	@Override
 	public List<Ubicacion> select() {
-		return selectByCondicion("true");
+		return selectByCondicion("true",limite);
 	}
 	
-	private List<Ubicacion> selectByCondicion(String condicion) {
+	private List<Ubicacion> selectByCondicion(String condicion, int limite) {
 		List<Ubicacion> ret = new ArrayList<>();
 		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
-		
 		try { 
 			Class.forName(driver); 
 			Connection conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD); 
@@ -234,7 +227,8 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 				Boolean bisMacizo = resultados.getBoolean("bis_macizo");
 				bisMacizo = (resultados.wasNull())? null: bisMacizo;
 				
-				ret.add(new Ubicacion(
+				ret.add(
+					new Ubicacion(
 						resultados.getInt("ID"),
 						Definido.subsector(resultados.getInt("subsector")),
 						resultados.getString("cementerio"),
@@ -250,8 +244,10 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 						mueble,
 						inhumacion,
 						circ,
-						resultados.getDate("vencimiento")
-					));
+						Date.valueOf(resultados.getObject("vencimiento", LocalDate.class))
+					)
+				);
+				
 			}
 
 			resultados.close();
@@ -270,7 +266,14 @@ public class UbicacionOBDMySQL extends OBD implements UbicacionOBD{
 	public List<Ubicacion> selectBySubsectorEntreFechas(SubSector subSector, Date desde, Date hasta) {
 		String condicion = "subsector = "+Definido.subsector(subSector)
 			+ " and vencimiento between '"+desde+"' and '"+hasta+"'";
-		return selectByCondicion(condicion);
+		return selectByCondicion(condicion, limite);
+	}
+	
+	@Override
+	public List<Ubicacion> selectBySubsectorEntreFechasSinLimite(SubSector subSector, Date desde, Date hasta) {
+		String condicion = "subsector = "+Definido.subsector(subSector)
+			+ " and vencimiento between '"+desde+"' and '"+hasta+"'";
+		return selectByCondicion(condicion, 100000);
 	}
 	
 }

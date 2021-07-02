@@ -2,7 +2,6 @@ package com.ungs.revivir.vista.menu.principal;
 
 import java.awt.Dimension;
 
-import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
@@ -32,7 +31,7 @@ public class VentanaAltaCompleta extends Ventana {
 	private Boton btnCargarCliente, btnSelCliente, btnLimpiarCliente;
 	
 	// DATOS DEL DIFUNTO
-	private EntradaTexto inNombreFal, inApellidoFal, inDNIFal, inCocheria,inCodFal;
+	private EntradaTexto inNombreFal, inApellidoFal, inCocheria, inCodFal;
 	private EntradaFecha inFFallecimiento, inFIngreso;
 	private EntradaLista<TipoFallecimiento> inTipo;
 
@@ -118,7 +117,6 @@ public class VentanaAltaCompleta extends Ventana {
 		
 		inNombreFal = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellidoFal = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		//inDNIFal = new EntradaTexto("DNI", dimTexto, dimEntrada);
 		inCodFal = new EntradaTexto("Cod Fallecido", dimTexto, dimEntrada);
 		inCocheria = new EntradaTexto("Cochería", dimTexto, dimEntrada);
 		inFFallecimiento = new EntradaFecha(null, "Fecha de fallecimiento", dimTexto, dimEntrada);
@@ -136,7 +134,6 @@ public class VentanaAltaCompleta extends Ventana {
 		ret.add(titulo);
 		ret.add(inNombreFal);
 		ret.add(inApellidoFal);
-		//ret.add(inDNIFal);
 		ret.add(inCodFal);
 		ret.add(inCocheria);
 		ret.add(inTipo);
@@ -375,12 +372,10 @@ public class VentanaAltaCompleta extends Ventana {
 		return inApellidoFal;
 	}
 
-	/*public EntradaTexto getDNIFal() {
-		return inDNIFal;
-	}*/
 	public EntradaTexto getCodFal() {
 		return inCodFal;
 	}
+	
 	public EntradaTexto getCocheria() {
 		return inCocheria;
 	}
@@ -456,10 +451,9 @@ public class VentanaAltaCompleta extends Ventana {
 	public EntradaLista<SubSector> getSubSector() {
 		return inSubSector;
 	}
+	
 	public EntradaFecha getVencimiento() {
 		return inVencimiento;
 	}
 
-	
-	
 }

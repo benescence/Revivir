@@ -1,11 +1,12 @@
 package com.ungs.revivir.vista.menu.fallecidos;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import com.ungs.revivir.negocios.manager.FallecidoManager;
+import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.vista.tablas.TablaFallecidos;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
@@ -18,13 +19,13 @@ public class VentanaFallecidosABM extends VentanaInterna {
 	private static final long serialVersionUID = 1L;
 	private TablaFallecidos tabla;
 	private Boton btnAgregar, btnModificar, btnEliminar, btnBuscar, btnLimpiar;
-	private EntradaTexto inNombre, inApellido /*inDNI*/ ;
+	private EntradaTexto inNombre, inApellido;
 	private EntradaNumero inCodFal;
 	
 	public VentanaFallecidosABM() {
 		super("Gestion de fallecidos", 500, 500);
 		
-		tabla = new TablaFallecidos(FallecidoManager.traerTodo());
+		tabla = new TablaFallecidos(new ArrayList<Fallecido>());
 		JScrollPane panelTabla = new JScrollPane(tabla);
 		
 		Dimension dimBoton = new Dimension(100, 25);
@@ -53,7 +54,6 @@ public class VentanaFallecidosABM extends VentanaInterna {
 		
 		inNombre = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellido = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		//inDNI = new EntradaTexto("DNI", dimTexto, dimEntrada);
 		inCodFal = new EntradaNumero("Cod Fallecido", dimTexto, dimEntrada);
 		
 		btnBuscar = new Boton("Buscar", dimBoton);
@@ -66,7 +66,6 @@ public class VentanaFallecidosABM extends VentanaInterna {
 		PanelVertical ret = new PanelVertical();
 		ret.add(inNombre);
 		ret.add(inApellido);
-		//ret.add(inDNI);
 		ret.add(inCodFal);
 		ret.add(panelBotones);
 		return ret;
@@ -104,9 +103,6 @@ public class VentanaFallecidosABM extends VentanaInterna {
 		return inApellido;
 	}
 
-	/*public EntradaTexto getDNI() {
-		return inDNI;
-	}*/
 	public EntradaNumero getCOD() {
 		return inCodFal;
 	}
