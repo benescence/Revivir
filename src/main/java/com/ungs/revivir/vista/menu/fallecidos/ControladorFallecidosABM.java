@@ -1,5 +1,6 @@
 package com.ungs.revivir.vista.menu.fallecidos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JInternalFrame;
@@ -16,6 +17,7 @@ import com.ungs.revivir.vista.util.Popup;
 public class ControladorFallecidosABM implements ControladorInterno, FallecidoInvocable {
 	private VentanaFallecidosABM ventana;
 	private ControladorPrincipal invocador;
+	public List<Fallecido> listaLocal = new ArrayList<Fallecido>();
 	
 	public ControladorFallecidosABM(ControladorPrincipal invocador) {
 		this.invocador = invocador;
@@ -36,11 +38,10 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 			//String DNI = ventana.getDNI().getValor();
 			//List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, DNI);
 			List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, cod_fallecido);
-			System.out.println(nombre);
 			if (lista.isEmpty())
 				Popup.mostrar("No se ha encontrado ningun fallecido con los parametros ingresados.");
 			ventana.getTabla().recargar(lista);
-			
+			listaLocal=lista;
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
 		}
@@ -65,6 +66,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 		invocador.getVentana().setEnabled(false);
 		
 		new ControladorFallecidoAM(this, lista.get(0));
+	System.out.println(listaLocal.size());
 	}
 	
 	private void eliminar() {
@@ -78,7 +80,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 			if (VerificadorBorrado.puedeBorrar(lista.get(0)) &&
 					Popup.confirmar("¿Seguro de que desea eliminar los registros seleccionados?"))
 				FallecidoManager.eliminar(lista.get(0));
-			
+			listaLocal.remove(lista.get(0));
 			actualizarFallecidos();
 		
 		} catch (Exception e) {
@@ -109,7 +111,14 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 
 	@Override
 	public void actualizarFallecidos() {
-		//ventana.getTabla().recargar(FallecidoManager.traerTodo());
+		System.out.println(listaLocal.size());
+		ventana.getTabla().recargar(listaLocal);
+	}
+
+	@Override
+	public void actualizarFallecidos(Fallecido nuevo) {
+		listaLocal.add(nuevo);
+		ventana.getTabla().recargar(listaLocal);
 	}
 
 }

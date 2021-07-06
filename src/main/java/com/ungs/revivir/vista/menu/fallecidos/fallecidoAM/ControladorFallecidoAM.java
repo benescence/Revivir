@@ -56,16 +56,20 @@ public class ControladorFallecidoAM implements ControladorExterno {
 				UbicacionManager.guardar(ubicacion);
 				ubicacion = UbicacionManager.traerMasReciente();
 				fallecido.setUbicacion(ubicacion.getID());
-				FallecidoManager.guardar(fallecido);			
+				FallecidoManager.guardar(fallecido);	
+				invocador.actualizarFallecidos(fallecido);
 			}
 			
 			// Es una modificacion
 			else {
-				
-				FallecidoManager.modificar(fallecido);}
+				invocador.actualizarFallecidos();
+				FallecidoManager.modificar(fallecido);
+				modificar.setApellido(fallecido.getApellido());
+				modificar.setNombre(fallecido.getNombre());
+				invocador.actualizarFallecidos();
+				}
 			
 			ventana.dispose();
-			invocador.actualizarFallecidos();
 			invocador.mostrar();
 		
 		} catch (Exception e) {
