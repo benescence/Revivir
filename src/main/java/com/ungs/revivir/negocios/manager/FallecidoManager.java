@@ -6,8 +6,10 @@ import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
+import com.ungs.revivir.persistencia.interfaces.FallecidoUbicacionOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class FallecidoManager {
@@ -119,5 +121,31 @@ public class FallecidoManager {
 		/*FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		return obd.selectByNombreApellidoDNI(nombres, apellido, DNI);*/
 	}
-	
+	public static List<FallecidoUbicacion> traerCompleto(String nombres, String apellido, /*String DNI*/Integer cod_fallecido) throws Exception {
+		nombres = Verificador.anular(nombres);
+		apellido = Verificador.anular(apellido);
+		//DNI = Verificador.anular(DNI);
+		cod_fallecido = Verificador.anularInt(cod_fallecido);
+		String mensaje = "";
+
+		if (nombres != null && !Validador.nombrePersona(nombres))
+			mensaje += "\n    -El NOMBRE solo puede estar compuesto de letras y espacios.";
+
+		if (apellido != null && !Validador.apellido(apellido))
+			mensaje += "\n    -El APELLIDO solo puede estar compuesto de letras y espacios.";
+		
+		/*if (DNI != null && !Validador.DNI(DNI))
+			mensaje += "\n    -El DNI solo puede estar compuesto de n�meros.";*/
+		if (cod_fallecido != null && !Validador.cod_fallecido(Integer.toString((cod_fallecido))))
+			mensaje += "\n    -El codigo solo puede estar compuesto de n�meros.";
+		
+		if (nombres == null && apellido == null && /*DNI == null*/ cod_fallecido == null)
+			mensaje += "\n    -Debe llenar al menos uno de los campos para realizar la busqueda.";
+		
+		if (!mensaje.equals(""))
+			throw new Exception("Se encontraron los siguientes errores:"+mensaje);
+		FallecidoUbicacionOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
+		
+		return obd.selectByNombreApellidoCOD(nombres, apellido, cod_fallecido);
+	}
 }

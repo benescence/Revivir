@@ -1,33 +1,38 @@
 package com.ungs.revivir.vista.tablas;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.ungs.revivir.persistencia.definidos.SubSector;
+import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.util.Formato;
 
 public class TablaFallecidos extends JTable{
 	private static final long serialVersionUID = 1L;
 	private String[] columnas = { "Codigo", "Nombre", "Apellido", /*"Fecha de\nfallecimiento", "Tipo de fallecimiento",*/ "Vencimiento", "Ubicacion"};
 	private DefaultTableModel modelo;
-	private List<Fallecido> fallecidos;
+	private List<FallecidoUbicacion> fallecidos;
 
-	public TablaFallecidos(List<Fallecido> fallecidos) {
+	public TablaFallecidos(List<FallecidoUbicacion> fallecidos) {
 		modelo = new DefaultTableModel(null, columnas);
 		setModel(modelo);
 		recargar(fallecidos);
 	}	
 	
-	public void recargar(List<Fallecido> lista) {
+	public void recargar(List<FallecidoUbicacion> lista) {
 		this.fallecidos = lista;
 		modelo.setRowCount(0);
 		modelo.setColumnCount(0);
 		modelo.setColumnIdentifiers(columnas);
 
-		for (Fallecido elemento: lista) {
+		for (FallecidoUbicacion elemento: lista) {
 			Object[] fila = {
 					//elemento.getDNI(),
 					elemento.getCod_fallecido(),
@@ -36,8 +41,9 @@ public class TablaFallecidos extends JTable{
 					//elemento.getFechaFallecimiento(),
 					//elemento.getTipoFallecimiento(),
 					//elemento.getCocheria(),
-					Formato.Vencimientoubicacion(elemento),
-					Formato.ubicacion(elemento)
+					Formato.formatoFecha(elemento.getVencimiento()),
+					Formato.ubicacion(getUbicacion(elemento))
+					
 			};
 			modelo.addRow(fila);
 		}
@@ -51,9 +57,10 @@ public class TablaFallecidos extends JTable{
 		getColumn("Vencimiento").setPreferredWidth(40);
 		getColumn("Ubicacion").setPreferredWidth(350);
 	}
+
 	
-	public List<Fallecido> obtenerSeleccion() {
-		List<Fallecido> registros = new ArrayList<>();
+	public List<FallecidoUbicacion> obtenerSeleccion() {
+		List<FallecidoUbicacion> registros = new ArrayList<>();
 		int[] indices = getSelectedRows();
 
 		for (int indice : indices) {
@@ -64,4 +71,28 @@ public class TablaFallecidos extends JTable{
 		return registros;
 	}
 
+	public static  Ubicacion getUbicacion(FallecidoUbicacion fallecidoUbicacion) {
+		return new Ubicacion(
+				 -1,  fallecidoUbicacion.getSubsector() , fallecidoUbicacion.getCementerio() ,fallecidoUbicacion.getNicho() ,
+				 fallecidoUbicacion.getFila(),fallecidoUbicacion.getSeccion(),
+				 fallecidoUbicacion.getMacizo() , fallecidoUbicacion.getUnidad(), fallecidoUbicacion.getBis() ,
+				 fallecidoUbicacion.getBis_macizo() ,  fallecidoUbicacion.getSepultura(),fallecidoUbicacion.getParcela(),
+				 fallecidoUbicacion.getMueble(),  fallecidoUbicacion.getInhumacion(),  fallecidoUbicacion.getCirc(), fallecidoUbicacion.getVencimiento());
+				
+	}
+	public static  Fallecido getFallecido(FallecidoUbicacion fallecidoUbicacion) {
+		return new Fallecido(
+				 fallecidoUbicacion.getID(), fallecidoUbicacion.getUbicacion(),fallecidoUbicacion.getTipoFallecimiento() ,fallecidoUbicacion.getCod_fallecido() ,
+				 fallecidoUbicacion.getDNI() , fallecidoUbicacion.getApellido() ,fallecidoUbicacion.getNombre(), fallecidoUbicacion.getCocheria() ,
+				 fallecidoUbicacion.getFechaFallecimiento() ,fallecidoUbicacion.getFechaFallecimiento() );
+	}
+	public static  FallecidoUbicacion getFallecidoUbicacion(Fallecido fallecido) {
+		return new FallecidoUbicacion(
+				fallecido.getID(), fallecido.getUbicacion(),fallecido.getTipoFallecimiento() ,fallecido.getCod_fallecido() ,
+				fallecido.getDNI() , fallecido.getApellido() ,fallecido.getNombre(), fallecido.getCocheria() ,
+				fallecido.getFechaFallecimiento() ,fallecido.getFechaFallecimiento(),
+				null,null,null,null,null,null ,null,null,null ,null,null,null ,null,null,null 
+				);
+				
+	}
 }

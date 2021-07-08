@@ -7,6 +7,7 @@ import com.ungs.revivir.persistencia.interfaces.ClienteOBD;
 import com.ungs.revivir.persistencia.interfaces.ConfiguracionOBD;
 import com.ungs.revivir.persistencia.interfaces.ExpensasOBD;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
+import com.ungs.revivir.persistencia.interfaces.FallecidoUbicacionOBD;
 import com.ungs.revivir.persistencia.interfaces.MovimientoOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 import com.ungs.revivir.persistencia.interfaces.PdfOBD;
@@ -21,6 +22,7 @@ import com.ungs.revivir.persistencia.mysql.ClienteOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ConfiguracionOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ExpensasOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.FallecidoOBDMySQL;
+import com.ungs.revivir.persistencia.mysql.FallecidoUbicacionOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.MovimientoOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.PagoOBDMYSQL;
 import com.ungs.revivir.persistencia.mysql.PdfOBDMySQL;
@@ -36,7 +38,11 @@ public class FactoryOBD {
 	public static FallecidoOBD crearFallecidoOBD() {
 		return new FallecidoOBDMySQL();
 	}
+	public static FallecidoUbicacionOBD crearFallecidoUbicacionOBD() {
+		return new FallecidoUbicacionOBDMySQL();
+	}
 
+	
 	public static ClienteOBD crearClienteOBD() {
 		return new ClienteOBDMySQL();
 	}

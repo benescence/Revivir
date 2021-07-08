@@ -2,7 +2,7 @@ package com.ungs.revivir.vista.menu.fallecidos;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
-
+import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
@@ -25,7 +25,7 @@ public class VentanaFallecidosABM extends VentanaInterna {
 	public VentanaFallecidosABM() {
 		super("Gestion de fallecidos", 500, 500);
 		
-		tabla = new TablaFallecidos(new ArrayList<Fallecido>());
+		tabla = new TablaFallecidos(new ArrayList<FallecidoUbicacion>());
 		JScrollPane panelTabla = new JScrollPane(tabla);
 		
 		Dimension dimBoton = new Dimension(100, 25);

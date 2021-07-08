@@ -8,10 +8,10 @@ import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.vista.tablas.TablaFallecidos;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 import com.ungs.revivir.vista.util.contenedores.Ventana;
-
+/*
 public class TablaFallecidosTest extends Ventana{
 	private static final long serialVersionUID = 1L;
-
+	
 	public TablaFallecidosTest() {
 		super("Prueba tabla de fallecidos", 500, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,4 +31,4 @@ public class TablaFallecidosTest extends Ventana{
 		new TablaFallecidosTest();
 	}
 
-}
+}*/

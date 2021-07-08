@@ -12,6 +12,7 @@ import com.ungs.revivir.negocios.manager.ResponsableManager;
 import com.ungs.revivir.negocios.verificador.VerificadorBorrado;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Responsable;
 import com.ungs.revivir.vista.menu.responsables.responsableAM.ControladorResponsableAM;
 import com.ungs.revivir.vista.menu.responsables.responsableAM.ResponsableInvocable;
@@ -19,6 +20,7 @@ import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.seleccion.clientes.ClienteSeleccionable;
 import com.ungs.revivir.vista.seleccion.clientes.ControladorSeleccionCliente;
+import com.ungs.revivir.vista.tablas.TablaFallecidos;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorResponsableABMCliente implements ResponsableInvocable, ControladorInterno, ClienteSeleccionable {
@@ -39,15 +41,15 @@ public class ControladorResponsableABMCliente implements ResponsableInvocable, C
 	
 	private void eliminar() {
 		try {
-			List<Fallecido> lista = ventana.getTabla().obtenerSeleccion();
+			List<FallecidoUbicacion> lista = ventana.getTabla().obtenerSeleccion();
 			if (lista.size() != 1) {
 				Popup.mostrar("Debe seleccionar exactamente 1 fallecido para borrar la relacion.");
 				return;
 			}
 			
-			Responsable eliminar = ResponsableManager.traerPorClienteFallecido(cliente, lista.get(0));
+			Responsable eliminar = ResponsableManager.traerPorClienteFallecido(cliente, TablaFallecidos.getFallecido(lista.get(0)));
 			if (VerificadorBorrado.puedeBorrar(eliminar) &&
-					Popup.confirmar("¿Esta seguro de que desea eliminar los registros seleccionados?"))
+					Popup.confirmar("ï¿½Esta seguro de que desea eliminar los registros seleccionados?"))
 				ResponsableManager.eliminar(eliminar);
 			
 			actualizarResponsables();
@@ -60,14 +62,14 @@ public class ControladorResponsableABMCliente implements ResponsableInvocable, C
 	
 	private void modificar() {
 		ventana.requestFocusInWindow();
-		List<Fallecido> lista = ventana.getTabla().obtenerSeleccion();
+		List<FallecidoUbicacion> lista = ventana.getTabla().obtenerSeleccion();
 		
 		if (lista.size() != 1) {
 			Popup.mostrar("Debe seleccionar exactamente 1 fallecido para modificar la relacion");
 			return;
 		}
 		
-		Responsable modificar = ResponsableManager.traerPorClienteFallecido(cliente, lista.get(0));
+		Responsable modificar = ResponsableManager.traerPorClienteFallecido(cliente, TablaFallecidos.getFallecido(lista.get(0)));
 		invocador.getVentana().setEnabled(false);
 		new ControladorResponsableAM(this, modificar);
 	}
@@ -139,7 +141,7 @@ public class ControladorResponsableABMCliente implements ResponsableInvocable, C
 		if (fallecidos.size() == 0)
 			Popup.mostrar("No se han encopntrados registros con los parametros ingresados.");
 		
-		ventana.getTabla().recargar(fallecidos);
+		//ventana.getTabla().recargar(fallecidos);
 	}
 
 }

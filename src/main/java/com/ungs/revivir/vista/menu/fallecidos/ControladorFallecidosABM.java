@@ -8,16 +8,18 @@ import javax.swing.JInternalFrame;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.verificador.VerificadorBorrado;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.vista.menu.fallecidos.fallecidoAM.ControladorFallecidoAM;
 import com.ungs.revivir.vista.menu.fallecidos.fallecidoAM.FallecidoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
+import com.ungs.revivir.vista.tablas.TablaFallecidos;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorFallecidosABM implements ControladorInterno, FallecidoInvocable {
 	private VentanaFallecidosABM ventana;
 	private ControladorPrincipal invocador;
-	public List<Fallecido> listaLocal = new ArrayList<Fallecido>();
+	public List<FallecidoUbicacion> listaLocal = new ArrayList<FallecidoUbicacion>();
 	
 	public ControladorFallecidosABM(ControladorPrincipal invocador) {
 		this.invocador = invocador;
@@ -37,7 +39,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 			Integer cod_fallecido = ventana.getCOD().getValor();
 			//String DNI = ventana.getDNI().getValor();
 			//List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, DNI);
-			List<Fallecido> lista = FallecidoManager.traer(nombre, apellido, cod_fallecido);
+			List<FallecidoUbicacion> lista = FallecidoManager.traerCompleto(nombre, apellido, cod_fallecido);
 			if (lista.isEmpty())
 				Popup.mostrar("No se ha encontrado ningun fallecido con los parametros ingresados.");
 			ventana.getTabla().recargar(lista);
@@ -56,7 +58,7 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 	}
 
 	private void modificar() {
-		List<Fallecido> lista = ventana.getTabla().obtenerSeleccion();
+		List<FallecidoUbicacion> lista = ventana.getTabla().obtenerSeleccion();
 		
 		if (lista.size() != 1) {
 			Popup.mostrar("Debe seleccionar exactamente 1 fallecido para modificarlo");
@@ -66,20 +68,19 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 		invocador.getVentana().setEnabled(false);
 		
 		new ControladorFallecidoAM(this, lista.get(0));
-	System.out.println(listaLocal.size());
 	}
 	
 	private void eliminar() {
 		try {
-			List<Fallecido> lista = ventana.getTabla().obtenerSeleccion();
+			List<FallecidoUbicacion> lista = ventana.getTabla().obtenerSeleccion();
 			if (lista.size() != 1) {
 				Popup.mostrar("Debe seleccionar exactamente 1 fallecido para borrarlo.");
 				return;
 			}
-			
-			if (VerificadorBorrado.puedeBorrar(lista.get(0)) &&
+			Fallecido F =TablaFallecidos.getFallecido(lista.get(0));
+			if (VerificadorBorrado.puedeBorrar(F) &&
 					Popup.confirmar("¿Seguro de que desea eliminar los registros seleccionados?"))
-				FallecidoManager.eliminar(lista.get(0));
+				FallecidoManager.eliminar(F);
 			listaLocal.remove(lista.get(0));
 			actualizarFallecidos();
 		
@@ -111,13 +112,12 @@ public class ControladorFallecidosABM implements ControladorInterno, FallecidoIn
 
 	@Override
 	public void actualizarFallecidos() {
-		System.out.println(listaLocal.size());
 		ventana.getTabla().recargar(listaLocal);
 	}
 
 	@Override
 	public void actualizarFallecidos(Fallecido nuevo) {
-		listaLocal.add(nuevo);
+		listaLocal.add(TablaFallecidos.getFallecidoUbicacion(nuevo));
 		ventana.getTabla().recargar(listaLocal);
 	}
 

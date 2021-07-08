@@ -9,8 +9,10 @@ import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.principal.ControladorExterno;
+import com.ungs.revivir.vista.tablas.TablaFallecidos;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 
@@ -18,11 +20,13 @@ public class ControladorFallecidoAM implements ControladorExterno {
 	private VentanaFallecidoAM ventana;
 	private FallecidoInvocable invocador;
 	private Fallecido modificar;
+	private FallecidoUbicacion original;
 	
-	public ControladorFallecidoAM(FallecidoInvocable invocador, Fallecido fallecido) {
+	public ControladorFallecidoAM(FallecidoInvocable invocador, FallecidoUbicacion fallecido) {
 		this.invocador = invocador;
-		this.modificar = fallecido;
-		ventana = new VentanaFallecidoAM(fallecido);
+		this.original= fallecido;
+		this.modificar = TablaFallecidos.getFallecido(fallecido);
+		ventana = new VentanaFallecidoAM(modificar);
 		inicializar();
 	}
 	
@@ -63,8 +67,8 @@ public class ControladorFallecidoAM implements ControladorExterno {
 			// Es una modificacion
 			else {
 				FallecidoManager.modificar(fallecido);
-				modificar.setApellido(fallecido.getApellido());
-				modificar.setNombre(fallecido.getNombre());
+				original.setApellido(fallecido.getApellido());
+				original.setNombre(fallecido.getNombre());
 				invocador.actualizarFallecidos();
 			}
 			
