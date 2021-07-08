@@ -43,16 +43,20 @@ public class ControladorClientesAM implements ControladorExterno{
 			Cliente nuevo = new Cliente(-1, nombre, apellido, DNI, domicilio, telefono, email);
 			
 			// Crear un nuevo cliente
-			if (modificar == null)
+			if (modificar == null) {
 				ClienteManager.guardar(nuevo);
+				invocador.actualizarClientes(nuevo);				
+			}
 			
 			// Modificar uno existente
-			else 
+			else {
 				ClienteManager.modificar(nuevo, modificar);
+				modificar.setNombre(nuevo.getNombre());
+				modificar.setApellido(nuevo.getApellido());
+				invocador.actualizarClientes();				
+			}
 			
-			invocador.actualizarClientes();
 			ventana.dispose();
-			ventana = null;
 			invocador.mostrar();
 			
 		} catch (Exception e) {

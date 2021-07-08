@@ -1,5 +1,6 @@
 package com.ungs.revivir.vista.menu.clientes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JInternalFrame;
@@ -16,6 +17,7 @@ import com.ungs.revivir.vista.util.Popup;
 public class ControladorClientesABM implements ControladorInterno, ClienteInvocable {
 	private VentanaClientesABM ventana;
 	private ControladorPrincipal invocador;
+	private List<Cliente> listaLocal = new ArrayList<Cliente>();
 	
 	public ControladorClientesABM(ControladorPrincipal invocador) {
 		this.invocador = invocador;
@@ -38,6 +40,7 @@ public class ControladorClientesABM implements ControladorInterno, ClienteInvoca
 			if (lista.isEmpty())
 				Popup.mostrar("No se ha encontrado ningun cliente con los parametros ingresados.");
 			ventana.getTabla().recargar(lista);
+			listaLocal = lista;
 			
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
@@ -81,6 +84,7 @@ public class ControladorClientesABM implements ControladorInterno, ClienteInvoca
 				ClienteManager.eliminar(lista.get(0));
 			
 			actualizarClientes();
+			listaLocal.remove(lista.get(0));
 		
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
@@ -103,13 +107,17 @@ public class ControladorClientesABM implements ControladorInterno, ClienteInvoca
 		return ventana;
 	}
 
-	public void actualizar() {
-		ventana.getTabla().recargar(ClienteManager.traerTodo());
+	@Override
+	public void actualizarClientes() {
+		// Se utiliza la lista local en lugar de ir a la base en linea para evitar demoras
+		ventana.getTabla().recargar(listaLocal);
 	}
 
 	@Override
-	public void actualizarClientes() {
-		actualizar();
+	public void actualizarClientes(Cliente nuevo) {
+		// Caso especial de actualizar donde se ha agregado un nuevo elemento a la lista
+		listaLocal.add(nuevo);
+		ventana.getTabla().recargar(listaLocal);
 	}
 
 }

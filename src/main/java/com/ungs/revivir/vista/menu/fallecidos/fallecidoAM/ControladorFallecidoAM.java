@@ -62,12 +62,11 @@ public class ControladorFallecidoAM implements ControladorExterno {
 			
 			// Es una modificacion
 			else {
-				invocador.actualizarFallecidos();
 				FallecidoManager.modificar(fallecido);
 				modificar.setApellido(fallecido.getApellido());
 				modificar.setNombre(fallecido.getNombre());
 				invocador.actualizarFallecidos();
-				}
+			}
 			
 			ventana.dispose();
 			invocador.mostrar();
@@ -112,7 +111,6 @@ public class ControladorFallecidoAM implements ControladorExterno {
 	private Fallecido traerFallecidoVerificado() throws Exception {
 		String nombre = ventana.getNombreFallecido().getText();;
 		String apellido = ventana.getApellidoFallecido().getText();
-		//String DNI = ventana.getDNIFallecido().getText();
 		String DNI = "";
 		String cocheria = ventana.getCocheria().getText();
 		TipoFallecimiento tipo = (TipoFallecimiento) ventana.getInTipoFallecimiento().getSelectedItem();

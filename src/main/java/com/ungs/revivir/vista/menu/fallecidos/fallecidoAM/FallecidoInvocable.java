@@ -10,5 +10,4 @@ public interface FallecidoInvocable {
 	
 	public void actualizarFallecidos(Fallecido nuevo);
 
-
 }
