@@ -2,11 +2,11 @@ package com.ungs.revivir.vista.menu.fallecidos;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
-import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
+
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.vista.tablas.TablaFallecidos;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;

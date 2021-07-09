@@ -8,6 +8,7 @@ import javax.swing.JInternalFrame;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.busqueda.Relacionador;
 import com.ungs.revivir.negocios.manager.ClienteManager;
+import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
 import com.ungs.revivir.negocios.manager.ResponsableManager;
 import com.ungs.revivir.negocios.verificador.VerificadorBorrado;
 import com.ungs.revivir.persistencia.entidades.Cliente;
@@ -20,7 +21,6 @@ import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.seleccion.clientes.ClienteSeleccionable;
 import com.ungs.revivir.vista.seleccion.clientes.ControladorSeleccionCliente;
-import com.ungs.revivir.vista.tablas.TablaFallecidos;
 import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorResponsableABMCliente implements ResponsableInvocable, ControladorInterno, ClienteSeleccionable {
@@ -47,7 +47,7 @@ public class ControladorResponsableABMCliente implements ResponsableInvocable, C
 				return;
 			}
 			
-			Responsable eliminar = ResponsableManager.traerPorClienteFallecido(cliente, TablaFallecidos.getFallecido(lista.get(0)));
+			Responsable eliminar = ResponsableManager.traerPorClienteFallecido(cliente, FallecidoUbicacionManager.extraerFallecido(lista.get(0)));
 			if (VerificadorBorrado.puedeBorrar(eliminar) &&
 					Popup.confirmar("�Esta seguro de que desea eliminar los registros seleccionados?"))
 				ResponsableManager.eliminar(eliminar);
@@ -69,7 +69,7 @@ public class ControladorResponsableABMCliente implements ResponsableInvocable, C
 			return;
 		}
 		
-		Responsable modificar = ResponsableManager.traerPorClienteFallecido(cliente, TablaFallecidos.getFallecido(lista.get(0)));
+		Responsable modificar = ResponsableManager.traerPorClienteFallecido(cliente, FallecidoUbicacionManager.extraerFallecido(lista.get(0)));
 		invocador.getVentana().setEnabled(false);
 		new ControladorResponsableAM(this, modificar);
 	}

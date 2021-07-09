@@ -2,9 +2,8 @@ package com.ungs.revivir.vista.seleccion.fallecidos;
 
 import java.util.List;
 
-import com.ungs.revivir.negocios.manager.FallecidoManager;
+import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
 import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
-import com.ungs.revivir.vista.tablas.TablaFallecidos;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
 
@@ -31,7 +30,7 @@ public class ControladorSeleccionarFallecido {
 			String apellido = ventana.getApellido().getTextField().getText();
 			Integer cod_fallecido = ventana.getCODFal().getValor();
 
-			List<FallecidoUbicacion> lista = FallecidoManager.traerCompleto(nombre, apellido, cod_fallecido);
+			List<FallecidoUbicacion> lista = FallecidoUbicacionManager.traer(nombre, apellido, cod_fallecido);
 			if (lista.isEmpty())
 				Popup.mostrar("No se ha encontrado ningun fallecido con los paramteros ingresados.");
 			ventana.getTabla().recargar(lista);
@@ -54,7 +53,7 @@ public class ControladorSeleccionarFallecido {
 		if (seleccion.size() != 1)
 			Popup.mostrar("Debe seleccionar exactamente un fallecido");
 		else {
-			invocador.seleccionarFallecido(TablaFallecidos.getFallecido(seleccion.get(0)));
+			invocador.seleccionarFallecido(FallecidoUbicacionManager.extraerFallecido(seleccion.get(0)));
 			ventana.dispose();
 			invocador.mostrar();
 		}

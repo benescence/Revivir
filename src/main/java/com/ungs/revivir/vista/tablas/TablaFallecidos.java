@@ -6,9 +6,8 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
 import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
-import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.util.Formato;
 
 public class TablaFallecidos extends JTable{
@@ -35,7 +34,7 @@ public class TablaFallecidos extends JTable{
 					elemento.getNombre(),
 					elemento.getApellido(),
 					Formato.formatoFecha(elemento.getVencimiento()),
-					Formato.ubicacion(getUbicacion(elemento))
+					Formato.ubicacion(FallecidoUbicacionManager.extraerUbicacion(elemento))
 			};
 			modelo.addRow(fila);
 		}
@@ -59,32 +58,5 @@ public class TablaFallecidos extends JTable{
 
 		return registros;
 	}
-
-	public static  Ubicacion getUbicacion(FallecidoUbicacion fallecidoUbicacion) {
-		return new Ubicacion(
-				 -1,  fallecidoUbicacion.getSubsector() , fallecidoUbicacion.getCementerio() ,fallecidoUbicacion.getNicho() ,
-				 fallecidoUbicacion.getFila(),fallecidoUbicacion.getSeccion(),
-				 fallecidoUbicacion.getMacizo() , fallecidoUbicacion.getUnidad(), fallecidoUbicacion.getBis() ,
-				 fallecidoUbicacion.getBis_macizo() ,  fallecidoUbicacion.getSepultura(),fallecidoUbicacion.getParcela(),
-				 fallecidoUbicacion.getMueble(),  fallecidoUbicacion.getInhumacion(),  fallecidoUbicacion.getCirc(), fallecidoUbicacion.getVencimiento());
-				
-	}
-	
-	public static  Fallecido getFallecido(FallecidoUbicacion fallecidoUbicacion) {
-		return new Fallecido(
-				 fallecidoUbicacion.getID(), fallecidoUbicacion.getUbicacion(),fallecidoUbicacion.getTipoFallecimiento() ,fallecidoUbicacion.getCodFallecido() ,
-				 fallecidoUbicacion.getDNI() , fallecidoUbicacion.getApellido() ,fallecidoUbicacion.getNombre(), fallecidoUbicacion.getCocheria() ,
-				 fallecidoUbicacion.getFechaFallecimiento() ,fallecidoUbicacion.getFechaFallecimiento() );
-	}
-	
-	public static  FallecidoUbicacion getFallecidoUbicacion(Fallecido fallecido) {
-		return new FallecidoUbicacion(
-				fallecido.getID(), fallecido.getUbicacion(),fallecido.getTipoFallecimiento() ,fallecido.getCod_fallecido() ,
-				fallecido.getDNI() , fallecido.getApellido() ,fallecido.getNombre(), fallecido.getCocheria() ,
-				fallecido.getFechaFallecimiento() ,fallecido.getFechaFallecimiento(),
-				null,null,null,null,null,null ,null,null,null ,null,null,null ,null,null,null 
-				);
-				
-	}
-	
+		
 }
