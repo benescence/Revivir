@@ -16,7 +16,7 @@ public class VerificadorUbicacion {
 		Integer macizo = verificar.getMacizo();		
 		Integer unidad = verificar.getUnidad();		
 		Boolean bis = verificar.getBis();
-		Boolean bisMacizo = verificar.getBis_macizo();
+		Boolean bisMacizo = verificar.getBisMacizo();
 		Integer sepultura = verificar.getSepultura();		
 		Integer parcela = verificar.getParcela();
 		Integer mueble = verificar.getMueble();	
@@ -31,7 +31,7 @@ public class VerificadorUbicacion {
 		verificar.setMacizo(null);
 		verificar.setUnidad(null);
 		verificar.setBis(null);
-		verificar.setBis_macizo(null);
+		verificar.setBisMacizo(null);
 		verificar.setParcela(null);
 		verificar.setMueble(null);
 		verificar.setInhumacion(null);
@@ -125,7 +125,7 @@ public class VerificadorUbicacion {
 			verificar.setSepultura(sepultura);
 			verificar.setParcela(parcela);
 			verificar.setBis(bis);
-			verificar.setBis_macizo(bisMacizo);
+			verificar.setBisMacizo(bisMacizo);
 			return verificar;
 		}
 		
@@ -153,7 +153,7 @@ public class VerificadorUbicacion {
 			verificar.setSepultura(sepultura);
 			verificar.setParcela(parcela);
 			verificar.setBis(bis);
-			verificar.setBis_macizo(bisMacizo);
+			verificar.setBisMacizo(bisMacizo);
 			return verificar;
 		}
 		
@@ -178,7 +178,7 @@ public class VerificadorUbicacion {
 			verificar.setUnidad(unidad);
 			verificar.setSepultura(sepultura);
 			verificar.setBis(bis);
-			verificar.setBis_macizo(bisMacizo);
+			verificar.setBisMacizo(bisMacizo);
 			return verificar;
 		}
 		

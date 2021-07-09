@@ -23,8 +23,6 @@ public interface MovimientoOBD {
 	
 	// METODOS ESPECIFICOS
 
-	//public Movimiento selectByDNI(String DNI);
-	
 	public List<Movimiento> selectByFallecido(Fallecido fallecido);
 
 	public List<Movimiento> selectByFallecidoNombre(String nombre, String apellido);

@@ -10,5 +10,4 @@ public interface FallecidoUbicacionOBD {
 
 	public List<FallecidoUbicacion> selectByNombreApellidoCOD(String nombre, String apellido, Integer cod_fallecido);
 
-
 }

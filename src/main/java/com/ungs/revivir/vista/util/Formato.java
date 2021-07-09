@@ -91,7 +91,7 @@ public class Formato {
 		ret += (ubicacion.getSepultura() != null) ? ", sepultura " + ubicacion.getSepultura() : ""; 
 		ret += (ubicacion.getInhumacion() != null) ? ", inhumacion " + ubicacion.getInhumacion() : ""; 
 		ret += (ubicacion.getBis() != null) ? ", bis " + Formato.BooleanoACadena(ubicacion.getBis()) : ""; 
-		ret += (ubicacion.getBis_macizo() != null) ? ", bis macizo " + Formato.BooleanoACadena(ubicacion.getBis_macizo())  : ""; 
+		ret += (ubicacion.getBisMacizo() != null) ? ", bis macizo " + Formato.BooleanoACadena(ubicacion.getBisMacizo())  : ""; 
 		ret += (ubicacion.getCementerio() != null) ? ", cementerio " + ubicacion.getCementerio(): ""; 
 		return ret;
 	}

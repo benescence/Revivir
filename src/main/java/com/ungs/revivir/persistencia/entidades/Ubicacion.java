@@ -1,23 +1,18 @@
 package com.ungs.revivir.persistencia.entidades;
 
-
-
-
-
 import java.sql.Date;
 
 import com.ungs.revivir.persistencia.definidos.SubSector;
 
 public class Ubicacion {
 	private Integer ID, nicho, fila, macizo, unidad, sepultura, parcela, mueble, inhumacion, circ;
-	private Boolean bis, bis_macizo; 
+	private Boolean bis, bisMacizo; 
 	private String  cementerio, seccion;
 	private SubSector subsector;
 	private Date vencimiento;
 	
-	
 	public Ubicacion(Integer ID, SubSector subsector, String cementerio, Integer nicho, Integer fila,
-			String seccion, Integer macizo, Integer unidad, Boolean bis, Boolean bis_macizo, Integer sepultura,
+			String seccion, Integer macizo, Integer unidad, Boolean bis, Boolean bisMacizo, Integer sepultura,
 			Integer parcela, Integer mueble, Integer inhumacion, Integer circ, Date vencimiento) {
 		this.ID = ID;
 		this.subsector = subsector;
@@ -28,7 +23,7 @@ public class Ubicacion {
 		this.macizo = macizo;
 		this.unidad = unidad;
 		this.bis = bis;
-		this.bis_macizo = bis_macizo;
+		this.bisMacizo = bisMacizo;
 		this.sepultura = sepultura;
 		this.parcela = parcela;
 		this.mueble = mueble;
@@ -101,12 +96,12 @@ public class Ubicacion {
 		this.bis = bis;
 	}
 
-	public Boolean getBis_macizo() {
-		return bis_macizo;
+	public Boolean getBisMacizo() {
+		return bisMacizo;
 	}
 
-	public void setBis_macizo(Boolean bis_macizo) {
-		this.bis_macizo = bis_macizo;
+	public void setBisMacizo(Boolean bisMacizo) {
+		this.bisMacizo = bisMacizo;
 	}
 
 	public Integer getSepultura() {
@@ -158,9 +153,9 @@ public class Ubicacion {
 	}
 
 	public Date getVencimiento() {
-		
-		
-		return vencimiento;}
+		return vencimiento;
+	}
+	
 	public void setVencimiento(Date vencimiento) {
 		this.vencimiento = vencimiento;
 	}

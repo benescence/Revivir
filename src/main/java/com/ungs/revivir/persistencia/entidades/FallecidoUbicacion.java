@@ -1,38 +1,50 @@
 package com.ungs.revivir.persistencia.entidades;
 
-
 import java.sql.Date;
 
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 
 public class FallecidoUbicacion {
-	private Integer ubicacion,cod_fallecido;
+	// Representa un fallecido con todos los datos de su ubicacion
+	
+	// Datos del fallecido
+	private Integer ID, ubicacion, codFallecido;
 	private String DNI, apellido, nombre, cocheria;
 	private Date fechaFallecimiento, fechaIngreso;
 	private TipoFallecimiento tipoFallecimiento;
 	
-	private Integer ID, nicho, fila, macizo, unidad, sepultura, parcela, mueble, inhumacion, circ;
-	private Boolean bis, bis_macizo; 
+	// Datos de la ubicacion vinculada a ese fallecido
+	private Integer nicho, fila, macizo, unidad, sepultura, parcela, mueble, inhumacion, circ;
+	private Boolean bis, bisMacizo;
 	private String  cementerio, seccion;
 	private SubSector subsector;
 	private Date vencimiento;
-	
-	
-	public FallecidoUbicacion(Integer ID, Integer ubicacion, TipoFallecimiento tipoFallecimiento, Integer cod_fallecido, String DNI, String apellido, String nombre, String cocheria,
-			Date fechaFallecimiento, Date fechaIngreso, SubSector subsector, String cementerio, Integer nicho, Integer fila,
-			String seccion, Integer macizo, Integer unidad, Boolean bis, Boolean bis_macizo, Integer sepultura,
-			Integer parcela, Integer mueble, Integer inhumacion, Integer circ, Date vencimiento) {
+		
+	public FallecidoUbicacion(
+			
+			// Parametros del fallecido
+			Integer ID, Integer ubicacion, TipoFallecimiento tipoFallecimiento, Integer codFallecido, String DNI,
+			String apellido, String nombre, String cocheria, Date fechaFallecimiento, Date fechaIngreso,
+			
+			// Parametros de la ubicacion
+			SubSector subsector, String cementerio, Integer nicho, Integer fila, String seccion, Integer macizo,
+			Integer unidad, Boolean bis, Boolean bisMacizo, Integer sepultura, Integer parcela, Integer mueble,
+			Integer inhumacion, Integer circ, Date vencimiento) {
+		
+		// Datos del fallecido
 		this.ID = ID;
 		this.ubicacion = ubicacion;
 		this.tipoFallecimiento = tipoFallecimiento;
-		this.cod_fallecido = cod_fallecido;
+		this.codFallecido = codFallecido;
 		this.DNI = DNI;
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.cocheria = cocheria;
 		this.fechaFallecimiento = fechaFallecimiento;
 		this.fechaIngreso = fechaIngreso;
+		
+		// Datos de la ubicacion
 		this.subsector = subsector;
 		this.cementerio = cementerio;
 		this.nicho = nicho;
@@ -41,7 +53,7 @@ public class FallecidoUbicacion {
 		this.macizo = macizo;
 		this.unidad = unidad;
 		this.bis = bis;
-		this.bis_macizo = bis_macizo;
+		this.bisMacizo = bisMacizo;
 		this.sepultura = sepultura;
 		this.parcela = parcela;
 		this.mueble = mueble;
@@ -50,12 +62,12 @@ public class FallecidoUbicacion {
 		this.vencimiento = vencimiento;
 	}
 
-	public Integer getCod_fallecido() {
-		return cod_fallecido;
+	public Integer getCodFallecido() {
+		return codFallecido;
 	}
 
-	public void setCod_fallecido(Integer cod_fallecido) {
-		this.cod_fallecido = cod_fallecido;
+	public void setCodFallecido(Integer codFallecido) {
+		this.codFallecido = codFallecido;
 	}
 
 	public Integer getID() {
@@ -130,9 +142,6 @@ public class FallecidoUbicacion {
 		this.tipoFallecimiento = tipoFallecimiento;
 	}
 	
-
-
-
 	public SubSector getSubsector() {
 		return subsector;
 	}
@@ -190,11 +199,11 @@ public class FallecidoUbicacion {
 	}
 
 	public Boolean getBis_macizo() {
-		return bis_macizo;
+		return bisMacizo;
 	}
 
-	public void setBis_macizo(Boolean bis_macizo) {
-		this.bis_macizo = bis_macizo;
+	public void setBisMacizo(Boolean bisMacizo) {
+		this.bisMacizo = bisMacizo;
 	}
 
 	public Integer getSepultura() {
@@ -246,9 +255,9 @@ public class FallecidoUbicacion {
 	}
 
 	public Date getVencimiento() {
-		
-		
-		return vencimiento;}
+		return vencimiento;
+	}
+	
 	public void setVencimiento(Date vencimiento) {
 		this.vencimiento = vencimiento;
 	}

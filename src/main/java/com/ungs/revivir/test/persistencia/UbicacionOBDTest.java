@@ -153,9 +153,9 @@ public class UbicacionOBDTest {
 			circ = obj1.getCirc().equals(obj2.getCirc());
 		assertTrue(circ);
 			
-		boolean bisMacizo = (obj1.getBis_macizo() == null) && (obj2.getBis_macizo() == null);
-		if(obj1.getBis_macizo()!= null && obj2.getBis_macizo() != null)
-			bisMacizo = obj1.getBis_macizo().equals(obj2.getBis_macizo());
+		boolean bisMacizo = (obj1.getBisMacizo() == null) && (obj2.getBisMacizo() == null);
+		if(obj1.getBisMacizo()!= null && obj2.getBisMacizo() != null)
+			bisMacizo = obj1.getBisMacizo().equals(obj2.getBisMacizo());
 		assertTrue(bisMacizo);
 			
 		boolean bis = (obj1.getBis() == null) && (obj2.getBis() == null);
@@ -215,9 +215,9 @@ public class UbicacionOBDTest {
 		if(obj1.getCirc()!= null && obj2.getCirc() != null)
 			circ = obj1.getCirc().equals(obj2.getCirc());
 		
-		boolean bisMacizo = (obj1.getBis_macizo() == null) && (obj2.getBis_macizo() == null);
-		if(obj1.getBis_macizo()!= null && obj2.getBis_macizo() != null)
-			bisMacizo = obj1.getBis_macizo().equals(obj2.getBis_macizo());
+		boolean bisMacizo = (obj1.getBisMacizo() == null) && (obj2.getBisMacizo() == null);
+		if(obj1.getBisMacizo()!= null && obj2.getBisMacizo() != null)
+			bisMacizo = obj1.getBisMacizo().equals(obj2.getBisMacizo());
 		
 		boolean bis = (obj1.getBis() == null) && (obj2.getBis() == null);
 		if(obj1.getBis()!= null && obj2.getBis() != null)

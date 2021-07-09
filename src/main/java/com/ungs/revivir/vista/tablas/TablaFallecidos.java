@@ -35,7 +35,7 @@ public class TablaFallecidos extends JTable{
 		for (FallecidoUbicacion elemento: lista) {
 			Object[] fila = {
 					//elemento.getDNI(),
-					elemento.getCod_fallecido(),
+					elemento.getCodFallecido(),
 					elemento.getNombre(),
 					elemento.getApellido(),
 					//elemento.getFechaFallecimiento(),
@@ -82,7 +82,7 @@ public class TablaFallecidos extends JTable{
 	}
 	public static  Fallecido getFallecido(FallecidoUbicacion fallecidoUbicacion) {
 		return new Fallecido(
-				 fallecidoUbicacion.getID(), fallecidoUbicacion.getUbicacion(),fallecidoUbicacion.getTipoFallecimiento() ,fallecidoUbicacion.getCod_fallecido() ,
+				 fallecidoUbicacion.getID(), fallecidoUbicacion.getUbicacion(),fallecidoUbicacion.getTipoFallecimiento() ,fallecidoUbicacion.getCodFallecido() ,
 				 fallecidoUbicacion.getDNI() , fallecidoUbicacion.getApellido() ,fallecidoUbicacion.getNombre(), fallecidoUbicacion.getCocheria() ,
 				 fallecidoUbicacion.getFechaFallecimiento() ,fallecidoUbicacion.getFechaFallecimiento() );
 	}

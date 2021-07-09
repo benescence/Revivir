@@ -30,6 +30,5 @@ public interface UbicacionesTotalesOBD {
 			SubSector subsector,
 			Boolean macizo_BIS,
 			Boolean bis);
-
-
+	
 }
