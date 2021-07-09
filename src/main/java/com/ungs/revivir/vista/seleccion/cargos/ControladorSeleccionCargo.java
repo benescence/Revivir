@@ -72,26 +72,12 @@ public class ControladorSeleccionCargo implements FallecidoSeleccionable, Client
 	private void cargarFallecido() {
 		ventana.requestFocusInWindow();
 		
-		/*String DNI = ventana.getDNIFal().getTextField().getText();
-		if (!Validador.DNI(DNI)) {
-			Popup.mostrar("El DNI solo puede consistir de numeros");
-			return;
-		}
-		
-		Fallecido directo = FallecidoManager.traerPorCOD(cod_fallecido);
-		if (directo == null) {
-			Popup.mostrar("No hay registros de un fallecido con el DNI: "+DNI+".");
-			return;
-		}
-		*/
 		Integer cod_fallecido;
 		if (!Validador.cod_fallecido(ventana.getCODFal().getTextField().getText())) {
-			
-				Popup.mostrar("El codigo solo puede consistir de numeros");
-				return;
-			
-		}
-		else {
+			Popup.mostrar("El codigo solo puede consistir de numeros");
+			return;
+
+		} else {
 			cod_fallecido = Integer.parseInt(ventana.getCODFal().getTextField().getText());
 		}
 
@@ -109,10 +95,8 @@ public class ControladorSeleccionCargo implements FallecidoSeleccionable, Client
 		fallecido = null;
 		ventana.getNombreFal().getTextField().setText("");
 		ventana.getApellidoFal().getTextField().setText("");
-		//ventana.getDNIFal().getTextField().setText("");
 		ventana.getCODFal().getTextField().setText("");
-		
-		
+
 		cliente = null;
 		ventana.getNombreCli().getTextField().setText("");
 		ventana.getApellidoCli().getTextField().setText("");
@@ -148,7 +132,6 @@ public class ControladorSeleccionCargo implements FallecidoSeleccionable, Client
 		this.fallecido = fallecido;
 		ventana.getNombreFal().getTextField().setText(fallecido.getNombre());
 		ventana.getApellidoFal().getTextField().setText(fallecido.getApellido());
-		//ventana.getDNIFal().getTextField().setText(fallecido.getDNI());
 		ventana.getCODFal().getTextField().setText(Integer.toString(fallecido.getCod_fallecido()));
 		actualizarCargos();
 	}

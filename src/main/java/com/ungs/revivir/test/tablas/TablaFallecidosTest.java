@@ -8,15 +8,24 @@ import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.vista.tablas.TablaFallecidos;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 import com.ungs.revivir.vista.util.contenedores.Ventana;
-/*
+
 public class TablaFallecidosTest extends Ventana{
 	private static final long serialVersionUID = 1L;
 	
 	public TablaFallecidosTest() {
 		super("Prueba tabla de fallecidos", 500, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		String nombres = "a";
+		String apellido = "";
+		Integer codFallecido = null;
 
-		TablaFallecidos tabla = new TablaFallecidos(FallecidoManager.traerTodo());
+		TablaFallecidos tabla = null;
+		try {
+			tabla = new TablaFallecidos(FallecidoManager.traerCompleto(nombres, apellido, codFallecido));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		JScrollPane panelTabla = new JScrollPane(tabla);
 		
 		PanelVertical panel = new PanelVertical();
@@ -31,4 +40,4 @@ public class TablaFallecidosTest extends Ventana{
 		new TablaFallecidosTest();
 	}
 
-}*/
+}

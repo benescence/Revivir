@@ -23,7 +23,8 @@ public class PanelFallecidos extends PanelVertical implements FallecidoSeleccion
 	private Ventana ventana;
 	private Component siguienteComponente;
 	
-	public PanelFallecidos(Ventana ventana, Dimension dimTexto, Dimension dimEntrada, Dimension dimBoton, Component siguienteComponente) {
+	public PanelFallecidos(Ventana ventana, Dimension dimTexto, Dimension dimEntrada,
+			Dimension dimBoton, Component siguienteComponente) {
 		this.ventana = ventana;
 		this.siguienteComponente = siguienteComponente;
 		

@@ -57,6 +57,7 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 		ventana = new VentanaPrincipal();
 		ventana.addWindowListener(new AccionCerrarVentana(e -> cerrarAplicacion()));
 		
+		
 		// VENTANAS EXTERNAS
 		ventana.getCargoAlta().addActionListener(e -> colocarVentanaExterna(new ControladorCargoAM(this)));
 		ventana.getClienteAlta().addActionListener(e -> colocarVentanaExterna(new ControladorClientesAM(this)));
@@ -171,7 +172,8 @@ public class ControladorPrincipal implements ClienteInvocable, ServicioInvocable
 	public void actualizarFallecidos() {
 		if (controladorInterno instanceof FallecidoInvocable)
 			((FallecidoInvocable)controladorInterno).actualizarFallecidos();
-	}	
+	}
+	
 	@Override
 	public void actualizarFallecidos(Fallecido nuevo) {
 		if (controladorInterno instanceof FallecidoInvocable)

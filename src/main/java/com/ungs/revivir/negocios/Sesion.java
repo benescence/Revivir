@@ -8,9 +8,9 @@ import com.ungs.revivir.persistencia.interfaces.UsuarioOBD;
 public class Sesion {
 	private static Usuario usuario;
 	
-	public static void ejecutarQuery(){
+	public static void inicializarZonaHoraria(){
 		OBD obd = new OBD();
-		obd.ejecutarTimeZone();
+		obd.inicializarZonaHoraria();
 	}
 	
 	public static void iniciarSesion(String nombre, String password) throws Exception {

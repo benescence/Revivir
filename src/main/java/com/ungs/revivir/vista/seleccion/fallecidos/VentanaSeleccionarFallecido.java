@@ -17,7 +17,7 @@ import com.ungs.revivir.vista.util.entradas.EntradaTexto;
 public class VentanaSeleccionarFallecido extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private TablaFallecidos tabla;
-	private EntradaTexto inNombre, inApellido /*inDNI*/;
+	private EntradaTexto inNombre, inApellido;
 	private EntradaNumero inCODFal;
 	private Boton btnBuscar, btnLimpiar, btnSeleccionar, btnCancelar;
 		
@@ -52,7 +52,6 @@ public class VentanaSeleccionarFallecido extends Ventana {
 		
 		inNombre = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellido = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		//inDNI = new EntradaTexto("DNI", dimTexto, dimEntrada);
 		inCODFal = new EntradaNumero("Codigo de Fallecido", dimTexto, dimEntrada);
 		
 		btnBuscar = new Boton("Buscar", dimBoton);
@@ -66,7 +65,6 @@ public class VentanaSeleccionarFallecido extends Ventana {
 		ret.add(inNombre);
 		ret.add(inApellido);
 		ret.add(inCODFal);
-		//ret.add(inDNI);
 		ret.add(panelBotones);
 		return ret;
 	}
@@ -99,11 +97,8 @@ public class VentanaSeleccionarFallecido extends Ventana {
 		return inApellido;
 	}
 
-	/*public EntradaTexto getDNIFal() {
-	return inDNIFal;
-	}*/
 	public EntradaNumero getCODFal() {
-	return inCODFal;
+		return inCODFal;
 	}
 	
 }

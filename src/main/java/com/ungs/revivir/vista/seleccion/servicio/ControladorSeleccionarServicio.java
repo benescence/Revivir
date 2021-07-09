@@ -24,6 +24,7 @@ public class ControladorSeleccionarServicio {
 
 	private void buscar() {
 		ventana.requestFocusInWindow();
+		
 		try {
 			String nombre = ventana.getNombre().getTextField().getText();
 			String codigo = ventana.getCodigo().getTextField().getText();

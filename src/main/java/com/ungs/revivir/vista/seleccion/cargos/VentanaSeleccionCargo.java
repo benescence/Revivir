@@ -20,7 +20,7 @@ public class VentanaSeleccionCargo extends Ventana {
 	private Boton btnSeleccionar, btnCancelar, btnlimpiar;
 	private Boton btnCargarFallecido, btnSelFallecido;
 	private Boton btnCargarCliente, btnSelCliente;
-	private EntradaTexto inNombreFal, inApellidoFal, /*inDNIFal*/ inCODFal;
+	private EntradaTexto inNombreFal, inApellidoFal, inCODFal;
 	private EntradaTexto inNombreCli, inApellidoCli, inDNICli;
 	
 	public VentanaSeleccionCargo() {
@@ -61,7 +61,6 @@ public class VentanaSeleccionCargo extends Ventana {
 		
 		inNombreFal = new EntradaTexto("Nombres", dimTexto, dimEntrada);
 		inApellidoFal = new EntradaTexto("Apellidos", dimTexto, dimEntrada);
-		//inDNIFal = new EntradaTexto("DNI", dimTexto, dimEntrada);
 		inCODFal = new EntradaTexto("cod. Fallecido", dimTexto, dimEntrada);
 		
 		inNombreFal.habilitado(false);
@@ -79,7 +78,6 @@ public class VentanaSeleccionCargo extends Ventana {
 		ret.add(new TextoCentrado("Datos del fallecido"));
 		ret.add(inNombreFal);
 		ret.add(inApellidoFal);
-		//ret.add(inDNIFal);
 		ret.add(inCODFal);
 		ret.add(panelBotones);
 		return ret;
@@ -154,11 +152,8 @@ public class VentanaSeleccionCargo extends Ventana {
 		return inApellidoFal;
 	}
 
-	/*public EntradaTexto getDNIFal() {
-	return inDNIFal;
-	}*/
 	public EntradaTexto getCODFal() {
-	return inCODFal;
+		return inCODFal;
 	}
 	
 	public EntradaTexto getNombreCli() {

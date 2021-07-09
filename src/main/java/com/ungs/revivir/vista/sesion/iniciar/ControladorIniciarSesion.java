@@ -1,6 +1,5 @@
 package com.ungs.revivir.vista.sesion.iniciar;
 
-
 import com.ungs.revivir.negocios.Sesion;
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
@@ -9,7 +8,6 @@ import com.ungs.revivir.vista.util.Popup;
 
 public class ControladorIniciarSesion {
 	private VentanaIniciarSesion ventana;
-	//private VentanaRecuperarPassword ventanaRecPass;
 
 	public ControladorIniciarSesion() {
 		ventana = new VentanaIniciarSesion();
@@ -28,7 +26,7 @@ public class ControladorIniciarSesion {
 			
 			try {
 				
-				//Sesion.ejecutarQuery();
+				//Sesion.inicializarZonaHoraria();
 				Sesion.iniciarSesion(nombre, password);
 				ventana.dispose();
 				ventana = null;

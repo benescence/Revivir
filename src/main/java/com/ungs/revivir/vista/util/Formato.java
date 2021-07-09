@@ -1,6 +1,5 @@
 package com.ungs.revivir.vista.util;
 
-
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -175,7 +174,5 @@ public class Formato {
 		
 		return renglonesMaximo*20;
 	}
-
-	// REPORTES
 
 }

@@ -20,7 +20,7 @@ import com.ungs.revivir.vista.util.contenedores.Ventana;
 
 public class VentanaPrincipal extends Ventana {
 	private static final long serialVersionUID = 1L;
-	private JMenuItem principalAlta,exportarBD,actualizarBD, principalCambiarPassword, principalCerrarSesion;
+	private JMenuItem principalAlta, exportarBD, actualizarBD, principalCambiarPassword, principalCerrarSesion;
 	private JMenuItem clienteAlta, clienteConsulta; 
 	private JMenuItem fallecidoAlta, fallecidoConsulta;
 	private JMenuItem cargoAlta, cargoConsultar; 
@@ -56,7 +56,9 @@ public class VentanaPrincipal extends Ventana {
 		
 		Usuario usuario = Sesion.getUsuario();
 		
-		//********************** MENU PRINCIPAL ***************************		
+		
+		//********************** MENU PRINCIPAL ***************************	
+		
 		JMenu menuPrincipal = new JMenu("Principal");
 		menuPrincipal.setMnemonic('l');
 		menuPrincipal.add(principalAlta = new JMenuItem("Alta completa", 'a'));
@@ -70,6 +72,7 @@ public class VentanaPrincipal extends Ventana {
 		barra.add(menuPrincipal);
 
 		//********************** MENU CLIENTES ***************************
+		
 		JMenu menuCliente = new JMenu("Clientes");
 		menuCliente.setMnemonic('c');
 		menuCliente.add(clienteAlta = new JMenuItem("Alta cliente", 'a'));
@@ -78,6 +81,7 @@ public class VentanaPrincipal extends Ventana {
 		barra.add(menuCliente);
 
 		//********************** MENU FALLECIDOS ***************************
+		
 		JMenu menuFallecido = new JMenu("Fallecidos");
 		menuFallecido.setMnemonic('f');
 		menuFallecido.add(fallecidoAlta = new JMenuItem("Alta fallecido", 'a'));
@@ -86,6 +90,7 @@ public class VentanaPrincipal extends Ventana {
 		barra.add(menuFallecido);
 
 		//********************** MENU RESPONSABLES ***************************
+		
 		JMenu menuResponsables = new JMenu("Responsables");
 		menuResponsables.setMnemonic('r');
 		menuResponsables.add(responsableAlta = new JMenuItem("Alta responsable", 'a'));
@@ -95,6 +100,7 @@ public class VentanaPrincipal extends Ventana {
 		barra.add(menuResponsables);
 
 		//********************** MENU CARGOS ***************************
+		
 		JMenu menuCargos = new JMenu("Cargos");
 		menuCargos.setMnemonic('g');
 		menuCargos.add(cargoAlta = new JMenuItem("Alta cargo", 'a'));
@@ -103,6 +109,7 @@ public class VentanaPrincipal extends Ventana {
 		barra.add(menuCargos);
 
 		//********************** MENU PAGOS ***************************
+		
 		JMenu menuPagos = new JMenu("Pagos");
 		menuPagos.setMnemonic('p');
 		menuPagos.add(pagoAlta = new JMenuItem("Alta pago", 'a'));
@@ -111,6 +118,7 @@ public class VentanaPrincipal extends Ventana {
 		barra.add(menuPagos);
 		
 		//********************** MENU MOVIMIENTOS  ***************************
+		
 		JMenu menuMovimientos = new JMenu("Movimientos");
 		menuMovimientos.setMnemonic('m');
 		menuMovimientos.add(movimientoAlta = new JMenuItem("Alta de movimiento", 'a'));
@@ -119,6 +127,7 @@ public class VentanaPrincipal extends Ventana {
 		barra.add(menuMovimientos);
 
 		//********************** MENU SERVICIOS ***************************
+		
 		JMenu menuSevicio = new JMenu("Servicios");
 		menuSevicio.setMnemonic('s');
 		menuSevicio.add(servicioAlta = new JMenuItem("Alta de servicio", 'a'));
@@ -128,6 +137,7 @@ public class VentanaPrincipal extends Ventana {
 			barra.add(menuSevicio);
 
 		//********************** MENU VENCIMIENTOS ***************************
+		
 		JMenu menuVencimientos = new JMenu("Vencimientos");
 		menuVencimientos.setMnemonic('v');
 		menuVencimientos.add(vencimientoConsulta = new JMenuItem("Consulta vencimientos", 'c'));
@@ -135,6 +145,7 @@ public class VentanaPrincipal extends Ventana {
 		barra.add(menuVencimientos);
 
 		//********************** MENU USUARIOS ***************************
+		
 		JMenu menuUsuario = new JMenu("Usuarios");
 		menuUsuario.setMnemonic('u');
 		menuUsuario.add(usuarioAlta = new JMenuItem("Alta de usuario", 'a'));
@@ -144,6 +155,7 @@ public class VentanaPrincipal extends Ventana {
 			barra.add(menuUsuario);
 
 		//********************** MENU UBICACIONES ***************************
+		
 		JMenu menuUbicaciones = new JMenu("Ubicaciones");
 		menuUbicaciones.setMnemonic('b');
 		menuUbicaciones.add(ubicacionLibe = new JMenuItem("Ubicaciones libres", 'c'));
