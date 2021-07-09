@@ -23,7 +23,6 @@ public class Busqueda {
 	
 	public static List<Fallecido> fallecidos(String DNI, String nombre, String apellido, Integer codFallecido) {
 		DNI = Verificador.anular(DNI);
-		codFallecido = Verificador.anularInt(codFallecido);
 		nombre = Verificador.anular(nombre);
 		apellido = Verificador.anular(apellido);
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
@@ -47,9 +46,9 @@ public class Busqueda {
 			boolean bis) {
 		
 		// Si esta activado el FLAG mostrar trae todas las ubicaciones posibles (no importa si esta ocupado o no)
-		UbicacionesTotalesOBD obd1 = FactoryOBD.crearUbicacionesTotalesOBD();
-		if(mostrar)
-			return obd1.selectByrangos(
+		if(mostrar) {
+			UbicacionesTotalesOBD obdTotal = FactoryOBD.crearUbicacionesTotalesOBD();
+			return obdTotal.selectByrangos(
 					nichoMax, nichoMin,
 					circMax, circMin,
 					filaMax, filaMin,
@@ -59,12 +58,12 @@ public class Busqueda {
 					sepulturaMax, sepulturaMin,
 					inhumacionMax, inhumacionMin,
 					macizoMax, macizoMin,
-					seccion,
-					subSector,macizo_bis, bis);
+					seccion, subSector, macizo_bis, bis);
+		}
 
 		// De lo contrario trae solo las ubicaciones que no estan ocupado
-		UbicacionLibreOBD obd = FactoryOBD.crearUbicacionLibreOBD();
-		return obd.selectByrangos(
+		UbicacionLibreOBD obdLibre = FactoryOBD.crearUbicacionLibreOBD();
+		return obdLibre.selectByrangos(
 				nichoMax, nichoMin,
 				circMax, circMin,
 				filaMax, filaMin,
@@ -74,16 +73,14 @@ public class Busqueda {
 				sepulturaMax, sepulturaMin,
 				inhumacionMax, inhumacionMin,
 				macizoMax, macizoMin,
-				seccion,
-				subSector,
-				macizo_bis,bis);
+				seccion, subSector,	macizo_bis, bis);
 	}
 
 	public static List<Pago> pagos( Fallecido fallecido, Date fecha) throws Exception {
 
 		// validaciones
 		if (fallecido == null && fecha == null)
-			throw new Exception("Debe llenar al menos uno de los 2 campos: cliente, fallecido o fecha.");
+			throw new Exception("Debe llenar al menos uno de los 2 campos: fallecido o fecha.");
 		
 		// Solo lleno solo la fecha
 		if ( fallecido == null)

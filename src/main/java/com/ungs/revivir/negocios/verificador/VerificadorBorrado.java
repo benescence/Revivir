@@ -34,7 +34,7 @@ public class VerificadorBorrado {
 	}
 	
 	public static boolean puedeBorrar(Ubicacion ubicacion) throws Exception {
-		// Por ahora el pago se puede borrar siempre
+		// Por ahora una ubicacion se puede borrar siempre
 		// Mas adelante puede que se incluyan restricciones.
 		return true;
 	}
@@ -58,11 +58,7 @@ public class VerificadorBorrado {
 		List<Responsable> responsables = Relacionador.traerResponsables(cliente);
 		if (!responsables.isEmpty())
 			mensaje += "\n    -Tiene fallecidos asociados.";
-		
-		/*List<Pago> pagos = Relacionador.traerPagos(cliente);
-		if (!pagos.isEmpty())
-			mensaje += "\n    -Tiene pagos asociados";*/
-		
+				
 		if (!mensaje.equals(""))
 			throw new Exception("El cliente con DNI "+cliente.getDNI()+" no puede borrarse porque:"+mensaje);
 		

@@ -45,6 +45,7 @@ public class CargoManager {
 		CargoOBD obd = FactoryOBD.crearCargoOBD();
 		return obd.selectByFallecido(fallecido);
 	}
+	
 	public static List<Cargo> traerPorServicio(Servicio servicio) {
 		CargoOBD obd = FactoryOBD.crearCargoOBD();
 		return obd.selectByServicio(servicio);

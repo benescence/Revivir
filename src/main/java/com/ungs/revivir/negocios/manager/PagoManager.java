@@ -11,7 +11,6 @@ import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 public class PagoManager {
 
 	public static void guardar(Pago nuevo) throws Exception {
-		//nuevo = Verificador.pago(nuevo);
 		PagoOBD obd = FactoryOBD.crearPagoOBD();
 		obd.insert(nuevo);
 	}

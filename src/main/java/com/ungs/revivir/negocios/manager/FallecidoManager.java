@@ -21,42 +21,39 @@ public class FallecidoManager {
 	}
 
 	public static void modificar(Fallecido fallecido) {
-		Fallecido fallecido1 = null;
+		Fallecido fallecidoVerificado = null;
 		try {
-			
-			 fallecido1 = Verificador.fallecido(fallecido);
+			 fallecidoVerificado = Verificador.fallecido(fallecido);
 			 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		UbicacionOBD obd1 = FactoryOBD.crearUbicacionOBD();
-		Fallecido original = obd.selectByID(fallecido.getID());
-		Ubicacion ubicacion = obd1.selectByID(original.getUbicacion());
-		fallecido1.setUbicacion(ubicacion.getID());
-		obd.updateSinUbicacion(fallecido1);
+		
+		FallecidoOBD fallecidoOBD = FactoryOBD.crearFallecidoOBD();
+		UbicacionOBD ubicacionOBD = FactoryOBD.crearUbicacionOBD();
+		
+		Fallecido fallecidoOriginal = fallecidoOBD.selectByID(fallecido.getID());
+		Ubicacion ubicacion = ubicacionOBD.selectByID(fallecidoOriginal.getUbicacion());
+		fallecidoVerificado.setUbicacion(ubicacion.getID());
+		
+		fallecidoOBD.updateSinUbicacion(fallecidoVerificado);
 	}
 	
 	public static void modificarUbicacion(Fallecido fallecido) {
-		/*Fallecido fallecido1 = null;
-		try {
-			 fallecido1 = Verificador.fallecido(fallecido);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		obd.update(fallecido);
 	}
 	
 	public static void eliminar(Fallecido fallecido) {
-		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		UbicacionOBD obdubi = FactoryOBD.crearUbicacionOBD();
-		obd.delete(fallecido);
-		Ubicacion eliminar = obdubi.selectByFallecido(fallecido);
-		obdubi.delete(eliminar);
+		// Elimino al fallecido
+		FallecidoOBD fallecidoOBD = FactoryOBD.crearFallecidoOBD();
+		fallecidoOBD.delete(fallecido);
+		
+		// Elimino su ubicacion
+		UbicacionOBD ubicacionOBD = FactoryOBD.crearUbicacionOBD();
+		Ubicacion ubicacion = ubicacionOBD.selectByFallecido(fallecido);
+		ubicacionOBD.delete(ubicacion);
 	}
 	
 	public static List<Fallecido> traerTodo() {
@@ -64,9 +61,9 @@ public class FallecidoManager {
 		return obd.select();
 	}
 
-	public static Fallecido traerPorCOD(Integer cod_fallecido) {
+	public static Fallecido traerPorCOD(Integer codFallecido) {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		return obd.selectByCOD(cod_fallecido);
+		return obd.selectByCOD(codFallecido);
 	}
 
 	public static Fallecido traerPorID(Integer ID) {
@@ -81,9 +78,9 @@ public class FallecidoManager {
 	
 	public static Integer traerUltimoCodFallecido() {
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		Integer cod_fallecido = obd.traerUltimoCodFallecido();
-		if (cod_fallecido != null)
-			return cod_fallecido;
+		Integer codFallecido = obd.traerUltimoCodFallecido();
+		if (codFallecido != null)
+			return codFallecido;
 		return 0;
 	} 
 	
@@ -92,11 +89,9 @@ public class FallecidoManager {
 		return obd.ultimoInsertado();
 	}
 
-	public static List<Fallecido> traer(String nombres, String apellido, /*String DNI*/Integer cod_fallecido) throws Exception {
+	public static List<Fallecido> traer(String nombres, String apellido, Integer codFallecido) throws Exception {
 		nombres = Verificador.anular(nombres);
 		apellido = Verificador.anular(apellido);
-		//DNI = Verificador.anular(DNI);
-		cod_fallecido = Verificador.anularInt(cod_fallecido);
 		String mensaje = "";
 
 		if (nombres != null && !Validador.nombrePersona(nombres))
@@ -105,27 +100,22 @@ public class FallecidoManager {
 		if (apellido != null && !Validador.apellido(apellido))
 			mensaje += "\n    -El APELLIDO solo puede estar compuesto de letras y espacios.";
 		
-		/*if (DNI != null && !Validador.DNI(DNI))
-			mensaje += "\n    -El DNI solo puede estar compuesto de n�meros.";*/
-		if (cod_fallecido != null && !Validador.cod_fallecido(Integer.toString((cod_fallecido))))
+		if (codFallecido != null && !Validador.cod_fallecido(Integer.toString((codFallecido))))
 			mensaje += "\n    -El codigo solo puede estar compuesto de n�meros.";
 		
-		if (nombres == null && apellido == null && /*DNI == null*/ cod_fallecido == null)
+		if (nombres == null && apellido == null && codFallecido == null)
 			mensaje += "\n    -Debe llenar al menos uno de los campos para realizar la busqueda.";
 		
 		if (!mensaje.equals(""))
 			throw new Exception("Se encontraron los siguientes errores:"+mensaje);
 		FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
 		
-		return obd.selectByNombreApellidoCOD(nombres, apellido, cod_fallecido);
-		/*FallecidoOBD obd = FactoryOBD.crearFallecidoOBD();
-		return obd.selectByNombreApellidoDNI(nombres, apellido, DNI);*/
+		return obd.selectByNombreApellidoCOD(nombres, apellido, codFallecido);
 	}
-	public static List<FallecidoUbicacion> traerCompleto(String nombres, String apellido, /*String DNI*/Integer cod_fallecido) throws Exception {
+	
+	public static List<FallecidoUbicacion> traerCompleto(String nombres, String apellido, Integer codFallecido) throws Exception {
 		nombres = Verificador.anular(nombres);
 		apellido = Verificador.anular(apellido);
-		//DNI = Verificador.anular(DNI);
-		cod_fallecido = Verificador.anularInt(cod_fallecido);
 		String mensaje = "";
 
 		if (nombres != null && !Validador.nombrePersona(nombres))
@@ -134,18 +124,17 @@ public class FallecidoManager {
 		if (apellido != null && !Validador.apellido(apellido))
 			mensaje += "\n    -El APELLIDO solo puede estar compuesto de letras y espacios.";
 		
-		/*if (DNI != null && !Validador.DNI(DNI))
-			mensaje += "\n    -El DNI solo puede estar compuesto de n�meros.";*/
-		if (cod_fallecido != null && !Validador.cod_fallecido(Integer.toString((cod_fallecido))))
+		if (codFallecido != null && !Validador.cod_fallecido(Integer.toString((codFallecido))))
 			mensaje += "\n    -El codigo solo puede estar compuesto de n�meros.";
 		
-		if (nombres == null && apellido == null && /*DNI == null*/ cod_fallecido == null)
+		if (nombres == null && apellido == null && codFallecido == null)
 			mensaje += "\n    -Debe llenar al menos uno de los campos para realizar la busqueda.";
 		
 		if (!mensaje.equals(""))
 			throw new Exception("Se encontraron los siguientes errores:"+mensaje);
 		FallecidoUbicacionOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
 		
-		return obd.selectByNombreApellidoCOD(nombres, apellido, cod_fallecido);
+		return obd.selectByNombreApellidoCOD(nombres, apellido, codFallecido);
 	}
+
 }

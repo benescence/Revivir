@@ -17,9 +17,11 @@ public class Validador {
 	public static boolean telefono(String telefono) {
 		return formatoNumero(telefono);
 	}
+	
 	public static boolean cod_fallecido(String codigo) {
 		return formatoNumero(codigo);
 	}
+	
 	public static boolean email(String email) {
 		return email.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" + "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$");
 	}

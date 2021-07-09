@@ -51,7 +51,7 @@ public class VerificadorUbicacion {
 				mensaje += "\n    -La SEPULTURA no puede estar vacio.";
 			
 			if (!mensaje.equals(""))
-				throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
+				throw new Exception("Se encontraron los siguientes errores en el formulario: " + mensaje);
 			
 			// Solo van los campos que corresponden, el resto va en NULL
 			verificar.setSepultura(sepultura);
@@ -68,7 +68,7 @@ public class VerificadorUbicacion {
 				mensaje += "\n    -El NICHO no puede estar vacio.";
 			
 			if (!mensaje.equals(""))
-				throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
+				throw new Exception("Se encontraron los siguientes errores en el formulario: " + mensaje);
 			
 			// Solo van los campos que corresponden, el resto va en NULL
 			verificar.setMueble(mueble);

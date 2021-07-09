@@ -81,6 +81,6 @@ public class ClienteManager {
 		
 		ClienteOBD obd = FactoryOBD.crearClienteOBD();
 		return obd.selectByNombreApellidoDNI(nombres, apellido, DNI);
-	
+	}
 
-}}
+}

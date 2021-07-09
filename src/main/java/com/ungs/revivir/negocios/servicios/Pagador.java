@@ -44,8 +44,5 @@ public class Pagador {
 		pago.setCargo(nuevoCargo.getID());
 		pagarCargoExistente(pago, nuevoCargo);		
 	}	
-		
-	
-	
 
 }

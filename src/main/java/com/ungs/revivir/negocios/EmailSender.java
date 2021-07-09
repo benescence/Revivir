@@ -55,11 +55,13 @@ public class EmailSender {
 			
 			t.sendMessage(message,message.getAllRecipients());
 			t.close();
+			
 		} catch (Throwable e) {
 			System.out.println("Fallo sendEmail al enviar Correo: " + e.getMessage());
 			e.printStackTrace();
 			return false;
 		}
+		
 		return true;
 	}
 	

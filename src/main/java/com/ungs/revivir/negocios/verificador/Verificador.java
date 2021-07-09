@@ -105,7 +105,7 @@ public class Verificador {
 	public static Fallecido fallecido(Fallecido verificar) throws Exception {
 		String nombre = anular(verificar.getNombre());
 		String apellido = anular(verificar.getApellido());
-		Integer codFallecido = anularInt(verificar.getCod_fallecido());
+		Integer codFallecido = verificar.getCod_fallecido();
 		String cocheria = anular(verificar.getCocheria());
 		String mensaje = "";
 		
@@ -230,12 +230,5 @@ public class Verificador {
 		else
 			return texto;
 	}
-	
-	public static Integer anularInt(Integer numero) {
-		if (numero == null )
-			return null;
-		else
-			return numero;
-	}
-	
+		
 }
