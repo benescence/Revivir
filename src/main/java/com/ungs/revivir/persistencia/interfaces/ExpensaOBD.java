@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.ungs.revivir.persistencia.entidades.Expensas;
 
-public interface ExpensasOBD {
+public interface ExpensaOBD {
 
 	public void insert(Expensas expensas);
 	

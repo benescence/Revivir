@@ -5,7 +5,7 @@ import java.util.List;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 
-public interface UbicacionesTotalesOBD {
+public interface UbicacionTotalOBD {
 	
 	public List<Ubicacion>selectByrangos(
 			Integer nichoMax,

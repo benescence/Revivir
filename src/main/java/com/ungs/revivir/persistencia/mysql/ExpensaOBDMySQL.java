@@ -10,9 +10,9 @@ import java.util.List;
 
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.entidades.Expensas;
-import com.ungs.revivir.persistencia.interfaces.ExpensasOBD;
+import com.ungs.revivir.persistencia.interfaces.ExpensaOBD;
 
-public class ExpensasOBDMySQL extends OBD implements ExpensasOBD{
+public class ExpensaOBDMySQL extends OBD implements ExpensaOBD{
 	private final String campos = "responsable, periodo, ubicacion, fecha_vencimiento, importe, observaciones";
 	private final String tabla = "rev_expensas";
 	
@@ -77,7 +77,7 @@ public class ExpensasOBDMySQL extends OBD implements ExpensasOBD{
 	}
 
 	@Override
-	public Expensas  ultimoInsertado() {
+	public Expensas ultimoInsertado() {
 		Integer ID = selectLastID(tabla);
 		if (ID == null)
 			return null;
@@ -85,11 +85,8 @@ public class ExpensasOBDMySQL extends OBD implements ExpensasOBD{
 			return selectByID(ID);
 	}
 
-	
-
 	@Override
-	public 	List<Expensas> selectByFechaVencimiento(Date fecha_vencimiento)
-	{
+	public List<Expensas> selectByFechaVencimiento(Date fecha_vencimiento) {
 		if (selectByFechaVencimiento(fecha_vencimiento) == null  )
 			return selectByCondicion("true");
 		
@@ -97,23 +94,23 @@ public class ExpensasOBDMySQL extends OBD implements ExpensasOBD{
 		if (fecha_vencimiento != null)
 			condicion += "fecha_vencimiento = '"+fecha_vencimiento+"%'";
 	
-		
 		return selectByCondicion(condicion);
 	}
+	
 	@Override
-	public  List<Expensas>  selectByResponsable(Integer responsable){
-	if (selectByResponsable(responsable) == null  )
-		return selectByCondicion("true");
+	public List<Expensas> selectByResponsable(Integer responsable) {
+		if (selectByResponsable(responsable) == null  )
+			return selectByCondicion("true");
+		
+		String condicion = "";
+		if (responsable!= null)
+			condicion += "responsable = '"+responsable+"%'";
 	
-	String condicion = "";
-	if (responsable!= null)
-		condicion += "responsable = '"+responsable+"%'";
-
-	
-	return selectByCondicion(condicion);
+		return selectByCondicion(condicion);
 	}
+	
 	@Override
-	public  List<Expensas>  selectByUbicacion(Integer ubicacion){
+	public List<Expensas> selectByUbicacion(Integer ubicacion){
 		if (selectByUbicacion(ubicacion) == null  )
 			return selectByCondicion("true");
 		
@@ -121,11 +118,8 @@ public class ExpensasOBDMySQL extends OBD implements ExpensasOBD{
 		if (ubicacion != null)
 			condicion += "fecha_vencimiento = '"+ubicacion+"%'";
 	
-		
 		return selectByCondicion(condicion);
 	}
-
-	
 
 	private List<Expensas> selectByCondicion(String condicion) {
 		List<Expensas> ret = new ArrayList<Expensas>();
@@ -160,7 +154,5 @@ public class ExpensasOBDMySQL extends OBD implements ExpensasOBD{
 			
 		return ret;
 	}
-
-	
 
 }

@@ -15,14 +15,13 @@ import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoUbicacionOBD;
 
 public class FallecidoUbicacionOBDMySQL extends OBD implements FallecidoUbicacionOBD{
-	private final String campos = " ubicacion, DNI, apellido, nombre, fecha_fallecimiento, tipo_fallecimiento, cod_fallecido, cocheria, fecha_ingreso,"
-			+ "subsector, cementerio, nicho, fila,\"\r\n"
-			+ "			+ \"seccion, macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ, vencimiento";
+	private final String campos = " ubicacion, DNI, apellido, nombre, fecha_fallecimiento, tipo_fallecimiento, cod_fallecido, "
+			+ "cocheria, fecha_ingreso, subsector, cementerio, nicho, fila, seccion, macizo, unidad, bis, bis_macizo, "
+			+ "sepultura, parcela, mueble, inhumacion, circ, vencimiento";
 	private final String tabla = "rev_v_fallecidos";
-	
-	
+		
 	@Override
-	public List<FallecidoUbicacion> selectByNombreApellidoCOD(String nombre, String apellido, Integer cod_fallecido) {
+	public List<FallecidoUbicacion> selectByNombreApellidoCOD(String nombre, String apellido, Integer codFallecido) {
 		String condicion = "";
 		if (nombre != null)
 			condicion += "upper(nombre) like '"+nombre.toUpperCase()+"%'";
@@ -33,15 +32,14 @@ public class FallecidoUbicacionOBDMySQL extends OBD implements FallecidoUbicacio
 			condicion += "upper(apellido) like '"+apellido.toUpperCase()+"%'";
 		}
 		
-		if (cod_fallecido != null) {
+		if (codFallecido != null) {
 			if (!condicion.equals(""))
 				condicion += " and "; 
-			condicion += "cod_fallecido like '"+cod_fallecido+"%'";
+			condicion += "cod_fallecido like '"+codFallecido+"%'";
 		}
 		
 		return selectByCondicion(condicion);
 	}
-	
 	
 	private List<FallecidoUbicacion> selectByCondicion(String condicion) {
 		List<FallecidoUbicacion> ret = new ArrayList<FallecidoUbicacion>();
@@ -92,8 +90,7 @@ public class FallecidoUbicacionOBDMySQL extends OBD implements FallecidoUbicacio
 						resultados.getInt("ubicacion"),
 						Definido.tipoFallecimiento(resultados.getInt("tipo_fallecimiento")),
 						resultados.getInt("cod_fallecido"),
-						//resultados.getString("DNI"),
-						resultados.getString("cod_fallecido"),
+						resultados.getString("cod_fallecido"), // revisar, deberia ir DNI
 						resultados.getString("apellido"),
 						resultados.getString("nombre"),
 						resultados.getString("cocheria"),
@@ -128,8 +125,6 @@ public class FallecidoUbicacionOBDMySQL extends OBD implements FallecidoUbicacio
 			
 		return ret;
 	}
-
-	
 
 	public FallecidoUbicacion selectByID(Integer ID) {
 		String condicion = "ID = "+ID;

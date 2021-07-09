@@ -8,8 +8,6 @@ import java.sql.Statement;
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.interfaces.ConfiguracionOBD;
 
-
-
 public class ConfiguracionOBDMySQL extends OBD implements ConfiguracionOBD {
 	private final String tabla = "rev_configuracion";
 	
@@ -53,6 +51,4 @@ public class ConfiguracionOBDMySQL extends OBD implements ConfiguracionOBD {
 		return ret;
 	}
 
-
-	
 }

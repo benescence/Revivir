@@ -13,7 +13,7 @@ import com.ungs.revivir.persistencia.definidos.Rol;
 import com.ungs.revivir.persistencia.entidades.Usuario;
 import com.ungs.revivir.persistencia.interfaces.UsuarioOBD;
 
-public class UsuarioOBDMYSQL extends OBD implements UsuarioOBD{
+public class UsuarioOBDMySQL extends OBD implements UsuarioOBD{
 	private final String campos = "usuario, password, rol"; 
 	private final String tabla = "rev_usuarios";
 	

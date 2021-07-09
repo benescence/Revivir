@@ -13,7 +13,7 @@ import com.ungs.revivir.persistencia.entidades.Cargo;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 
-public class PagoOBDMYSQL extends OBD implements PagoOBD{
+public class PagoOBDMySQL extends OBD implements PagoOBD{
 	private final String campos = "cargo, importe, observaciones, fecha";
 	private final String tabla = "rev_pagos";
 	
@@ -67,18 +67,6 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 
 	//*********************** METODOS ESPECIFICOS ************************************
 	
-	/*@Override
-	public List<Pago> selectByCliente(Cliente cliente) {
-		String condicion = "cliente = "+cliente.getID();
-		return selectByCondicion(condicion);
-	}
-	
-	@Override
-	public List<Pago> selectByClienteFecha(Cliente cliente, Date fecha) {
-		String condicion = "cliente = "+cliente.getID()+" and fecha = '"+fecha+"'";
-		return selectByCondicion(condicion);
-	}*/
-	
 	@Override
 	public List<Pago> selectByFecha(Date fecha) {
 		String condicion = "fecha = '" +fecha+"'";
@@ -106,7 +94,6 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 				ret.add(new Pago(
 					resultados.getInt("ID"),
 					resultados.getInt("cargo"),
-					//resultados.getInt("cliente"),
 					resultados.getDouble("importe"),
 					resultados.getString("observaciones"),
 					resultados.getDate("fecha")
@@ -118,7 +105,6 @@ public class PagoOBDMYSQL extends OBD implements PagoOBD{
 			conexion.close();
 			
 		}catch(Exception e) {
-			
 			e.printStackTrace();
 		}
 			

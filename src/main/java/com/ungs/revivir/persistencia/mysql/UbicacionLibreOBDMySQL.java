@@ -163,6 +163,4 @@ public class UbicacionLibreOBDMySQL extends OBD implements UbicacionLibreOBD {
 		return selectByCondicion(condicion, limite);		
 	}
 
-	
-	
 }

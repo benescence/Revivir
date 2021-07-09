@@ -18,7 +18,6 @@ public class OBD {
 	//protected String passwordBD = "root";
 	
 	// PRODUCCION
-	
 	protected final String cadenaConexion = "jdbc:mysql://crematorioescobar.com:3306/cretorioescobar_REVIVIR"; 
 	protected String usuarioBD = "cretorioescobar_REVIVIR";
 	protected String passwordBD = "REVIVIR1a";
@@ -54,6 +53,7 @@ public class OBD {
 			}
 			
 		}
+		
 		return conexion;
 	}
 

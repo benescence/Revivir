@@ -17,7 +17,7 @@ import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionLibreOBD;
-import com.ungs.revivir.persistencia.interfaces.UbicacionesTotalesOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionTotalOBD;
 
 public class Busqueda {
 	
@@ -47,7 +47,7 @@ public class Busqueda {
 		
 		// Si esta activado el FLAG mostrar trae todas las ubicaciones posibles (no importa si esta ocupado o no)
 		if(mostrar) {
-			UbicacionesTotalesOBD obdTotal = FactoryOBD.crearUbicacionesTotalesOBD();
+			UbicacionTotalOBD obdTotal = FactoryOBD.crearUbicacionTotalOBD();
 			return obdTotal.selectByrangos(
 					nichoMax, nichoMin,
 					circMax, circMin,

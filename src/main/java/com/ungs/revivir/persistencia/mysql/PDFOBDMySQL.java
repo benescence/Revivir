@@ -2,7 +2,7 @@ package com.ungs.revivir.persistencia.mysql;
 
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.entidades.Pdf;
-import com.ungs.revivir.persistencia.interfaces.PdfOBD;
+import com.ungs.revivir.persistencia.interfaces.PDFOBD;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PdfOBDMySQL  extends OBD implements PdfOBD{
+public class PDFOBDMySQL  extends OBD implements PDFOBD{
 
 	public Pdf traerPdf(Integer id) {
 		Pdf ret = new Pdf();

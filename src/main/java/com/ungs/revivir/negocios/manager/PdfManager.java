@@ -10,12 +10,12 @@ import java.io.InputStream;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.entidades.Pdf;
-import com.ungs.revivir.persistencia.interfaces.PdfOBD;
+import com.ungs.revivir.persistencia.interfaces.PDFOBD;
 
 public class PdfManager {
 
 	public static void guardarPdf(Pdf archivo){
-		PdfOBD obd = FactoryOBD.crearPdfOBD();
+		PDFOBD obd = FactoryOBD.crearPDFOBD();
 		obd.insert(archivo);
 	}
 	
@@ -43,17 +43,17 @@ public class PdfManager {
 	}
 	
 	public static void editarPdf(Pdf archivo){
-		PdfOBD obd = FactoryOBD.crearPdfOBD();
+		PDFOBD obd = FactoryOBD.crearPDFOBD();
 		obd.update(archivo);
 	}
 	
 	public static void eliminarPdf(Pdf archivo){
-		PdfOBD obd = FactoryOBD.crearPdfOBD();
+		PDFOBD obd = FactoryOBD.crearPDFOBD();
 		obd.delete(archivo);
 	}
 	
 	public static void abrirPdf(Integer id){
-		PdfOBD obd = FactoryOBD.crearPdfOBD();
+		PDFOBD obd = FactoryOBD.crearPDFOBD();
 		String nombrepdf = obd.abrir(id);
 		try {
 			String path = System.getProperty("java.io.tmpdir")+File.separatorChar+nombrepdf;
@@ -64,7 +64,7 @@ public class PdfManager {
 	}
 	
 	public static Pdf traerPdfByID(Integer contenido) {
-		PdfOBD obd = FactoryOBD.crearPdfOBD();
+		PDFOBD obd = FactoryOBD.crearPDFOBD();
 		return obd.traerPdf(contenido);
 	}
 

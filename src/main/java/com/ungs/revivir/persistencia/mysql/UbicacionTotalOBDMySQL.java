@@ -11,14 +11,13 @@ import com.ungs.revivir.persistencia.Definido;
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
-import com.ungs.revivir.persistencia.interfaces.UbicacionesTotalesOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionTotalOBD;
 
-public class UbicacioneTotalOBDMySQL extends OBD implements UbicacionesTotalesOBD {
+public class UbicacionTotalOBDMySQL extends OBD implements UbicacionTotalOBD {
 	private final String campos = "subsector, nicho, fila,"
 			+ "seccion, macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ";
 	private final String tabla = "rev_ubicaciones_totales";
 	
-
 	@Override
 	public List<Ubicacion> selectByrangos(
 									Integer nichoMax, Integer nichoMin,
@@ -161,4 +160,5 @@ public class UbicacioneTotalOBDMySQL extends OBD implements UbicacionesTotalesOB
 			
 		return ret;
 	}
+	
 }

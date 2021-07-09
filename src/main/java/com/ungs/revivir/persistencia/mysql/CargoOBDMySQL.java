@@ -13,7 +13,7 @@ import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Servicio;
 import com.ungs.revivir.persistencia.interfaces.CargoOBD;
 
-public class CargoOBDMYSQL extends OBD implements CargoOBD{
+public class CargoOBDMySQL extends OBD implements CargoOBD{
 	private final String campos = "fallecido, servicio, observaciones, pagado";
 	private final String tabla = "rev_cargos";
 	

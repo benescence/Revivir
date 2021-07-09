@@ -2,7 +2,7 @@ package com.ungs.revivir.persistencia.interfaces;
 
 import com.ungs.revivir.persistencia.entidades.Pdf;
 
-public interface PdfOBD {
+public interface PDFOBD {
 	
 	public void insert(Pdf fallecido);
 	

@@ -44,14 +44,12 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 				+", nombre = '"+fallecido.getNombre()+"'"
 				+", fecha_fallecimiento = "+fechaFal
 				+", tipo_fallecimiento = "+Definido.tipoFallecimiento(fallecido.getTipoFallecimiento())
-				//+", cod_fallecido = '"+fallecido.getCod_fallecido()+"'"
 				+", cocheria = '"+fallecido.getCocheria()+"'"
 				+", fecha_ingreso = '"+fallecido.getFechaIngreso()+"'";
 		String consulta = "update "+tabla+" set "+valores+"  where ("+condicion+");";
 		ejecutarSQL(consulta);
 	}
 
-	
 	@Override
 	public void updateSinUbicacion(Fallecido fallecido) {
 		String fechaFal = (fallecido.getFechaFallecimiento() == null) ? null: "'"+fallecido.getFechaFallecimiento()+"'";
@@ -101,27 +99,6 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 		return selectByCondicion(condicion);
 	}
 	
-	/*public List<Fallecido> selectByNombreApellidoDNI(String nombre, String apellido, String DNI) {
-		String condicion = "";
-		if (nombre != null)
-			condicion += "upper(nombre) like '"+nombre.toUpperCase()+"%'";
-		
-		if (apellido != null) {
-			if (!condicion.equals(""))
-				condicion += " and "; 
-			condicion += "upper(apellido) like '"+apellido.toUpperCase()+"%'";
-		}
-		
-		if (DNI != null) {
-			if (!condicion.equals(""))
-				condicion += " and "; 
-			condicion += "upper(DNI) like '"+DNI.toUpperCase()+"%'";
-		}
-		
-		return selectByCondicion(condicion);
-	}
-*/
-	
 	@Override
 	public List<Fallecido> selectByNombreApellido(String nombre, String apellido) {
 		String condicion = "";
@@ -133,7 +110,6 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 				condicion += " and "; 
 			condicion += "upper(apellido) like '"+apellido.toUpperCase()+"%'";
 		}
-		
 		
 		return selectByCondicion(condicion);
 	}
@@ -154,7 +130,6 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 						resultados.getInt("ubicacion"),
 						Definido.tipoFallecimiento(resultados.getInt("tipo_fallecimiento")),
 						resultados.getInt("cod_fallecido"),
-						//resultados.getString("DNI"),
 						resultados.getString("cod_fallecido"),
 						resultados.getString("apellido"),
 						resultados.getString("nombre"),
@@ -168,7 +143,7 @@ public class FallecidoOBDMySQL extends OBD implements FallecidoOBD{
 			sentencia.close();
 			conexion.close();
 			
-		}catch(Exception e) {
+		} catch(Exception e) {
 			System.out.println(comandoSQL);
 			e.printStackTrace();
 		}

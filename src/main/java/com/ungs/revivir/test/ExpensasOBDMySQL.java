@@ -11,11 +11,11 @@ import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Expensas;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
-import com.ungs.revivir.persistencia.interfaces.ExpensasOBD;
+import com.ungs.revivir.persistencia.interfaces.ExpensaOBD;
 
 class ExpensasOBDMySQL {
 	private Expensas objeto = crearObjeto();
-	private ExpensasOBD obd = FactoryOBD.crearExpensasOBD();
+	private ExpensaOBD obd = FactoryOBD.crearExpensaOBD();
 	
 	private Expensas crearObjeto() {
 		Cliente cliente = FactoryOBD.crearClienteOBD().ultimoInsertado();

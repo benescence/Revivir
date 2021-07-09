@@ -13,7 +13,7 @@ import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Responsable;
 import com.ungs.revivir.persistencia.interfaces.ResponsableOBD;
 
-public class ResponsableOBDMYSQL extends OBD implements ResponsableOBD{
+public class ResponsableOBDMySQL extends OBD implements ResponsableOBD{
 	private final String campos = "cliente, fallecido, observaciones";
 	private final String tabla = "rev_responsables";
 	
@@ -67,7 +67,9 @@ public class ResponsableOBDMYSQL extends OBD implements ResponsableOBD{
 		return selectByCondicion("true");
 	}
 
+	
 	//************************** METODOS ESPECIFICOS ************************************
+	
 	
 	@Override
 	public List<Responsable> selectByCliente(Cliente cliente) {
@@ -87,8 +89,10 @@ public class ResponsableOBDMYSQL extends OBD implements ResponsableOBD{
 		return selectUnicoByCondicion(condicion);
 	}
 	
+	
 	//**************************** METODOS PRIVADOS *************************************
 
+	
 	private Responsable selectUnicoByCondicion(String condicion) {
 		List<Responsable> lista = selectByCondicion(condicion);
 		if (lista.size() > 0)
