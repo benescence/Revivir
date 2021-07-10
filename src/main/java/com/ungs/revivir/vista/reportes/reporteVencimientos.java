@@ -5,16 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.ungs.revivir.negocios.Almanaque;
-import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
-
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -56,13 +53,13 @@ public class reporteVencimientos {
 		
 		
 			try {
-				this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\reporteVencimientos.jasper");
-				System.out.println("este es mi reporte");
+				this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\Prueba1.jasper");
+				//this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\reporteNotificaciones.jasper");
+				System.out.println("este es mi reporte 1");
 				this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalVencimientos,
 						new JRBeanCollectionDataSource(itemVencimientos));
 				System.out.println("Se cargo correctamente reporte");
 				mostrar();
-		
 			} catch (JRException ex) {
 				System.out.println("Ocurrio un error mientras se cargaba el archivo reporteVencimientos.jasper \n " + ex);
 			}
