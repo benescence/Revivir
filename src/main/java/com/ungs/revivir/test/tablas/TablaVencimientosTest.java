@@ -9,7 +9,7 @@ import com.ungs.revivir.vista.tablas.TablaVencimientos;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 import com.ungs.revivir.vista.util.contenedores.Ventana;
 
-public class TablaVencimientosTest extends Ventana{
+/*public class TablaVencimientosTest extends Ventana{
 	private static final long serialVersionUID = 1L;
 
 	public TablaVencimientosTest() {
@@ -31,4 +31,4 @@ public class TablaVencimientosTest extends Ventana{
 		new TablaVencimientosTest();
 	}
 
-}
+}*/

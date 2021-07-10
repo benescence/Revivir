@@ -6,8 +6,9 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.ungs.revivir.negocios.manager.FallecidoManager;
+import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.util.Formato;
 
@@ -15,32 +16,30 @@ public class TablaVencimientos extends JTable {
 	private static final long serialVersionUID = 1L;
 	private String[] columnas = {"Codigo", "Fecha", "Fallecido" ,"Ubicacion"};
 	private DefaultTableModel modelo;
-	private List<Ubicacion> lista;
+	private List<FallecidoUbicacion> lista;
 
-	public TablaVencimientos(List<Ubicacion> lista) {
+	public TablaVencimientos(List<FallecidoUbicacion> lista) {
 		modelo = new DefaultTableModel(null, columnas);
 		setModel(modelo);
 		recargar(lista);
 	}	
 	
-	public void recargar(List<Ubicacion> lista) {
+	public void recargar(List<FallecidoUbicacion> lista) {
 		this.lista= lista;
 		modelo.setRowCount(0);
 		modelo.setColumnCount(0);
 		modelo.setColumnIdentifiers(columnas);
 
-		for (Ubicacion elemento : lista) {
-			List<Fallecido> fallecidosEnUbicacion = FallecidoManager.traerPorUbicacion(elemento);
-			if (fallecidosEnUbicacion.size() > 0) {
-				Fallecido fallecido = fallecidosEnUbicacion.get(0);
-				Object[] fila = {
-						fallecido.getCod_fallecido(),
-						Formato.formatoFecha(elemento.getVencimiento()),
-						Formato.fallecido(fallecido),
-						Formato.ubicacion(elemento)
-				};
-				modelo.addRow(fila);				
-			}
+		for (FallecidoUbicacion elemento : lista) {
+			Fallecido fallecido = FallecidoUbicacionManager.extraerFallecido(elemento);
+			Ubicacion ubicacion = FallecidoUbicacionManager.extraerUbicacion(elemento);
+			Object[] fila = {
+					fallecido.getCod_fallecido(),
+					Formato.formatoFecha(elemento.getVencimiento()),
+					Formato.fallecido(fallecido),
+					Formato.ubicacion(ubicacion)
+			};
+			modelo.addRow(fila);				
 		}
 		
 		getColumn("Codigo").setPreferredWidth(20);
@@ -53,8 +52,8 @@ public class TablaVencimientos extends JTable {
 		getColumn("Ubicacion").setPreferredWidth(400);
 	}
 	
-	public List<Ubicacion> obtenerSeleccion() {
-		List<Ubicacion> registros = new ArrayList<>();
+	public List<FallecidoUbicacion> obtenerSeleccion() {
+		List<FallecidoUbicacion> registros = new ArrayList<>();
 		int[] indices = getSelectedRows();
 
 		for (int indice : indices) {

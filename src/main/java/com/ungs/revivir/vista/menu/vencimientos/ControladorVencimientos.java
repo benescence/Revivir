@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JInternalFrame;
 import com.ungs.revivir.negocios.busqueda.Relacionador;
+import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
 import com.ungs.revivir.negocios.manager.VencimientoManager;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Cliente;
+import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.menu.vencimientos.modificar.ControladorVencimientoAM;
 import com.ungs.revivir.vista.menu.vencimientos.modificar.VencimientoInvocable;
@@ -36,25 +38,25 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 
 	private void modificar() {
 		ventana.requestFocusInWindow();
-		List<Ubicacion> seleccion = ventana.getTabla().obtenerSeleccion();
+		List<FallecidoUbicacion> seleccion = ventana.getTabla().obtenerSeleccion();
 		if (seleccion.size() != 1) {
 			Popup.mostrar("Debe seleccionar exactamente 1 vencimiento para poder modificarlo.");
 			return;
 		}
 		
 		invocador.getVentana().deshabilitar();
-		new ControladorVencimientoAM(this, seleccion.get(0));
+		new ControladorVencimientoAM(this, FallecidoUbicacionManager.extraerUbicacion(seleccion.get(0)));
 	}
 	
 	private void verClientes() {
-		List<Ubicacion> seleccion = ventana.getTabla().obtenerSeleccion();
+		List<FallecidoUbicacion> seleccion = ventana.getTabla().obtenerSeleccion();
 		if (seleccion.size() != 1) {
 			Popup.mostrar("Debe seleccionar exactamente 1 ubicacion para ver sus clientes");
 			return;
 		}
 		
 		invocador.getVentana().deshabilitar();
-		List<Cliente> clientes = Relacionador.traerClientes(seleccion.get(0));
+		List<Cliente> clientes = Relacionador.traerClientes(FallecidoUbicacionManager.extraerFallecido(seleccion.get(0)));
 		new ControladorVerClientes(this, clientes);
 	}
 	
@@ -62,8 +64,7 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		SubSector subSector = (SubSector) ventana.getSubsector().getComboBox().getSelectedItem();
 		Date desde = ventana.getDesde().getValor();
 		Date hasta = ventana.getHasta().getValor();
-		List<Ubicacion> vencimientos = VencimientoManager.buscarVencimientos(subSector, desde, hasta);
-		System.out.println("venciminetos"+ vencimientos.toString());
+		List<FallecidoUbicacion> vencimientos = FallecidoUbicacionManager.buscarVencimientos(subSector, desde, hasta);
 		ventana.getTabla().recargar(vencimientos);
 	}	
 
@@ -71,7 +72,7 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		SubSector subSector = (SubSector) ventana.getSubsector().getComboBox().getSelectedItem();
 		Date desde = ventana.getDesde().getValor();
 		Date hasta = ventana.getHasta().getValor();
-		List<Ubicacion> vencimientos = VencimientoManager.buscarVencimientosSinLimite(subSector, desde, hasta);
+		List<FallecidoUbicacion> vencimientos = FallecidoUbicacionManager.buscarVencimientos(subSector, desde, hasta);
 		new reporteVencimientos(vencimientos);
 	}
 

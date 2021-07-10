@@ -36,7 +36,7 @@ public class ReporteNotificaciones {
     	List<String> vencimientos = new ArrayList<String>();
 		List<String> ubicaciones = new ArrayList<String>();
 		List<String> telefonos = new ArrayList<String>();
-		List<String> direcciones = new ArrayList<String>();
+		List<String> direcciones1 = new ArrayList<String>();
 		List<String> mails = new ArrayList<String>();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String fecha = sdf.format(Almanaque.hoy());
@@ -58,12 +58,12 @@ public class ReporteNotificaciones {
 					String direccion = (listaClientes.get(0).getDomicilio() == null) ? " ":listaClientes.get(0).getDomicilio();
 					String mail=  (listaClientes.get(0).getEmail() == null) ? " ":listaClientes.get(0).getEmail();
 				telefonos.add(telefono);
-				direcciones.add(direccion);
+				direcciones1.add(direccion);
 				mails.add(mail);
 			}
 				else {
 					telefonos.add(" ");
-					direcciones.add(" ");
+					direcciones1.add(" ");
 					mails.add(" ");
 				}
 			}
@@ -78,7 +78,7 @@ public class ReporteNotificaciones {
 			totalVencimientos.put("ubicaciones",ubicaciones);
 			totalVencimientos.put("fecha",fecha);
 			totalVencimientos.put("telefonos",telefonos);
-			totalVencimientos.put("direcciones",direcciones);
+			totalVencimientos.put("direcciones",direcciones1);
 			totalVencimientos.put("mails",mails);
 		
 		try {

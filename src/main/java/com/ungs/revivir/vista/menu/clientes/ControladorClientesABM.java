@@ -83,8 +83,8 @@ public class ControladorClientesABM implements ControladorInterno, ClienteInvoca
 					Popup.confirmar("¿Seguro de que desea eliminar los registros seleccionados?"))
 				ClienteManager.eliminar(lista.get(0));
 			
-			actualizarClientes();
 			listaLocal.remove(lista.get(0));
+			actualizarClientes();
 		
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());

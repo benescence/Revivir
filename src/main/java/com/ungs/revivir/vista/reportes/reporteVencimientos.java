@@ -8,7 +8,9 @@ import java.util.Map;
 
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
+import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
@@ -26,33 +28,38 @@ public class reporteVencimientos {
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 
-	public reporteVencimientos(List<Ubicacion> Vencimientos) {
+	public reporteVencimientos(List<FallecidoUbicacion> lista) {
 		Map<String, Object> totalVencimientos = new HashMap<String, Object>();
-    	List<String> fallecidos = new ArrayList<String>();
-    	List<String> vencimientos = new ArrayList<String>();
-		List<String> ubicaciones = new ArrayList<String>();
+    	List<String> itemFallecidos = new ArrayList<String>();
+    	List<String> itemVencimientos = new ArrayList<String>();
+		List<String> itemUbicaciones = new ArrayList<String>();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String fecha = sdf.format(Almanaque.hoy());
-
-		for (Ubicacion  ubicacion : Vencimientos) {
-			vencimientos.add(sdf.format(ubicacion.getVencimiento()));
-			ubicaciones.add(Formato.ubicacion(ubicacion));
-			List<Fallecido> listaFallecidos =  FallecidoManager.traerPorUbicacion(ubicacion);
 			
-			for (Fallecido fallec : listaFallecidos)
-				fallecidos.add(fallec.getApellido()+ " " + fallec.getNombre());		
+		for (FallecidoUbicacion  elemento : lista) {
+			Fallecido fallecido = FallecidoUbicacionManager.extraerFallecido(elemento);
+			Ubicacion ubicacion = FallecidoUbicacionManager.extraerUbicacion(elemento);
+			itemVencimientos.add(sdf.format(ubicacion.getVencimiento()));
+			itemUbicaciones.add(Formato.ubicacion(ubicacion));
+			itemFallecidos.add(fallecido.getApellido()+ " " + fallecido.getNombre());		
 		}
 		
-		if (Vencimientos.size() != 0) {
-			totalVencimientos.put("vencimientos", vencimientos);
-			totalVencimientos.put("fallecidos", fallecidos);
-			totalVencimientos.put("ubicaciones", ubicaciones);
+		if (lista.size() != 0) {
+			totalVencimientos.put("vencimientos", itemVencimientos);
+			totalVencimientos.put("fallecidos", itemFallecidos);
+			totalVencimientos.put("ubicaciones", itemUbicaciones);
 			totalVencimientos.put("fecha", fecha);
+			System.out.println(itemVencimientos);
+			System.out.println(itemUbicaciones);
+			System.out.println(itemFallecidos);
+			System.out.println(fecha);
+		
 		
 			try {
 				this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\reporteVencimientos.jasper");
+				System.out.println("este es mi reporte");
 				this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalVencimientos,
-						new JRBeanCollectionDataSource(vencimientos));
+						new JRBeanCollectionDataSource(itemVencimientos));
 				System.out.println("Se cargo correctamente reporte");
 				mostrar();
 		

@@ -1,14 +1,17 @@
 package com.ungs.revivir.negocios.manager;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.ungs.revivir.negocios.Validador;
 import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
+import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoUbicacionOBD;
+import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class FallecidoUbicacionManager {
 	
@@ -61,6 +64,15 @@ public class FallecidoUbicacionManager {
 				fallecido.getFechaFallecimiento() ,fallecido.getFechaFallecimiento(),
 				null,null,null,null,null,null ,null,null,null ,null,null,null ,null,null,null 
 				);				
+	}
+
+	public static List<FallecidoUbicacion> buscarVencimientos(SubSector subSector, Date desde, Date hasta) {
+		FallecidoUbicacionOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
+		return obd.selectBySubsectorEntreFechas(subSector, desde, hasta);
+	}
+	public static List<FallecidoUbicacion> buscarVencimientosSinLimite(SubSector subSector, Date desde, Date hasta) {
+		FallecidoUbicacionOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
+		return obd.selectBySubsectorEntreFechasSinLimite(subSector, desde, hasta);
 	}
 	
 }
