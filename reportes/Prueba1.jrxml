@@ -69,7 +69,7 @@
 					<textElement textAlignment="Center">
 						<font size="14" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Fallecido ]]></text>
+					<text><![CDATA[Fallecido]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="200" y="0" width="80" height="20" uuid="cd8d9e5e-a008-4992-a455-931260090e53"/>
