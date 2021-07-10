@@ -16,14 +16,11 @@
     <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
 
-
-
-
   <dependencies>
-  		<dependency>
+  <dependency>
     <groupId>net.sf.jasperreports</groupId>
     <artifactId>jasperreports</artifactId>
-    <version>6.8.0</version>
+    <version>6.17.0</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
 <dependency>

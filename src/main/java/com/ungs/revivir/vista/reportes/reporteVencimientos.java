@@ -42,15 +42,10 @@ public class reporteVencimientos {
 		}
 		
 		if (lista.size() != 0) {
-			totalVencimientos.put("vencimientos", itemVencimientos);
-			totalVencimientos.put("fallecidos", itemFallecidos);
-			totalVencimientos.put("ubicaciones", itemUbicaciones);
+			totalVencimientos.put("itemVencimientos", itemVencimientos);
+			totalVencimientos.put("itemFallecidos", itemFallecidos);
+			totalVencimientos.put("itemUbicaciones", itemUbicaciones);
 			totalVencimientos.put("fecha", fecha);
-			System.out.println(itemVencimientos);
-			System.out.println(itemUbicaciones);
-			System.out.println(itemFallecidos);
-			System.out.println(fecha);
-		
 		
 			try {
 				this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\Prueba1.jasper");
