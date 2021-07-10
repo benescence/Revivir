@@ -54,7 +54,6 @@ public class reporteVencimientos {
 		
 			try {
 				this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\Prueba1.jasper");
-				//this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\reporteNotificaciones.jasper");
 				System.out.println("este es mi reporte 1");
 				this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalVencimientos,
 						new JRBeanCollectionDataSource(itemVencimientos));
