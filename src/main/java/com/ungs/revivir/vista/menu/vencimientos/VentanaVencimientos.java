@@ -13,7 +13,6 @@ import com.ungs.revivir.negocios.Localizador;
 import com.ungs.revivir.persistencia.definidos.Sector;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
-import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.tablas.TablaVencimientos;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;

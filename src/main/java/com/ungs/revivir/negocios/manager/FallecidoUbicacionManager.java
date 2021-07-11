@@ -11,7 +11,6 @@ import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoUbicacionOBD;
-import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 
 public class FallecidoUbicacionManager {
 	
@@ -34,36 +33,38 @@ public class FallecidoUbicacionManager {
 		
 		if (!mensaje.equals(""))
 			throw new Exception("Se encontraron los siguientes errores:"+mensaje);
-		FallecidoUbicacionOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
 		
+		FallecidoUbicacionOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
 		return obd.selectByNombreApellidoCOD(nombres, apellido, codFallecido);
 	}
 
 	public static Ubicacion extraerUbicacion(FallecidoUbicacion fallecidoUbicacion) {
 		return new Ubicacion(
-				 fallecidoUbicacion.getUbicacion(), fallecidoUbicacion.getSubsector(), fallecidoUbicacion.getCementerio(),
-				 fallecidoUbicacion.getNicho(), fallecidoUbicacion.getFila(),fallecidoUbicacion.getSeccion(),
-				 fallecidoUbicacion.getMacizo(), fallecidoUbicacion.getUnidad(), fallecidoUbicacion.getBis() ,
-				 fallecidoUbicacion.getBis_macizo(), fallecidoUbicacion.getSepultura(),
-				 fallecidoUbicacion.getParcela(), fallecidoUbicacion.getMueble(), fallecidoUbicacion.getInhumacion(), 
-				 fallecidoUbicacion.getCirc(), fallecidoUbicacion.getVencimiento());
+				fallecidoUbicacion.getUbicacion(), fallecidoUbicacion.getSubsector(), fallecidoUbicacion.getCementerio(),
+				fallecidoUbicacion.getNicho(), fallecidoUbicacion.getFila(),fallecidoUbicacion.getSeccion(),
+				fallecidoUbicacion.getMacizo(), fallecidoUbicacion.getUnidad(), fallecidoUbicacion.getBis() ,
+				fallecidoUbicacion.getBis_macizo(), fallecidoUbicacion.getSepultura(),
+				fallecidoUbicacion.getParcela(), fallecidoUbicacion.getMueble(), fallecidoUbicacion.getInhumacion(), 
+				fallecidoUbicacion.getCirc(), fallecidoUbicacion.getVencimiento()
+			);
 	}
 
 	public static Fallecido extraerFallecido(FallecidoUbicacion fallecidoUbicacion) {
 		return new Fallecido(
-				 fallecidoUbicacion.getID(), fallecidoUbicacion.getUbicacion(),fallecidoUbicacion.getTipoFallecimiento(),
-				 fallecidoUbicacion.getCodFallecido(), fallecidoUbicacion.getDNI() , fallecidoUbicacion.getApellido() ,
-				 fallecidoUbicacion.getNombre(), fallecidoUbicacion.getCocheria() ,
-				 fallecidoUbicacion.getFechaFallecimiento() ,fallecidoUbicacion.getFechaFallecimiento() );
+				fallecidoUbicacion.getID(), fallecidoUbicacion.getUbicacion(),fallecidoUbicacion.getTipoFallecimiento(),
+				fallecidoUbicacion.getCodFallecido(), fallecidoUbicacion.getDNI() , fallecidoUbicacion.getApellido() ,
+				fallecidoUbicacion.getNombre(), fallecidoUbicacion.getCocheria() ,
+				fallecidoUbicacion.getFechaFallecimiento() ,fallecidoUbicacion.getFechaFallecimiento()
+			);
 	}
 
-	public static  FallecidoUbicacion generarFallecidoUbicacion(Fallecido fallecido) {
+	public static FallecidoUbicacion generarFallecidoUbicacion(Fallecido fallecido) {
 		return new FallecidoUbicacion(
 				fallecido.getID(), fallecido.getUbicacion(),fallecido.getTipoFallecimiento() ,fallecido.getCod_fallecido() ,
 				fallecido.getDNI() , fallecido.getApellido() ,fallecido.getNombre(), fallecido.getCocheria() ,
 				fallecido.getFechaFallecimiento() ,fallecido.getFechaFallecimiento(),
 				null,null,null,null,null,null ,null,null,null ,null,null,null ,null,null,null 
-				);				
+			);				
 	}
 
 	public static List<FallecidoUbicacion> buscarVencimientos(SubSector subSector, Date desde, Date hasta) {
