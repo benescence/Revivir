@@ -16,7 +16,7 @@ import com.ungs.revivir.vista.menu.vencimientos.modificar.VencimientoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
 import com.ungs.revivir.vista.principal.ControladorPrincipal;
 import com.ungs.revivir.vista.reportes.ReporteNotificaciones;
-import com.ungs.revivir.vista.reportes.reporteVencimientos;
+import com.ungs.revivir.vista.reportes.ReporteVencimientos;
 import com.ungs.revivir.vista.util.Popup;
 import com.ungs.revivir.vista.visualizador.Visualizable;
 import com.ungs.revivir.vista.visualizador.clientes.ControladorVerClientes;
@@ -73,7 +73,7 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		Date desde = ventana.getDesde().getValor();
 		Date hasta = ventana.getHasta().getValor();
 		List<FallecidoUbicacion> vencimientos = FallecidoUbicacionManager.buscarVencimientos(subSector, desde, hasta);
-		new reporteVencimientos(vencimientos);
+		new ReporteVencimientos(vencimientos);
 	}
 
 	private void imprimirNotificaciones() {	
