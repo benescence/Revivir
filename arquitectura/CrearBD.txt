@@ -259,7 +259,45 @@ CREATE VIEW rev_v_fallecidos AS
 		LEFT JOIN rev_ubicaciones U ON F.ubicacion = U.id
 ;
 
-
+CREATE VIEW rev_v_NotifClientes AS 
+	SELECT
+		C.ID AS cli_ID,
+		C.nombre AS cli_nombre,
+		C.apellido AS cli_apellido,
+		C.DNI AS cli_dni,
+		C.telefono AS cli_telefono,
+		C.email,
+		C.domicilio,
+		F.id,
+		F.tipo_fallecimiento,
+		F.cod_fallecido,
+		F.ubicacion,
+		F.nombre,
+		F.apellido,
+		F.DNI,
+		F.cocheria,
+		F.fecha_fallecimiento,
+		F.fecha_ingreso,
+		U.vencimiento,
+		U.subsector,
+		U.circ,
+		U.seccion,
+		U.macizo,
+		U.parcela,
+		U.fila,
+		U.unidad,
+		U.nicho,
+		U.mueble,
+		U.sepultura,
+		U.inhumacion,
+		U.cementerio,
+		U.bis_macizo,
+		U.bis
+	FROM rev_clientes C
+	left join rev_responsables R ON C.ID = R.cliente 
+	left join rev_fallecidos F ON F.ID = R.fallecido
+	LEFT JOIN rev_ubicaciones U ON F.ubicacion = U.id
+	
 -- INSERT TIPOS DE FALLECIMIENTO
 INSERT INTO rev_tipo_fallecimiento (ID, descripcion) VALUES
 (1, "TRAUMATICO"),
