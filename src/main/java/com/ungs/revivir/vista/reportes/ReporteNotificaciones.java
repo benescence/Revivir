@@ -10,8 +10,10 @@ import java.util.Map;
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
+import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
@@ -28,66 +30,60 @@ public class ReporteNotificaciones {
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 
-	public ReporteNotificaciones(List<Ubicacion> Vencimientos) {
+	public ReporteNotificaciones(List<FallecidoUbicacion> lista) {
 		Map<String, Object> totalVencimientos = new HashMap<String, Object>();
-    	List<String> fallecidos = new ArrayList<String>();
-    	List<String> vencimientos = new ArrayList<String>();
-		List<String> ubicaciones = new ArrayList<String>();
-		List<String> telefonos = new ArrayList<String>();
-		List<String> direcciones1 = new ArrayList<String>();
-		List<String> mails = new ArrayList<String>();
+		List<String> itemFallecidos = new ArrayList<String>();
+    	List<String> itemVencimientos = new ArrayList<String>();
+		List<String> itemUbicaciones = new ArrayList<String>();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String fecha = sdf.format(Almanaque.hoy());
+		List<String> itemTelefonos = new ArrayList<String>();
+		List<String> itemDirecciones= new ArrayList<String>();
+		List<String> itemMails = new ArrayList<String>();
 		
 		
-		for (Ubicacion  ubicacion : Vencimientos) {
-			vencimientos.add(sdf.format(ubicacion.getVencimiento()));
-			ubicaciones.add(Formato.ubicacion(ubicacion));
-			
-			List<Fallecido> listaFallecidos =  FallecidoManager.traerPorUbicacion(ubicacion);
-			
-			
-			
-			for (Fallecido fallec : listaFallecidos) {
-				fallecidos.add(fallec.getApellido()+ " " + fallec.getNombre());
-				List<Cliente> listaClientes =ClienteManager.traerPorFallecido(fallec);
-				if (listaClientes.size() >0 ) {
-					String telefono = (listaClientes.get(0).getTelefono() == null) ? " ":listaClientes.get(0).getTelefono();
-					String direccion = (listaClientes.get(0).getDomicilio() == null) ? " ":listaClientes.get(0).getDomicilio();
-					String mail=  (listaClientes.get(0).getEmail() == null) ? " ":listaClientes.get(0).getEmail();
-				telefonos.add(telefono);
-				direcciones1.add(direccion);
-				mails.add(mail);
-			}
-				else {
-					telefonos.add(" ");
-					direcciones1.add(" ");
-					mails.add(" ");
+		for (FallecidoUbicacion  elemento : lista) {
+			Fallecido fallecido = FallecidoUbicacionManager.extraerFallecido(elemento);
+			Ubicacion ubicacion = FallecidoUbicacionManager.extraerUbicacion(elemento);
+			itemVencimientos.add(sdf.format(ubicacion.getVencimiento()));
+			itemUbicaciones.add(Formato.ubicacion(ubicacion));
+			itemFallecidos.add(fallecido.getApellido()+ " " + fallecido.getNombre());
+			List<Cliente> listaClientes =ClienteManager.traerPorFallecido(FallecidoUbicacionManager.extraerFallecido(elemento));
+			if (listaClientes.size() >0 ) {
+				for (Cliente cliente : listaClientes) {
+					itemDirecciones.add(cliente.getDomicilio());
+					itemTelefonos.add(cliente.getTelefono());
+					itemMails.add(cliente.getEmail());
 				}
 			}
+			else {
+				itemDirecciones.add(" ");
+				itemTelefonos.add(" ");
+				itemMails.add(" ");
+			}
 		
-			
-		}
-		
-		if (Vencimientos.size() != 0) {
+			}
 
-			totalVencimientos.put("vencimientos", vencimientos);
-			totalVencimientos.put("fallecidos", fallecidos);
-			totalVencimientos.put("ubicaciones",ubicaciones);
+			
+		if (lista.size() != 0) {
+
+			totalVencimientos.put("vencimientos", itemVencimientos);
+			totalVencimientos.put("fallecidos", itemFallecidos);
+			totalVencimientos.put("ubicaciones",itemUbicaciones);
 			totalVencimientos.put("fecha",fecha);
-			totalVencimientos.put("telefonos",telefonos);
-			totalVencimientos.put("direcciones",direcciones1);
-			totalVencimientos.put("mails",mails);
+			totalVencimientos.put("telefonos",itemTelefonos);
+			totalVencimientos.put("direcciones",itemDirecciones);
+			totalVencimientos.put("mails",itemMails);
 		
 		try {
-			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\reporteNotificaciones.jasper");
+			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\ReporteNotificaciones.jasper");
 			this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalVencimientos,
-					new JRBeanCollectionDataSource(vencimientos));
+					new JRBeanCollectionDataSource(itemVencimientos));
 			System.out.println("Se cargo correctamente reporte");
 			mostrar();
 	
 	} catch (JRException ex) {
-		System.out.println("Ocurrio un error mientras se cargaba el archivo reporteVencimientos.jasper \n " + ex);
+		System.out.println("Ocurrio un error mientras se cargaba el archivo reporteNotificaciones.jasper \n " + ex);
 	}
 	}
 	else {
