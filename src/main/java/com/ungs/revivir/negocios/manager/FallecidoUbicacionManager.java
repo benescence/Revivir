@@ -59,12 +59,27 @@ public class FallecidoUbicacionManager {
 	}
 
 	public static FallecidoUbicacion generarFallecidoUbicacion(Fallecido fallecido) {
+		Ubicacion ubicacion = UbicacionManager.traerPorFallecido(fallecido);
 		return new FallecidoUbicacion(
 				fallecido.getID(), fallecido.getUbicacion(),fallecido.getTipoFallecimiento() ,fallecido.getCod_fallecido() ,
 				fallecido.getDNI() , fallecido.getApellido() ,fallecido.getNombre(), fallecido.getCocheria() ,
-				fallecido.getFechaFallecimiento() ,fallecido.getFechaFallecimiento(),
-				null,null,null,null,null,null ,null,null,null ,null,null,null ,null,null,null 
-			);				
+				fallecido.getFechaFallecimiento() ,fallecido.getFechaIngreso(),
+				ubicacion.getSubsector(),
+				ubicacion.getCementerio(),
+				ubicacion.getNicho(),
+				ubicacion.getFila(),
+				ubicacion.getSeccion(),
+				ubicacion.getMacizo(),
+				ubicacion.getUnidad(),
+				ubicacion.getBis(),
+				ubicacion.getBisMacizo(),
+				ubicacion.getSepultura(),
+				ubicacion.getParcela(),
+				ubicacion.getMueble(),
+				ubicacion.getInhumacion(),
+				ubicacion.getCirc(),
+				ubicacion.getVencimiento()
+			);
 	}
 
 	public static List<FallecidoUbicacion> buscarVencimientos(SubSector subSector, Date desde, Date hasta) {

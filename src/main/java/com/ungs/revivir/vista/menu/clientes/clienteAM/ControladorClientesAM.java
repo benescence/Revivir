@@ -45,6 +45,7 @@ public class ControladorClientesAM implements ControladorExterno{
 			// Crear un nuevo cliente
 			if (modificar == null) {
 				ClienteManager.guardar(nuevo);
+				nuevo.setID(ClienteManager.traerMasReciente().getID());
 				invocador.actualizarClientes(nuevo);				
 			}
 			
@@ -61,6 +62,7 @@ public class ControladorClientesAM implements ControladorExterno{
 			
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
+			e.printStackTrace();
 		}
 		
 	}

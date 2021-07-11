@@ -76,8 +76,20 @@ public class Verificador {
 			mensaje += "\n    -El DNI solo puede estar compuesto de números.";
 		else {
 			Cliente clienteDNI = ClienteManager.traerPorDNI(DNI);
-			if (clienteDNI != null && (anterior == null || anterior.getID() != clienteDNI.getID()))
-				mensaje += "\n    -Ya se encuentra registrado un cliente con el DNI: "+DNI+".";
+
+			// Ya existe un cliente con ese DNI en base
+			if (clienteDNI != null) {
+	
+				// Es un nuevo registro cuyo DNI coincide con con el de otro cliente en la base
+				if (anterior == null)
+					mensaje += "\n    -Ya se encuentra registrado un cliente con el DNI: "+DNI+".";
+				
+				// Se esta modificando un cliente y se le esta colocando el mismo DNI que un cliente diferente que ya existe en base
+				
+				else if (anterior.getID() != clienteDNI.getID()) {
+					mensaje += "\n    -Ya se encuentra registrado un cliente con el DNI: "+DNI+".";
+				}
+			}
 		}
 		
 		if (telefono != null && !Validador.telefono(telefono))
