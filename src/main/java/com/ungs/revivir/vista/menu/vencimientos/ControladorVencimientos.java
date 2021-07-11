@@ -3,14 +3,14 @@ package com.ungs.revivir.vista.menu.vencimientos;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JInternalFrame;
+
 import com.ungs.revivir.negocios.busqueda.Relacionador;
 import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
-import com.ungs.revivir.negocios.manager.VencimientoManager;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
-import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.menu.vencimientos.modificar.ControladorVencimientoAM;
 import com.ungs.revivir.vista.menu.vencimientos.modificar.VencimientoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
