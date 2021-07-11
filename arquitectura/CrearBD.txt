@@ -226,38 +226,38 @@ CREATE VIEW rev_v_ubicaciones_libres AS
 			AND IFNULL(UT.bis, -1) = IFNULL(U.bis, -1)
 	WHERE U.ID IS null
 ;
--- VISTA FALLECIDOS
-USE cretorioescobar_REVIVIR;
-create view rev_v_fallecidos AS 
-SELECT F.ID,
-F.tipo_fallecimiento,
-F.cod_fallecido,
-F.ubicacion,
-F.nombre,
-F.apellido,
-F.DNI,
-F.cocheria,
-F.fecha_fallecimiento,
-F.fecha_ingreso,
-U.vencimiento,
-U.subsector,
-U.circ,
-U.seccion,
-U.macizo,
-U.parcela,
-U.fila,
-U.unidad,
-U.nicho,
-U.mueble,
-U.sepultura,
-U.inhumacion,
-U.cementerio,
-U.bis_macizo,
-U.bis
-from rev_fallecidos F
-LEFT JOIN  rev_ubicaciones U
-ON F.ubicacion = U.ID
 
+-- VISTA FALLECIDOS
+CREATE VIEW rev_v_fallecidos AS 
+	SELECT
+		F.id,
+		F.tipo_fallecimiento,
+		F.cod_fallecido,
+		F.ubicacion,
+		F.nombre,
+		F.apellido,
+		F.DNI,
+		F.cocheria,
+		F.fecha_fallecimiento,
+		F.fecha_ingreso,
+		U.vencimiento,
+		U.subsector,
+		U.circ,
+		U.seccion,
+		U.macizo,
+		U.parcela,
+		U.fila,
+		U.unidad,
+		U.nicho,
+		U.mueble,
+		U.sepultura,
+		U.inhumacion,
+		U.cementerio,
+		U.bis_macizo,
+		U.bis
+	FROM rev_fallecidos F
+		LEFT JOIN rev_ubicaciones U ON F.ubicacion = U.id
+;
 
 
 -- INSERT TIPOS DE FALLECIMIENTO
