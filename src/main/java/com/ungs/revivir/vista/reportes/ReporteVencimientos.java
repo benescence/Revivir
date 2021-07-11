@@ -20,12 +20,12 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class reporteVencimientos {
+public class ReporteVencimientos {
 	private JasperReport reporte;
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 
-	public reporteVencimientos(List<FallecidoUbicacion> lista) {
+	public ReporteVencimientos(List<FallecidoUbicacion> lista) {
 		Map<String, Object> totalVencimientos = new HashMap<String, Object>();
     	List<String> itemFallecidos = new ArrayList<String>();
     	List<String> itemVencimientos = new ArrayList<String>();
