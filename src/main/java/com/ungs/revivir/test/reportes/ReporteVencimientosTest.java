@@ -1,6 +1,7 @@
 package com.ungs.revivir.test.reportes;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
@@ -10,14 +11,20 @@ import com.ungs.revivir.vista.reportes.ReporteVencimientos;
 
 public class ReporteVencimientosTest {
 
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-		SubSector subSector= SubSector.NICHERA;
-		Date fechaDesde = new Date(120,5,11);
-		Date fechaHasta = new Date(121,6,13);
+		
+		// Ejemplo para crear una fecha en SQL Date
+		// Date fecha = Date.valueOf(LocalDate.of(1991, 11, 12));
+	
+		// Parametros
+		SubSector subSector = SubSector.NICHERA;
+		Date fechaDesde = Date.valueOf(LocalDate.of(2021, 6, 11));
+		Date fechaHasta = Date.valueOf(LocalDate.of(2021, 7, 11));
+		
 		List<FallecidoUbicacion> fallecidoUbicacion = FallecidoUbicacionManager.buscarVencimientosSinLimite(subSector, fechaDesde, fechaHasta);
-		ReporteVencimientos reporte = new ReporteVencimientos(fallecidoUbicacion);
-		reporte.mostrar();
+		System.out.println("Iniciando prueba...OK");
+		System.out.println("Parametros: " + subSector + " " + fechaDesde + " " + fechaHasta);
+		new ReporteVencimientos(fallecidoUbicacion);
 	}
 
 }
