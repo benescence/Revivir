@@ -8,9 +8,13 @@ import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 public class NotifClientes {
 	// Representa un fallecido con todos los datos de su ubicacion
 	
-	// Datos del fallecido
+	//  Datos cliente
+	private String cli_nombre, cli_apellido, cli_DNI, domicilio, telefono, email;	
+	private Integer cli_iD;
+	
+	// Datos del fallecido y cliente
 	private Integer ID, ubicacion, codFallecido;
-	private String DNI, apellido, nombre, cocheria,cli_nombre, cli_apellido, cli_DNI, domicilio, telefono, email;	
+	private String DNI, apellido, nombre, cocheria;	
 	private Date fechaFallecimiento, fechaIngreso;
 	private TipoFallecimiento tipoFallecimiento;
 	
@@ -23,6 +27,9 @@ public class NotifClientes {
 	private Date vencimiento;
 		
 	public NotifClientes(
+			// Parametros del cliente
+			Integer cli_iD, String cli_nombre, String cli_apellido, String cli_DNI, String domicilio, String telefono,
+			String email,
 			
 			// Parametros del fallecido
 			Integer ID, Integer ubicacion, TipoFallecimiento tipoFallecimiento, Integer codFallecido, String DNI,
@@ -32,6 +39,15 @@ public class NotifClientes {
 			SubSector subsector, String cementerio, Integer nicho, Integer fila, String seccion, Integer macizo,
 			Integer unidad, Boolean bis, Boolean bisMacizo, Integer sepultura, Integer parcela, Integer mueble,
 			Integer inhumacion, Integer circ, Date vencimiento) {
+		
+		//Datos del cliente
+		this.ID = cli_iD;
+		this.nombre = cli_nombre;
+		this.apellido = cli_apellido;
+		this.DNI = cli_DNI;
+		this.domicilio = domicilio;
+		this.telefono = telefono;
+		this.email = email;
 		
 		// Datos del fallecido
 		this.ID = ID;
@@ -62,7 +78,62 @@ public class NotifClientes {
 		this.circ = circ;
 		this.vencimiento = vencimiento;
 	}
+	public Integer getcli_ID() {
+		return cli_iD;
+	}
 
+	public void setcli_D(Integer iD) {
+		this.cli_iD = iD;
+	}
+
+	public String getCli_Nombre() {
+		return cli_nombre;
+	}
+
+	public void setCli_Nombre(String cli_nombre) {
+		this.cli_nombre = cli_nombre;
+	}
+
+	public String getCli_Apellido() {
+		return cli_apellido;
+	}
+
+	public void setCli_Apellido(String cli_apellido) {
+		this.cli_apellido = cli_apellido;
+	}
+
+	public String getCli_DNI() {
+		return cli_DNI;
+	}
+
+	public void setcli_DNI(String cli_DNI) {
+		this.cli_DNI =cli_DNI;
+	}
+
+	public String getDomicilio() {
+		return domicilio;
+	}
+
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public Integer getCodFallecido() {
 		return codFallecido;
 	}
