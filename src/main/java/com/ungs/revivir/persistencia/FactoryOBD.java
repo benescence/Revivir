@@ -96,7 +96,7 @@ public class FactoryOBD {
 	}
 
 	public static NotifClientesOBD crearNotifClientesOBD() {
-	return new NotifClientesOBDMySQL();
+		return new NotifClientesOBDMySQL();
 	}
 	
 }

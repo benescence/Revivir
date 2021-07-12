@@ -12,13 +12,12 @@ import java.util.List;
 import com.ungs.revivir.persistencia.Definido;
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.definidos.SubSector;
-import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.NotifClientes;
-import com.ungs.revivir.persistencia.interfaces.FallecidoUbicacionOBD;
 import com.ungs.revivir.persistencia.interfaces.NotifClientesOBD;
 
-public class NotifClientesOBDMySQL extends OBD implements NotifClientesOBD{
-	private final String campos = "cli_nombre,cli_apellido,cli_dni, cli_telefono,domicilio,email,ubicacion, DNI, apellido, nombre, fecha_fallecimiento, tipo_fallecimiento, cod_fallecido, "
+public class NotifClientesOBDMySQL extends OBD implements NotifClientesOBD {
+	private final String campos = "cli_nombre,cli_apellido,cli_dni, cli_telefono,domicilio,email,ubicacion, DNI, "
+			+ "apellido, nombre, fecha_fallecimiento, tipo_fallecimiento, cod_fallecido, "
 			+ "cocheria, fecha_ingreso, subsector, cementerio, nicho, fila, seccion, macizo, unidad, bis, bis_macizo, "
 			+ "sepultura, parcela, mueble, inhumacion, circ, vencimiento";
 	private final String tabla = "rev_v_NotifClientes";
@@ -51,7 +50,6 @@ public class NotifClientesOBDMySQL extends OBD implements NotifClientesOBD{
 	
 	private List<NotifClientes> selectByCondicion(String condicion, int limite) {
 		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
-		System.out.println(comandoSQL);
 		return selectSQL(comandoSQL);
 	}
 	

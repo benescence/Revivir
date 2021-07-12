@@ -52,15 +52,16 @@ public class NotifClientesManager {
 
 	public static Fallecido extraerFallecido(NotifClientes notifClientes) {
 		return new Fallecido(
-				notifClientes.getcli_ID(), notifClientes.getUbicacion(),notifClientes.getTipoFallecimiento(),
+				notifClientes.getCli_ID(), notifClientes.getUbicacion(),notifClientes.getTipoFallecimiento(),
 				notifClientes.getCodFallecido(), notifClientes.getDNI() , notifClientes.getApellido() ,
 				notifClientes.getNombre(), notifClientes.getCocheria() ,
 				notifClientes.getFechaFallecimiento() ,notifClientes.getFechaFallecimiento()
 			);
 	}
+	
 	public static Cliente extraerCliente(NotifClientes notifClientes) {
 		return new Cliente(
-				notifClientes.getcli_ID(), notifClientes.getCli_Nombre(),notifClientes.getCli_Apellido(),
+				notifClientes.getCli_ID(), notifClientes.getCli_Nombre(),notifClientes.getCli_Apellido(),
 				notifClientes.getCli_DNI(), notifClientes.getTelefono(), notifClientes.getDomicilio() ,
 				notifClientes.getEmail()
 			);
@@ -97,6 +98,7 @@ public class NotifClientesManager {
 		NotifClientesOBD obd = FactoryOBD.crearNotifClientesOBD();
 		return obd.selectBySubsectorEntreFechas(subSector, desde, hasta);
 	}
+	
 	public static List<NotifClientes> buscarVencimientosSinLimite(SubSector subSector, Date desde, Date hasta) {
 		NotifClientesOBD obd = FactoryOBD.crearNotifClientesOBD();
 		return obd.selectBySubsectorEntreFechasSinLimite(subSector, desde, hasta);

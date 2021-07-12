@@ -259,7 +259,7 @@ CREATE VIEW rev_v_fallecidos AS
 		LEFT JOIN rev_ubicaciones U ON F.ubicacion = U.id
 ;
 
-CREATE VIEW rev_v_NotifClientes AS 
+CREATE VIEW rev_v_notifclientes AS 
 	SELECT
 		C.ID AS cli_ID,
 		C.nombre AS cli_nombre,
@@ -294,9 +294,10 @@ CREATE VIEW rev_v_NotifClientes AS
 		U.bis_macizo,
 		U.bis
 	FROM rev_clientes C
-	left join rev_responsables R ON C.ID = R.cliente 
-	left join rev_fallecidos F ON F.ID = R.fallecido
-	LEFT JOIN rev_ubicaciones U ON F.ubicacion = U.id
+		LEFT JOIN rev_responsables R ON C.ID = R.cliente 
+		LEFT JOIN rev_fallecidos F ON F.ID = R.fallecido
+		LEFT JOIN rev_ubicaciones U ON F.ubicacion = U.id
+;
 	
 -- INSERT TIPOS DE FALLECIMIENTO
 INSERT INTO rev_tipo_fallecimiento (ID, descripcion) VALUES

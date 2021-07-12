@@ -6,19 +6,16 @@ import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 
 public class NotifClientes {
-	// Representa un fallecido con todos los datos de su ubicacion
-	
-	//  Datos cliente
-	private Integer cli_iD;
+
+	// Datos del cliente
+	private Integer cli_ID;
 	private String cli_nombre, cli_apellido, cli_DNI, domicilio, telefono, email;	
-	
-	
-	// Datos del fallecido
-	private Integer ID, ubicacion, codFallecido;
+		
+	// Datos de un fallecido relacionado con ese cliente
+	private Integer /*ID, */ubicacion, codFallecido;
 	private String DNI, apellido, nombre, cocheria;	
 	private Date fechaFallecimiento, fechaIngreso;
 	private TipoFallecimiento tipoFallecimiento;
-	
 	
 	// Datos de la ubicacion vinculada a ese fallecido
 	private Integer nicho, fila, macizo, unidad, sepultura, parcela, mueble, inhumacion, circ;
@@ -28,35 +25,38 @@ public class NotifClientes {
 	private Date vencimiento;
 		
 	public NotifClientes(
+			
 			// Parametros del cliente
-			Integer cli_iD, String cli_nombre, String cli_apellido, String cli_DNI, String domicilio, String telefono,
+			Integer cli_ID, String cli_nombre, String cli_apellido, String cli_DNI, String domicilio, String telefono,
 			String email,
 			
 			// Parametros del fallecido
-			 Integer ubicacion, TipoFallecimiento tipoFallecimiento, Integer codFallecido, String DNI,
+			Integer ubicacion, TipoFallecimiento tipoFallecimiento, Integer codFallecido, String DNI,
 			String apellido, String nombre, String cocheria, Date fechaFallecimiento, Date fechaIngreso,
 			
 			// Parametros de la ubicacion
 			SubSector subsector, String cementerio, Integer nicho, Integer fila, String seccion, Integer macizo,
 			Integer unidad, Boolean bis, Boolean bisMacizo, Integer sepultura, Integer parcela, Integer mueble,
-			Integer inhumacion, Integer circ, Date vencimiento) {
+			Integer inhumacion, Integer circ, Date vencimiento
+			
+			) {
 		
-		//Datos del cliente
-		this.cli_iD = cli_iD;
-		this.nombre = cli_nombre;
-		this.apellido = cli_apellido;
-		this.DNI = cli_DNI;
+		// Datos del cliente
+		this.cli_ID = cli_ID;
+		this.cli_nombre = cli_nombre;
+		this.cli_apellido = cli_apellido;
+		this.cli_DNI = cli_DNI;
 		this.domicilio = domicilio;
 		this.telefono = telefono;
 		this.email = email;
 		
 		// Datos del fallecido
-		this.ubicacion = ubicacion;
-		this.tipoFallecimiento = tipoFallecimiento;
 		this.codFallecido = codFallecido;
 		this.DNI = DNI;
-		this.apellido = apellido;
 		this.nombre = nombre;
+		this.apellido = apellido;
+		this.ubicacion = ubicacion;
+		this.tipoFallecimiento = tipoFallecimiento;
 		this.cocheria = cocheria;
 		this.fechaFallecimiento = fechaFallecimiento;
 		this.fechaIngreso = fechaIngreso;
@@ -78,12 +78,13 @@ public class NotifClientes {
 		this.circ = circ;
 		this.vencimiento = vencimiento;
 	}
-	public Integer getcli_ID() {
-		return cli_iD;
+	
+	public Integer getCli_ID() {
+		return cli_ID;
 	}
 
-	public void setcli_D(Integer iD) {
-		this.cli_iD = iD;
+	public void setCli_D(Integer iD) {
+		this.cli_ID = iD;
 	}
 
 	public String getCli_Nombre() {
@@ -141,8 +142,6 @@ public class NotifClientes {
 	public void setCodFallecido(Integer codFallecido) {
 		this.codFallecido = codFallecido;
 	}
-
-
 
 	public Integer getUbicacion() {
 		return ubicacion;

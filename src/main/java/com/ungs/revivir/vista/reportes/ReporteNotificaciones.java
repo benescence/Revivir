@@ -1,24 +1,20 @@
-
 package com.ungs.revivir.vista.reportes;
-
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.ungs.revivir.negocios.Almanaque;
-import com.ungs.revivir.negocios.manager.ClienteManager;
-import com.ungs.revivir.negocios.manager.FallecidoManager;
-import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
 import com.ungs.revivir.negocios.manager.NotifClientesManager;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.NotifClientes;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -33,6 +29,7 @@ public class ReporteNotificaciones {
 	private JasperPrint	reporteLleno;
 
 	public ReporteNotificaciones(List<NotifClientes> notifClientes) {
+		
 		Map<String, Object> totalVencimientos = new HashMap<String, Object>();
 		List<String> itemFallecidos = new ArrayList<String>();
     	List<String> itemVencimientos = new ArrayList<String>();
@@ -42,7 +39,6 @@ public class ReporteNotificaciones {
 		List<String> itemTelefonos = new ArrayList<String>();
 		List<String> itemDirecciones= new ArrayList<String>();
 		List<String> itemMails = new ArrayList<String>();
-		
 		
 		for (NotifClientes  elemento : notifClientes) {
 			Fallecido fallecido = NotifClientesManager.extraerFallecido(elemento);
@@ -56,7 +52,6 @@ public class ReporteNotificaciones {
 			itemMails.add(cliente.getEmail());
 		}
 
-			
 		if (notifClientes.size() != 0) {
 
 			totalVencimientos.put("vencimientos", itemVencimientos);
@@ -67,22 +62,22 @@ public class ReporteNotificaciones {
 			totalVencimientos.put("direcciones",itemDirecciones);
 			totalVencimientos.put("mails",itemMails);
 		
-		try {
-			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\ReporteNotificaciones.jasper");
-			this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalVencimientos,
-					new JRBeanCollectionDataSource(itemVencimientos));
-			System.out.println("Se cargo correctamente reporte");
-			mostrar();
-	
-	} catch (JRException ex) {
-		System.out.println("Ocurrio un error mientras se cargaba el archivo reporteNotificaciones.jasper \n " + ex);
+			try {
+				this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\ReporteNotificaciones.jasper");
+				this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalVencimientos,
+						new JRBeanCollectionDataSource(itemVencimientos));
+				System.out.println("Se cargo correctamente reporte");
+				mostrar();
+		
+			} catch (JRException ex) {
+				System.out.println("Ocurrio un error mientras se cargaba el archivo reporteNotificaciones.jasper \n " + ex);
+			}
+		
+		} else {
+			Popup.mostrar("No hay vencimientos para mostrar");
+		}
+		
 	}
-	}
-	else {
-		Popup.mostrar("No hay vencimientos para mostrar");
-	}
-}
-
 	   
     public void mostrar() {
 		this.reporteViewer = new JasperViewer(this.reporteLleno,false);
