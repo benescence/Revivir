@@ -9,10 +9,11 @@ public class NotifClientes {
 	// Representa un fallecido con todos los datos de su ubicacion
 	
 	//  Datos cliente
-	private String cli_nombre, cli_apellido, cli_DNI, domicilio, telefono, email;	
 	private Integer cli_iD;
+	private String cli_nombre, cli_apellido, cli_DNI, domicilio, telefono, email;	
 	
-	// Datos del fallecido y cliente
+	
+	// Datos del fallecido
 	private Integer ID, ubicacion, codFallecido;
 	private String DNI, apellido, nombre, cocheria;	
 	private Date fechaFallecimiento, fechaIngreso;
@@ -32,7 +33,7 @@ public class NotifClientes {
 			String email,
 			
 			// Parametros del fallecido
-			Integer ID, Integer ubicacion, TipoFallecimiento tipoFallecimiento, Integer codFallecido, String DNI,
+			 Integer ubicacion, TipoFallecimiento tipoFallecimiento, Integer codFallecido, String DNI,
 			String apellido, String nombre, String cocheria, Date fechaFallecimiento, Date fechaIngreso,
 			
 			// Parametros de la ubicacion
@@ -41,7 +42,7 @@ public class NotifClientes {
 			Integer inhumacion, Integer circ, Date vencimiento) {
 		
 		//Datos del cliente
-		this.ID = cli_iD;
+		this.cli_iD = cli_iD;
 		this.nombre = cli_nombre;
 		this.apellido = cli_apellido;
 		this.DNI = cli_DNI;
@@ -50,7 +51,6 @@ public class NotifClientes {
 		this.email = email;
 		
 		// Datos del fallecido
-		this.ID = ID;
 		this.ubicacion = ubicacion;
 		this.tipoFallecimiento = tipoFallecimiento;
 		this.codFallecido = codFallecido;
@@ -142,13 +142,7 @@ public class NotifClientes {
 		this.codFallecido = codFallecido;
 	}
 
-	public Integer getID() {
-		return ID;
-	}
 
-	public void setID(Integer iD) {
-		this.ID = iD;
-	}
 
 	public Integer getUbicacion() {
 		return ubicacion;
