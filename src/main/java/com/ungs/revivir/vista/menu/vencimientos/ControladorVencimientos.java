@@ -8,9 +8,11 @@ import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.busqueda.Relacionador;
 import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
+import com.ungs.revivir.negocios.manager.NotifClientesManager;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
+import com.ungs.revivir.persistencia.entidades.NotifClientes;
 import com.ungs.revivir.vista.menu.vencimientos.modificar.ControladorVencimientoAM;
 import com.ungs.revivir.vista.menu.vencimientos.modificar.VencimientoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
@@ -82,7 +84,7 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		SubSector subSector = (SubSector) ventana.getSubsector().getComboBox().getSelectedItem();
 		Date desde = ventana.getDesde().getValor();
 		Date hasta = ventana.getHasta().getValor();
-		List<FallecidoUbicacion> vencimientos = FallecidoUbicacionManager.buscarVencimientos(subSector, desde, hasta);
+		List<NotifClientes> vencimientos = NotifClientesManager.buscarVencimientos(subSector, desde, hasta);
 		new ReporteNotificaciones(vencimientos);
 	}
 	

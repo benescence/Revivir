@@ -4,14 +4,14 @@ public class Cliente {
 	private Integer ID;
 	private String nombre, apellido, DNI, domicilio, telefono, email;
 
-	public Cliente(Integer iD, String nombre, String apellido, String DNI, String domicilio, String telefono,
+	public Cliente(Integer iD, String nombre, String apellido, String DNI , String telefono,String domicilio,
 			String email) {
 		this.ID = iD;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.DNI = DNI;
-		this.domicilio = domicilio;
 		this.telefono = telefono;
+		this.domicilio = domicilio;
 		this.email = email;
 	}
 

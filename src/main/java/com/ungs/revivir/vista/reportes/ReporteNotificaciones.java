@@ -11,9 +11,11 @@ import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.manager.ClienteManager;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
+import com.ungs.revivir.negocios.manager.NotifClientesManager;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
+import com.ungs.revivir.persistencia.entidades.NotifClientes;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
@@ -30,7 +32,7 @@ public class ReporteNotificaciones {
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 
-	public ReporteNotificaciones(List<FallecidoUbicacion> lista) {
+	public ReporteNotificaciones(List<NotifClientes> notifClientes) {
 		Map<String, Object> totalVencimientos = new HashMap<String, Object>();
 		List<String> itemFallecidos = new ArrayList<String>();
     	List<String> itemVencimientos = new ArrayList<String>();
@@ -42,30 +44,20 @@ public class ReporteNotificaciones {
 		List<String> itemMails = new ArrayList<String>();
 		
 		
-		for (FallecidoUbicacion  elemento : lista) {
-			Fallecido fallecido = FallecidoUbicacionManager.extraerFallecido(elemento);
-			Ubicacion ubicacion = FallecidoUbicacionManager.extraerUbicacion(elemento);
+		for (NotifClientes  elemento : notifClientes) {
+			Fallecido fallecido = NotifClientesManager.extraerFallecido(elemento);
+			Ubicacion ubicacion = NotifClientesManager.extraerUbicacion(elemento);
+			Cliente cliente = NotifClientesManager.extraerCliente(elemento);
 			itemVencimientos.add(sdf.format(ubicacion.getVencimiento()));
 			itemUbicaciones.add(Formato.ubicacion(ubicacion));
 			itemFallecidos.add(fallecido.getApellido()+ " " + fallecido.getNombre());
-			List<Cliente> listaClientes =ClienteManager.traerPorFallecido(FallecidoUbicacionManager.extraerFallecido(elemento));
-			if (listaClientes.size() >0 ) {
-				for (Cliente cliente : listaClientes) {
-					itemDirecciones.add(cliente.getDomicilio());
-					itemTelefonos.add(cliente.getTelefono());
-					itemMails.add(cliente.getEmail());
-				}
-			}
-			else {
-				itemDirecciones.add(" ");
-				itemTelefonos.add(" ");
-				itemMails.add(" ");
-			}
-		
-			}
+			itemDirecciones.add(cliente.getDomicilio());
+			itemTelefonos.add(cliente.getTelefono());
+			itemMails.add(cliente.getEmail());
+		}
 
 			
-		if (lista.size() != 0) {
+		if (notifClientes.size() != 0) {
 
 			totalVencimientos.put("vencimientos", itemVencimientos);
 			totalVencimientos.put("fallecidos", itemFallecidos);

@@ -18,7 +18,7 @@ import com.ungs.revivir.persistencia.interfaces.FallecidoUbicacionOBD;
 import com.ungs.revivir.persistencia.interfaces.NotifClientesOBD;
 
 public class NotifClientesOBDMySQL extends OBD implements NotifClientesOBD{
-	private final String campos = "ID,cli_nombre,cli_apellido,cli_Dni, telefono,domicilio,email ,ubicacion, DNI, apellido, nombre, fecha_fallecimiento, tipo_fallecimiento, cod_fallecido, "
+	private final String campos = "cli_nombre,cli_apellido,cli_dni, cli_telefono,domicilio,email,ubicacion, DNI, apellido, nombre, fecha_fallecimiento, tipo_fallecimiento, cod_fallecido, "
 			+ "cocheria, fecha_ingreso, subsector, cementerio, nicho, fila, seccion, macizo, unidad, bis, bis_macizo, "
 			+ "sepultura, parcela, mueble, inhumacion, circ, vencimiento";
 	private final String tabla = "rev_v_NotifClientes";
@@ -51,6 +51,7 @@ public class NotifClientesOBDMySQL extends OBD implements NotifClientesOBD{
 	
 	private List<NotifClientes> selectByCondicion(String condicion, int limite) {
 		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
+		System.out.println(comandoSQL);
 		return selectSQL(comandoSQL);
 	}
 	
@@ -129,9 +130,10 @@ public class NotifClientesOBDMySQL extends OBD implements NotifClientesOBD{
 						resultados.getString("cli_nombre"),
 						resultados.getString("cli_apellido"),
 						resultados.getString("cli_dni"),
-						resultados.getString("telefono"),
+						resultados.getString("cli_telefono"),
 						resultados.getString("domicilio"),
 						resultados.getString("email"),
+					
 						resultados.getInt("ubicacion"),
 						Definido.tipoFallecimiento(resultados.getInt("tipo_fallecimiento")),
 						resultados.getInt("cod_fallecido"),

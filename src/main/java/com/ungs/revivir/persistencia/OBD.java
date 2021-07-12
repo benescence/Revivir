@@ -11,18 +11,18 @@ public class OBD {
 	//protected final String driver = "org.mariadb.jdbc.Driver";
 	protected final Integer limite = 50;
 	protected static Connection conexion = null;
-	
+	/*
 	// DESARROLLO
 	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir?serverTimezone=UTC"; 
 	protected String usuarioBD = "root"; 
 	protected String passwordBD = "root";
-	
+	*/
 	// PRODUCCION
-/*	
+	
 	protected final String cadenaConexion = "jdbc:mysql://crematorioescobar.com:3306/cretorioescobar_REVIVIR"; 
 	protected String usuarioBD = "cretorioescobar_REVIVIR";
 	protected String passwordBD = "REVIVIR1a";
-*/
+
 	
 	public void ejecutarSQL(String sql) {
 		// Sirve para ejecutar sentencias que no traigan resultados
