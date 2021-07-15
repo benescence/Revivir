@@ -1,0 +1,5 @@
+Revisar el siguiente error
+fernandez 20008
+select ID, subsector, cementerio, nicho, fila,seccion, macizo, unidad, bis, 
+	bis_macizo, sepultura, parcela, mueble, inhumacion, circ, vencimiento 
+from rev_ubicaciones where (ID = 256) limit 50;

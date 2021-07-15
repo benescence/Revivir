@@ -1,14 +1,28 @@
+/*
+- Codigo para crear las tablas del sistema
+- Ejecutar el codigo en orden para respetar las FK
+- Nomesclatura: rev_[nombre de tabla]
+*/
+
+
+
 -- NUEVA BASE DE DATOS
+-- Cuidado de no dropear la base de datos de produccion
+-- Usar solo en testing
 DROP DATABASE IF EXISTS revivir;
 CREATE DATABASE revivir;
 USE revivir;
-
+ 
+ 
+ 
 -- ESQUEMA ROLES
 CREATE TABLE rev_roles (
 	ID INT(1),
 	descripcion VARCHAR(20) NOT NULL,
 	PRIMARY KEY (ID)
 );
+
+
 
 -- ESQUEMAS USUARIOS
 CREATE TABLE rev_usuarios (
@@ -20,12 +34,16 @@ CREATE TABLE rev_usuarios (
 	FOREIGN KEY (rol) REFERENCES rev_roles(ID)
 );
 
+
+
 -- ESQUEMAS SECTOR
 CREATE TABLE rev_sector (
 	ID INT(10) NOT NULL,
 	descripcion VARCHAR(20) NOT NULL,
     PRIMARY KEY (ID)
 );
+
+
 
 -- ESQUEMAS SUBSECTOR
 CREATE TABLE rev_subsector (
@@ -35,6 +53,8 @@ CREATE TABLE rev_subsector (
     PRIMARY KEY (ID),
 	FOREIGN KEY (sector) REFERENCES rev_sector(ID)
 );
+
+
 
 -- ESQUEMAS UBICACIONES
 CREATE TABLE rev_ubicaciones (
@@ -58,12 +78,16 @@ CREATE TABLE rev_ubicaciones (
 	FOREIGN KEY (subsector) REFERENCES rev_subsector(ID)
 );
 
+
+
 -- ESQUEMA TIPO DE FALLECIMIENTO
 CREATE TABLE rev_tipo_fallecimiento (
 	ID INT(1),
 	descripcion VARCHAR(20) NOT NULL,
 	PRIMARY KEY (ID)
 );
+
+
 
 -- ESQUEMAS FALLECIDOS
 CREATE TABLE rev_fallecidos (
@@ -82,6 +106,8 @@ CREATE TABLE rev_fallecidos (
 	FOREIGN KEY (ubicacion) REFERENCES rev_ubicaciones(ID)
 );
 
+
+
 -- ESQUEMAS MOVIMIENTOS
 CREATE TABLE rev_movimientos (
 	ID INT(10) AUTO_INCREMENT,
@@ -93,6 +119,8 @@ CREATE TABLE rev_movimientos (
 	FOREIGN KEY (fallecido) REFERENCES rev_fallecidos(ID),
 	PRIMARY KEY (ID)
 );
+
+
 
 -- ESQUEMA CLIENTES
 CREATE TABLE rev_clientes (
@@ -106,6 +134,8 @@ CREATE TABLE rev_clientes (
 	PRIMARY KEY (ID)
 );
 
+
+
 -- ESQUEMAS RESPONSABLES
 CREATE TABLE rev_responsables (
 	ID INT(10) AUTO_INCREMENT,
@@ -117,6 +147,8 @@ CREATE TABLE rev_responsables (
 	FOREIGN KEY (fallecido) REFERENCES rev_fallecidos(ID)
 );
 
+
+
 -- ESQUEMAS SERVICIOS
 CREATE TABLE rev_servicios (
 	ID INT(10) AUTO_INCREMENT,
@@ -127,6 +159,8 @@ CREATE TABLE rev_servicios (
 	historico BOOLEAN NOT NULL,
 	PRIMARY KEY (ID)
 );
+
+
 
 -- ESQUEMAS CARGOS
 CREATE TABLE rev_cargos (
@@ -140,6 +174,8 @@ CREATE TABLE rev_cargos (
 	FOREIGN KEY (fallecido) REFERENCES rev_fallecidos(ID)
 );
 
+
+
 -- ESQUEMAS PAGOS
 CREATE TABLE rev_pagos (
 	ID INT(10) AUTO_INCREMENT,
@@ -151,12 +187,16 @@ CREATE TABLE rev_pagos (
 	FOREIGN KEY (cargo) REFERENCES rev_cargos(ID)
 );
 
+
+
 -- ESQUEMAS PERIODOS
 CREATE TABLE rev_periodos (
 	ID INT(1),
 	descripcion VARCHAR(20) NOT NULL,
 	PRIMARY KEY (ID)
 );
+
+
 
 -- ESQUEMAS EXPENSAS
 CREATE TABLE rev_expensas (
@@ -172,6 +212,8 @@ CREATE TABLE rev_expensas (
 	FOREIGN KEY (periodo) REFERENCES rev_cargos(ID),
     FOREIGN KEY (ubicacion) REFERENCES rev_ubicaciones(ID)
 );
+
+
 
 -- ESQUEMAS UBICACIONES TOTALES
 CREATE TABLE rev_ubicaciones_totales (
@@ -193,163 +235,4 @@ CREATE TABLE rev_ubicaciones_totales (
 	FOREIGN KEY (subsector) REFERENCES rev_subsector(ID)
 );
 
--- VISTA UBICACIONES LIBRES
-CREATE VIEW rev_v_ubicaciones_libres AS
-	SELECT 
-		UT.ID,
-		UT.subsector,
-		UT.circ,
-		UT.seccion,
-		UT.macizo,
-		UT.parcela,
-		UT.fila,
-		UT.unidad,
-		UT.nicho,
-		UT.mueble,
-		UT.sepultura,
-		UT.inhumacion,
-		UT.bis_macizo,
-		UT.bis
-	FROM rev_ubicaciones_totales UT
-		LEFT JOIN rev_ubicaciones U ON IFNULL(UT.fila, -1) = IFNULL(U.fila, -1)
-			AND IFNULL(UT.subsector, -1) = IFNULL(U.subsector, -1)
-			AND IFNULL(UT.circ, -1) = IFNULL(U.circ, -1)
-			AND IFNULL(UT.seccion, -1) = IFNULL(U.seccion, -1)
-			AND IFNULL(UT.macizo, -1) = IFNULL(U.macizo, -1)
-			AND IFNULL(UT.parcela, -1) = IFNULL(U.parcela, -1)
-			AND IFNULL(UT.unidad, -1) = IFNULL(U.unidad, -1)
-			AND IFNULL(UT.nicho, -1) = IFNULL(U.nicho, -1)
-			AND IFNULL(UT.mueble, -1) = IFNULL(U.mueble, -1)
-			AND IFNULL(UT.sepultura, -1) = IFNULL(U.sepultura, -1)
-			AND IFNULL(UT.inhumacion, -1) = IFNULL(U.inhumacion, -1)
-			AND IFNULL(UT.bis_macizo, -1) = IFNULL(U.bis_macizo, -1)
-			AND IFNULL(UT.bis, -1) = IFNULL(U.bis, -1)
-	WHERE U.ID IS null
-;
 
--- VISTA FALLECIDOS
-CREATE VIEW rev_v_fallecidos AS 
-	SELECT
-		F.id,
-		F.tipo_fallecimiento,
-		F.cod_fallecido,
-		F.ubicacion,
-		F.nombre,
-		F.apellido,
-		F.DNI,
-		F.cocheria,
-		F.fecha_fallecimiento,
-		F.fecha_ingreso,
-		U.vencimiento,
-		U.subsector,
-		U.circ,
-		U.seccion,
-		U.macizo,
-		U.parcela,
-		U.fila,
-		U.unidad,
-		U.nicho,
-		U.mueble,
-		U.sepultura,
-		U.inhumacion,
-		U.cementerio,
-		U.bis_macizo,
-		U.bis
-	FROM rev_fallecidos F
-		LEFT JOIN rev_ubicaciones U ON F.ubicacion = U.id
-;
-
-CREATE VIEW rev_v_notifclientes AS 
-	SELECT
-		C.ID AS cli_ID,
-		C.nombre AS cli_nombre,
-		C.apellido AS cli_apellido,
-		C.DNI AS cli_dni,
-		C.telefono AS cli_telefono,
-		C.email,
-		C.domicilio,
-		F.id,
-		F.tipo_fallecimiento,
-		F.cod_fallecido,
-		F.ubicacion,
-		F.nombre,
-		F.apellido,
-		F.DNI,
-		F.cocheria,
-		F.fecha_fallecimiento,
-		F.fecha_ingreso,
-		U.vencimiento,
-		U.subsector,
-		U.circ,
-		U.seccion,
-		U.macizo,
-		U.parcela,
-		U.fila,
-		U.unidad,
-		U.nicho,
-		U.mueble,
-		U.sepultura,
-		U.inhumacion,
-		U.cementerio,
-		U.bis_macizo,
-		U.bis
-	FROM rev_clientes C
-		LEFT JOIN rev_responsables R ON C.ID = R.cliente 
-		LEFT JOIN rev_fallecidos F ON F.ID = R.fallecido
-		LEFT JOIN rev_ubicaciones U ON F.ubicacion = U.id
-;
-	
--- INSERT TIPOS DE FALLECIMIENTO
-INSERT INTO rev_tipo_fallecimiento (ID, descripcion) VALUES
-(1, "TRAUMATICO"),
-(2, "NO TRAUMATICO");
-
--- INSERT  ROLES
-INSERT INTO rev_roles (ID, descripcion) VALUES
-(1, "SUPERVISOR"),
-(2, "ADMINISTRATIVO");
-
--- INSERT SECTORES
-INSERT INTO rev_sector (ID, descripcion) VALUES
-(1, 'SEPULTURAS'),
-(2, 'PALMERAS'),
-(3, 'NICHERA'),
-(4, 'CENIZARIO'),
-(5, 'BOVEDA'),
-(6, 'DEPOSITO'),
-(7, 'OTRO CMENTERIO');
-
--- INSERT PERIODOS
-INSERT INTO rev_periodos(ID, descripcion) VALUES
-(1, 'UNMES'),
-(2,'TRESMESES'),
-(3,'SEISMESES'),
-(4,'DOCEMESES'),
-(5,'VEINTICUATROMESES'),
-(6,'TTREINTAYSEISMESES'),
-(7,'CUARENTAYOCHOMESES');
-
--- INSERT SUB SECTORES
-INSERT INTO rev_subsector (ID, sector, descripcion) VALUES
-(1, 1, 'ADULTOS'),
-(2, 1, 'ANGELITOS'),
-(3, 1, 'COMPRADA'),
-(4, 1, 'INDIGENTES'),
-(5, 2, 'PALMERAS ATAUD'),
-(6, 2, 'PALMERAS CENIZAS'),
-(7, 2, 'PALMERAS RESTOS'),
-(8, 2, 'PALMERAS SEPULTURA'),
-(9, 3, 'NICHERA'),
-(10, 4, 'CENIZARIO'),
-(11, 5, 'BOVEDA'),
-(12, 6, 'DEPOSITO 1'),
-(13, 6, 'DEPOSITO 2'),
-(14, 6, 'DEPOSITO 3'),
-(15, 7, 'OTRO CMENTERIO');
-
-INSERT INTO rev_ubicaciones (subsector, circ, seccion, macizo, parcela, fila, unidad, nicho, mueble, sepultura,inhumacion, cementerio, vencimiento, bis_macizo, bis) VALUES
-(1, NULL, NULL, null, NULL, null, null, NULL, null, null, null, NULL, '1600-01-10', null, NULL);
-INSERT INTO rev_fallecidos (tipo_fallecimiento,cod_fallecido, ubicacion, nombre, apellido, dni, cocheria, fecha_fallecimiento, fecha_ingreso) VALUES
-(1, 20000 ,  1, "base_codigo", "base_codigo", "1", "base_codigo", '0001-01-1', '0001-01-1');
-insert into rev_usuarios (rol, usuario, password) values 
-(1, 'admin', 'admin');

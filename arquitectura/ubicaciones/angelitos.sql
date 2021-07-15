@@ -201,6 +201,8 @@ VALUES
  (2, '4A', 1, 5, 199,0, 0),
  (2, '4A', 1, 5, 200,0, 0);
 
+
+
 INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)
 VALUES
  (2, '4A', 1, 5, 1, 1,0),
@@ -232,6 +234,8 @@ VALUES
  (2, '4A', 1, 5, 25, 1,0),
  (2, '4A', 1, 5, 26, 1,0),
  (2, '4A', 1, 5, 27, 1,0);
+
+
 
 INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)
 VALUES
@@ -299,6 +303,8 @@ VALUES
  (2, '4A', 2, 5, 62, 0,0),
  (2, '4A', 2, 5, 63, 0,0);
 
+
+
 INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)
 VALUES
  (2, '4A', 11, 5, 1, 0,0),
@@ -327,7 +333,9 @@ VALUES
  (2, '4A', 11, 5, 24, 0,0),
  (2, '4A', 11, 5, 25, 0,0);
  
- INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)
+
+
+INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)
 VALUES
    (2, '4A', 2, 5, 1, 1,0),
  (2, '4A', 2, 5, 2, 1,0),
@@ -340,6 +348,8 @@ VALUES
  (2, '4A', 2, 5, 9, 1,0),
  (2, '4A', 2, 5, 10, 1,0),
  (2, '4A', 2, 5, 11, 1,0);
+
+
 
 
 INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)
@@ -375,3 +385,7 @@ VALUES
  (2, '4A', 11, 5, 29, 1,0),
  (2, '4A', 11, 5, 30, 1,0),
  (2, '4A', 11, 5, 31, 1,0);
+
+ 
+ 
+ 
