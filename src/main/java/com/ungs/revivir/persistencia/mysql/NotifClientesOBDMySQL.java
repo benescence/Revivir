@@ -20,7 +20,7 @@ public class NotifClientesOBDMySQL extends OBD implements NotifClientesOBD {
 			+ "apellido, nombre, fecha_fallecimiento, tipo_fallecimiento, cod_fallecido, "
 			+ "cocheria, fecha_ingreso, subsector, cementerio, nicho, fila, seccion, macizo, unidad, bis, bis_macizo, "
 			+ "sepultura, parcela, mueble, inhumacion, circ, vencimiento";
-	private final String tabla = "rev_v_NotifClientes";
+	private final String tabla = "rev_v_cliente_notificaciones";
 		
 	@Override
 	public List<NotifClientes> selectByNombreApellidoCOD(String nombre, String apellido, Integer codFallecido) {

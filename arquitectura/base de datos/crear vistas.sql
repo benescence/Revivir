@@ -85,7 +85,7 @@ CREATE VIEW rev_v_fallecidos AS
 -- Si un cliente tiene mas de un fallecido a su cargo devolvera a ese cliente una vez por cada uno
 -- Se anexan tambien los datos de la ubicacion del fallecido
 
-CREATE VIEW rev_v_notifclientes AS 
+CREATE VIEW rev_v_cliente_notificaciones AS 
 	SELECT
 		C.ID AS cli_ID,
 		C.nombre AS cli_nombre,
@@ -119,9 +119,9 @@ CREATE VIEW rev_v_notifclientes AS
 		U.cementerio,
 		U.bis_macizo,
 		U.bis
-	FROM rev_clientes C
-		LEFT JOIN rev_responsables R ON C.ID = R.cliente 
-		LEFT JOIN rev_fallecidos F ON F.ID = R.fallecido
+	FROM rev_fallecidos F
+		LEFT JOIN rev_responsables R ON F.ID = R.fallecido 
+		LEFT JOIN rev_clientes C ON C.ID = R.cliente
 		LEFT JOIN rev_ubicaciones U ON F.ubicacion = U.id
 ;
 

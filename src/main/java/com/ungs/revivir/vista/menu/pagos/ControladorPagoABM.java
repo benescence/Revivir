@@ -109,24 +109,24 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 		String nombre = ventana.getNombreFal().getValor();
 		String apellido = ventana.getApellidoFal().getValor();
 		Integer codigo = ventana.getCODFal().getValor();
-		System.out.println(nombre);
-		System.out.println(apellido);
-		System.out.println(codigo);
-
+		
+		List<Fallecido> fallecidos = null;
 		try {
-			List<Fallecido> fallecidos = FallecidoManager.traer(nombre, apellido, codigo);
-			if (fallecidos.size() != 1) {
-				Popup.mostrar("Debe especificar exactamente un fallecido para poder ver sus pagos.");
-				return;
-			}
-			
-			Fallecido fallecido = fallecidos.get(0);		
-			List<Pago> pagos = Busqueda.traerPagos(fallecido, desde, hasta);
-			ventana.getTabla().recargar(pagos);
-
+			 fallecidos = FallecidoManager.traer(nombre, apellido, codigo);
 		} catch (Exception e) {
-			e.printStackTrace();
+			
+			Popup.mostrar("Nota: Es obligatorio buscar un fallecido.\n"+ e.getMessage());
+			return;
 		}
+		
+		if (fallecidos == null || fallecidos.size() != 1) {
+			Popup.mostrar("Debe especificar exactamente un fallecido para poder ver sus pagos.");
+			return;
+		}
+		
+		Fallecido fallecido = fallecidos.get(0);		
+		List<Pago> pagos = Busqueda.traerPagos(fallecido, desde, hasta);
+		ventana.getTabla().recargar(pagos);
 		
 	}
 	

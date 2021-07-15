@@ -3,3 +3,8 @@ fernandez 20008
 select ID, subsector, cementerio, nicho, fila,seccion, macizo, unidad, bis, 
 	bis_macizo, sepultura, parcela, mueble, inhumacion, circ, vencimiento 
 from rev_ubicaciones where (ID = 256) limit 50;
+- pasar cambios a escobar.
+- revisar en que lugares hay que crear una vista
+- insert de ubicaciones
+- consulta de pagos diarios (ver reporte movimientos y cargos)
+_ consultar circ en sepulturas compradas

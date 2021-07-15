@@ -209,7 +209,6 @@ public class VentanaFallecidoAM extends Ventana {
 			inSeccion.habilitado(true);
 			inMacizo.habilitado(true);
 			inUnidad.habilitado(true);
-			inSepultura.habilitado(true);
 			inCheckMacizo.setEnabled(true);
 			inCheckBis.setEnabled(true);
 			inParcela.habilitado(true);
