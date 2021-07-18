@@ -17,8 +17,9 @@ public class GeneradorInsert {
 	public static void imprimirValores() {
 		
 		// Valores generalmente fijos
+		
 		String subsector    = "9";
-		String seccion      = "A";
+		String seccion      = "B";
 		String unidad       = "3";
 		//int sepulturaInicio =  1;
 		//boolean tieneBis    = false;
@@ -31,13 +32,15 @@ public class GeneradorInsert {
 
 		// Valores que cambian seguido
 		int parcelaInicio =  1;
-		int parcelaFin =  105;
-		String macizo    = "1";
-		String circ = "6";
-		int fila = 1;
+		int parcelaFin =  9;
+		String macizo    = "17";
+		String circ = "3";
+		//int fila = 1;
 		
+		while (Integer.parseInt(macizo) < 33 && Integer.parseInt(macizo) > 16) {
 		//recorrerSepulturas(subsector, seccion, macizo, unidad, sepulturaInicio, sepulturaFin, bisMacizo, tieneBis, sepulturasConBIS);
-		recorrerParcelas(subsector, seccion, unidad, parcelaInicio, parcelaFin, macizo, circ, fila);
+		recorrerParcelas(subsector, seccion, unidad, parcelaInicio, parcelaFin, macizo, circ, 4);
+							macizo = Integer.toString(Integer.parseInt(macizo) +1);		}
 	}
 	
 	/*
@@ -88,16 +91,17 @@ public class GeneradorInsert {
 	}	
 
 	public static void recorrerParcelas(String subsector, String seccion, String unidad,
-			int parcelaInicio, int parcelaFin, String macizo,String circ, int fila) {
-		
-		for (int i = parcelaInicio; i < parcelaFin + 1; i++) {
-			
-			// Si es la ultima linea va espacio vacio, sino una coma
-			String fin = (parcelaFin == i) ? "" : ",";
-
-			imprimirNicho(subsector, seccion, macizo, unidad, new Integer(i).toString(), circ,fila, fin);
+			int parcelaInicio, int parcelaFin, String macizo,String circ, int filaFin) {
+		for (int fila = 1 ; fila <= filaFin ; fila ++) {
+			for (int i = parcelaInicio; i < parcelaFin + 1; i++) {
+				
+				// Si es la ultima linea va espacio vacio, sino una coma
+				
+				String fin = (parcelaFin == i && fila == filaFin && Integer.parseInt(macizo) == 32) ? "" : ",";
+	
+				imprimirNicho(subsector, seccion, macizo, unidad, new Integer(i).toString(), circ,fila, fin);
+			}
 		}
-		
 	}	
 
 	public static void imprimirSepultura(String subsector, String seccion, String macizo, String unidad, String sepultura,
