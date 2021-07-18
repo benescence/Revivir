@@ -1,6 +1,5 @@
 package com.ungs.revivir.util;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class GeneradorInsert {
@@ -22,23 +21,23 @@ public class GeneradorInsert {
 		String seccion      = "A";
 		String unidad       = "3";
 		//int sepulturaInicio =  1;
-		int parcelaInicio =  1;
-		boolean tieneBis    = false;
+		//boolean tieneBis    = false;
+		// Descomentar la siguiente linea si tiene BIS
+		//tieneBis = true;
+		//List<Integer> sepulturasConBIS = Arrays.asList( 80, 1, 40, 43, 42);
+		//String bisMacizo = "0";
+		//int sepulturaFin =  80;
 		
 
 		// Valores que cambian seguido
-		//int sepulturaFin =  80;
+		int parcelaInicio =  1;
 		int parcelaFin =  105;
 		String macizo    = "1";
-		String bisMacizo = "0";
 		String circ = "6";
 		int fila = 1;
-		// Descomentar la siguiente linea si tiene BIS
-		tieneBis = true;
-		List<Integer> sepulturasConBIS = Arrays.asList( 80, 1, 40, 43, 42);
 		
 		//recorrerSepulturas(subsector, seccion, macizo, unidad, sepulturaInicio, sepulturaFin, bisMacizo, tieneBis, sepulturasConBIS);
-		recorrerParcelas(subsector, seccion, unidad, parcelaInicio, parcelaFin, macizo, circ,fila);
+		recorrerParcelas(subsector, seccion, unidad, parcelaInicio, parcelaFin, macizo, circ, fila);
 	}
 	
 	/*
@@ -81,9 +80,9 @@ public class GeneradorInsert {
 			String fin = (sepulturaFin == i) ? "" : ",";
 			
 			if (tieneBis && sepulturasConBIS.contains(i))
-				imprimirLinea(subsector, seccion, macizo, unidad, new Integer(i).toString(), bisMacizo, "1", ",");	
+				imprimirSepultura(subsector, seccion, macizo, unidad, new Integer(i).toString(), bisMacizo, "1", ",");	
 
-			imprimirLinea(subsector, seccion, macizo, unidad, new Integer(i).toString(), bisMacizo, "0", fin);
+			imprimirSepultura(subsector, seccion, macizo, unidad, new Integer(i).toString(), bisMacizo, "0", fin);
 		}
 		
 	}	
@@ -96,26 +95,29 @@ public class GeneradorInsert {
 			// Si es la ultima linea va espacio vacio, sino una coma
 			String fin = (parcelaFin == i) ? "" : ",";
 
-			imprimirLineaNichos(subsector, seccion, macizo, unidad, new Integer(i).toString(), circ,fila, fin);
+			imprimirNicho(subsector, seccion, macizo, unidad, new Integer(i).toString(), circ,fila, fin);
 		}
 		
 	}	
 
-	public static void imprimirLinea(String subsector, String seccion, String macizo, String unidad, String sepultura,
-			String bis_macizo, String bis, String fin) {
+	public static void imprimirSepultura(String subsector, String seccion, String macizo, String unidad, String sepultura,
+			String bisMacizo, String bis, String fin) {
 		
-		String linea = String.format( "(%s, '%s', %s, %s, %s, %s, %s)%s",
-				subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis,fin);
+		String linea = String.format(
+				"(%s, '%s', %s, %s, %s, %s, %s)%s",
+				subsector, seccion, macizo, unidad, sepultura, bisMacizo, bis,fin
+			);
 		System.out.println(linea);
-	}	
-	public static void imprimirLineaNichos(String subsector, String seccion, String macizo, String unidad,	String parcela	,	
+	}
+	
+	public static void imprimirNicho(String subsector, String seccion, String macizo, String unidad,	String parcela	,	
 			String circ, int fila, String fin) {
 		
-		String linea = String.format( "(%s, '%s', %s, %s, %s, %s, %s)%s",
-				subsector, seccion, macizo, unidad,parcela, circ,fila,fin);
+		String linea = String.format(
+				"(%s, '%s', %s, %s, %s, %s, %s)%s",
+				subsector, seccion, macizo, unidad,parcela, circ,fila,fin
+			);
 		System.out.println(linea);
 	}	
-
-//seccion a,macizo1,unidad3,parcela1, circ 6,fila 1 // falta insertar
 
 }
