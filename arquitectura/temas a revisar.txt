@@ -7,4 +7,5 @@ from rev_ubicaciones where (ID = 256) limit 50;
 - revisar en que lugares hay que crear una vista
 - insert de ubicaciones
 - consulta de pagos diarios (ver reporte movimientos y cargos)
-_ consultar circ en sepulturas compradas
+_ consultar circ en sepulturas compradas (en un alta esta en la otra no )
+- IP publica x IP fija para conexion
