@@ -1,16 +1,19 @@
 package com.ungs.revivir.util;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class GeneradorInsert {
-	
+	public static int contadorFinal=0; 
 	
 	public static void main(String[] args) {
+		contadorFinal=0;
 		//System.out.println("INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)");
 		System.out.println("INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad,parcela,circ,fila)");
 		System.out.println("VALUES");
 		imprimirValores();
 		System.out.println(";");
+		System.out.println("## Cantidad de lineas: "+ contadorFinal);
 	}
 	
 	
@@ -19,8 +22,8 @@ public class GeneradorInsert {
 		// Valores generalmente fijos
 		
 		String subsector    = "9";
-		String seccion      = "B";
-		String unidad       = "3";
+		String seccion      = "C";
+		String unidad       = "4";
 		//int sepulturaInicio =  1;
 		//boolean tieneBis    = false;
 		// Descomentar la siguiente linea si tiene BIS
@@ -30,17 +33,22 @@ public class GeneradorInsert {
 		//int sepulturaFin =  80;
 		
 
-		// Valores que cambian seguido
+		// Valores que cambian seguido //19--132 86FILAS DE 22NICHOS C/U)
+
 		int parcelaInicio =  1;
-		int parcelaFin =  9;
-		String macizo    = "17";
+		int parcelaFin =  22;
+		String macizo    = "19";
+		String macizoFin = "19";
 		String circ = "3";
 		//int fila = 1;
-		
-		while (Integer.parseInt(macizo) < 33 && Integer.parseInt(macizo) > 16) {
+		List<Integer> macizoIntercalado = Arrays.asList();
+		while (Integer.parseInt(macizo) <= Integer.parseInt(macizoFin)  ) {
+			if ( !macizoIntercalado.contains(Integer.parseInt(macizo)) ) {
 		//recorrerSepulturas(subsector, seccion, macizo, unidad, sepulturaInicio, sepulturaFin, bisMacizo, tieneBis, sepulturasConBIS);
-		recorrerParcelas(subsector, seccion, unidad, parcelaInicio, parcelaFin, macizo, circ, 4);
-							macizo = Integer.toString(Integer.parseInt(macizo) +1);		}
+		recorrerParcelas(subsector, seccion, unidad, parcelaInicio, parcelaFin, macizo, circ, 6, macizoFin);
+			}
+		macizo = Integer.toString(Integer.parseInt(macizo) +1);	
+		}
 	}
 	
 	/*
@@ -91,15 +99,17 @@ public class GeneradorInsert {
 	}	
 
 	public static void recorrerParcelas(String subsector, String seccion, String unidad,
-			int parcelaInicio, int parcelaFin, String macizo,String circ, int filaFin) {
+			int parcelaInicio, int parcelaFin, String macizo,String circ, int filaFin,String macizoFin) {
 		for (int fila = 1 ; fila <= filaFin ; fila ++) {
 			for (int i = parcelaInicio; i < parcelaFin + 1; i++) {
 				
 				// Si es la ultima linea va espacio vacio, sino una coma
 				
-				String fin = (parcelaFin == i && fila == filaFin && Integer.parseInt(macizo) == 32) ? "" : ",";
+				String fin = (parcelaFin == i && fila == filaFin && Integer.parseInt(macizo) == Integer.parseInt(macizoFin)) ? "" : ",";
 	
 				imprimirNicho(subsector, seccion, macizo, unidad, new Integer(i).toString(), circ,fila, fin);
+				contadorFinal++;
+				
 			}
 		}
 	}	
