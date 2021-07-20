@@ -126,3 +126,29 @@ CREATE VIEW rev_v_cliente_notificaciones AS
 ;
 
 
+
+-- VISTA REPORTE PAGOS
+-- Devuelve los pagos junto con los datos vinculados adecuados para mostrar en un reporte
+
+DROP VIEW rev_v_reporte_pagos;
+
+CREATE VIEW rev_v_reporte_pagos AS 
+	SELECT
+		PA.id AS id_pago,
+	    PA.importe,
+	    PA.observaciones AS observaciones_pago,
+	    PA.fecha AS fecha_pago,
+	    CA.id AS id_cargo,
+	    CA.observaciones AS observaciones_cargo,
+	    CA.pagado,
+	    FA.id AS id_fallecido,
+	    FA.nombre,
+	    FA.apellido,
+	    SE.id AS id_servicio,
+	    SE.nombre AS servicio_nombre,
+	    SE.historico
+	FROM rev_pagos PA
+		LEFT JOIN rev_cargos CA ON PA.cargo = CA.id
+		LEFT JOIN rev_fallecidos FA ON CA.fallecido = FA.id
+		LEFT JOIN rev_servicios SE ON SE.id = CA.servicio
+;
