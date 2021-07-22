@@ -8,8 +8,8 @@ public class GeneradorInsert {
 	
 	public static void main(String[] args) {
 		contadorFinal=0;
-		//System.out.println("INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)");
-		System.out.println("INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad,parcela,circ,fila)");
+		System.out.println("INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)");
+		//System.out.println("INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad,parcela,circ,fila)");
 		System.out.println("VALUES");
 		imprimirValores();
 		System.out.println(";");
@@ -21,43 +21,38 @@ public class GeneradorInsert {
 		
 		// Valores generalmente fijos
 		
-		String subsector    = "9";
-		String seccion      = "C";
-		String unidad       = "4";
-		//int sepulturaInicio =  1;
+		String subsector    = "1";
+		String seccion      = "4";
+		String unidad       = "5";
+		int sepulturaInicio =  1;
 		//boolean tieneBis    = false;
 		// Descomentar la siguiente linea si tiene BIS
-		//tieneBis = true;
-		//List<Integer> sepulturasConBIS = Arrays.asList( 80, 1, 40, 43, 42);
-		//String bisMacizo = "0";
-		//int sepulturaFin =  80;
+		boolean tieneBis = true;
+		List<Integer> sepulturasConBIS = Arrays.asList( 80, 1);
+		String bisMacizo = "0";
+		int sepulturaFin =  80;
 		
 
-		// Valores que cambian seguido //19--132 86FILAS DE 22NICHOS C/U)
+		// Valores que cambian seguido //MAC35-SEPULTURAS 80+3BIS (SEP80BIS-SEP1BIS-SEP43BIS)
 
 		int parcelaInicio =  1;
 		int parcelaFin =  22;
-		String macizo    = "19";
-		String macizoFin = "19";
+		String macizo    = "35";
+		String macizoFin = "35";
 		String circ = "3";
 		//int fila = 1;
 		List<Integer> macizoIntercalado = Arrays.asList();
 		while (Integer.parseInt(macizo) <= Integer.parseInt(macizoFin)  ) {
 			if ( !macizoIntercalado.contains(Integer.parseInt(macizo)) ) {
-		//recorrerSepulturas(subsector, seccion, macizo, unidad, sepulturaInicio, sepulturaFin, bisMacizo, tieneBis, sepulturasConBIS);
-		recorrerParcelas(subsector, seccion, unidad, parcelaInicio, parcelaFin, macizo, circ, 6, macizoFin);
+		recorrerSepulturas(subsector, seccion, macizo, unidad, sepulturaInicio, sepulturaFin, bisMacizo, tieneBis, sepulturasConBIS);
+		//recorrerParcelas(subsector, seccion, unidad, parcelaInicio, parcelaFin, macizo, circ, 6, macizoFin);
 			}
 		macizo = Integer.toString(Integer.parseInt(macizo) +1);	
 		}
 	}
 	
 	/*
-		MAC32-SEPULTURAS 79+6 BIS (SEP1BIS-SEP80BIS-SEP41BIS-SEP42BIS-SEP43BIS-SEP40BIS)
-		// revisar la 33 
 		
-		MAC34-SEPULTURAS 80+2BIS (SEP80BIS-SEP1BIS)
-		
-		MAC35-SEPULTURAS 80+3BIS (SEP80BIS-SEP1BIS-SEP43BIS)
 		
 		MAC35BIS-SEPULTURAS 43
 		
@@ -90,10 +85,11 @@ public class GeneradorInsert {
 			// Si es la ultima linea va espacio vacio, sino una coma
 			String fin = (sepulturaFin == i) ? "" : ",";
 			
-			if (tieneBis && sepulturasConBIS.contains(i))
+			if (tieneBis && sepulturasConBIS.contains(i)) {
 				imprimirSepultura(subsector, seccion, macizo, unidad, new Integer(i).toString(), bisMacizo, "1", ",");	
-
+				contadorFinal++;}
 			imprimirSepultura(subsector, seccion, macizo, unidad, new Integer(i).toString(), bisMacizo, "0", fin);
+			contadorFinal++;
 		}
 		
 	}	
