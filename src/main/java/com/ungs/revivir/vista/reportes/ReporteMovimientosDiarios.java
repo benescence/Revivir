@@ -6,8 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.manager.ReportePagoManager;
 import com.ungs.revivir.persistencia.entidades.ReportePago;
+import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
 
 import net.sf.jasperreports.engine.JRException;
@@ -44,7 +46,8 @@ public class ReporteMovimientosDiarios {
 		if (pagos.size() > 0) {
 			
 			total.add(suma);
-			parametros.put("Fecha", "01/07/2021");
+			parametros.put("fechaReporte", Formato.formatoFecha(fecha));
+			parametros.put("fechaHoy", Formato.formatoFecha(Almanaque.hoy()));
 			parametros.put("descripcion", itemServicios);
 			parametros.put("cliente", itemClientes);
 			parametros.put("monto", itemsMontos);

@@ -8,7 +8,7 @@ import com.ungs.revivir.vista.reportes.ReporteMovimientosDiarios;
 public class ReporteMovimientosDiariosTest {
 
 	public static void main(String[] args) {
-		Date fecha = Date.valueOf(LocalDate.of(2021, 7, 02));
+		Date fecha = Date.valueOf(LocalDate.of(2019, 8, 10));
 		new ReporteMovimientosDiarios(fecha);
 	}
 
