@@ -27,18 +27,18 @@ public class GeneradorInsert {
 		int sepulturaInicio =  1;
 		//boolean tieneBis    = false;
 		// Descomentar la siguiente linea si tiene BIS
-		boolean tieneBis = true;
-		List<Integer> sepulturasConBIS = Arrays.asList( 80, 1);
+		boolean tieneBis = false;
+		List<Integer> sepulturasConBIS = Arrays.asList( 42,43,30,31);
 		String bisMacizo = "0";
-		int sepulturaFin =  80;
+		int sepulturaFin =  72;
 		
 
-		// Valores que cambian seguido //MAC35-SEPULTURAS 80+3BIS (SEP80BIS-SEP1BIS-SEP43BIS)
+		// Valores que cambian seguido //MAC43-SEPULTURAS 72-
 
 		int parcelaInicio =  1;
 		int parcelaFin =  22;
-		String macizo    = "35";
-		String macizoFin = "35";
+		String macizo    = "43";
+		String macizoFin = "43";
 		String circ = "3";
 		//int fila = 1;
 		List<Integer> macizoIntercalado = Arrays.asList();
@@ -50,31 +50,6 @@ public class GeneradorInsert {
 		macizo = Integer.toString(Integer.parseInt(macizo) +1);	
 		}
 	}
-	
-	/*
-		
-		
-		MAC35BIS-SEPULTURAS 43
-		
-		MAC36-SEPULTURAS 122+2BIS (SEP 1BIS-SEP 80BIS)
-		
-		MAC37-SEPULTURAS 48+ 7 BIS (SEP47BIS-48BIS-49BIS-50BIS-51BIS-52BIS-53BIS).
-		
-		MAC38-SEPULTURAS 60 +4 BIS (42BIS-43BIS-30BIS-31BIS)
-		
-		MAC39-SEPULTURAS 285
-		
-		MAC40-SEPULTURAS 270
-		
-		MAC41-SEPULTURAS 360-
-		
-		MAC41BIS-SEPULTURAS 64-
-		
-		MAC42-SEPULTURAS 242-
-		
-		MAC43-SEPULTURAS 72-
-	 */
-	
 	
 	
 	public static void recorrerSepulturas(String subsector, String seccion, String macizo, String unidad,

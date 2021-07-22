@@ -218,6 +218,7 @@ public class VentanaFallecidoAM extends Ventana {
 			inMacizo.habilitado(true);
 			inSepultura.habilitado(true);
 			inInhumacion.habilitado(true);
+			inUnidad.habilitado(true);
 
 		} else if (subSector == SubSector.PALMERAS_ATAUD
 				|| subSector == SubSector.PALMERAS_CENIZAS

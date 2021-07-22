@@ -260,6 +260,9 @@ public class VerificadorUbicacion {
 			if (sepultura == null)
 				mensaje += "\n    -La SEPULTURA no puede estar vacio.";
 			
+			if (unidad == null)
+				mensaje += "\n    -La Unidad no puede estar vacio.";
+			
 			if (inhumacion == null)
 				mensaje += "\n    -La INHUMACION no puede estar vacio.";
 		
@@ -267,6 +270,7 @@ public class VerificadorUbicacion {
 				throw new Exception("Se encontraron los siguientes errores en el formulario: "+mensaje);
 			
 			verificar.setSeccion(seccion);
+			verificar.setUnidad(unidad);
 			verificar.setMacizo(macizo);
 			verificar.setSepultura(sepultura);
 			verificar.setInhumacion(inhumacion);
