@@ -35,8 +35,7 @@ public class ReporteMovimientosDiarios {
 		for (ReportePago pago : pagos) {
 			String nombreCliente = pago.getNombre();
 			String apellidoCliente = pago.getApellido();
-			itemClientes.add(nombreCliente);
-			itemClientes.add(apellidoCliente);
+			itemClientes.add(nombreCliente + ", " + apellidoCliente);
 			itemServicios.add(pago.getServicioNombre());
 			itemsMontos.add(new Double(pago.getImporte()));
 			suma = suma + pago.getImporte();
@@ -45,7 +44,7 @@ public class ReporteMovimientosDiarios {
 		if (pagos.size() > 0) {
 			
 			total.add(suma);
-			parametros.put("Fecha", fecha);
+			parametros.put("Fecha", "01/07/2021");
 			parametros.put("descripcion", itemServicios);
 			parametros.put("cliente", itemClientes);
 			parametros.put("monto", itemsMontos);

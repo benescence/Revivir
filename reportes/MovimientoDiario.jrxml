@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
@@ -10,7 +10,7 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
-	<parameter name="Fecha" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
 	<parameter name="descripcion" class="java.util.List"/>
 	<parameter name="cliente" class="java.util.List"/>
 	<parameter name="monto" class="java.util.List"/>
@@ -18,9 +18,6 @@
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
-	<field name="pagoFecha" class="java.sql.Date">
-		<fieldDescription><![CDATA[fecha]]></fieldDescription>
-	</field>
 	<group name="Group1"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -52,7 +49,7 @@
 					<textElement>
 						<font size="14" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{pagoFecha});]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{fecha};]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement x="10" y="31" width="98" height="23" uuid="b41ee76e-f1c7-4a32-8b75-855bfbe0ff92"/>
@@ -138,7 +135,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="180" y="59" width="178" height="20" uuid="0706116d-f632-4605-96d8-35fe765b5d67"/>
-				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{pagoFecha});]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{fecha};]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="42" y="10" width="100" height="30" uuid="822addfa-8bc2-4781-acd3-7b601213f30e"/>
