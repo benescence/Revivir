@@ -1,6 +1,7 @@
 package com.ungs.revivir.persistencia.entidades.vista;
 
 import java.sql.Date;
+import com.ungs.revivir.persistencia.definidos.SubSector;
 
 public class ReportePago {
 	
@@ -25,11 +26,33 @@ public class ReportePago {
 	private Integer servicioID;
 	private String servicioNombre;
 	private Boolean servicioHistorico;
+
+	// Ubicacion
+	private Integer ubicacionID;
+	private SubSector ubicacionSubsector;
+	private Integer ubicacionCirc;
+	private String ubicacionSeccion;
+	private Integer ubicacionMacizo;
+	private Integer ubicacionParcela;
+	private Integer ubicacionFila;
+	private Integer ubicacionUnidad;
+	private Integer ubicacionNicho;
+	private Integer ubicacionMueble;
+	private Integer ubicacionSepultura;
+	private Integer ubicacionInhumacion;
+	private String ubicacionCementerio;
+	private Date ubicacionVencimiento;
+	private Boolean ubicacionBisMacizo;
+	private Boolean ubicacionBis;
 	
 	public ReportePago(Integer pagoID, Double pagoImporte, String pagoObservaciones, Date pagoFecha, Integer cargoID,
 			String cargoObservaciones, Boolean cargoPagado, Integer fallecidoID, String fallecidoNombre,
 			String fallecidoApellido, String fallecidoDNI, Integer servicioID, String servicioNombre,
-			Boolean servicioHistorico) {
+			Boolean servicioHistorico, Integer ubicacionID, SubSector ubicacionSubsector, Integer ubicacionCirc,
+			String ubicacionSeccion, Integer ubicacionMacizo, Integer ubicacionParcela, Integer ubicacionFila,
+			Integer ubicacionUnidad, Integer ubicacionNicho, Integer ubicacionMueble, Integer ubicacionSepultura,
+			Integer ubicacionInhumacion, String ubicacionCementerio, Date ubicacionVencimiento,
+			Boolean ubicacionBisMacizo, Boolean ubicacionBis) {
 		this.pagoID = pagoID;
 		this.pagoImporte = pagoImporte;
 		this.pagoObservaciones = pagoObservaciones;
@@ -44,6 +67,22 @@ public class ReportePago {
 		this.servicioID = servicioID;
 		this.servicioNombre = servicioNombre;
 		this.servicioHistorico = servicioHistorico;
+		this.ubicacionID = ubicacionID;
+		this.ubicacionSubsector = ubicacionSubsector;
+		this.ubicacionCirc = ubicacionCirc;
+		this.ubicacionSeccion = ubicacionSeccion;
+		this.ubicacionMacizo = ubicacionMacizo;
+		this.ubicacionParcela = ubicacionParcela;
+		this.ubicacionFila = ubicacionFila;
+		this.ubicacionUnidad = ubicacionUnidad;
+		this.ubicacionNicho = ubicacionNicho;
+		this.ubicacionMueble = ubicacionMueble;
+		this.ubicacionSepultura = ubicacionSepultura;
+		this.ubicacionInhumacion = ubicacionInhumacion;
+		this.ubicacionCementerio = ubicacionCementerio;
+		this.ubicacionVencimiento = ubicacionVencimiento;
+		this.ubicacionBisMacizo = ubicacionBisMacizo;
+		this.ubicacionBis = ubicacionBis;
 	}
 
 	public Integer getPagoID() {
@@ -157,5 +196,133 @@ public class ReportePago {
 	public void setServicioHistorico(Boolean servicioHistorico) {
 		this.servicioHistorico = servicioHistorico;
 	}
-		
+
+	public Integer getUbicacionID() {
+		return ubicacionID;
+	}
+
+	public void setUbicacionID(Integer ubicacionID) {
+		this.ubicacionID = ubicacionID;
+	}
+
+	public SubSector getUbicacionSubsector() {
+		return ubicacionSubsector;
+	}
+
+	public void setUbicacionSubsector(SubSector ubicacionSubsector) {
+		this.ubicacionSubsector = ubicacionSubsector;
+	}
+
+	public Integer getUbicacionCirc() {
+		return ubicacionCirc;
+	}
+
+	public void setUbicacionCirc(Integer ubicacionCirc) {
+		this.ubicacionCirc = ubicacionCirc;
+	}
+
+	public String getUbicacionSeccion() {
+		return ubicacionSeccion;
+	}
+
+	public void setUbicacionSeccion(String ubicacionSeccion) {
+		this.ubicacionSeccion = ubicacionSeccion;
+	}
+
+	public Integer getUbicacionMacizo() {
+		return ubicacionMacizo;
+	}
+
+	public void setUbicacionMacizo(Integer ubicacionMacizo) {
+		this.ubicacionMacizo = ubicacionMacizo;
+	}
+
+	public Integer getUbicacionParcela() {
+		return ubicacionParcela;
+	}
+
+	public void setUbicacionParcela(Integer ubicacionParcela) {
+		this.ubicacionParcela = ubicacionParcela;
+	}
+
+	public Integer getUbicacionFila() {
+		return ubicacionFila;
+	}
+
+	public void setUbicacionFila(Integer ubicacionFila) {
+		this.ubicacionFila = ubicacionFila;
+	}
+
+	public Integer getUbicacionUnidad() {
+		return ubicacionUnidad;
+	}
+
+	public void setUbicacionUnidad(Integer ubicacionUnidad) {
+		this.ubicacionUnidad = ubicacionUnidad;
+	}
+
+	public Integer getUbicacionNicho() {
+		return ubicacionNicho;
+	}
+
+	public void setUbicacionNicho(Integer ubicacionNicho) {
+		this.ubicacionNicho = ubicacionNicho;
+	}
+
+	public Integer getUbicacionMueble() {
+		return ubicacionMueble;
+	}
+
+	public void setUbicacionMueble(Integer ubicacionMueble) {
+		this.ubicacionMueble = ubicacionMueble;
+	}
+
+	public Integer getUbicacionSepultura() {
+		return ubicacionSepultura;
+	}
+
+	public void setUbicacionSepultura(Integer ubicacionSepultura) {
+		this.ubicacionSepultura = ubicacionSepultura;
+	}
+
+	public Integer getUbicacionInhumacion() {
+		return ubicacionInhumacion;
+	}
+
+	public void setUbicacionInhumacion(Integer ubicacionInhumacion) {
+		this.ubicacionInhumacion = ubicacionInhumacion;
+	}
+
+	public String getUbicacionCementerio() {
+		return ubicacionCementerio;
+	}
+
+	public void setUbicacionCementerio(String ubicacionCementerio) {
+		this.ubicacionCementerio = ubicacionCementerio;
+	}
+
+	public Date getUbicacionVencimiento() {
+		return ubicacionVencimiento;
+	}
+
+	public void setUbicacionVencimiento(Date ubicacionVencimiento) {
+		this.ubicacionVencimiento = ubicacionVencimiento;
+	}
+
+	public Boolean getUbicacionBisMacizo() {
+		return ubicacionBisMacizo;
+	}
+
+	public void setUbicacionBisMacizo(Boolean ubicacionBisMacizo) {
+		this.ubicacionBisMacizo = ubicacionBisMacizo;
+	}
+
+	public Boolean getUbicacionBis() {
+		return ubicacionBis;
+	}
+
+	public void setUbicacionBis(Boolean ubicacionBis) {
+		this.ubicacionBis = ubicacionBis;
+	}
+
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.manager.ReportePagoManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
@@ -42,6 +43,7 @@ public class ReporteVariosCargos {
 		
 		if (pagos.size() > 0) {
 			Fallecido fallecido = ReportePagoManager.extraerFallecido(pagos.get(0));
+			Ubicacion ubicacion = ReportePagoManager.extraerUbicacion(pagos.get(0));
 			
 			total.add(suma);
 			parametros.put("fecha", Formato.formatoFecha(Almanaque.hoy()));
@@ -49,7 +51,7 @@ public class ReporteVariosCargos {
 			parametros.put("observaciones",itemObservaciones);
 			parametros.put("monto", itemMontos);
 			parametros.put("fallecido", Formato.fallecido(fallecido));
-	    	parametros.put("ubicacion", "Completar datos de la ubicacion");
+	    	parametros.put("ubicacion", Formato.ubicacion(ubicacion));
 	    	// Numero de fallecido que seria?
 			parametros.put("DNIfallecido", fallecido.getDNI());
 			parametros.put("total", total);

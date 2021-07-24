@@ -147,9 +147,26 @@ CREATE VIEW rev_v_reporte_pagos AS
 	    FA.dni AS fallecido_dni,
 	    SE.id AS servicio_id,
 	    SE.nombre AS servicio_nombre,
-	    SE.historico AS servicio_historico
+	    SE.historico AS servicio_historico,
+		UB.ID AS ubicacion_ID,
+		UB.subsector AS ubicacion_subsector,
+		UB.circ AS ubicacion_circ,
+		UB.seccion AS ubicacion_seccion,
+		UB.macizo AS ubicacion_macizo,
+		UB.parcela AS ubicacion_parcela,
+		UB.fila AS ubicacion_fila,
+		UB.unidad AS ubicacion_unidad,
+		UB.nicho AS ubicacion_nicho,
+		UB.mueble AS ubicacion_mueble,
+		UB.sepultura AS ubicacion_sepultura,
+		UB.inhumacion AS ubicacion_inhumacion,
+		UB.cementerio AS ubicacion_cementerio,
+		UB.vencimiento AS ubicacion_vencimiento,
+		UB.bis_macizo AS ubicacion_bis_macizo,
+		UB.bis AS ubicacion_bis
 	FROM rev_pagos PA
 		LEFT JOIN rev_cargos CA ON PA.cargo = CA.id
 		LEFT JOIN rev_fallecidos FA ON CA.fallecido = FA.id
 		LEFT JOIN rev_servicios SE ON SE.id = CA.servicio
+		LEFT JOIN rev_ubicaciones UB ON UB.id = FA.ubicacion
 ;

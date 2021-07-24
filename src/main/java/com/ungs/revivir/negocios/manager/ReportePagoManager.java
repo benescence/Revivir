@@ -6,6 +6,7 @@ import java.util.List;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
+import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
 import com.ungs.revivir.persistencia.interfaces.vista.ReportePagoVOBD;
 
@@ -41,4 +42,25 @@ public class ReportePagoManager {
 				);
 	}
 	
+	public static Ubicacion	extraerUbicacion(ReportePago reporte) {
+		return new Ubicacion(
+				reporte.getUbicacionID(),
+				reporte.getUbicacionSubsector(),
+				reporte.getUbicacionCementerio(),
+				reporte.getUbicacionNicho(),
+				reporte.getUbicacionFila(),
+				reporte.getUbicacionSeccion(),
+				reporte.getUbicacionMacizo(),
+				reporte.getUbicacionUnidad(),
+				reporte.getUbicacionBis(),
+				reporte.getUbicacionBisMacizo(),
+				reporte.getUbicacionSepultura(),
+				reporte.getUbicacionParcela(),
+				reporte.getUbicacionMueble(),
+				reporte.getUbicacionInhumacion(),
+				reporte.getUbicacionCirc(),
+				reporte.getUbicacionVencimiento()
+			);
+	}
+		
 }
