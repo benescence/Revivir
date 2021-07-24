@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.ungs.revivir.persistencia.Definido;
 import com.ungs.revivir.persistencia.OBD;
+import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
 import com.ungs.revivir.persistencia.interfaces.vista.ReportePagoVOBD;
 
@@ -33,12 +34,23 @@ public class ReportePagoOBDMySQL extends OBD implements ReportePagoVOBD {
 		return selectByCondicion(condicion);
 	}
 
-
+	@Override
+	public List<ReportePago> selectByFallecidoDesdeHasta(Fallecido fallecido, Date fechaDesde, Date fechaHasta) {
+		String condicion = "fallecido_id = " + fallecido.getID() +" "
+				+ "and pago_fecha >= '" + fechaDesde +"' "
+				+ "and pago_fecha <= '" + fechaHasta +"' ";
+		return selectByCondicion(condicion);
+	}
+	
 	//*********************** METODOS PRIVADOS ************************************
 	
 	private List<ReportePago> selectByCondicion(String condicion) {
-		List<ReportePago> ret = new ArrayList<ReportePago>();
 		String comandoSQL = "select "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
+		return selectBySQL(comandoSQL);
+	}
+	
+	private List<ReportePago> selectBySQL(String comandoSQL) {
+		List<ReportePago> ret = new ArrayList<ReportePago>();
 		try { 
 			Class.forName(driver); 
 			Connection conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD); 

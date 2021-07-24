@@ -17,6 +17,11 @@ public class ReportePagoManager {
 		return obd.selectByFecha(fecha);
 	}
 	
+	public static List<ReportePago> traerPagos(Fallecido fallecido, Date fechaDesde, Date fechaHasta) {
+		ReportePagoVOBD vobd = FactoryOBD.crearReportePagoOBD();
+		return vobd.selectByFallecidoDesdeHasta(fallecido, fechaDesde, fechaHasta);
+	}
+	
 	public static Pago	extraerPago(ReportePago reporte) {
 		return new Pago(
 				reporte.getPagoID(),

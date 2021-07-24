@@ -5,13 +5,11 @@ import java.util.List;
 
 import javax.swing.JInternalFrame;
 
-import com.ungs.revivir.negocios.Busqueda;
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.PagoManager;
 import com.ungs.revivir.negocios.manager.ReportePagoManager;
 import com.ungs.revivir.negocios.verificador.VerificadorBorrado;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.ControladorPagoAM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.PagoInvocable;
@@ -128,9 +126,8 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 		}
 		
 		Fallecido fallecido = fallecidos.get(0);		
-		List<Pago> pagos = Busqueda.traerPagos(fallecido, desde, hasta);
-		//ventana.getTabla().recargar(pagos);
-		
+		List<ReportePago> pagos = ReportePagoManager.traerPagos(fallecido, desde, hasta);
+		ventana.getTabla().recargar(pagos);
 	}
 	
 }
