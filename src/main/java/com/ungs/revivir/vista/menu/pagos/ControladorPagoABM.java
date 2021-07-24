@@ -12,7 +12,7 @@ import com.ungs.revivir.negocios.manager.ReportePagoManager;
 import com.ungs.revivir.negocios.verificador.VerificadorBorrado;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
-import com.ungs.revivir.persistencia.entidades.ReportePago;
+import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.ControladorPagoAM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.PagoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
@@ -49,8 +49,8 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 	}
 	
 	private void factura() {
-		//List<Pago> lista = ventana.getTabla().obtenerSeleccion();
-		//new ReporteVariosCargos(lista);
+		List<ReportePago> lista = ventana.getTabla().obtenerSeleccion();
+		new ReporteVariosCargos(lista);
 	}
 	
 	private void agregar() {

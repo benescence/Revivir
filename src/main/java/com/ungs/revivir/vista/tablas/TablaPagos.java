@@ -6,7 +6,9 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.ungs.revivir.persistencia.entidades.ReportePago;
+import com.ungs.revivir.negocios.manager.ReportePagoManager;
+import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
 import com.ungs.revivir.vista.util.Formato;
 
 public class TablaPagos extends JTable{
@@ -28,11 +30,13 @@ public class TablaPagos extends JTable{
 		modelo.setColumnIdentifiers(columnas);
 
 		for (ReportePago elemento: lista) {
+			Fallecido fallecido = ReportePagoManager.extraerFallecido(elemento);
+			
 			Object[] fila = {
-					elemento.getApellido() + ", " + elemento.getNombre(),
-					elemento.getObservaciones(),
+					Formato.fallecido(fallecido),
+					elemento.getPagoObservaciones(),
 					elemento.getServicioNombre(),
-					Formato.dinero(new Double(elemento.getImporte())),
+					Formato.dinero(elemento.getPagoImporte()),
 					Formato.formatoFecha(elemento.getPagoFecha())
 			};
 			modelo.addRow(fila);

@@ -1,15 +1,14 @@
-
 package com.ungs.revivir.vista.reportes;
 
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.ungs.revivir.negocios.Almanaque;
-import com.ungs.revivir.persistencia.entidades.Pago;
+import com.ungs.revivir.negocios.manager.ReportePagoManager;
+import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
 
@@ -26,55 +25,52 @@ public class ReporteVariosCargos {
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 
-	public ReporteVariosCargos(List<Pago> pagos) {
-    	Map<String, Object> totalPagos = new HashMap<String, Object>();
-		List<String> servicios = new ArrayList<String>();
-		List<String> observaciones = new ArrayList<String>();
-		//pagos = PagoManager.traerTodo();
-		List<Double> montos = new ArrayList<Double>();
+	public ReporteVariosCargos(List<ReportePago> pagos) {
+    	Map<String, Object> parametros = new HashMap<String, Object>();
+		List<String> itemServicios = new ArrayList<String>();
+		List<String> itemObservaciones = new ArrayList<String>();
+		List<Double> itemMontos = new ArrayList<Double>();
 		Double suma = 0.0;
 		List<Double> total = new ArrayList<Double>();
 		
-		for (Pago pago : pagos) {
-			servicios.add(Formato.servicioDesdeCargo(pago));
-			observaciones.add(pago.getObservaciones());
-			montos.add(pago.getImporte());
-			suma= suma + pago.getImporte();		
-		
+		for (ReportePago pago : pagos) {
+			itemServicios.add(pago.getServicioNombre());
+			itemObservaciones.add(pago.getPagoObservaciones());
+			itemMontos.add(pago.getPagoImporte());
+			suma= suma + pago.getPagoImporte();
 		}
 		
-		if (pagos.size() != 0) {
-	
-		total.add(suma);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		String fecha = sdf.format(Almanaque.hoy());
-		totalPagos.put("fecha",fecha);
-		//totalPagos.put("cliente",Formato.cliente(pagos.get(0)));
-		totalPagos.put("descripcion", servicios);
-		totalPagos.put("observaciones",observaciones);
-		totalPagos.put("fallecido", Formato.fallecido(pagos.get(0)));
-    	totalPagos.put("ubicacion", Formato.ubicaciondesdePago(pagos.get(0)));
-		totalPagos.put("monto", montos);
-		totalPagos.put("total", total);
-		totalPagos.put("DNIfallecido",Formato.DNIfallecido(pagos.get(0)));
-    	
-		try {
-			this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\FacturaVariosCargos.jasper");
-			this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalPagos,
-					new JRBeanCollectionDataSource(pagos));
-			System.out.println("Se cargo correctamente reporte");
-			mostrar();
-	
-	} catch (JRException ex) {
-		System.out.println("Ocurrio un error mientras se cargaba el archivo movimientosVariosCargos.Jasper \n " + ex);
+		if (pagos.size() > 0) {
+			Fallecido fallecido = ReportePagoManager.extraerFallecido(pagos.get(0));
+			
+			total.add(suma);
+			parametros.put("fecha", Formato.formatoFecha(Almanaque.hoy()));
+			parametros.put("descripcion", itemServicios);
+			parametros.put("observaciones",itemObservaciones);
+			parametros.put("monto", itemMontos);
+			parametros.put("fallecido", Formato.fallecido(fallecido));
+	    	parametros.put("ubicacion", "Completar datos de la ubicacion");
+	    	// Numero de fallecido que seria?
+			parametros.put("DNIfallecido", fallecido.getDNI());
+			parametros.put("total", total);
+	    	
+			try {
+				this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\FacturaVariosCargos.jasper");
+				this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametros,
+						new JRBeanCollectionDataSource(pagos));
+				System.out.println("Se cargo correctamente reporte");
+				mostrar();
+		
+			} catch (JRException ex) {
+				System.out.println("Ocurrio un error mientras se cargaba el archivo movimientosVariosCargos.Jasper \n " + ex);
+			}
+		
+		} else {
+			Popup.mostrar("No hay pagos para la fecha seleccionada");
+		}
+		
 	}
-	}
-	else {
-		Popup.mostrar("No hay pagos para la fecha seleccionada");
-	}
-}
-
-	   
+ 
     public void mostrar() {
 		this.reporteViewer = new JasperViewer(this.reporteLleno,false);
 		this.reporteViewer.setVisible(true);

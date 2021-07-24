@@ -8,7 +8,8 @@ import java.util.Map;
 
 import com.ungs.revivir.negocios.Almanaque;
 import com.ungs.revivir.negocios.manager.ReportePagoManager;
-import com.ungs.revivir.persistencia.entidades.ReportePago;
+import com.ungs.revivir.persistencia.entidades.Fallecido;
+import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
 
@@ -35,12 +36,12 @@ public class ReporteMovimientosDiarios {
 		List<Double> total = new ArrayList<Double>();
 		
 		for (ReportePago pago : pagos) {
-			String nombreCliente = pago.getNombre();
-			String apellidoCliente = pago.getApellido();
-			itemClientes.add(nombreCliente + ", " + apellidoCliente);
+			Fallecido fallecido = ReportePagoManager.extraerFallecido(pago);
+
+			itemClientes.add(Formato.fallecido(fallecido));
 			itemServicios.add(pago.getServicioNombre());
-			itemsMontos.add(new Double(pago.getImporte()));
-			suma = suma + pago.getImporte();
+			itemsMontos.add(pago.getPagoImporte());
+			suma = suma + pago.getPagoImporte();
 		}
 		 
 		if (pagos.size() > 0) {

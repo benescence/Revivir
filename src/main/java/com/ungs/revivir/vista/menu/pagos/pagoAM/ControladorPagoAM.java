@@ -18,7 +18,6 @@ import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Servicio;
 import com.ungs.revivir.vista.principal.ControladorExterno;
-import com.ungs.revivir.vista.reportes.ReporteVariosCargos;
 import com.ungs.revivir.vista.seleccion.cargos.CargoSeleccionable;
 import com.ungs.revivir.vista.seleccion.cargos.ControladorSeleccionCargo;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
@@ -133,7 +132,7 @@ public class ControladorPagoAM implements ControladorExterno, CargoSeleccionable
 		if (aceptar()) {
 			List <Pago> pagos = new ArrayList<Pago>();
 			pagos.add(PagoManager.traerUltimoGuardado());
-			new ReporteVariosCargos(pagos);
+			//new ReporteVariosCargos(pagos);
 		}
 	}
 	

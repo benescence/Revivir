@@ -9,7 +9,6 @@ import com.ungs.revivir.persistencia.interfaces.FallecidoUbicacionOBD;
 import com.ungs.revivir.persistencia.interfaces.MovimientoOBD;
 import com.ungs.revivir.persistencia.interfaces.NotifClientesOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
-import com.ungs.revivir.persistencia.interfaces.ReportePagoOBD;
 import com.ungs.revivir.persistencia.interfaces.PDFOBD;
 import com.ungs.revivir.persistencia.interfaces.ResponsableOBD;
 import com.ungs.revivir.persistencia.interfaces.ServicioOBD;
@@ -17,6 +16,7 @@ import com.ungs.revivir.persistencia.interfaces.UbicacionLibreOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionTotalOBD;
 import com.ungs.revivir.persistencia.interfaces.UsuarioOBD;
+import com.ungs.revivir.persistencia.interfaces.vista.ReportePagoVOBD;
 import com.ungs.revivir.persistencia.mysql.CargoOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ClienteOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ConfiguracionOBDMySQL;
@@ -26,7 +26,6 @@ import com.ungs.revivir.persistencia.mysql.FallecidoUbicacionOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.MovimientoOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.NotifClientesOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.PagoOBDMySQL;
-import com.ungs.revivir.persistencia.mysql.ReportePagoOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.PDFOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ResponsableOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ServicioOBDMySQL;
@@ -34,10 +33,11 @@ import com.ungs.revivir.persistencia.mysql.UbicacionLibreOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.UbicacionOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.UbicacionTotalOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.UsuarioOBDMySQL;
+import com.ungs.revivir.persistencia.mysql.vista.ReportePagoOBDMySQL;
 
 public class FactoryOBD {
 
-	public static ReportePagoOBD crearReportePagoOBD() {
+	public static ReportePagoVOBD crearReportePagoOBD() {
 		return new ReportePagoOBDMySQL();
 	}
 

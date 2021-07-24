@@ -134,19 +134,20 @@ DROP VIEW rev_v_reporte_pagos;
 
 CREATE VIEW rev_v_reporte_pagos AS 
 	SELECT
-		PA.id AS id_pago,
-	    PA.importe,
-	    PA.observaciones AS observaciones_pago,
-	    PA.fecha AS fecha_pago,
-	    CA.id AS id_cargo,
-	    CA.observaciones AS observaciones_cargo,
-	    CA.pagado,
-	    FA.id AS id_fallecido,
-	    FA.nombre,
-	    FA.apellido,
-	    SE.id AS id_servicio,
+		PA.id AS pago_id,
+	    PA.importe AS pago_importe,
+	    PA.observaciones AS pago_observaciones,
+	    PA.fecha AS pago_fecha,
+	    CA.id AS cargo_id,
+	    CA.observaciones AS cargo_observaciones,
+	    CA.pagado AS cargo_pagado,
+	    FA.id AS fallecido_id,
+	    FA.nombre AS fallecido_nombre,
+	    FA.apellido AS fallecido_apellido,
+	    FA.dni AS fallecido_dni,
+	    SE.id AS servicio_id,
 	    SE.nombre AS servicio_nombre,
-	    SE.historico
+	    SE.historico AS servicio_historico
 	FROM rev_pagos PA
 		LEFT JOIN rev_cargos CA ON PA.cargo = CA.id
 		LEFT JOIN rev_fallecidos FA ON CA.fallecido = FA.id

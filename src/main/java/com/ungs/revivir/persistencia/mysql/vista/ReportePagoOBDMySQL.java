@@ -1,4 +1,4 @@
-package com.ungs.revivir.persistencia.mysql;
+package com.ungs.revivir.persistencia.mysql.vista;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ungs.revivir.persistencia.OBD;
-import com.ungs.revivir.persistencia.entidades.ReportePago;
-import com.ungs.revivir.persistencia.interfaces.ReportePagoOBD;
+import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
+import com.ungs.revivir.persistencia.interfaces.vista.ReportePagoVOBD;
 
-public class ReportePagoOBDMySQL extends OBD implements ReportePagoOBD {
-	private final String campos = "id_pago, importe, observaciones_pago, fecha_pago, id_cargo, observaciones_cargo, pagado, "
-			+ "id_fallecido, nombre, apellido, id_servicio, servicio_nombre, historico";
+public class ReportePagoOBDMySQL extends OBD implements ReportePagoVOBD {
+	private final String campos = "pago_id, pago_importe, pago_observaciones, pago_fecha, "
+			+ "cargo_id, cargo_observaciones, cargo_pagado, "
+			+ "fallecido_id, fallecido_nombre, fallecido_apellido, fallecido_dni, "
+			+ "servicio_id, servicio_nombre, servicio_historico";
 	private final String tabla = "rev_v_reporte_pagos";
 	
 
@@ -22,7 +24,7 @@ public class ReportePagoOBDMySQL extends OBD implements ReportePagoOBD {
 	
 	@Override
 	public List<ReportePago> selectByFecha(Date fecha) {
-		String condicion = "fecha_pago = '" +fecha+"'";
+		String condicion = "pago_fecha = '" +fecha+"'";
 		return selectByCondicion(condicion);
 	}
 
@@ -36,23 +38,24 @@ public class ReportePagoOBDMySQL extends OBD implements ReportePagoOBD {
 			Class.forName(driver); 
 			Connection conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD); 
 			Statement sentencia = conexion.createStatement ();
-			ResultSet resultados = sentencia.executeQuery(comandoSQL);			
+			ResultSet resultados = sentencia.executeQuery(comandoSQL);
 
 			while (resultados.next()) {
 				ret.add(new ReportePago(
-					resultados.getInt("id_pago"),
-					resultados.getFloat("importe"),
-					resultados.getString("observaciones_pago"),
-					resultados.getDate("fecha_pago"),
-					resultados.getInt("id_cargo"),
-					resultados.getString("observaciones_cargo"),
-					resultados.getBoolean("pagado"),
-					resultados.getInt("id_fallecido"),
-					resultados.getString("nombre"),
-					resultados.getString("apellido"),
-					resultados.getInt("id_servicio"),
+					resultados.getInt("pago_id"),
+					resultados.getDouble("pago_importe"),
+					resultados.getString("pago_observaciones"),
+					resultados.getDate("pago_fecha"),
+					resultados.getInt("cargo_id"),
+					resultados.getString("cargo_observaciones"),
+					resultados.getBoolean("cargo_pagado"),
+					resultados.getInt("fallecido_id"),
+					resultados.getString("fallecido_nombre"),
+					resultados.getString("fallecido_apellido"),
+					resultados.getString("fallecido_dni"),
+					resultados.getInt("servicio_id"),
 					resultados.getString("servicio_nombre"),
-					resultados.getBoolean("historico")
+					resultados.getBoolean("servicio_historico")
 					));
 			}
 			
