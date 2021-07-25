@@ -13,8 +13,8 @@ import com.ungs.revivir.negocios.manager.ResponsableManager;
 import com.ungs.revivir.negocios.verificador.VerificadorBorrado;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Responsable;
+import com.ungs.revivir.persistencia.entidades.vista.VFallecidoUbicacion;
 import com.ungs.revivir.vista.menu.responsables.responsableAM.ControladorResponsableAM;
 import com.ungs.revivir.vista.menu.responsables.responsableAM.ResponsableInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
@@ -41,7 +41,7 @@ public class ControladorResponsableABMCliente implements ResponsableInvocable, C
 	
 	private void eliminar() {
 		try {
-			List<FallecidoUbicacion> lista = ventana.getTabla().obtenerSeleccion();
+			List<VFallecidoUbicacion> lista = ventana.getTabla().obtenerSeleccion();
 			if (lista.size() != 1) {
 				Popup.mostrar("Debe seleccionar exactamente 1 fallecido para borrar la relacion.");
 				return;
@@ -62,7 +62,7 @@ public class ControladorResponsableABMCliente implements ResponsableInvocable, C
 	
 	private void modificar() {
 		ventana.requestFocusInWindow();
-		List<FallecidoUbicacion> lista = ventana.getTabla().obtenerSeleccion();
+		List<VFallecidoUbicacion> lista = ventana.getTabla().obtenerSeleccion();
 		
 		if (lista.size() != 1) {
 			Popup.mostrar("Debe seleccionar exactamente 1 fallecido para modificar la relacion");

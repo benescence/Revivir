@@ -1,6 +1,6 @@
 package com.ungs.revivir.vista.menu.vencimientos.modificar;
 
-import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
+import com.ungs.revivir.persistencia.entidades.vista.VFallecidoUbicacion;
 
 public interface VencimientoInvocable {
 
@@ -8,6 +8,6 @@ public interface VencimientoInvocable {
 	
 	public void actualizarVencimientos();
 
-	public void actualizarVencimientos(FallecidoUbicacion nuevo);
+	public void actualizarVencimientos(VFallecidoUbicacion nuevo);
 	
 }

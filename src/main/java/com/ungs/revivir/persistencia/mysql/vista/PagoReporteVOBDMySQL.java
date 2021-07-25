@@ -11,10 +11,10 @@ import java.util.List;
 import com.ungs.revivir.persistencia.Definido;
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
-import com.ungs.revivir.persistencia.interfaces.vista.ReportePagoVOBD;
+import com.ungs.revivir.persistencia.entidades.vista.VPagoReporte;
+import com.ungs.revivir.persistencia.interfaces.vista.PagoReporteVOBD;
 
-public class ReportePagoOBDMySQL extends OBD implements ReportePagoVOBD {
+public class PagoReporteVOBDMySQL extends OBD implements PagoReporteVOBD {
 	private final String campos = "pago_id, pago_importe, pago_observaciones, pago_fecha, "
 			+ "cargo_id, cargo_observaciones, cargo_pagado, "
 			+ "fallecido_id, fallecido_nombre, fallecido_apellido, fallecido_dni, "
@@ -29,13 +29,13 @@ public class ReportePagoOBDMySQL extends OBD implements ReportePagoVOBD {
 	//*********************** METODOS ESPECIFICOS ************************************
 	
 	@Override
-	public List<ReportePago> selectByFecha(Date fecha) {
+	public List<VPagoReporte> selectByFecha(Date fecha) {
 		String condicion = "pago_fecha = '" +fecha+"'";
 		return selectByCondicion(condicion);
 	}
 
 	@Override
-	public List<ReportePago> selectByFallecidoDesdeHasta(Fallecido fallecido, Date fechaDesde, Date fechaHasta) {
+	public List<VPagoReporte> selectByFallecidoDesdeHasta(Fallecido fallecido, Date fechaDesde, Date fechaHasta) {
 		String condicion = "fallecido_id = " + fallecido.getID() +" "
 				+ "and pago_fecha >= '" + fechaDesde +"' "
 				+ "and pago_fecha <= '" + fechaHasta +"' ";
@@ -44,13 +44,13 @@ public class ReportePagoOBDMySQL extends OBD implements ReportePagoVOBD {
 	
 	//*********************** METODOS PRIVADOS ************************************
 	
-	private List<ReportePago> selectByCondicion(String condicion) {
+	private List<VPagoReporte> selectByCondicion(String condicion) {
 		String comandoSQL = "select "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		return selectBySQL(comandoSQL);
 	}
 	
-	private List<ReportePago> selectBySQL(String comandoSQL) {
-		List<ReportePago> ret = new ArrayList<ReportePago>();
+	private List<VPagoReporte> selectBySQL(String comandoSQL) {
+		List<VPagoReporte> ret = new ArrayList<VPagoReporte>();
 		try { 
 			Class.forName(driver); 
 			Connection conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD); 
@@ -58,7 +58,7 @@ public class ReportePagoOBDMySQL extends OBD implements ReportePagoVOBD {
 			ResultSet resultados = sentencia.executeQuery(comandoSQL);
 
 			while (resultados.next()) {
-				ret.add(new ReportePago(
+				ret.add(new VPagoReporte(
 					resultados.getInt("pago_id"),
 					resultados.getDouble("pago_importe"),
 					resultados.getString("pago_observaciones"),

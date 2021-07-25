@@ -5,40 +5,40 @@ import com.ungs.revivir.persistencia.interfaces.ClienteOBD;
 import com.ungs.revivir.persistencia.interfaces.ConfiguracionOBD;
 import com.ungs.revivir.persistencia.interfaces.ExpensaOBD;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
-import com.ungs.revivir.persistencia.interfaces.FallecidoUbicacionOBD;
 import com.ungs.revivir.persistencia.interfaces.MovimientoOBD;
-import com.ungs.revivir.persistencia.interfaces.NotifClientesOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
 import com.ungs.revivir.persistencia.interfaces.PDFOBD;
 import com.ungs.revivir.persistencia.interfaces.ResponsableOBD;
 import com.ungs.revivir.persistencia.interfaces.ServicioOBD;
-import com.ungs.revivir.persistencia.interfaces.UbicacionLibreOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionTotalOBD;
 import com.ungs.revivir.persistencia.interfaces.UsuarioOBD;
-import com.ungs.revivir.persistencia.interfaces.vista.ReportePagoVOBD;
+import com.ungs.revivir.persistencia.interfaces.vista.ClienteNotificacionVOBD;
+import com.ungs.revivir.persistencia.interfaces.vista.FallecidoUbicacionVOBD;
+import com.ungs.revivir.persistencia.interfaces.vista.PagoReporteVOBD;
+import com.ungs.revivir.persistencia.interfaces.vista.UbicacionLibreVOBD;
 import com.ungs.revivir.persistencia.mysql.CargoOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ClienteOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ConfiguracionOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ExpensaOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.FallecidoOBDMySQL;
-import com.ungs.revivir.persistencia.mysql.FallecidoUbicacionOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.MovimientoOBDMySQL;
-import com.ungs.revivir.persistencia.mysql.NotifClientesOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.PagoOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.PDFOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ResponsableOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.ServicioOBDMySQL;
-import com.ungs.revivir.persistencia.mysql.UbicacionLibreOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.UbicacionOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.UbicacionTotalOBDMySQL;
 import com.ungs.revivir.persistencia.mysql.UsuarioOBDMySQL;
-import com.ungs.revivir.persistencia.mysql.vista.ReportePagoOBDMySQL;
+import com.ungs.revivir.persistencia.mysql.vista.ClienteNotificacionVOBDMySQL;
+import com.ungs.revivir.persistencia.mysql.vista.FallecidoUbicacionVOBDMySQL;
+import com.ungs.revivir.persistencia.mysql.vista.PagoReporteVOBDMySQL;
+import com.ungs.revivir.persistencia.mysql.vista.UbicacionLibreVOBDMySQL;
 
 public class FactoryOBD {
 
-	public static ReportePagoVOBD crearReportePagoOBD() {
-		return new ReportePagoOBDMySQL();
+	public static PagoReporteVOBD crearPagoReporteOBD() {
+		return new PagoReporteVOBDMySQL();
 	}
 
 	public static CargoOBD crearCargoOBD() {
@@ -61,8 +61,8 @@ public class FactoryOBD {
 		return new FallecidoOBDMySQL();
 	}
 	
-	public static FallecidoUbicacionOBD crearFallecidoUbicacionOBD() {
-		return new FallecidoUbicacionOBDMySQL();
+	public static FallecidoUbicacionVOBD crearFallecidoUbicacionOBD() {
+		return new FallecidoUbicacionVOBDMySQL();
 	}
 	
 	public static MovimientoOBD crearMovimientoOBD() {
@@ -89,8 +89,8 @@ public class FactoryOBD {
 		return new UbicacionTotalOBDMySQL();
 	}
 	
-	public static UbicacionLibreOBD crearUbicacionLibreOBD() {
-		return new UbicacionLibreOBDMySQL();
+	public static UbicacionLibreVOBD crearUbicacionLibreOBD() {
+		return new UbicacionLibreVOBDMySQL();
 	}
 
 	public static UbicacionOBD crearUbicacionOBD() {
@@ -101,8 +101,8 @@ public class FactoryOBD {
 		return new UsuarioOBDMySQL();
 	}
 
-	public static NotifClientesOBD crearNotifClientesOBD() {
-		return new NotifClientesOBDMySQL();
+	public static ClienteNotificacionVOBD crearNotifClientesOBD() {
+		return new ClienteNotificacionVOBDMySQL();
 	}
 	
 }

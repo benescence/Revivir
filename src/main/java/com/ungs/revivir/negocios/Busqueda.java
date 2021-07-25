@@ -16,8 +16,8 @@ import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 import com.ungs.revivir.persistencia.interfaces.FallecidoOBD;
 import com.ungs.revivir.persistencia.interfaces.PagoOBD;
-import com.ungs.revivir.persistencia.interfaces.UbicacionLibreOBD;
 import com.ungs.revivir.persistencia.interfaces.UbicacionTotalOBD;
+import com.ungs.revivir.persistencia.interfaces.vista.UbicacionLibreVOBD;
 
 public class Busqueda {
 	
@@ -62,7 +62,7 @@ public class Busqueda {
 		}
 
 		// De lo contrario trae solo las ubicaciones que no estan ocupado
-		UbicacionLibreOBD obdLibre = FactoryOBD.crearUbicacionLibreOBD();
+		UbicacionLibreVOBD obdLibre = FactoryOBD.crearUbicacionLibreOBD();
 		return obdLibre.selectByrangos(
 				nichoMax, nichoMin,
 				circMax, circMin,

@@ -8,13 +8,13 @@ import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
-import com.ungs.revivir.persistencia.interfaces.FallecidoUbicacionOBD;
+import com.ungs.revivir.persistencia.entidades.vista.VFallecidoUbicacion;
+import com.ungs.revivir.persistencia.interfaces.vista.FallecidoUbicacionVOBD;
 
 public class FallecidoUbicacionManager {
 	
-	public static List<FallecidoUbicacion> traer(String nombres, String apellido, Integer codFallecido) throws Exception {
+	public static List<VFallecidoUbicacion> traer(String nombres, String apellido, Integer codFallecido) throws Exception {
 		nombres = Verificador.anular(nombres);
 		apellido = Verificador.anular(apellido);
 		String mensaje = "";
@@ -34,11 +34,11 @@ public class FallecidoUbicacionManager {
 		if (!mensaje.equals(""))
 			throw new Exception("Se encontraron los siguientes errores:"+mensaje);
 		
-		FallecidoUbicacionOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
+		FallecidoUbicacionVOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
 		return obd.selectByNombreApellidoCOD(nombres, apellido, codFallecido);
 	}
 
-	public static Ubicacion extraerUbicacion(FallecidoUbicacion fallecidoUbicacion) {
+	public static Ubicacion extraerUbicacion(VFallecidoUbicacion fallecidoUbicacion) {
 		return new Ubicacion(
 				fallecidoUbicacion.getUbicacion(), fallecidoUbicacion.getSubsector(), fallecidoUbicacion.getCementerio(),
 				fallecidoUbicacion.getNicho(), fallecidoUbicacion.getFila(),fallecidoUbicacion.getSeccion(),
@@ -49,7 +49,7 @@ public class FallecidoUbicacionManager {
 			);
 	}
 
-	public static Fallecido extraerFallecido(FallecidoUbicacion fallecidoUbicacion) {
+	public static Fallecido extraerFallecido(VFallecidoUbicacion fallecidoUbicacion) {
 		return new Fallecido(
 				fallecidoUbicacion.getID(), fallecidoUbicacion.getUbicacion(),fallecidoUbicacion.getTipoFallecimiento(),
 				fallecidoUbicacion.getCodFallecido(), fallecidoUbicacion.getDNI() , fallecidoUbicacion.getApellido() ,
@@ -58,9 +58,9 @@ public class FallecidoUbicacionManager {
 			);
 	}
 
-	public static FallecidoUbicacion generarFallecidoUbicacion(Fallecido fallecido) {
+	public static VFallecidoUbicacion generarFallecidoUbicacion(Fallecido fallecido) {
 		Ubicacion ubicacion = UbicacionManager.traerPorFallecido(fallecido);
-		return new FallecidoUbicacion(
+		return new VFallecidoUbicacion(
 				fallecido.getID(), fallecido.getUbicacion(),fallecido.getTipoFallecimiento() ,fallecido.getCod_fallecido() ,
 				fallecido.getDNI() , fallecido.getApellido() ,fallecido.getNombre(), fallecido.getCocheria() ,
 				fallecido.getFechaFallecimiento() ,fallecido.getFechaIngreso(),
@@ -82,12 +82,12 @@ public class FallecidoUbicacionManager {
 			);
 	}
 
-	public static List<FallecidoUbicacion> buscarVencimientos(SubSector subSector, Date desde, Date hasta) {
-		FallecidoUbicacionOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
+	public static List<VFallecidoUbicacion> buscarVencimientos(SubSector subSector, Date desde, Date hasta) {
+		FallecidoUbicacionVOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
 		return obd.selectBySubsectorEntreFechas(subSector, desde, hasta);
 	}
-	public static List<FallecidoUbicacion> buscarVencimientosSinLimite(SubSector subSector, Date desde, Date hasta) {
-		FallecidoUbicacionOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
+	public static List<VFallecidoUbicacion> buscarVencimientosSinLimite(SubSector subSector, Date desde, Date hasta) {
+		FallecidoUbicacionVOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
 		return obd.selectBySubsectorEntreFechasSinLimite(subSector, desde, hasta);
 	}
 	

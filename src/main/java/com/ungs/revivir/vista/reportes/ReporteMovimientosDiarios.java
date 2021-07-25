@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.ungs.revivir.negocios.Almanaque;
-import com.ungs.revivir.negocios.manager.ReportePagoManager;
+import com.ungs.revivir.negocios.manager.PagoReporteManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
+import com.ungs.revivir.persistencia.entidades.vista.VPagoReporte;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
 
@@ -27,7 +27,7 @@ public class ReporteMovimientosDiarios {
 	private JasperPrint reporteLleno;
 	
 	public ReporteMovimientosDiarios(Date fecha) {
-		List<ReportePago> pagos = ReportePagoManager.traerPorFecha(fecha);
+		List<VPagoReporte> pagos = PagoReporteManager.traerPorFecha(fecha);
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		List<String> itemServicios = new ArrayList<String>();
 		List<String> itemClientes = new ArrayList<String>();
@@ -35,8 +35,8 @@ public class ReporteMovimientosDiarios {
 		Double suma = 0.0;
 		List<Double> total = new ArrayList<Double>();
 		
-		for (ReportePago pago : pagos) {
-			Fallecido fallecido = ReportePagoManager.extraerFallecido(pago);
+		for (VPagoReporte pago : pagos) {
+			Fallecido fallecido = PagoReporteManager.extraerFallecido(pago);
 
 			itemClientes.add(Formato.fallecido(fallecido));
 			itemServicios.add(pago.getServicioNombre());

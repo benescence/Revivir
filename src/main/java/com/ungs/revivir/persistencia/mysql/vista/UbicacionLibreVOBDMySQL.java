@@ -1,4 +1,4 @@
-package com.ungs.revivir.persistencia.mysql;
+package com.ungs.revivir.persistencia.mysql.vista;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,9 +10,9 @@ import com.ungs.revivir.persistencia.Definido;
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
-import com.ungs.revivir.persistencia.interfaces.UbicacionLibreOBD;
+import com.ungs.revivir.persistencia.interfaces.vista.UbicacionLibreVOBD;
 
-public class UbicacionLibreOBDMySQL extends OBD implements UbicacionLibreOBD {
+public class UbicacionLibreVOBDMySQL extends OBD implements UbicacionLibreVOBD {
 	private final String campos = "subsector, nicho, fila,"
 			+ "seccion, macizo, unidad, bis, bis_macizo, sepultura, parcela, mueble, inhumacion, circ";
 	private final String tabla = "rev_v_ubicaciones_libres";

@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.ungs.revivir.negocios.Almanaque;
-import com.ungs.revivir.negocios.manager.NotifClientesManager;
+import com.ungs.revivir.negocios.manager.ClienteNotificacionManager;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.persistencia.entidades.NotifClientes;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
+import com.ungs.revivir.persistencia.entidades.vista.VClienteNotificacion;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
 
@@ -28,7 +28,7 @@ public class ReporteNotificaciones {
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 
-	public ReporteNotificaciones(List<NotifClientes> notifClientes) {
+	public ReporteNotificaciones(List<VClienteNotificacion> notifClientes) {
 		
 		Map<String, Object> totalVencimientos = new HashMap<String, Object>();
 		List<String> itemFallecidos = new ArrayList<String>();
@@ -40,10 +40,10 @@ public class ReporteNotificaciones {
 		List<String> itemDirecciones= new ArrayList<String>();
 		List<String> itemMails = new ArrayList<String>();
 		
-		for (NotifClientes  elemento : notifClientes) {
-			Fallecido fallecido = NotifClientesManager.extraerFallecido(elemento);
-			Ubicacion ubicacion = NotifClientesManager.extraerUbicacion(elemento);
-			Cliente cliente = NotifClientesManager.extraerCliente(elemento);
+		for (VClienteNotificacion  elemento : notifClientes) {
+			Fallecido fallecido = ClienteNotificacionManager.extraerFallecido(elemento);
+			Ubicacion ubicacion = ClienteNotificacionManager.extraerUbicacion(elemento);
+			Cliente cliente = ClienteNotificacionManager.extraerCliente(elemento);
 			itemVencimientos.add(sdf.format(ubicacion.getVencimiento()));
 			itemUbicaciones.add(Formato.ubicacion(ubicacion));
 			itemFallecidos.add(fallecido.getApellido()+ " " + fallecido.getNombre());

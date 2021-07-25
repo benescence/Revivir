@@ -7,10 +7,10 @@ import javax.swing.JInternalFrame;
 
 import com.ungs.revivir.negocios.manager.FallecidoManager;
 import com.ungs.revivir.negocios.manager.PagoManager;
-import com.ungs.revivir.negocios.manager.ReportePagoManager;
+import com.ungs.revivir.negocios.manager.PagoReporteManager;
 import com.ungs.revivir.negocios.verificador.VerificadorBorrado;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
+import com.ungs.revivir.persistencia.entidades.vista.VPagoReporte;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.ControladorPagoAM;
 import com.ungs.revivir.vista.menu.pagos.pagoAM.PagoInvocable;
 import com.ungs.revivir.vista.principal.ControladorInterno;
@@ -47,7 +47,7 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 	}
 	
 	private void factura() {
-		List<ReportePago> lista = ventana.getTabla().obtenerSeleccion();
+		List<VPagoReporte> lista = ventana.getTabla().obtenerSeleccion();
 		new ReporteVariosCargos(lista);
 	}
 	
@@ -57,7 +57,7 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 	}
 
 	private void modificar() {
-		List<ReportePago> lista = ventana.getTabla().obtenerSeleccion();
+		List<VPagoReporte> lista = ventana.getTabla().obtenerSeleccion();
 		
 		if (lista.size() != 1) {
 			Popup.mostrar("Debe seleccionar exactamente 1 pago para modificarlo");
@@ -65,21 +65,21 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 		}
 		
 		invocador.getVentana().setEnabled(false);
-		new ControladorPagoAM(this, ReportePagoManager.extraerPago(lista.get(0)));
+		new ControladorPagoAM(this, PagoReporteManager.extraerPago(lista.get(0)));
 	}
 	
 	private void eliminar() {
 		
 		try {
-			List<ReportePago> lista = ventana.getTabla().obtenerSeleccion();
+			List<VPagoReporte> lista = ventana.getTabla().obtenerSeleccion();
 			if (lista.size() != 1) {
 				Popup.mostrar("Debe seleccionar exactamente 1 pago para borrarlo.");
 				return;
 			}
 			
-			if (VerificadorBorrado.puedeBorrar(ReportePagoManager.extraerPago(lista.get(0))) &&
+			if (VerificadorBorrado.puedeBorrar(PagoReporteManager.extraerPago(lista.get(0))) &&
 					Popup.confirmar("¿Seguro de que desea eliminar los registros seleccionados?"))
-				PagoManager.eliminar(ReportePagoManager.extraerPago(lista.get(0)));
+				PagoManager.eliminar(PagoReporteManager.extraerPago(lista.get(0)));
 			
 			actualizarPagos();
 		
@@ -126,7 +126,7 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 		}
 		
 		Fallecido fallecido = fallecidos.get(0);		
-		List<ReportePago> pagos = ReportePagoManager.traerPagos(fallecido, desde, hasta);
+		List<VPagoReporte> pagos = PagoReporteManager.traerPagos(fallecido, desde, hasta);
 		ventana.getTabla().recargar(pagos);
 	}
 	

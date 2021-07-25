@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.ungs.revivir.negocios.Almanaque;
-import com.ungs.revivir.negocios.manager.ReportePagoManager;
+import com.ungs.revivir.negocios.manager.PagoReporteManager;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
-import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
+import com.ungs.revivir.persistencia.entidades.vista.VPagoReporte;
 import com.ungs.revivir.vista.util.Formato;
 import com.ungs.revivir.vista.util.Popup;
 
@@ -26,7 +26,7 @@ public class ReporteVariosCargos {
 	private JasperViewer reporteViewer;
 	private JasperPrint	reporteLleno;
 
-	public ReporteVariosCargos(List<ReportePago> pagos) {
+	public ReporteVariosCargos(List<VPagoReporte> pagos) {
     	Map<String, Object> parametros = new HashMap<String, Object>();
 		List<String> itemServicios = new ArrayList<String>();
 		List<String> itemObservaciones = new ArrayList<String>();
@@ -34,7 +34,7 @@ public class ReporteVariosCargos {
 		Double suma = 0.0;
 		List<Double> total = new ArrayList<Double>();
 		
-		for (ReportePago pago : pagos) {
+		for (VPagoReporte pago : pagos) {
 			itemServicios.add(pago.getServicioNombre());
 			itemObservaciones.add(pago.getPagoObservaciones());
 			itemMontos.add(pago.getPagoImporte());
@@ -42,8 +42,8 @@ public class ReporteVariosCargos {
 		}
 		
 		if (pagos.size() > 0) {
-			Fallecido fallecido = ReportePagoManager.extraerFallecido(pagos.get(0));
-			Ubicacion ubicacion = ReportePagoManager.extraerUbicacion(pagos.get(0));
+			Fallecido fallecido = PagoReporteManager.extraerFallecido(pagos.get(0));
+			Ubicacion ubicacion = PagoReporteManager.extraerUbicacion(pagos.get(0));
 			
 			total.add(suma);
 			parametros.put("fecha", Formato.formatoFecha(Almanaque.hoy()));
