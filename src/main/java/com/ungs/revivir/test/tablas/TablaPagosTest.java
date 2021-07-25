@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import com.ungs.revivir.negocios.manager.ReportePagoManager;
+import com.ungs.revivir.negocios.manager.PagoReporteManager;
 import com.ungs.revivir.vista.tablas.TablaPagos;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
 import com.ungs.revivir.vista.util.contenedores.Ventana;
@@ -20,7 +20,7 @@ public class TablaPagosTest extends Ventana{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Date fechaDesde = Date.valueOf(LocalDate.of(2019, 8, 10));
 
-		TablaPagos tabla = new TablaPagos(ReportePagoManager.traerPorFecha(fechaDesde));
+		TablaPagos tabla = new TablaPagos(PagoReporteManager.traerPorFecha(fechaDesde));
 		JScrollPane panelTabla = new JScrollPane(tabla);
 		
 		PanelVertical panel = new PanelVertical();

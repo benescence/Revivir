@@ -7,22 +7,22 @@ import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
 import com.ungs.revivir.persistencia.entidades.Pago;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
-import com.ungs.revivir.persistencia.entidades.vista.ReportePago;
-import com.ungs.revivir.persistencia.interfaces.vista.ReportePagoVOBD;
+import com.ungs.revivir.persistencia.entidades.vista.VPagoReporte;
+import com.ungs.revivir.persistencia.interfaces.vista.PagoReporteVOBD;
 
-public class ReportePagoManager {
+public class PagoReporteManager {
 
-	public static List<ReportePago> traerPorFecha(Date fecha) {
-		ReportePagoVOBD obd = FactoryOBD.crearReportePagoOBD();
+	public static List<VPagoReporte> traerPorFecha(Date fecha) {
+		PagoReporteVOBD obd = FactoryOBD.crearPagoReporteOBD();
 		return obd.selectByFecha(fecha);
 	}
 	
-	public static List<ReportePago> traerPagos(Fallecido fallecido, Date fechaDesde, Date fechaHasta) {
-		ReportePagoVOBD vobd = FactoryOBD.crearReportePagoOBD();
+	public static List<VPagoReporte> traerPagos(Fallecido fallecido, Date fechaDesde, Date fechaHasta) {
+		PagoReporteVOBD vobd = FactoryOBD.crearPagoReporteOBD();
 		return vobd.selectByFallecidoDesdeHasta(fallecido, fechaDesde, fechaHasta);
 	}
 	
-	public static Pago	extraerPago(ReportePago reporte) {
+	public static Pago	extraerPago(VPagoReporte reporte) {
 		return new Pago(
 				reporte.getPagoID(),
 				reporte.getCargoID(),
@@ -32,7 +32,7 @@ public class ReportePagoManager {
 			);
 	}
 
-	public static Fallecido	extraerFallecido(ReportePago reporte) {
+	public static Fallecido	extraerFallecido(VPagoReporte reporte) {
 		return new Fallecido(
 				reporte.getFallecidoID(),
 				null,
@@ -47,7 +47,7 @@ public class ReportePagoManager {
 				);
 	}
 	
-	public static Ubicacion	extraerUbicacion(ReportePago reporte) {
+	public static Ubicacion	extraerUbicacion(VPagoReporte reporte) {
 		return new Ubicacion(
 				reporte.getUbicacionID(),
 				reporte.getUbicacionSubsector(),

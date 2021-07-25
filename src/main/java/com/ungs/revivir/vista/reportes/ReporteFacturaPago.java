@@ -1,4 +1,3 @@
-
 package com.ungs.revivir.vista.reportes;
 
 import java.util.HashMap;
@@ -19,7 +18,6 @@ import net.sf.jasperreports.view.JasperViewer;
 
 import java.text.SimpleDateFormat;
 
-
 public class ReporteFacturaPago {
 	private JasperReport reporte;
 	private JasperViewer reporteViewer;
@@ -28,20 +26,19 @@ public class ReporteFacturaPago {
 	public ReporteFacturaPago(List<Pago> pagos) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String fecha = sdf.format(Almanaque.hoy());
-    	Map <String, Object> totalPersonas = new HashMap<String, Object>();
+    	Map <String, Object> parametros = new HashMap<String, Object>();
     	Pago pago = pagos.get(0);
-    	totalPersonas.put("fecha", fecha );
-    	//totalPersonas.put("cliente",Formato.cliente(pagos.get(0)));
-    	totalPersonas.put("cargo",Formato.servicioDesdeCargo(pago));
-    	totalPersonas.put("monto", pago.getImporte());
-    	totalPersonas.put("observaciones", pago.getObservaciones());
-    	totalPersonas.put("fallecido", Formato.fallecido(pagos.get(0)));
-    	totalPersonas.put("ubicacion", Formato.ubicaciondesdePago(pagos.get(0)));
-    	totalPersonas.put("DNIFallecido", Formato.DNIfallecido(pagos.get(0)));
+    	parametros.put("fecha", fecha );
+    	parametros.put("cargo",Formato.servicioDesdeCargo(pago));
+    	parametros.put("monto", pago.getImporte());
+    	parametros.put("observaciones", pago.getObservaciones());
+    	parametros.put("fallecido", Formato.fallecido(pagos.get(0)));
+    	parametros.put("ubicacion", Formato.ubicaciondesdePago(pagos.get(0)));
+    	parametros.put("DNIFallecido", Formato.DNIfallecido(pagos.get(0)));
     	
     	try	{
         	this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\FacturaPago.jasper");
-			this.reporteLleno = JasperFillManager.fillReport(this.reporte, totalPersonas, 
+			this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametros, 
 					new JRBeanCollectionDataSource(pagos));
     		System.out.println("Sere cargo correctamente la factura de pago.");
 		}

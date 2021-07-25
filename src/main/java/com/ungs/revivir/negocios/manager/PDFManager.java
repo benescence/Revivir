@@ -9,45 +9,45 @@ import java.io.InputStream;
 
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.OBD;
-import com.ungs.revivir.persistencia.entidades.Pdf;
+import com.ungs.revivir.persistencia.entidades.PDF;
 import com.ungs.revivir.persistencia.interfaces.PDFOBD;
 
-public class PdfManager {
+public class PDFManager {
 
-	public static void guardarPdf(Pdf archivo){
+	public static void guardarPdf(PDF archivo){
 		PDFOBD obd = FactoryOBD.crearPDFOBD();
 		obd.insert(archivo);
 	}
 	
-	public static Pdf crearPdf(File archivo){
-		Pdf contenido = new Pdf();
+	public static PDF crearPdf(File archivo){
+		PDF contenido = new PDF();
 		OBD odb = new OBD();
 		if (odb.selectLastID("formar_archivos")==null){
 			contenido.setContenidoID(1);
 		} else {
 			contenido.setContenidoID(odb.selectLastID("formar_archivos")+1);
 		}
-		contenido.setNombrepdf(archivo.getName());
+		contenido.setNombrePDF(archivo.getName());
 		try {
             byte[] pdf = new byte[(int) archivo.length()];
             InputStream input = new FileInputStream(archivo);
             input.read(pdf);
-            contenido.setArchivopdf(pdf);
+            contenido.setArchivoPDF(pdf);
             input.close();
         } catch (IOException ex) {
-            contenido.setArchivopdf(null);
+            contenido.setArchivoPDF(null);
             //System.out.println("Error al agregar archivo pdf "+ex.getMessage());
         }
 		odb.desconectar();
 		return contenido;
 	}
 	
-	public static void editarPdf(Pdf archivo){
+	public static void editarPdf(PDF archivo){
 		PDFOBD obd = FactoryOBD.crearPDFOBD();
 		obd.update(archivo);
 	}
 	
-	public static void eliminarPdf(Pdf archivo){
+	public static void eliminarPdf(PDF archivo){
 		PDFOBD obd = FactoryOBD.crearPDFOBD();
 		obd.delete(archivo);
 	}
@@ -63,7 +63,7 @@ public class PdfManager {
 
 	}
 	
-	public static Pdf traerPdfByID(Integer contenido) {
+	public static PDF traerPdfByID(Integer contenido) {
 		PDFOBD obd = FactoryOBD.crearPDFOBD();
 		return obd.traerPdf(contenido);
 	}

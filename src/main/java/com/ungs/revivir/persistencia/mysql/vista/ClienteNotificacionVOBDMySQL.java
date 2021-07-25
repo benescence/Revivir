@@ -1,4 +1,4 @@
-package com.ungs.revivir.persistencia.mysql;
+package com.ungs.revivir.persistencia.mysql.vista;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -12,17 +12,18 @@ import java.util.List;
 import com.ungs.revivir.persistencia.Definido;
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.definidos.SubSector;
-import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
-import com.ungs.revivir.persistencia.interfaces.FallecidoUbicacionOBD;
+import com.ungs.revivir.persistencia.entidades.vista.VClienteNotificacion;
+import com.ungs.revivir.persistencia.interfaces.vista.ClienteNotificacionVOBD;
 
-public class FallecidoUbicacionOBDMySQL extends OBD implements FallecidoUbicacionOBD{
-	private final String campos = " ubicacion, DNI, apellido, nombre, fecha_fallecimiento, tipo_fallecimiento, cod_fallecido, "
+public class ClienteNotificacionVOBDMySQL extends OBD implements ClienteNotificacionVOBD {
+	private final String campos = "cli_nombre,cli_apellido,cli_dni, cli_telefono,domicilio,email,ubicacion, DNI, "
+			+ "apellido, nombre, fecha_fallecimiento, tipo_fallecimiento, cod_fallecido, "
 			+ "cocheria, fecha_ingreso, subsector, cementerio, nicho, fila, seccion, macizo, unidad, bis, bis_macizo, "
 			+ "sepultura, parcela, mueble, inhumacion, circ, vencimiento";
-	private final String tabla = "rev_v_fallecidos";
+	private final String tabla = "rev_v_cliente_notificaciones";
 		
 	@Override
-	public List<FallecidoUbicacion> selectByNombreApellidoCOD(String nombre, String apellido, Integer codFallecido) {
+	public List<VClienteNotificacion> selectByNombreApellidoCOD(String nombre, String apellido, Integer codFallecido) {
 		String condicion = "";
 		if (nombre != null)
 			condicion += "upper(nombre) like '"+nombre.toUpperCase()+"%'";
@@ -42,33 +43,33 @@ public class FallecidoUbicacionOBDMySQL extends OBD implements FallecidoUbicacio
 		return selectByCondicion(condicion);
 	}
 	
-	private List<FallecidoUbicacion> selectByCondicion(String condicion) {
+	private List<VClienteNotificacion> selectByCondicion(String condicion) {
 		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		return selectSQL(comandoSQL);
 	}
 	
-	private List<FallecidoUbicacion> selectByCondicion(String condicion, int limite) {
+	private List<VClienteNotificacion> selectByCondicion(String condicion, int limite) {
 		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		return selectSQL(comandoSQL);
 	}
 	
-	public FallecidoUbicacion selectByID(Integer ID) {
+	public VClienteNotificacion selectByID(Integer ID) {
 		String condicion = "ID = "+ID;
-		List<FallecidoUbicacion> lista = selectByCondicion(condicion);
+		List<VClienteNotificacion> lista = selectByCondicion(condicion);
 		if (lista.size() > 0)
 			return lista.get(0);
 		return null;
 	}
 
 	@Override
-	public List<FallecidoUbicacion> selectBySubsectorEntreFechas(SubSector subSector, Date desde, Date hasta) {
+	public List<VClienteNotificacion> selectBySubsectorEntreFechas(SubSector subSector, Date desde, Date hasta) {
 		String condicion = "subsector = "+Definido.subsector(subSector)
 			+ " and vencimiento between '"+desde+"' and '"+hasta+"'";
 		return selectByCondicion(condicion, limite);
 	}
 
 	@Override
-	public List<FallecidoUbicacion> selectBySubsectorEntreFechasSinLimite(SubSector subSector, Date desde, Date hasta) {
+	public List<VClienteNotificacion> selectBySubsectorEntreFechasSinLimite(SubSector subSector, Date desde, Date hasta) {
 		String condicion = "subsector = "+Definido.subsector(subSector)
 			+ " and vencimiento between '"+desde+"' and '"+hasta+"'";
 		return selectByCondicion(condicion, 1000000);
@@ -76,8 +77,8 @@ public class FallecidoUbicacionOBDMySQL extends OBD implements FallecidoUbicacio
 	
 	// METODOS PRIVADOS
 	
-	private List<FallecidoUbicacion> selectSQL(String SQL) {
-		List<FallecidoUbicacion> ret = new ArrayList<FallecidoUbicacion>();
+	private List<VClienteNotificacion> selectSQL(String SQL) {
+		List<VClienteNotificacion> ret = new ArrayList<VClienteNotificacion>();
 		
 		try { 
 			Class.forName(driver); 
@@ -122,8 +123,15 @@ public class FallecidoUbicacionOBDMySQL extends OBD implements FallecidoUbicacio
 				LocalDate vencimientoLocal = (LocalDate) resultados.getObject("vencimiento", LocalDate.class);
 				Date vencimiento = vencimientoLocal == null ? null : Date.valueOf(vencimientoLocal);
 				
-				ret.add(new FallecidoUbicacion(
+				ret.add(new VClienteNotificacion(
 						resultados.getInt("ID"),
+						resultados.getString("cli_nombre"),
+						resultados.getString("cli_apellido"),
+						resultados.getString("cli_dni"),
+						resultados.getString("cli_telefono"),
+						resultados.getString("domicilio"),
+						resultados.getString("email"),
+					
 						resultados.getInt("ubicacion"),
 						Definido.tipoFallecimiento(resultados.getInt("tipo_fallecimiento")),
 						resultados.getInt("cod_fallecido"),

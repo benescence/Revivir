@@ -3,7 +3,9 @@ package com.ungs.revivir.persistencia.entidades.vista;
 import java.sql.Date;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 
-public class ReportePago {
+public class VPagoReporte {
+	
+	// Representa un pago extendido con todos los datos para msotrar en un reporte
 	
 	// Pago
 	private Integer pagoID;
@@ -45,7 +47,7 @@ public class ReportePago {
 	private Boolean ubicacionBisMacizo;
 	private Boolean ubicacionBis;
 	
-	public ReportePago(Integer pagoID, Double pagoImporte, String pagoObservaciones, Date pagoFecha, Integer cargoID,
+	public VPagoReporte(Integer pagoID, Double pagoImporte, String pagoObservaciones, Date pagoFecha, Integer cargoID,
 			String cargoObservaciones, Boolean cargoPagado, Integer fallecidoID, String fallecidoNombre,
 			String fallecidoApellido, String fallecidoDNI, Integer servicioID, String servicioNombre,
 			Boolean servicioHistorico, Integer ubicacionID, SubSector ubicacionSubsector, Integer ubicacionCirc,
@@ -53,6 +55,7 @@ public class ReportePago {
 			Integer ubicacionUnidad, Integer ubicacionNicho, Integer ubicacionMueble, Integer ubicacionSepultura,
 			Integer ubicacionInhumacion, String ubicacionCementerio, Date ubicacionVencimiento,
 			Boolean ubicacionBisMacizo, Boolean ubicacionBis) {
+		
 		this.pagoID = pagoID;
 		this.pagoImporte = pagoImporte;
 		this.pagoObservaciones = pagoObservaciones;

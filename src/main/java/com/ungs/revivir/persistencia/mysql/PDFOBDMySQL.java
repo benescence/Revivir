@@ -1,7 +1,7 @@
 package com.ungs.revivir.persistencia.mysql;
 
 import com.ungs.revivir.persistencia.OBD;
-import com.ungs.revivir.persistencia.entidades.Pdf;
+import com.ungs.revivir.persistencia.entidades.PDF;
 import com.ungs.revivir.persistencia.interfaces.PDFOBD;
 
 import java.io.ByteArrayInputStream;
@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 public class PDFOBDMySQL  extends OBD implements PDFOBD{
 
-	public Pdf traerPdf(Integer id) {
-		Pdf ret = new Pdf();
+	public PDF traerPdf(Integer id) {
+		PDF ret = new PDF();
 		String sql = "SELECT * FROM formar_archivos WHERE (ID = "+id+");";
 		ResultSet rs = null;
 		PreparedStatement ps = null;
@@ -27,8 +27,8 @@ public class PDFOBDMySQL  extends OBD implements PDFOBD{
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				ret.setContenidoID(rs.getInt(1));
-				ret.setNombrepdf(rs.getString(2));
-				ret.setArchivopdf(rs.getBytes(3));
+				ret.setNombrePDF(rs.getString(2));
+				ret.setArchivoPDF(rs.getBytes(3));
 			}
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
@@ -46,8 +46,8 @@ public class PDFOBDMySQL  extends OBD implements PDFOBD{
 	}
 	
     /*Metodo listar*/
-    public ArrayList<Pdf> Listar_Pdf() {
-        ArrayList<Pdf> list = new ArrayList<Pdf>();
+    public ArrayList<PDF> Listar_Pdf() {
+        ArrayList<PDF> list = new ArrayList<PDF>();
         
         String sql = "SELECT * FROM formar_archivos";
         ResultSet rs = null;
@@ -56,10 +56,10 @@ public class PDFOBDMySQL  extends OBD implements PDFOBD{
             ps = getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Pdf pdf = new Pdf();
+                PDF pdf = new PDF();
                 pdf.setContenidoID(rs.getInt(1));
-                pdf.setNombrepdf(rs.getString(2));
-                pdf.setArchivopdf(rs.getBytes(3));
+                pdf.setNombrePDF(rs.getString(2));
+                pdf.setArchivoPDF(rs.getBytes(3));
                 list.add(pdf);
             }
         } catch (SQLException ex) {
@@ -79,14 +79,14 @@ public class PDFOBDMySQL  extends OBD implements PDFOBD{
 
 
     /*Metodo agregar*/
-    public void insert(Pdf vo) {
+    public void insert(PDF vo) {
         String sql = "INSERT INTO formar_archivos (ID, nombre, archivo) VALUES(?, ?, ?);";
         PreparedStatement ps = null;
         try {
             ps = getConexion().prepareStatement(sql);
             ps.setInt(1, vo.getContenidoID());
-            ps.setString(2, vo.getNombrepdf());
-            ps.setBytes(3, vo.getArchivopdf());
+            ps.setString(2, vo.getNombrePDF());
+            ps.setBytes(3, vo.getArchivoPDF());
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -103,14 +103,14 @@ public class PDFOBDMySQL  extends OBD implements PDFOBD{
 
 
     /*Metodo Modificar*/
-    public void update(Pdf vo) {
+    public void update(PDF vo) {
     	
         String sql = "UPDATE formar_archivos SET nombre = ?, archivo = ? WHERE ID = ?;";
         PreparedStatement ps = null;
         try {
             ps = getConexion().prepareStatement(sql);
-            ps.setString(1, vo.getNombrepdf());
-            ps.setBytes(2, vo.getArchivopdf());
+            ps.setString(1, vo.getNombrePDF());
+            ps.setBytes(2, vo.getArchivoPDF());
             ps.setInt(3, vo.getContenidoID());
             ps.executeUpdate();
         } catch (SQLException ex) {
@@ -149,7 +149,7 @@ public class PDFOBDMySQL  extends OBD implements PDFOBD{
     }*/
 
     /*Metodo Eliminar*/
-    public void delete(Pdf vo) {
+    public void delete(PDF vo) {
     	
         String sql = "DELETE FROM formar_archivos WHERE ID = ?;";
         PreparedStatement ps = null;

@@ -1,17 +1,17 @@
 package com.ungs.revivir.persistencia.interfaces;
 
-import com.ungs.revivir.persistencia.entidades.Pdf;
+import com.ungs.revivir.persistencia.entidades.PDF;
 
 public interface PDFOBD {
 	
-	public void insert(Pdf fallecido);
+	public void insert(PDF fallecido);
 	
-	public void update(Pdf fallecido);
+	public void update(PDF fallecido);
 	
-	public void delete(Pdf fallecido);
+	public void delete(PDF fallecido);
 	
 	public String abrir(Integer id);
 	
-	public Pdf traerPdf(Integer id);
+	public PDF traerPdf(Integer id);
 
 }

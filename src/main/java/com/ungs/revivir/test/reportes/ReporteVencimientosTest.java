@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.ungs.revivir.negocios.manager.FallecidoUbicacionManager;
 import com.ungs.revivir.persistencia.definidos.SubSector;
-import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
+import com.ungs.revivir.persistencia.entidades.vista.VFallecidoUbicacion;
 import com.ungs.revivir.vista.reportes.ReporteVencimientos;
 
 public class ReporteVencimientosTest {
@@ -21,7 +21,7 @@ public class ReporteVencimientosTest {
 		Date fechaDesde = Date.valueOf(LocalDate.of(2021, 6, 11));
 		Date fechaHasta = Date.valueOf(LocalDate.of(2021, 7, 11));
 		
-		List<FallecidoUbicacion> fallecidoUbicacion = FallecidoUbicacionManager.buscarVencimientosSinLimite(subSector, fechaDesde, fechaHasta);
+		List<VFallecidoUbicacion> fallecidoUbicacion = FallecidoUbicacionManager.buscarVencimientosSinLimite(subSector, fechaDesde, fechaHasta);
 		System.out.println("Iniciando prueba...OK");
 		System.out.println("Parametros: " + subSector + " " + fechaDesde + " " + fechaHasta);
 		new ReporteVencimientos(fallecidoUbicacion);

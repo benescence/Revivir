@@ -10,8 +10,8 @@ import com.ungs.revivir.negocios.verificador.Verificador;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.definidos.TipoFallecimiento;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.persistencia.entidades.FallecidoUbicacion;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
+import com.ungs.revivir.persistencia.entidades.vista.VFallecidoUbicacion;
 import com.ungs.revivir.vista.principal.ControladorExterno;
 import com.ungs.revivir.vista.util.AccionCerrarVentana;
 import com.ungs.revivir.vista.util.Popup;
@@ -20,9 +20,9 @@ public class ControladorFallecidoAM implements ControladorExterno {
 	private VentanaFallecidoAM ventana;
 	private FallecidoInvocable invocador;
 	private Fallecido modificar;
-	private FallecidoUbicacion original;
+	private VFallecidoUbicacion original;
 	
-	public ControladorFallecidoAM(FallecidoInvocable invocador, FallecidoUbicacion fallecido) {
+	public ControladorFallecidoAM(FallecidoInvocable invocador, VFallecidoUbicacion fallecido) {
 		this.invocador = invocador;
 		this.original= fallecido;
 		this.modificar = FallecidoUbicacionManager.extraerFallecido(fallecido);

@@ -1,11 +1,11 @@
-package com.ungs.revivir.persistencia.interfaces;
+package com.ungs.revivir.persistencia.interfaces.vista;
 
 import java.util.List;
 
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
 
-public interface UbicacionLibreOBD {
+public interface UbicacionLibreVOBD {
 	
 	public List<Ubicacion> select();
 	

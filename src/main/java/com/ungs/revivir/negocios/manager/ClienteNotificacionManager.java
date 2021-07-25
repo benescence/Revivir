@@ -9,13 +9,13 @@ import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.definidos.SubSector;
 import com.ungs.revivir.persistencia.entidades.Cliente;
 import com.ungs.revivir.persistencia.entidades.Fallecido;
-import com.ungs.revivir.persistencia.entidades.NotifClientes;
 import com.ungs.revivir.persistencia.entidades.Ubicacion;
-import com.ungs.revivir.persistencia.interfaces.NotifClientesOBD;
+import com.ungs.revivir.persistencia.entidades.vista.VClienteNotificacion;
+import com.ungs.revivir.persistencia.interfaces.vista.ClienteNotificacionVOBD;
 
-public class NotifClientesManager {
+public class ClienteNotificacionManager {
 	
-	public static List<NotifClientes> traer(String nombres, String apellido, Integer codFallecido) throws Exception {
+	public static List<VClienteNotificacion> traer(String nombres, String apellido, Integer codFallecido) throws Exception {
 		nombres = Verificador.anular(nombres);
 		apellido = Verificador.anular(apellido);
 		String mensaje = "";
@@ -35,11 +35,11 @@ public class NotifClientesManager {
 		if (!mensaje.equals(""))
 			throw new Exception("Se encontraron los siguientes errores:"+mensaje);
 		
-		NotifClientesOBD obd = FactoryOBD.crearNotifClientesOBD();
+		ClienteNotificacionVOBD obd = FactoryOBD.crearNotifClientesOBD();
 		return obd.selectByNombreApellidoCOD(nombres, apellido, codFallecido);
 	}
 
-	public static Ubicacion extraerUbicacion(NotifClientes notifClientes) {
+	public static Ubicacion extraerUbicacion(VClienteNotificacion notifClientes) {
 		return new Ubicacion(
 				notifClientes.getUbicacion(), notifClientes.getSubsector(), notifClientes.getCementerio(),
 				notifClientes.getNicho(), notifClientes.getFila(),notifClientes.getSeccion(),
@@ -50,7 +50,7 @@ public class NotifClientesManager {
 			);
 	}
 
-	public static Fallecido extraerFallecido(NotifClientes notifClientes) {
+	public static Fallecido extraerFallecido(VClienteNotificacion notifClientes) {
 		return new Fallecido(
 				notifClientes.getCli_ID(), notifClientes.getUbicacion(),notifClientes.getTipoFallecimiento(),
 				notifClientes.getCodFallecido(), notifClientes.getDNI() , notifClientes.getApellido() ,
@@ -59,7 +59,7 @@ public class NotifClientesManager {
 			);
 	}
 	
-	public static Cliente extraerCliente(NotifClientes notifClientes) {
+	public static Cliente extraerCliente(VClienteNotificacion notifClientes) {
 		return new Cliente(
 				notifClientes.getCli_ID(), notifClientes.getCli_Nombre(),notifClientes.getCli_Apellido(),
 				notifClientes.getCli_DNI(), notifClientes.getTelefono(), notifClientes.getDomicilio() ,
@@ -67,10 +67,10 @@ public class NotifClientesManager {
 			);
 	}
 	
-	public static NotifClientes generarnotifClientes(Fallecido fallecido) {
+	public static VClienteNotificacion generarnotifClientes(Fallecido fallecido) {
 		Ubicacion ubicacion = UbicacionManager.traerPorFallecido(fallecido);
 		Cliente cliente = ClienteManager.traerPorFallecido(fallecido).get(0);
-		return new NotifClientes(
+		return new VClienteNotificacion(
 				fallecido.getID(),cliente.getNombre(),cliente.getApellido(),cliente.getDNI(),cliente.getTelefono(),
 				cliente.getDomicilio(),cliente.getEmail(),fallecido.getUbicacion(), fallecido.getTipoFallecimiento(),
 				fallecido.getCod_fallecido() ,
@@ -94,13 +94,13 @@ public class NotifClientesManager {
 			);
 	}
 
-	public static List<NotifClientes> buscarVencimientos(SubSector subSector, Date desde, Date hasta) {
-		NotifClientesOBD obd = FactoryOBD.crearNotifClientesOBD();
+	public static List<VClienteNotificacion> buscarVencimientos(SubSector subSector, Date desde, Date hasta) {
+		ClienteNotificacionVOBD obd = FactoryOBD.crearNotifClientesOBD();
 		return obd.selectBySubsectorEntreFechas(subSector, desde, hasta);
 	}
 	
-	public static List<NotifClientes> buscarVencimientosSinLimite(SubSector subSector, Date desde, Date hasta) {
-		NotifClientesOBD obd = FactoryOBD.crearNotifClientesOBD();
+	public static List<VClienteNotificacion> buscarVencimientosSinLimite(SubSector subSector, Date desde, Date hasta) {
+		ClienteNotificacionVOBD obd = FactoryOBD.crearNotifClientesOBD();
 		return obd.selectBySubsectorEntreFechasSinLimite(subSector, desde, hasta);
 	}
 	

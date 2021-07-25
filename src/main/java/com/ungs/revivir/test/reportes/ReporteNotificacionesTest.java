@@ -4,9 +4,9 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.ungs.revivir.negocios.manager.NotifClientesManager;
+import com.ungs.revivir.negocios.manager.ClienteNotificacionManager;
 import com.ungs.revivir.persistencia.definidos.SubSector;
-import com.ungs.revivir.persistencia.entidades.NotifClientes;
+import com.ungs.revivir.persistencia.entidades.vista.VClienteNotificacion;
 import com.ungs.revivir.vista.reportes.ReporteNotificaciones;
 
 public class ReporteNotificacionesTest {
@@ -21,7 +21,7 @@ public class ReporteNotificacionesTest {
 		Date fechaDesde = Date.valueOf(LocalDate.of(2021, 6, 11));
 		Date fechaHasta = Date.valueOf(LocalDate.of(2021, 7, 11));
 		
-		List<NotifClientes> notifClientes = NotifClientesManager.buscarVencimientosSinLimite(subSector, fechaDesde, fechaHasta);
+		List<VClienteNotificacion> notifClientes = ClienteNotificacionManager.buscarVencimientosSinLimite(subSector, fechaDesde, fechaHasta);
 		System.out.println("Iniciando prueba...OK");
 		System.out.println("Parametros: " + subSector + " " + fechaDesde + " " + fechaHasta);
 
