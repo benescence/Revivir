@@ -3997,3 +3997,64 @@ VALUES
 (1, '4', 43, 5, 72, 0, 0)
 ;
 ## Cantidad de lineas: 72
+
+INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)
+VALUES
+(1, '6D', 4, 5, 1, 0, 0),
+(1, '6D', 4, 5, 2, 0, 0),
+(1, '6D', 4, 5, 3, 0, 0),
+(1, '6D', 4, 5, 4, 0, 0),
+(1, '6D', 4, 5, 5, 0, 0),
+(1, '6D', 4, 5, 6, 0, 0),
+(1, '6D', 4, 5, 7, 0, 0),
+(1, '6D', 4, 5, 8, 0, 0),
+(1, '6D', 4, 5, 9, 0, 0),
+(1, '6D', 4, 5, 10, 0, 0),
+(1, '6D', 4, 5, 11, 0, 0),
+(1, '6D', 4, 5, 12, 0, 0),
+(1, '6D', 4, 5, 13, 0, 0),
+(1, '6D', 4, 5, 14, 0, 0),
+(1, '6D', 4, 5, 15, 0, 0)
+;
+## Cantidad de lineas: 15
+INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)
+VALUES
+(1, '5C', 7, 5, 1, 0, 0),
+(1, '5C', 7, 5, 2, 0, 0),
+(1, '5C', 7, 5, 3, 0, 0),
+(1, '5C', 7, 5, 4, 0, 0),
+(1, '5C', 7, 5, 5, 0, 0),
+(1, '5C', 7, 5, 6, 0, 0),
+(1, '5C', 7, 5, 7, 0, 0),
+(1, '5C', 7, 5, 8, 0, 0),
+(1, '5C', 7, 5, 9, 0, 0),
+(1, '5C', 7, 5, 10, 0, 0),
+(1, '5C', 7, 5, 11, 0, 0),
+(1, '5C', 7, 5, 12, 0, 0),
+(1, '5C', 7, 5, 13, 0, 0),
+(1, '5C', 7, 5, 14, 0, 0),
+(1, '5C', 7, 5, 15, 0, 0),
+(1, '5C', 7, 5, 16, 0, 0),
+(1, '5C', 7, 5, 17, 0, 0),
+(1, '5C', 7, 5, 18, 0, 0),
+(1, '5C', 7, 5, 19, 0, 0),
+(1, '5C', 7, 5, 20, 0, 0),
+(1, '5C', 7, 5, 21, 0, 0),
+(1, '5C', 7, 5, 22, 0, 0),
+(1, '5C', 7, 5, 23, 0, 0),
+(1, '5C', 7, 5, 24, 0, 0)
+;
+## Cantidad de lineas: 24
+INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)
+VALUES
+(1, '6E', 2, 5, 31, 0, 0),
+(1, '6E', 2, 5, 50, 0, 0),
+(1, '6E', 2, 5, 53, 0, 0)
+;
+## Cantidad de lineas: 3
+INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)
+VALUES
+(1, '6E', 3, 5, 5, 0, 0),
+(1, '6E', 3, 5, 30, 0, 0)
+;
+## Cantidad de lineas: 2

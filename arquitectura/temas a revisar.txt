@@ -4,9 +4,9 @@ select ID, subsector, cementerio, nicho, fila,seccion, macizo, unidad, bis,
 	bis_macizo, sepultura, parcela, mueble, inhumacion, circ, vencimiento 
 from rev_ubicaciones where (ID = 256) limit 50;
 - pasar cambios a escobar.
-- revisar en que lugares hay que crear una vista
 - insert de ubicaciones
-- consulta de pagos diarios (ver reporte movimientos y cargos) tarda 
 _ consultar circ en sepulturas compradas (en un alta esta en la otra no )
 - IP publica x IP fija para conexion
 - revisar duplicados en ubicaciones totales (agregar clave unica para la tabla ubic_totales)
+- ver Reportes Facturas 
+-no trae los pagos del 2/7 -- error : Unknown column 'pago_id' in 'field list'
