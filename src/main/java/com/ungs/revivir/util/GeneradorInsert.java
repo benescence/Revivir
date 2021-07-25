@@ -23,24 +23,24 @@ public class GeneradorInsert {
 		// Valores generalmente fijos
 		
 		String subsector    = "1";
-		String seccion      = "6E";
+		String seccion      = "4ABIS";
 		String unidad       = "5";
 		int sepulturaInicio =  1;
 		
 		//boolean tieneBis    = false;
 		// Descomentar la siguiente linea si tiene BIS
 		boolean tieneBis = false;
-		List<Integer> sepulturasConBIS = Arrays.asList( 42,43,30,31);
+		List<Integer> sepulturasConBIS = Arrays.asList( 1,2);
 		String bisMacizo = "0";
-		int sepulturaFin =  2;
+		int sepulturaFin = 11;
 		int inhumacion= 4;
 
 		// Valores que cambian seguido //MAC43-SEPULTURAS 72-
 
 		int parcelaInicio =  1;
 		int parcelaFin =  22;
-		String macizo    = "4";
-		String macizoFin = "4";
+		String macizo    = "1";
+		String macizoFin = "1";
 		String circ = "3";
 		//int fila = 1;
 		List<Integer> macizoIntercalado = Arrays.asList();
