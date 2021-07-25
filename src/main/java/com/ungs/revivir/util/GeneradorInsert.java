@@ -8,9 +8,10 @@ public class GeneradorInsert {
 	
 	public static void main(String[] args) {
 		contadorFinal=0;
-		System.out.println("INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)");
+		//System.out.println("INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis)");
 		//System.out.println("INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad,parcela,circ,fila)");
 		//System.out.println("INSERT INTO rev_ubicaciones_totales (subsector, seccion, macizo, unidad, sepultura, bis_macizo, bis, inhumacion)");
+		System.out.println("INSERT INTO rev_ubicaciones_totales (subsector, mueble, nicho)");
 		System.out.println("VALUES");
 		imprimirValores();
 		System.out.println(";");
@@ -22,10 +23,11 @@ public class GeneradorInsert {
 		
 		// Valores generalmente fijos
 		
-		String subsector    = "1";
+		String subsector    = "10";
 		String seccion      = "4ABIS";
 		String unidad       = "5";
 		int sepulturaInicio =  1;
+		int nichoInicio =  1;
 		
 		//boolean tieneBis    = false;
 		// Descomentar la siguiente linea si tiene BIS
@@ -33,7 +35,9 @@ public class GeneradorInsert {
 		List<Integer> sepulturasConBIS = Arrays.asList( 1,2);
 		String bisMacizo = "0";
 		int sepulturaFin = 11;
+		int nichoFin = 30;
 		int inhumacion= 4;
+		int fila = 1;
 
 		// Valores que cambian seguido //MAC43-SEPULTURAS 72-
 
@@ -44,14 +48,14 @@ public class GeneradorInsert {
 		String circ = "3";
 		//int fila = 1;
 		List<Integer> macizoIntercalado = Arrays.asList();
-		while (Integer.parseInt(macizo) <= Integer.parseInt(macizoFin)  ) {     // esto para sepulturas adultos
-		   ///while (inhumacion >0  ) {	   // esto para indigentes 
+		//while (Integer.parseInt(macizo) <= Integer.parseInt(macizoFin)  ) {     // esto para sepulturas adultos
+		   while (fila >0  ) {	   // esto para indigentes 
 			if ( !macizoIntercalado.contains(Integer.parseInt(macizo)) ) {
-		recorrerSepulturas(subsector, seccion, macizo, unidad, sepulturaInicio, sepulturaFin, bisMacizo, tieneBis, sepulturasConBIS);
+		recorrerPalmeras(subsector, fila, nichoInicio,nichoFin);
 		//recorrerParcelas(subsector, seccion, unidad, parcelaInicio, parcelaFin, macizo, circ, 6, macizoFin);
 			}
 		macizo = Integer.toString(Integer.parseInt(macizo) +1);	// esto para sepulturas adultos
-		  //inhumacion = inhumacion -1;                               // esto es para indigenets
+		  fila = fila -1;                               // esto es para indigenets
 		}
 	}
 	
@@ -88,6 +92,19 @@ public class GeneradorInsert {
 			contadorFinal++;
 		}
 		
+	}
+
+	public static void recorrerPalmeras(String subsector, int fila,int nichoInicio, int nichoFin) {
+		
+		for (int i = nichoInicio; i < nichoFin + 1; i++) {
+			
+			// Si es la ultima linea va espacio vacio, sino una coma
+			String fin = (nichoFin == i ) ? "" : ",";
+			
+			imprimirPalmeras(subsector, fila,i, fin);
+			contadorFinal++;
+		
+		}
 	}
 	
 	public static void recorrerParcelas(String subsector, String seccion, String unidad,
@@ -135,4 +152,12 @@ public class GeneradorInsert {
 		System.out.println(linea);
 	}	
 
+	public static void imprimirPalmeras(String subsector, int fila, int nicho, String fin) {
+		
+		String linea = String.format(
+				"(%s, 16, %s)%s",
+				subsector, nicho,fin
+			);
+		System.out.println(linea);
+	}	
 }
