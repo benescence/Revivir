@@ -47,9 +47,9 @@ public class ReporteNotificaciones {
 			itemVencimientos.add(sdf.format(ubicacion.getVencimiento()));
 			itemUbicaciones.add(Formato.ubicacion(ubicacion));
 			itemFallecidos.add(fallecido.getApellido()+ " " + fallecido.getNombre());
-			itemDirecciones.add(cliente.getDomicilio());
-			itemTelefonos.add(cliente.getTelefono());
-			itemMails.add(cliente.getEmail());
+			itemDirecciones.add((cliente.getDomicilio())== null ? "-" : cliente.getDomicilio());
+			itemTelefonos.add((cliente.getTelefono())== null ? "-" : cliente.getTelefono());
+			itemMails.add((cliente.getEmail())== null ? "-" : cliente.getEmail());
 		}
 
 		if (notifClientes.size() != 0) {

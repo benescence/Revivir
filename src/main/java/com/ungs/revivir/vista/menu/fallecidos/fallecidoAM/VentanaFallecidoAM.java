@@ -245,7 +245,6 @@ public class VentanaFallecidoAM extends Ventana {
 		} else if (subSector == SubSector.BOVEDA) {
 			inCirc.habilitado(true);
 			inSeccion.habilitado(true);
-			inFila.habilitado(true);
 			inMacizo.habilitado(true);
 			inParcela.habilitado(true);
 			inUnidad.habilitado(true);

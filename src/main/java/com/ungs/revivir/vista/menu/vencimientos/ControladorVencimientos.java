@@ -76,7 +76,7 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		SubSector subSector = (SubSector) ventana.getSubsector().getComboBox().getSelectedItem();
 		Date desde = ventana.getDesde().getValor();
 		Date hasta = ventana.getHasta().getValor();
-		List<VFallecidoUbicacion> vencimientos = FallecidoUbicacionManager.buscarVencimientos(subSector, desde, hasta);
+		List<VFallecidoUbicacion> vencimientos = FallecidoUbicacionManager.buscarVencimientosSinLimite(subSector, desde, hasta);
 		new ReporteVencimientos(vencimientos);
 	}
 
@@ -84,7 +84,7 @@ public class ControladorVencimientos implements ControladorInterno, Visualizable
 		SubSector subSector = (SubSector) ventana.getSubsector().getComboBox().getSelectedItem();
 		Date desde = ventana.getDesde().getValor();
 		Date hasta = ventana.getHasta().getValor();
-		List<VClienteNotificacion> vencimientos = ClienteNotificacionManager.buscarVencimientos(subSector, desde, hasta);
+		List<VClienteNotificacion> vencimientos = ClienteNotificacionManager.buscarVencimientosSinLimite(subSector, desde, hasta);
 		new ReporteNotificaciones(vencimientos);
 	}
 	

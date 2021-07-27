@@ -13,4 +13,4 @@ _ consultar circ en sepulturas compradas (en un alta esta en la otra no )
 pruebas
 -- el el reporte de vencimientos (boton imprimir Listado en Vencimientos) trae solo 50 lineas ( habiamos quedado que muestra 50 pero tienen que salir todos en el reporte)
  lo mismo pasa con Notificaciones(boton notificaciones) 
- -- quize probar las ubicaciones libres y rompe, no recuerdo si tengo que correr algo en la bd ..o quizas porque mi proyecto tiene errores, probalo local
+ 
