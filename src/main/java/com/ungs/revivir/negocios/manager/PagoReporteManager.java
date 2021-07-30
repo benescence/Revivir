@@ -37,7 +37,7 @@ public class PagoReporteManager {
 				reporte.getFallecidoID(),
 				null,
 				null,
-				null,
+				reporte.getFallecidoCodigo(),
 				reporte.getFallecidoDNI(),
 				reporte.getFallecidoApellido(),
 				reporte.getFallecidoNombre(),

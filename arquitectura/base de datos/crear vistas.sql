@@ -142,6 +142,7 @@ CREATE VIEW rev_v_reporte_pagos AS
 	    CA.observaciones AS cargo_observaciones,
 	    CA.pagado AS cargo_pagado,
 	    FA.id AS fallecido_id,
+	    FA.cod_fallecido AS fallecido_codigo,
 	    FA.nombre AS fallecido_nombre,
 	    FA.apellido AS fallecido_apellido,
 	    FA.dni AS fallecido_dni,
@@ -170,3 +171,4 @@ CREATE VIEW rev_v_reporte_pagos AS
 		LEFT JOIN rev_servicios SE ON SE.id = CA.servicio
 		LEFT JOIN rev_ubicaciones UB ON UB.id = FA.ubicacion
 ;
+

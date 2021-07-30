@@ -20,6 +20,7 @@ public class VPagoReporte {
 
 	// Fallecido
 	private Integer fallecidoID;
+	private Integer fallecidoCodigo;
 	private String fallecidoNombre;
 	private String fallecidoApellido;
 	private String fallecidoDNI;
@@ -47,10 +48,22 @@ public class VPagoReporte {
 	private Boolean ubicacionBisMacizo;
 	private Boolean ubicacionBis;
 	
-	public VPagoReporte(Integer pagoID, Double pagoImporte, String pagoObservaciones, Date pagoFecha, Integer cargoID,
-			String cargoObservaciones, Boolean cargoPagado, Integer fallecidoID, String fallecidoNombre,
-			String fallecidoApellido, String fallecidoDNI, Integer servicioID, String servicioNombre,
-			Boolean servicioHistorico, Integer ubicacionID, SubSector ubicacionSubsector, Integer ubicacionCirc,
+	public VPagoReporte(
+			
+			// Parametros pago
+			Integer pagoID, Double pagoImporte, String pagoObservaciones, Date pagoFecha,
+
+			// Parametros cargo			
+			Integer cargoID, String cargoObservaciones, Boolean cargoPagado,
+			
+			// Parametros fallecido
+			Integer fallecidoID, Integer fallecidoCodigo, String fallecidoNombre, String fallecidoApellido, String fallecidoDNI,
+			
+			// Parametros servicio
+			Integer servicioID, String servicioNombre, Boolean servicioHistorico,
+
+			// Parametros ubicacion
+			Integer ubicacionID, SubSector ubicacionSubsector, Integer ubicacionCirc,
 			String ubicacionSeccion, Integer ubicacionMacizo, Integer ubicacionParcela, Integer ubicacionFila,
 			Integer ubicacionUnidad, Integer ubicacionNicho, Integer ubicacionMueble, Integer ubicacionSepultura,
 			Integer ubicacionInhumacion, String ubicacionCementerio, Date ubicacionVencimiento,
@@ -60,16 +73,21 @@ public class VPagoReporte {
 		this.pagoImporte = pagoImporte;
 		this.pagoObservaciones = pagoObservaciones;
 		this.pagoFecha = pagoFecha;
+		
 		this.cargoID = cargoID;
 		this.cargoObservaciones = cargoObservaciones;
 		this.cargoPagado = cargoPagado;
+		
 		this.fallecidoID = fallecidoID;
+		this.fallecidoCodigo= fallecidoCodigo;
 		this.fallecidoNombre = fallecidoNombre;
 		this.fallecidoApellido = fallecidoApellido;
 		this.fallecidoDNI = fallecidoDNI;
+		
 		this.servicioID = servicioID;
 		this.servicioNombre = servicioNombre;
 		this.servicioHistorico = servicioHistorico;
+		
 		this.ubicacionID = ubicacionID;
 		this.ubicacionSubsector = ubicacionSubsector;
 		this.ubicacionCirc = ubicacionCirc;
@@ -86,6 +104,14 @@ public class VPagoReporte {
 		this.ubicacionVencimiento = ubicacionVencimiento;
 		this.ubicacionBisMacizo = ubicacionBisMacizo;
 		this.ubicacionBis = ubicacionBis;
+	}
+
+	public Integer getFallecidoCodigo() {
+		return fallecidoCodigo;
+	}
+
+	public void setFallecidoCodigo(Integer fallecidoCodigo) {
+		this.fallecidoCodigo = fallecidoCodigo;
 	}
 
 	public Integer getPagoID() {

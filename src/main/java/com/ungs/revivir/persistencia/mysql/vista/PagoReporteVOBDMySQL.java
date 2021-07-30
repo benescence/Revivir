@@ -17,7 +17,7 @@ import com.ungs.revivir.persistencia.interfaces.vista.PagoReporteVOBD;
 public class PagoReporteVOBDMySQL extends OBD implements PagoReporteVOBD {
 	private final String campos = "pago_id, pago_importe, pago_observaciones, pago_fecha, "
 			+ "cargo_id, cargo_observaciones, cargo_pagado, "
-			+ "fallecido_id, fallecido_nombre, fallecido_apellido, fallecido_dni, "
+			+ "fallecido_id, fallecido_codigo, fallecido_nombre, fallecido_apellido, fallecido_dni, "
 			+ "servicio_id, servicio_nombre, servicio_historico, "
 			+ "ubicacion_ID, ubicacion_subsector, ubicacion_circ, ubicacion_seccion, ubicacion_macizo, ubicacion_parcela, "
 			+ "ubicacion_fila, ubicacion_unidad, ubicacion_nicho, ubicacion_mueble, ubicacion_sepultura, "
@@ -67,6 +67,7 @@ public class PagoReporteVOBDMySQL extends OBD implements PagoReporteVOBD {
 					resultados.getString("cargo_observaciones"),
 					resultados.getBoolean("cargo_pagado"),
 					resultados.getInt("fallecido_id"),
+					resultados.getInt("fallecido_codigo"),
 					resultados.getString("fallecido_nombre"),
 					resultados.getString("fallecido_apellido"),
 					resultados.getString("fallecido_dni"),

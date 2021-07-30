@@ -52,9 +52,7 @@ public class ReporteVariosCargos {
 			parametros.put("monto", itemMontos);
 			parametros.put("fallecido", Formato.fallecido(fallecido));
 	    	parametros.put("ubicacion", Formato.ubicacion(ubicacion));
-	    	// Numero de fallecido que seria?
-	    	//parametros.put("CodF",Formato.codFallecidodeFallecido(fallecido));
-			parametros.put("DNIfallecido", fallecido.getDNI());
+	    	parametros.put("DNIfallecido", fallecido.getCod_fallecido().toString());
 			parametros.put("total", total);
 	    	
 			try {
