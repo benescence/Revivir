@@ -53,10 +53,12 @@ public class ReporteVariosCargos {
 			parametros.put("fallecido", Formato.fallecido(fallecido));
 	    	parametros.put("ubicacion", Formato.ubicacion(ubicacion));
 	    	// Numero de fallecido que seria?
+	    	//parametros.put("CodF",Formato.codFallecidodeFallecido(fallecido));
 			parametros.put("DNIfallecido", fallecido.getDNI());
 			parametros.put("total", total);
 	    	
 			try {
+				System.out.println(parametros);
 				this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\FacturaVariosCargos.jasper");
 				this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametros,
 						new JRBeanCollectionDataSource(pagos));

@@ -121,6 +121,10 @@ public class Formato {
 		Ubicacion ubicacion = UbicacionManager.traerPorFallecido(fallecido);
 		return ubicacion(ubicacion);
 	}
+	public static int codFallecidodeFallecido(Fallecido fallecido) {
+		return fallecido.getCod_fallecido();
+	}
+	
 
 	public static String cargo(Pago pago) {
 		Cargo cargo = CargoManager.traerPorID(pago.getCargo());

@@ -37,6 +37,7 @@ public class ReporteFacturaPago {
     	parametros.put("DNIFallecido", Formato.DNIfallecido(pagos.get(0)));
     	
     	try	{
+    		
         	this.reporte = (JasperReport) JRLoader.loadObjectFromFile("reportes\\FacturaPago.jasper");
 			this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametros, 
 					new JRBeanCollectionDataSource(pagos));

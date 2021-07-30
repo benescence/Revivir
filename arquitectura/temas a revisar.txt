@@ -11,6 +11,5 @@ _ consultar circ en sepulturas compradas (en un alta esta en la otra no )
 - ver Reportes Facturas 
 -- avisar que en el sector E de sepulturas macizo 2 las bis cabecera está en la bis 11// SECTOR 4abis, SE CARGÓ CON MACIZO 1
 pruebas
--- el el reporte de vencimientos (boton imprimir Listado en Vencimientos) trae solo 50 lineas ( habiamos quedado que muestra 50 pero tienen que salir todos en el reporte)
- lo mismo pasa con Notificaciones(boton notificaciones) 
+-- en la factura falta el codigo de fallecido;
  
