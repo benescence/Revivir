@@ -25,7 +25,7 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 	
 	public ControladorPagoABM(ControladorPrincipal invocador) {
 		this.invocador = invocador;
-		ventana = new VentanaPagoABM();
+		ventana = new VentanaPagoABM(invocador.getVentana());
 		ventana.botonAgregar().addActionListener(e -> agregar());
 		ventana.botonModificar().addActionListener(e -> modificar());
 		ventana.botonEliminar().addActionListener(e -> eliminar());
@@ -112,6 +112,7 @@ public class ControladorPagoABM implements ControladorInterno, PagoInvocable {
 		Integer codigo = ventana.getCODFal().getValor();
 		
 		List<Fallecido> fallecidos = null;
+		
 		try {
 			 fallecidos = FallecidoManager.traer(nombre, apellido, codigo);
 		} catch (Exception e) {
