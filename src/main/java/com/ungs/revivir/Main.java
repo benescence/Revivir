@@ -6,7 +6,7 @@ import com.ungs.revivir.vista.sesion.iniciar.ControladorIniciarSesion;
 
 public class Main {
 
-	public static void configurarApariencia() {
+	public static void configurarApariencia() { 
 		
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
