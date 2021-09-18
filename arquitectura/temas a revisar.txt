@@ -1,15 +1,11 @@
-Revisar el siguiente error
-fernandez 20008
+
 select ID, subsector, cementerio, nicho, fila,seccion, macizo, unidad, bis, 
 	bis_macizo, sepultura, parcela, mueble, inhumacion, circ, vencimiento 
 from rev_ubicaciones where (ID = 256) limit 50;
-- pasar cambios a escobar.
-- insert de ubicaciones
-_ consultar circ en sepulturas compradas (en un alta esta en la otra no )
-- IP publica x IP fija para conexion
+
 - revisar duplicados en ubicaciones totales (agregar clave unica para la tabla ubic_totales)
 - ver Reportes Facturas 
--- avisar que en el sector E de sepulturas macizo 2 las bis cabecera está en la bis 11// SECTOR 4abis, SE CARGÓ CON MACIZO 1
-pruebas
--- en la factura falta el codigo de fallecido;
- 
+
+ -- optimizar consulta de movimientos
+ -- log
+ -- campo "cementerio" para filtarr en ubicaciones libres y en consulta de fallec por ubicacion

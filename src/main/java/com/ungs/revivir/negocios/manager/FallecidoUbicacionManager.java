@@ -91,4 +91,19 @@ public class FallecidoUbicacionManager {
 		return obd.selectBySubsectorEntreFechasSinLimite(subSector, desde, hasta);
 	}
 	
+
+
+	public static List<VFallecidoUbicacion> traer(Integer circMin, Integer circMax, Integer macizoMin,
+			Integer macizoMax, Integer parcelaMin, Integer parcelaMax, Integer filaMin, Integer filaMax,
+			Integer unidadMin, Integer unidadMax, Integer nichoMin, Integer nichoMax, Integer muebleMin,
+			Integer muebleMax, Integer sepulturaMin, Integer sepulturaMax, Integer inhumacionMin, Integer inhumacionMax,
+			SubSector subSector, String seccion, boolean macizo_bis, boolean bis) {
+		FallecidoUbicacionVOBD obd = FactoryOBD.crearFallecidoUbicacionOBD();
+		return obd.selectByUbicacion( circMin,  circMax,  macizoMin,
+				 macizoMax,  parcelaMin,  parcelaMax,  filaMin,  filaMax,
+				 unidadMin,  unidadMax,  nichoMin,  nichoMax,  muebleMin,
+				 muebleMax,  sepulturaMin,  sepulturaMax,  inhumacionMin,  inhumacionMax,
+				 subSector,  seccion,  macizo_bis,  bis);
+	}
+	
 }

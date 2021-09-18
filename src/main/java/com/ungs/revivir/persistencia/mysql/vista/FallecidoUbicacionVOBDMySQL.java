@@ -163,4 +163,60 @@ public class FallecidoUbicacionVOBDMySQL extends OBD implements FallecidoUbicaci
 		return ret;
 	}
 
+	@Override
+	public List<VFallecidoUbicacion> selectByUbicacion(Integer circMin, Integer circMax, Integer macizoMin,
+			Integer macizoMax, Integer parcelaMin, Integer parcelaMax, Integer filaMin, Integer filaMax,
+			Integer unidadMin, Integer unidadMax, Integer nichoMin, Integer nichoMax, Integer muebleMin,
+			Integer muebleMax, Integer sepulturaMin, Integer sepulturaMax, Integer inhumacionMin, Integer inhumacionMax,
+			SubSector subSector, String seccion, Boolean macizo_bis, Boolean bis) {
+			String condicionBase = "1=1" ;
+			String condicionSubsector =" and  subsector = " + Definido.subsector(subSector);
+			String condicionSeccion = (seccion != null) ? (  " and seccion = '" + seccion + "'") : "";
+			String condicionNichoMin = (nichoMin!= null ) ? (" and nicho >= "+nichoMin ): "";
+			String condicionNichoMax = ( nichoMax != null) ? (" and nicho <= " + nichoMax) : "";
+			String condicionFilaMax = (filaMax != null) ? ("  and fila <= " + filaMax) : "";
+			String condicionFilaMin = (filaMin!= null ) ? (" and fila >= "+filaMin) : "";
+			String condicionMacizoMax = (macizoMax != null) ? ("  and macizo <= " + macizoMax) : "";
+			String condicionMacizoMin = (macizoMin!= null ) ? (" and macizo >= "+macizoMin) : "";
+			String condicionCircMax = (circMax != null) ? (" and circ <= " + circMax) : "";
+			String condicionCircMin = (circMin!= null) ? (" and circ >= "+circMin ) : "";
+			String condicionUnidadMax = (unidadMax != null) ? (" and unidad <= " + unidadMax) : "";
+			String condicionUnidadMin = (unidadMin!= null) ? (" and unidad >= "+unidadMin ) : "";
+			String condicionParcelaMax = (parcelaMax != null) ? (" and parcela <= " + parcelaMax) : "";
+			String condicionParcelaMin = (parcelaMin!= null) ? (" and parcela >= "+parcelaMin ) : "";
+			String condicionMuebleMax = (muebleMax != null) ? (" and mueble <= " + muebleMax) : "";
+			String condicionMuebleMin = (muebleMin!= null) ? (" and mueble >= "+muebleMin ) : "";
+			String condicioninhumacionMax = (inhumacionMax != null) ? ("  and inhumacion <= " + inhumacionMax) : "";
+			String condicioninhumacionMin = (inhumacionMin!= null) ? (" and inhumacion >= "+inhumacionMin) : "";
+			String condicionSepulturaMax = (sepulturaMax != null) ? ("  and sepultura <= " + sepulturaMax) : "";
+			String condicionSepulturaMin = (sepulturaMin!= null) ? (" and sepultura >= "+sepulturaMin ) : "";
+			String condicionCheckMacizobis = (macizo_bis!= null && macizo_bis) ? (" and bis_macizo = "+macizo_bis ) : "";
+			String condicionCheckbis = (bis!= null && bis) ? (" and bis = "+bis ) : "";
+			String condicion =  condicionBase 
+								+ condicionSubsector
+								+ condicionSeccion
+								+ condicionNichoMax
+								+ condicionNichoMin
+								+ condicionFilaMin
+								+ condicionFilaMax
+								+ condicionMacizoMax
+								+ condicionMacizoMin
+								+ condicionParcelaMax
+								+ condicionParcelaMin
+								+ condicionMuebleMax
+								+ condicionMuebleMin
+								+ condicionUnidadMax
+								+ condicionUnidadMin
+								+ condicionCircMax
+								+ condicionCircMin
+								+ condicioninhumacionMax
+								+ condicioninhumacionMin
+								+ condicionSepulturaMax 
+								+ condicionSepulturaMin
+								+condicionCheckMacizobis
+								+condicionCheckbis;
+			return selectByCondicion(condicion);
+		}
+	
+
 }

@@ -22,7 +22,7 @@ public class VentanaPrincipal extends Ventana {
 	private static final long serialVersionUID = 1L;
 	private JMenuItem principalAlta, exportarBD, actualizarBD, principalCambiarPassword, principalCerrarSesion;
 	private JMenuItem clienteAlta, clienteConsulta; 
-	private JMenuItem fallecidoAlta, fallecidoConsulta;
+	private JMenuItem fallecidoAlta, fallecidoConsulta,fallecidoUbicacion;
 	private JMenuItem cargoAlta, cargoConsultar; 
 	private JMenuItem pagoAlta, pagoConsultar; 
 	private JMenuItem movimientoAlta, movimientoConsultar; 
@@ -86,6 +86,7 @@ public class VentanaPrincipal extends Ventana {
 		menuFallecido.setMnemonic('f');
 		menuFallecido.add(fallecidoAlta = new JMenuItem("Alta fallecido", 'a'));
 		menuFallecido.add(fallecidoConsulta = new JMenuItem("Consultar fallecidos", 'c'));
+		menuFallecido.add(setFallecidoUbicacion(new JMenuItem("Consulta por ubicacion", 'u')));
 		fallecidoAlta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, Event.CTRL_MASK | Event.ALT_MASK));
 		barra.add(menuFallecido);
 
@@ -258,6 +259,15 @@ public class VentanaPrincipal extends Ventana {
 
 	public JMenuItem getubicacionLibe() {
 		return ubicacionLibe;
+	}
+
+	public JMenuItem getFallecidoUbicacion() {
+		return fallecidoUbicacion;
+	}
+
+	public JMenuItem setFallecidoUbicacion(JMenuItem fallecidoUbicacion) {
+		this.fallecidoUbicacion = fallecidoUbicacion;
+		return fallecidoUbicacion;
 	}
 		
 }
