@@ -15,7 +15,7 @@ public class Main {
 		            break;
 		        }
 		    }
-		//a
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -24,7 +24,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		configurarApariencia();
-		new ControladorIniciarSesion();
+		new ControladorIniciarSesion();// hist.
 	}
 	
 }
