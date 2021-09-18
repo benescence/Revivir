@@ -5,7 +5,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import com.ungs.revivir.vista.sesion.iniciar.ControladorIniciarSesion;
 
 public class Main {
-//ssds asdsdasdsa
+
 	public static void configurarApariencia() { 
 		
 		try {
@@ -24,7 +24,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		configurarApariencia();
-		new ControladorIniciarSesion();// hist.
+		new ControladorIniciarSesion();
 	}
 	
 }
