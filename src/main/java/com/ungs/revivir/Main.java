@@ -5,7 +5,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import com.ungs.revivir.vista.sesion.iniciar.ControladorIniciarSesion;
 
 public class Main {
-//ssds
+//ssds asdsdasdsa
 	public static void configurarApariencia() { 
 		
 		try {
