@@ -13,6 +13,7 @@ import com.ungs.revivir.vista.tablas.TablaPagos;
 import com.ungs.revivir.vista.util.Boton;
 import com.ungs.revivir.vista.util.contenedores.PanelHorizontal;
 import com.ungs.revivir.vista.util.contenedores.PanelVertical;
+import com.ungs.revivir.vista.util.contenedores.Ventana;
 import com.ungs.revivir.vista.util.contenedores.VentanaInterna;
 import com.ungs.revivir.vista.util.entradas.EntradaFecha;
 import com.ungs.revivir.vista.util.entradas.EntradaNumero;
@@ -26,7 +27,7 @@ public class VentanaPagoABM extends VentanaInterna {
 	private PanelFallecidos panelFallecidos;
 	
 	@SuppressWarnings("deprecation")
-	public VentanaPagoABM() {
+	public VentanaPagoABM(Ventana ventana) {
 		super("Gestion de pagos", 500, 500);
 		
 		tabla = new TablaPagos(new ArrayList<>());
@@ -43,7 +44,7 @@ public class VentanaPagoABM extends VentanaInterna {
 		btnEliminar = new Boton("Eliminar", dimBoton);
 		btnFactura = new Boton("Factura", dimBoton);
 		btnMovimientos = new Boton("Movimientos", dimBoton);
-		panelFallecidos = new PanelFallecidos(null, dimTexto, dimEntrada, dimBoton, null);
+		panelFallecidos = new PanelFallecidos(ventana, dimTexto, dimEntrada, dimBoton, null);
 				
 		PanelHorizontal panelBotones = new PanelHorizontal();
 		panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));

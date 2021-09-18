@@ -26,6 +26,7 @@ public class PanelFallecidos extends PanelVertical implements FallecidoSeleccion
 	public PanelFallecidos(Ventana ventana, Dimension dimTexto, Dimension dimEntrada,
 			Dimension dimBoton, Component siguienteComponente) {
 		this.ventana = ventana;
+		System.out.println(ventana);
 		this.siguienteComponente = siguienteComponente;
 		
 		inNombre = new EntradaTexto("Nombres fallecido", dimTexto, dimEntrada);
@@ -79,6 +80,7 @@ public class PanelFallecidos extends PanelVertical implements FallecidoSeleccion
 		
 		} catch (Exception e) {
 			Popup.mostrar(e.getMessage());
+			e.printStackTrace();
 		}
 		
 	}
