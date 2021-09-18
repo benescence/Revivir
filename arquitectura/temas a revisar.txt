@@ -9,3 +9,4 @@ from rev_ubicaciones where (ID = 256) limit 50;
  -- optimizar consulta de movimientos
  -- log
  -- campo "cementerio" para filtarr en ubicaciones libres y en consulta de fallec por ubicacion
+ -- properties en san miguel
