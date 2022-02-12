@@ -4,7 +4,7 @@ import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.Propiedades;
 import com.ungs.revivir.persistencia.interfaces.ConfiguracionOBD;
 
-public class Configuracion {
+public class Configuracion {/*
 	
 	public static String leerIP() {
 		return Propiedades.recuperar("IP");
@@ -62,5 +62,5 @@ public class Configuracion {
 		else
 			obd.update("password_email", valor);
 	}
-	
+	*/
 }	

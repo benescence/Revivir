@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ungs.revivir.persistencia.Definido;
+import com.ungs.revivir.persistencia.ExcepcionConexion;
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.definidos.Rol;
 import com.ungs.revivir.persistencia.entidades.Usuario;
@@ -81,7 +82,10 @@ public class UsuarioOBDMySQL extends OBD implements UsuarioOBD{
 		return ret.get(0);
 	}
 	
-	private List<Usuario> selectByCondicion(String condicion) {
+	private List<Usuario> selectByCondicion(String condicion) throws ExcepcionConexion 
+	
+	{
+		
 		List<Usuario> ret = new ArrayList<Usuario>();
 		String comandoSQL = "select ID, "+campos+" from "+tabla+" where ("+condicion+") limit "+limite+";";
 		
@@ -107,6 +111,7 @@ public class UsuarioOBDMySQL extends OBD implements UsuarioOBD{
 		}catch(Exception e) {
 			System.out.println(comandoSQL);
 			e.printStackTrace();
+			throw new ExcepcionConexion("No se a podido conectar al servidor.");
 		}
 			
 		return ret;

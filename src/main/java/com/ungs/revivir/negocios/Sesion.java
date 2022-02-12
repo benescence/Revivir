@@ -1,5 +1,6 @@
 package com.ungs.revivir.negocios;
 
+import com.ungs.revivir.persistencia.ExcepcionConexion;
 import com.ungs.revivir.persistencia.FactoryOBD;
 import com.ungs.revivir.persistencia.OBD;
 import com.ungs.revivir.persistencia.entidades.Usuario;
@@ -10,10 +11,10 @@ public class Sesion {
 	
 	public static void inicializarZonaHoraria(){
 		OBD obd = new OBD();
-		obd.inicializarZonaHoraria();
+		//obd.inicializarZonaHoraria();
 	}
 	
-	public static void iniciarSesion(String nombre, String password) throws Exception {
+	public static void iniciarSesion(String nombre, String password) throws Exception, ExcepcionConexion {
 		UsuarioOBD obd = FactoryOBD.crearUsuarioOBD();
 		Usuario usuarioBD = obd.selectByUsuario(nombre);
 

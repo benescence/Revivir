@@ -7,26 +7,35 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class OBD {
-	protected final String driver = "com.mysql.jdbc.Driver";
-	//protected final String driver = "org.mariadb.jdbc.Driver";
-	protected final Integer limite = 50;
+	public String tabla;
+	public String campos;
+	protected static String driver;
+	protected static String cadenaConexion;
+	protected static String usuarioBD; 
+	protected static String passwordBD;
+
+	static {
+		Configuracion configuracion = new Configuracion("config.properties");
+		driver = configuracion.recuperar("driver");
+		cadenaConexion = configuracion.recuperar("cadenaConexion");
+		usuarioBD = configuracion.recuperar("usuarioBD");
+		passwordBD = configuracion.recuperar("passwordBD");
+	}
+
+	
+	protected final Integer limite = 100;
 	protected static Connection conexion = null;
 	
+
 	// DESARROLLO
-	/*
-	protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir?serverTimezone=UTC"; 
-	protected String usuarioBD = "root"; 
-	protected String passwordBD = "root";
-	*/
-	// PRODUCCION
+	//protected final String cadenaConexion = "jdbc:mysql://localhost:3306/revivir_escobar?serverTimezone=UTC"; 
+	//protected String usuarioBD = "root"; 
+	//protected String passwordBD = "root";
 	
-	protected final String cadenaConexion = "jdbc:mysql://crematorioescobar.com:3306/cretorioescobar_REVIVIR"; 
-	protected String usuarioBD = "cretorioescobar_REVIVIR";
-	protected String passwordBD = "REVIVIR1a";
-	
-	
+	 
+
+	// Ejecutar sentencias que no traigan resultados
 	public void ejecutarSQL(String sql) {
-		// Sirve para ejecutar sentencias que no traigan resultados
 		try { 
 			Class.forName(driver); 
 			Connection conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD);
@@ -46,16 +55,12 @@ public class OBD {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				conexion = DriverManager.getConnection(cadenaConexion, usuarioBD, passwordBD);
-				
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
-				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
 		}
-		
 		return conexion;
 	}
 
@@ -63,7 +68,6 @@ public class OBD {
 		try {
 			conexion.close();
 			conexion = null;
-			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -93,9 +97,15 @@ public class OBD {
 		return ret;
 	}
 	
-	public void inicializarZonaHoraria() {
-		ejecutarSQL("SET @@global.time_zone = '+00:00' ;");
-		ejecutarSQL("SET @@session.time_zone = '+00:00';");			
+	public void ejecutarTimeZone() {
+		try {
+			
+			ejecutarSQL("SET @@global.time_zone = '+00:00' ;");
+			ejecutarSQL("SET @@session.time_zone = '+00:00';");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
 	}
 
 }

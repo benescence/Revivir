@@ -8,7 +8,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailSender {
+public class EmailSender {/*
 
 	public static boolean sendEmail(String email, String mensaje) {
 		
@@ -64,5 +64,5 @@ public class EmailSender {
 		
 		return true;
 	}
-	
+	*/
 }

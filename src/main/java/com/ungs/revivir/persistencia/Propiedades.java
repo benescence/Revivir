@@ -15,7 +15,7 @@ public class Propiedades {
 	private static final String direccion = "config.properties";
 	private static List<String> campos = crearCampos();
 	
-	public static String recuperar(String clave) {	
+	public static String recuperar1(String clave) {	
 		Properties propiedades = new Properties();
 		InputStream entrada = null;
 		String ret = "";
@@ -41,13 +41,13 @@ public class Propiedades {
 	}
 	
 	public static void guardar(String clave, String valor) {
-		if (!campos.contains(clave)) {
+		/*if (!campos.contains(clave)) {
 			System.out.println("La palabra "+clave+" no es una clave valida.");
 			return;
 		}
 
 		// Obtengo el mapa en su estado actual
-		String IP = recuperar("IP"); 
+		//String IP = recuperar("IP"); 
 		String puerto = recuperar("puerto"); 
 		String usuario_BD = recuperar("usuario_BD");
 		String password_BD = recuperar("password_BD");
@@ -64,7 +64,7 @@ public class Propiedades {
 		
 		// agrego el nuevo valor y lo guardo todo
 		mapa.put(clave, valor);
-		guardarTodo(mapa);
+		guardarTodo(mapa);*/
 	}
 	
 	private static List<String> crearCampos(){
@@ -107,7 +107,7 @@ public class Propiedades {
 	}
 
 	public static void main(String[] args) {
-		try {
+	/*	try {
 			guardar("IP", "localhost");
 			guardar("puerto", "3306");
 			guardar("usuario_BD", "root");
@@ -124,6 +124,7 @@ public class Propiedades {
 		System.out.println("Password BD: "+recuperar("password_BD"));
 		System.out.println("Direccion E-Mail: "+recuperar("direccion_email"));
 		System.out.println("Password E-Mail: "+recuperar("password_email"));
+		*/
 	}
 
 }
