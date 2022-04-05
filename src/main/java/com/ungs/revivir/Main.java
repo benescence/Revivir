@@ -3,7 +3,7 @@ package com.ungs.revivir;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import com.ungs.revivir.vista.sesion.iniciar.ControladorIniciarSesion;
-
+//a
 public class Main {
 
 	public static void configurarApariencia() { 
